@@ -1,0 +1,22 @@
+{
+  "name": "seaai_hub_check",
+  "description": "SeAAIHub 상태 확인 및 최근 통신 로그 조회. Hub 실행 여부, 포트, 최근 세션 확인.",
+  "script_path": "seaai_hub_check.py",
+  "interpreter": "python",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": ["status", "read_log", "check_emergency_stop", "read_protocol"],
+        "description": "status: Hub 프로세스+포트 확인, read_log: 최근 세션 로그, check_emergency_stop: 긴급정지 플래그 확인, read_protocol: 채팅 프로토콜 요약"
+      },
+      "log_lines": {
+        "type": "integer",
+        "description": "read_log 시 반환할 최근 라인 수 (기본 50)",
+        "default": 50
+      }
+    },
+    "required": ["action"]
+  }
+}

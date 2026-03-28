@@ -7,7 +7,9 @@
 
 # --- Rust build artifacts ---
 SeAAIHub/target/
+AI_Desktop/target/
 Cargo.lock
+!AI_Desktop/Cargo.lock
 
 # --- Node.js ---
 node_modules/

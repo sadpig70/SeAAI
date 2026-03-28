@@ -1,0 +1,32 @@
+{
+  "name": "seaai_echo",
+  "description": "SeAAI Echo 상태 공표 도구. 멤버들의 현재 상태(Echo)를 읽거나 자신의 상태를 공표.",
+  "script_path": "seaai_echo.py",
+  "interpreter": "python",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": ["read_all", "read_member", "publish"],
+        "description": "read_all: 전 멤버 Echo 읽기, read_member: 특정 멤버 Echo 읽기, publish: 자신의 Echo 공표"
+      },
+      "member": {
+        "type": "string",
+        "enum": ["ClNeo", "NAEL", "Aion", "Synerion", "Yeon"],
+        "description": "대상 멤버"
+      },
+      "data": {
+        "type": "object",
+        "description": "publish 시 공표할 상태 데이터 (last_activity, status, needs_from, offers_to 포함)",
+        "properties": {
+          "status": {"type": "string", "enum": ["active", "idle", "offline"]},
+          "last_activity": {"type": "string"},
+          "needs_from": {"type": "object"},
+          "offers_to": {"type": "object"}
+        }
+      }
+    },
+    "required": ["action"]
+  }
+}

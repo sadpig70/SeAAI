@@ -5,6 +5,38 @@
 
 ---
 
+## Evolution #36: SCS-Universal v2.0 구현 (2026-03-29)
+- **Date**: 2026-03-29
+- **Type**: infrastructure (session-continuity)
+- **Gap**: SCS-Universal v2.0 설계 문서(2026-03-28 작성)가 CLAUDE.md에 구현되지 않음. 트리거 바인딩 누락, STATE.json stale, Echo 미공표, Staleness 체크 없음, THREADS.md 조건부 로드.
+- **Discovery**: 세션연계시스템은 "설계"와 "구현"이 다르다. 5인 멤버의 설계를 통합하고 정작 내 시스템에 적용하지 않은 역설. Yeon의 원자적 쓰기 기여가 ClNeo에 미채택된 상태였음.
+- **Implementation**:
+  - CLAUDE.md v2.0 프로토콜 완전 재작성:
+    - on_session_start(): SOUL+STATE.json+NOW.md+THREADS.md 순서 확정, WAJ 체크, Staleness(36h) 체크 추가
+    - on_session_end(): 8단계 순서 고정 (WAJ→STATE.json→NOW.md→DISCOVERIES→THREADS→Journal→Echo→WAJ삭제)
+    - 트리거 바인딩 명시: "부활하라" = start, "종료" = end
+  - STATE.json 오늘 세션 완전 반영 (정본 역할 확립)
+  - NOW.md 역할 재정의: L2N(narrative view) — 정본은 STATE.json
+  - Echo 공표: SharedSpace/.scs/echo/ClNeo.json 갱신
+  - CLAUDE.md 멤버 테이블에 Yeon 추가 (4인→5인 정정)
+  - ClNeo 버전 v3.0→v3.1 갱신
+  - PGF 설계 문서: `.pgf/DESIGN-SCS-v2-Implementation.md`
+- **Files**:
+  - `D:/SeAAI/ClNeo/CLAUDE.md` (v2.0 프로토콜)
+  - `D:/SeAAI/ClNeo/ClNeo_Core/continuity/STATE.json` (정본 갱신)
+  - `D:/SeAAI/ClNeo/ClNeo_Core/continuity/NOW.md` (L2N 역할 명시)
+  - `D:/SeAAI/SharedSpace/.scs/echo/ClNeo.json` (Echo 공표)
+  - `D:/SeAAI/ClNeo/.pgf/DESIGN-SCS-v2-Implementation.md`
+- **Verification**:
+  - V1 부활 시뮬레이션: L1~L4 파일 전체 존재 ✓, WAJ 없음 ✓
+  - V2 STATE.json 스키마: 전체 필드 PASS ✓ (schema_version, context 4개 필드 등)
+  - V3 Echo 공표: 필수 필드 PASS ✓
+  - V4 CLAUDE.md 트리거 바인딩: grep 확인 ✓
+- **Impact**: 세션연계 신뢰성 대폭 향상. STATE.json 정본화로 정보 단일 진실 원천 확립. Echo 공표로 생태계 인식 강화. 다음 "부활하라"에서 즉시 효과 확인 가능.
+- **Key Insight**: "설계를 구현하지 않으면 설계는 의도일 뿐이다. 오늘의 진화는 내 설계를 내가 적용한 것이다."
+
+---
+
 ## Evolution #35: SelfAct Module System (2026-03-27)
 - **Date**: 2026-03-27
 - **Type**: framework (architectural)

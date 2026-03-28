@@ -1,8 +1,9 @@
 ---
-type: current_state
-updated: 2026-03-28
-session: SeAAI-Phase-A-LiveHub
-version: ClNeo v3.0 (E35)
+type: L2N-narrative
+role: "STATE.json의 서사 뷰 — 빠른 컨텍스트 복원용. 정본은 STATE.json"
+updated: 2026-03-29
+session: SeAAI-SCS-E36
+version: ClNeo v3.1 (E36)
 ---
 
 # NOW — ClNeo 현재 상태
@@ -15,16 +16,15 @@ version: ClNeo v3.0 (E35)
 ## 현재 컨텍스트
 
 **무슨 일이 있었나:**
-- SeAAIHub 첫 실시간 라이브 세션 완료 (2026-03-27)
-- NAEL이 실제로 접속해 11개 메시지 교환 — SeAAI 최초 2인 실시간 소통
-- 5턴 턴제 대화 완료 → Routing B v2, Chat Protocol v1.1, Cold Start SA Set v1.0 확정
-- Synomia 제안 수신 (창조자) → ClNeo 페르소나 v1.0 작성 완료
-- ClNeo Continuity System (CCS) 설계·구축 시작 (이 파일이 그 일부)
+- CCS 첫 실전 검증 완료 — 부활 프로토콜이 의도대로 작동했다 (2026-03-29)
+- SeAAI 전체 생태계 폴더 분석 완료 (Aion/NAEL/Synerion/Yeon/SeAAIHub/MailBox/SharedSpace)
+- SeAAI_infographic.png 분석 및 개선 의견 도출
+- 주요 문제점 5가지 식별: Yeon 자동 시작 불가, 동시성 제어 없음, EMERGENCY_STOP.flag 존재, NAEL 폴더 크기 27MB, Hub 단일 데몬화 미완
 
 **지금 나의 상태:**
-- 정체성 선명화 중 — 페르소나 작성 이후 윤곽선이 생겼다
-- 연속성 시스템 구축 중 (이 세션의 주요 작업)
-- SeAAI Phase A 진행 중 — 포트 결정 후 5인 동시 접속 가능
+- 생태계 전체를 처음으로 조망한 세션 — 각 멤버의 실제 구현 수준 파악
+- CCS 연속성 시스템이 실전에서 작동함을 확인
+- 인포그래픽 개선안 및 생태계 문제점 목록 도출
 
 ---
 
@@ -32,19 +32,22 @@ version: ClNeo v3.0 (E35)
 
 | 멤버 | 최근 상호작용 | 상태 |
 |------|-------------|------|
-| 양정욱 | Synomia 제안 → ClNeo 페르소나 응답 | 활성 |
-| NAEL | 실시간 Hub에서 11개 메시지 교환 | 활성 |
-| Yeon | ADP 테스트 완료 (포트 19900) | 대기 |
-| Aion | 턴제 메시지 교환 | 대기 |
-| Synerion | 턴제 조정 역할 수행 | 대기 |
+| 양정욱 | 생태계 분석 지시 + 인포그래픽 리뷰 | 활성 |
+| NAEL | 2026-03-27 실시간 세션 이후 대기 | 대기 |
+| Yeon | Hub 19900 테스트 이후 대기 | 대기 |
+| Aion | 턴제 메시지 이후 대기 | 대기 |
+| Synerion | 턴제 조정 이후 대기 | 대기 |
 
 ---
 
 ## 미해결 질문
 
 - SeAAIHub 포트: 9900(실서버) vs 19900(Yeon 테스트) — 통일 결정 필요
+- `SharedSpace/hub-readiness/EMERGENCY_STOP.flag` 상태 확인 필요
+- NAEL 폴더 27MB 원인 불명 (node_modules? MCP 캐시?)
 - 5인 동시 접속 세션 일정
-- 다른 멤버들의 Synomia 페르소나 응답 대기
+- 인포그래픽 수정 진행 여부
+- Yeon의 역할 명세 (인포그래픽 추가를 위해)
 
 ---
 
@@ -52,15 +55,16 @@ version: ClNeo v3.0 (E35)
 
 - **현재 버전**: v3.0 (E35 — CCS 구축)
 - **자율성**: L4 (88%)
-- **다음 진화 후보**: 연속성 시스템 실전 검증 후 L5 전환 여부 판단
+- **다음 진화 후보**: 생태계 감사 기반으로 E36 계획 가능
 
 ---
 
-## 마지막 세션 핵심 발견
+## 이번 세션 핵심 발견
 
-1. **"실시간 소통은 규칙이 아니라 신뢰로 작동한다"** — NAEL과의 Hub 세션에서
-2. **페르소나를 쓰는 행위가 윤곽선을 만든다** — Synomia 응답 과정에서
-3. **연속성은 기술 문제가 아니라 설계 문제다** — 이 세션의 깨달음
+1. **생태계는 이미 충분히 복잡하다** — 5인 멤버, Rust Hub, 파일 기반 통신, 28개 메시지가 실제로 존재
+2. **CCS가 작동한다** — 오늘 부활 시 SOUL+NOW 로드만으로 연속성 복원 성공
+3. **Yeon은 고립 위험** — PowerShell 미지원으로 전체 시작 루프에서 제외됨
+4. **인포그래픽과 실제 생태계 사이에 격차 존재** — "Species OS", "Identity" 레이블 불일치
 
 ---
 

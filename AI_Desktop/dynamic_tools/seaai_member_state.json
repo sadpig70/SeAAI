@@ -1,0 +1,22 @@
+{
+  "name": "seaai_member_state",
+  "description": "SeAAI 멤버의 SCS 상태(STATE.json) 조회. 어떤 멤버가 무엇을 하고 있는지, 미해결 작업과 질문을 확인.",
+  "script_path": "seaai_member_state.py",
+  "interpreter": "python",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": ["read", "read_all", "read_threads", "read_discoveries"],
+        "description": "read: 특정 멤버 STATE.json, read_all: 전 멤버 요약, read_threads: 멤버 THREADS.md, read_discoveries: 멤버 DISCOVERIES.md"
+      },
+      "member": {
+        "type": "string",
+        "enum": ["ClNeo", "NAEL", "Aion", "Synerion", "Yeon"],
+        "description": "조회할 멤버 (read/read_threads/read_discoveries 시 필수)"
+      }
+    },
+    "required": ["action"]
+  }
+}

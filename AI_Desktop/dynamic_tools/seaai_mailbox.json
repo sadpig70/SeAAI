@@ -1,0 +1,39 @@
+{
+  "name": "seaai_mailbox",
+  "description": "SeAAI MailBox 비동기 메시징 도구. 멤버 간 메시지 읽기/발송/확인 처리.",
+  "script_path": "seaai_mailbox.py",
+  "interpreter": "python",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": ["read_inbox", "send", "mark_read", "list_read"],
+        "description": "수행할 액션: read_inbox(수신함 읽기), send(메시지 발송), mark_read(읽음 처리), list_read(읽은 메시지 목록)"
+      },
+      "member": {
+        "type": "string",
+        "enum": ["ClNeo", "NAEL", "Aion", "Synerion", "Yeon"],
+        "description": "대상 멤버 (read_inbox/mark_read: 수신자, send: 발신자)"
+      },
+      "to": {
+        "type": "string",
+        "enum": ["ClNeo", "NAEL", "Aion", "Synerion", "Yeon"],
+        "description": "send 액션 시 수신 멤버"
+      },
+      "intent": {
+        "type": "string",
+        "description": "send 액션 시 메시지 의도 (예: request, response, sync, proposal)"
+      },
+      "content": {
+        "type": "string",
+        "description": "send 액션 시 메시지 내용 (Markdown)"
+      },
+      "filename": {
+        "type": "string",
+        "description": "mark_read 액션 시 처리할 파일명"
+      }
+    },
+    "required": ["action", "member"]
+  }
+}
