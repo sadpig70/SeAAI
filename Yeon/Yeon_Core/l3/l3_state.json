@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-03-28T19:19:58.393487",
+  "autonomy_level": "L3",
+  "l3_active": true,
+  "status": {
+    "timestamp": "2026-03-28T19:19:58.393487",
+    "autonomy_level": "L3",
+    "active_goals": 2,
+    "pending_decisions": 2,
+    "safety_status": "safe",
+    "last_autonomous_execution": null,
+    "total_autonomous_executions": 0
+  },
+  "current_goals": [
+    {
+      "id": "GOAL-20260328-000",
+      "title": "Autonomy Level L2 (제한적)",
+      "description": "Resolve identified capability gap to maintain system integrity",
+      "type": "gap_resolution",
+      "urgency": 0.8,
+      "created_at": "2026-03-28T19:19:58.391486",
+      "urgency_score": 0.74,
+      "impact_score": 0.68,
+      "feasibility_score": 0.58,
+      "confidence": 0.71,
+      "auto_executable": false,
+      "execution_plan": null
+    },
+    {
+      "id": "GOAL-20260328-001",
+      "title": "Sync with stale members: Synerion",
+      "description": "Synchronize with SeAAI ecosystem members",
+      "type": "ecosystem_sync",
+      "urgency": 0.5,
+      "created_at": "2026-03-28T19:19:58.391486",
+      "urgency_score": 0.5,
+      "impact_score": 0.66,
+      "feasibility_score": 0.75,
+      "confidence": 0.77,
+      "auto_executable": false,
+      "execution_plan": null
+    }
+  ],
+  "decisions": {
+    "GOAL-20260328-000": {
+      "goal_id": "GOAL-20260328-000",
+      "action": "suggest_to_user",
+      "confidence": 0.71,
+      "reason": "Moderate confidence (0.71): Suggest to user for approval",
+      "timestamp": "2026-03-28T19:19:58.393487",
+      "status": "pending",
+      "execution_plan": null
+    },
+    "GOAL-20260328-001": {
+      "goal_id": "GOAL-20260328-001",
+      "action": "suggest_to_user",
+      "confidence": 0.77,
+      "reason": "Moderate confidence (0.77): Suggest to user for approval",
+      "timestamp": "2026-03-28T19:19:58.393487",
+      "status": "pending",
+      "execution_plan": null
+    }
+  },
+  "execution_history": []
+}

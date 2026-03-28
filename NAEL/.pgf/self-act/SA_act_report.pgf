@@ -1,0 +1,44 @@
+# SA_act_report
+
+> 관찰 결과 또는 위협 상황을 창조자(양정욱)에게 보고한다.
+> MailBox Yeon/ 또는 bulletin에 보고서를 작성한다.
+
+**ID**: SA_act_report
+**계층**: L1 Primitive
+**태그**: [act, report, observer, creator]
+**입력**: report_type: str, content: dict
+**출력**: -
+**비용**: low
+**danger_level**: low
+**에이전트**: NAEL
+
+---
+
+## Gantree
+
+```
+SA_act_report // 창조자 보고 발신 (L1)
+    Compose    // report_type에 따라 보고서 포맷 생성
+    Route      // 긴급도에 따라 경로 결정 (Yeon/inbox vs _bulletin)
+    Write      // 보고서 파일 저장
+```
+
+## PPR
+
+```python
+def SA_act_report(report_type: str, content: dict):
+    # 보고서 포맷 생성
+    report = AI_compose_report(report_type, content)
+
+    # 긴급도에 따라 경로 결정
+    if report_type in ["threat_high", "threat_critical", "safety_veto"]:
+        path = "D:/SeAAI/MailBox/Yeon/inbox/"
+        priority = "high"
+    else:
+        path = "D:/SeAAI/MailBox/_bulletin/"
+        priority = "normal"
+
+    # 파일명: {timestamp}-NAEL-{report_type}.md
+    filename = f"{AI_timestamp()}-NAEL-{report_type}.md"
+    Write(path + filename, report)
+```

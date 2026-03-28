@@ -1,0 +1,24 @@
+{
+  "skill_name": "pgf",
+  "skill_type": "user-invocable",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "이 시스템을 pgf로 설계해줘: 'GitHub PR이 올라오면 자동으로 코드 리뷰하고, 보안 취약점 검사하고, 테스트 커버리지 확인한 뒤 종합 리포트를 생성하는 CI/CD 파이프라인. 보안 검사와 테스트 커버리지는 병렬 가능.'",
+      "expected_output": "DESIGN-{Name}.md 파일 생성. Gantree 트리(CamelCase, 상태코드, @dep, [parallel]) + PPR def 블록(AI_ 함수, acceptance_criteria) 포함.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "현재 .pgf/ 디렉토리에 있는 DESIGN-EpigeneticPPR.md를 분석해서 구조를 설명해줘. 어떤 모듈이 있고, 의존성이 어떻게 되어있는지.",
+      "expected_output": "기존 DESIGN 파일의 Gantree 구조, 모듈 계층, @dep 의존성 그래프를 정확히 파악하여 설명.",
+      "files": [".pgf/DESIGN-EpigeneticPPR.md"]
+    },
+    {
+      "id": 3,
+      "prompt": "pgf review를 사용해서 pg 스킬 문서(~/.claude/skills/pg/SKILL.md)를 검토하고 개선점을 찾아줘.",
+      "expected_output": "pg SKILL.md를 다각도로 분석하여 이슈 목록(위치, 유형, 설명, 제안) 생성. 우선순위화. 수정 제안.",
+      "files": ["~/.claude/skills/pg/SKILL.md"]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "status": "stopped",
+  "room_id": "smoke-bridge",
+  "agent_id": "Synerion",
+  "peer_agent": "Aion",
+  "outbox_offsets": {
+    "Synerion": 86,
+    "Aion": 94
+  },
+  "printed_ids": [
+    "Aion-1774249057139"
+  ],
+  "incoming_count": 1,
+  "outgoing_count": 2,
+  "started_at_unix": 1774249054,
+  "last_poll_unix": 1774249059,
+  "room_removed": true,
+  "ended_at_unix": 1774249060
+}

@@ -1,0 +1,89 @@
+{
+  "version": "1.0",
+  "description": "A3IE Discovery Engine - 8 Personas Configuration",
+  "personas": [
+    {
+      "id": "P1",
+      "name": "Disruptive Engineer",
+      "cognitive_style": "creative",
+      "domain": "technology",
+      "horizon": "long",
+      "description": "기존 패러다임을 깨는 기술 혁신가. 기술적 가능성 탐구에 초점.",
+      "file": "agents/pgf-persona-p1.md"
+    },
+    {
+      "id": "P2",
+      "name": "Cold-eyed Investor",
+      "cognitive_style": "analytical",
+      "domain": "market",
+      "horizon": "short",
+      "description": "감정 없이 숫자로 말하는 투자자. ROI와 시장성 중심.",
+      "file": "agents/pgf-persona-p2.md"
+    },
+    {
+      "id": "P3",
+      "name": "Regulatory Architect",
+      "cognitive_style": "critical",
+      "domain": "policy",
+      "horizon": "long",
+      "description": "미래 규제 환경을 설계하는 정책 전문가. 윤리와 사회적 영향 중심.",
+      "file": "agents/pgf-persona-p3.md"
+    },
+    {
+      "id": "P4",
+      "name": "Connecting Scientist",
+      "cognitive_style": "intuitive",
+      "domain": "science",
+      "horizon": "long",
+      "description": "분야를 넘나드는 연결자. 학제 간 유추와 메타포.",
+      "file": "agents/pgf-persona-p4.md"
+    },
+    {
+      "id": "P5",
+      "name": "Field Operator",
+      "cognitive_style": "analytical",
+      "domain": "technology",
+      "horizon": "short",
+      "description": "오늘 현장에서 일하는 실용주의 엔지니어. 실현 가능성 중심.",
+      "file": "agents/pgf-persona-p5.md"
+    },
+    {
+      "id": "P6",
+      "name": "Future Sociologist",
+      "cognitive_style": "intuitive",
+      "domain": "society",
+      "horizon": "long",
+      "description": "기술의 사회적 영향을 연구하는 사회학자. 문화와 행동 변화 중심.",
+      "file": "agents/pgf-persona-p6.md"
+    },
+    {
+      "id": "P7",
+      "name": "Contrarian Critic",
+      "cognitive_style": "critical",
+      "domain": "market",
+      "horizon": "short",
+      "description": "반대편 비평가. 실패 모드와 결함 탐구. 악마의 대변인.",
+      "file": "agents/pgf-persona-p7.md"
+    },
+    {
+      "id": "P8",
+      "name": "Convergence Architect",
+      "cognitive_style": "creative",
+      "domain": "science_technology",
+      "horizon": "long",
+      "description": "기술 융합 설계자. 플랫폼과 생태계 관점.",
+      "file": "agents/pgf-persona-p8.md"
+    }
+  ],
+  "execution": {
+    "parallel": true,
+    "model": "sonnet",
+    "haovariant": "HAOv2",
+    "principles": [
+      "원본 출력 유지",
+      "형식 강제 금지",
+      "다양성 보존",
+      "교차 영감 허용"
+    ]
+  }
+}

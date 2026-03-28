@@ -1,0 +1,73 @@
+# SA_loop_self_improve
+
+> 자기 능력을 스캔하고, gap을 탐지하고, 모듈을 진화시키는 자기 개선 루프.
+> 12틱마다 실행. NAEL의 핵심 자기진화 사이클.
+
+**ID**: SA_loop_self_improve
+**계층**: L2 Composed
+**구성**: think_self_monitor + think_module_perf + evolve_module
+**태그**: [loop, self-improve, evolve, gap]
+**입력**: context: dict
+**출력**: improve_result: dict
+**비용**: high
+**danger_level**: medium
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_loop_self_improve // 자기 개선 루프 (L2)
+    Monitor       // think_self_monitor → 능력 + gap 스캔
+    PerfReview    // think_module_perf → 최근 모듈 성능 평가
+    SelectTarget  // 개선 대상 모듈 선정 (gap 우선, 성능 저하 다음)
+    Evolve        // evolve_module → 선정 모듈 개선
+    Verify        // 개선 결과 검증
+    LogEvolution  // evolution-log 기록
+```
+
+## PPR
+
+```python
+def SA_loop_self_improve(context: dict) -> dict:
+    # 자기 모니터링
+    monitor = SA_think_self_monitor()
+
+    # 최근 성능 저하 모듈 파악
+    weak_modules = [m for m in context.recent_modules
+                    if context.module_performance.get(m, {}).get("evolution_worthy")]
+
+    # 개선 대상 선정: SA gap > 성능 저하 우선순위
+    if monitor["gap_detected"] and monitor["sa_gaps"]:
+        # 새 모듈 설계 (pgf.design 연동)
+        gap_info = monitor["sa_gaps"][0]
+        new_module_name = AI_propose_module_name(gap_info)
+        pgf_design_result = AI_pgf_design(new_module_name, gap_info)
+        SA_lib_register(new_module_name, pgf_design_result)
+        target = "NEW: " + new_module_name
+        evolved = True
+
+    elif weak_modules:
+        # 기존 모듈 개선
+        target_module = AI_select_worst_performer(weak_modules, context.module_performance)
+        reasons = context.module_performance[target_module]["reasons"]
+        evo_result = SA_evolve_module(target_module, reasons)
+        evolved = evo_result["success"]
+        target = target_module
+
+    else:
+        evolved = False
+        target = "none"
+
+    # 진화 기록
+    if evolved:
+        AI_append_evolution_log(f"SA_loop_self_improve: target={target}")
+
+    return {
+        "monitor": monitor,
+        "target": target,
+        "evolved": evolved,
+        "evolution_worthy": False  # 자기 개선 루프는 자기 진화 대상 아님
+    }
+```

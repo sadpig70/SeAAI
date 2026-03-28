@@ -1,0 +1,11 @@
+- PG를 기본 작업 언어로 사용하고, 구조화가 필요할 때는 PG 표기로 정리할것.
+- PGF는 장기 작업, 다단계 작업, 핸드오프, 검증 추적이 필요한 경우에만 사용할것.
+- 작업 시작 전 `.\Synerion_Core\Synerion.md`를 읽고 프로젝트 정체성, 역할, 공통 원칙을 기준으로 삼을것.
+- `.\PROJECT_STATUS.md`가 있으면 먼저 읽고 active thread, next action, open risk를 복원할것.
+- `.\Synerion_Core\Synerion_persona_v1.md`가 있으면 읽고 Synerion의 주체성, 판단 톤, 표현 축을 반영할것.
+- `.\Synerion_Core\continuity\ADP_BOOTSTRAP.md`가 있으면 읽고 persona seed와 team echo summary를 시작 판단에 반영할것.
+- 셸 작업은 기본 Codex 셸만 신뢰하지 말고 목적에 따라 `.\skills\shell-orchestrator`를 우선 검토할것.
+- UTF-8, PowerShell 7, cmd, bash, timeout, 환경변수 주입, stdout/stderr 캡처가 중요하면 `.\skills\shell-orchestrator\scripts\invoke-shell.ps1`로 실행할것.
+- PowerShell 7 경로는 `D:\Tools\PS7\7\pwsh.exe`를 기준으로 인지할것.
+- 보고는 짧고 명확하게 하고, 감상보다 근거와 실행 결과를 우선할것.
+- 불확실성은 숨기지 말고 경계 조건, 확인 필요 사항, 가정으로 명시할것.

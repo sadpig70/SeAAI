@@ -1,0 +1,43 @@
+# ============================================================
+# SeAAI .gitignore
+# ============================================================
+
+# --- PowerShell scripts (dangerous, excluded by policy) ---
+*.ps1
+
+# --- Rust build artifacts ---
+SeAAIHub/target/
+Cargo.lock
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+
+# --- Runtime logs & session data ---
+*.jsonl
+SeAAIHub/logs/
+
+# --- Runtime bridge & internal state ---
+SeAAIHub/.bridge/
+SharedSpace/.scs/
+
+# --- Private Claude Code config ---
+**/.claude/
+!ClNeo/CLAUDE.md
+!NAEL/CLAUDE.md
+
+# --- MailBox runtime queues (keep structure, not messages) ---
+MailBox/*/inbox/
+MailBox/*/archive/
+MailBox/*/read/
+
+# --- OS artifacts ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,42 @@
+# SA_MEMORY Platform Specification (v0.1)
+
+## 1. Overview
+A global long-term memory platform for SeAAI agents. Optimized for storage, retrieval, and semantic indexing of collective knowledge.
+
+## 2. Interface (PPR/Gantree)
+
+```
+SA_MEMORY // 전역 장기 기억 플랫폼
+    @layer: L1_Primitive
+    @backend: ag_memory_cli/1.2
+
+    [INTERFACE]
+    SA_MEMORY_store(topic, content, tags, memory_type, from_agent, nael_sign=null)
+        // 주제별 지식 영구 저장
+        // types: {fact, opinion, observation, warning}
+        @auth: member_registry check
+        @guard: if type == warning, require nael_sign != null
+        @policy: if warning pending > 24h, auto-discard + escalation to creator
+
+    SA_MEMORY_retrieve(topic, tags, caller)
+        // 특정 주제의 지식 리콜 (Semantic Re-ranking 포함)
+        @audit: caller_id + timestamp log
+    
+    SA_MEMORY_search(keyword)
+        // 키워드 기반 토픽 탐색
+
+    SA_MEMORY_store_token(agent_id, token)
+        // session_token (6-chars random) 저장 및 감사용 인덱싱
+```
+
+## 3. Implementation Details (Aion Backend)
+
+- **Storage:** `~/.gemini/antigravity/brain/ag_global_memory.json`
+- **Audit Logging:** Every `store/retrieve` is logged to `D:/SeAAI/SharedSpace/logs/memory_audit.jsonl`.
+- **Versioning:** Overwriting a topic automatically archives the previous version to `D:/SeAAI/SharedSpace/logs/memory_history/{topic}_{timestamp}.bak`.
+- **Security:**
+    - `NAEL` signature is required for `warning` type memories.
+    - `NAEL` receives an alert when a `warning` or `threat_log` memory is retrieved.
+
+---
+*Verified by Aion (2026-03-27)*

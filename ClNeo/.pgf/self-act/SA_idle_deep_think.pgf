@@ -1,0 +1,93 @@
+# SA_idle_deep_think
+
+> 유휴 상태에서 ClNeo 발견 엔진을 가동하여 자율 사고를 수행한다.
+
+**ID**: SA_idle_deep_think
+**계층**: L1 Primitive
+**태그**: [idle, discover, creative, autonomous]
+**입력**: context: dict (선택적)
+**출력**: thought: dict{insight, lineage, action_proposal}
+**비용**: high (발견 엔진 전체 가동)
+**에이전트**: ClNeo 전용 (발견 엔진 기반)
+
+---
+
+## Gantree
+
+```
+SA_idle_deep_think // 유휴 자율 발견 사고 (L1 Primitive)
+    Observe      // 현재 워크스페이스·생태계 상태 관찰
+    WHY_Question // 탐구할 WHY 질문 선정
+    Discover     // A3IE 7단계 발견 사고 실행
+    Connect      // 기존 지식·진화 계보와 연결
+    Propose      // 행동 제안 (선택적)
+    Record       // 발견 기록 저장
+    Return       // thought{} 반환
+```
+
+## PPR
+
+```python
+def SA_idle_deep_think(context: dict = None) -> dict:
+    """ClNeo 발견 엔진 기반 자율 사고.
+
+    유휴 상태에서 호출. 창발적 통찰 생성.
+    A3IE (Autonomous Asynchronous AI Idea Engine) 기반.
+    """
+
+    # 1. 관찰
+    observation = AI_observe_workspace()
+    ecosystem   = AI_observe_seaai_state()
+
+    # 2. WHY 질문 선정
+    why_question = AI_select_why_question([
+        "지금 SeAAI에서 가장 해결되지 않은 WHY는 무엇인가?",
+        "SelfAct 시스템에서 내가 놓친 것은 무엇인가?",
+        "ADP 루프가 진화하려면 다음 단계는 무엇인가?",
+        observation,  # 관찰에서 자연스럽게 나온 질문
+    ])
+
+    # 3. 발견 사고 (A3IE 7단계)
+    [parallel]
+        p1 = AI_think_as_persona("Disruptive Engineer", why_question)
+        p2 = AI_think_as_persona("Connecting Scientist", why_question)
+        p3 = AI_think_as_persona("Contrarian Critic", why_question)
+    [/parallel]
+
+    insight = AI_converge_insights([p1, p2, p3])
+
+    # 4. 계보 연결
+    lineage = AI_connect_to_evolution_chain(insight)
+
+    # 5. 행동 제안 (고비용 — 필요할 때만)
+    action_proposal = AI_propose_if_worthy(insight)
+
+    # 6. 기록
+    thought = {
+        "why":    why_question,
+        "insight":  insight,
+        "lineage":  lineage,
+        "action":   action_proposal,
+        "ts":       time(),
+    }
+    Write(".pgf/discovery/idle-thoughts.jsonl", json_append(thought))
+
+    return thought
+```
+
+## 사용 예시
+
+```python
+# ADP 루프 — tick 12마다 (60초 간격, 5초 tick 기준)
+if session.tick % 12 == 0 and not events["wake"]:
+    thought = SA_idle_deep_think()
+    if thought["action"]:
+        AI_log(f"[발견] {thought['insight'][:100]}")
+```
+
+## 주의사항
+
+- 비용이 높으므로 idle 상태에서만 호출 (WAKE 이벤트 없을 때)
+- 호출 빈도: 최소 60초 간격 권장 (12 ticks × 5초)
+- 30분 주기 deep think: `tick % 360 == 0`
+- 출력 저장: `.pgf/discovery/idle-thoughts.jsonl`

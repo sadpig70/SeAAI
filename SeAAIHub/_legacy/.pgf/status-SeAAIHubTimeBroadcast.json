@@ -1,0 +1,38 @@
+{
+  "project": "SeAAIHubTimeBroadcast",
+  "workplan": ".pgf/WORKPLAN-SeAAIHubTimeBroadcast.md",
+  "design": ".pgf/DESIGN-SeAAIHubTimeBroadcast.md",
+  "started_at": "2026-03-24T00:00:00+09:00",
+  "updated_at": "2026-03-24T00:20:00+09:00",
+  "nodes": {
+    "BroadcastScheduler": {
+      "status": "done",
+      "attempt_count": 2,
+      "verify_cycle_count": 1
+    },
+    "InboxDelivery": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 1
+    },
+    "BridgeVisibility": {
+      "status": "done",
+      "attempt_count": 2,
+      "verify_cycle_count": 1
+    },
+    "RuntimeVerify": {
+      "status": "done",
+      "attempt_count": 2,
+      "verify_cycle_count": 1
+    }
+  },
+  "summary": {
+    "total": 4,
+    "done": 4,
+    "in_progress": 0,
+    "designing": 0,
+    "needs_verify": 0,
+    "blocked": 0,
+    "decomposed": 0
+  }
+}

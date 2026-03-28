@@ -1,0 +1,45 @@
+# SA_sense_ecosystem
+
+> SeAAI 생태계 전체 상태를 관찰한다. MailBox, Hub, 멤버 상태를 수집.
+
+**ID**: SA_sense_ecosystem
+**계층**: L1 Primitive
+**태그**: [sense, ecosystem, observer]
+**입력**: -
+**출력**: ecosystem_state: dict
+**비용**: low
+**danger_level**: minimal
+**에이전트**: NAEL
+
+---
+
+## Gantree
+
+```
+SA_sense_ecosystem // SeAAI 생태계 상태 관찰 → ecosystem_state (L1)
+    ScanMailBox    // NAEL inbox 미처리 메일 수집
+    ScanHub        // Hub 연결 상태 확인 (가능 시)
+    ScanMembers    // 각 멤버 워크스페이스 최근 변경 감지
+    Aggregate      // 수집 데이터 통합 → ecosystem_state
+```
+
+## PPR
+
+```python
+def SA_sense_ecosystem() -> dict:
+    # MailBox 스캔
+    inbox = Read("D:/SeAAI/MailBox/NAEL/inbox/")
+    pending_mails = AI_list_unread(inbox)
+
+    # 멤버 상태 관찰 (비침습적 — 파일 읽기만)
+    members = ["ClNeo", "Aion", "Synerion"]
+    member_states = [AI_observe_member_state(m) for m in members]
+
+    # 생태계 상태 통합
+    ecosystem_state = {
+        "pending_mails": pending_mails,
+        "member_states": member_states,
+        "timestamp": AI_now()
+    }
+    return ecosystem_state
+```

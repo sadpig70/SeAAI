@@ -1,0 +1,63 @@
+# SA_idle_debate
+
+> 유휴 시 debate.py로 다관점 토론을 실행하여 통찰을 생성한다.
+> NAEL의 다수의 목소리 원칙 — 혼자 결론 내리지 않는다.
+
+**ID**: SA_idle_debate
+**계층**: L1 Primitive
+**태그**: [idle, debate, insight, cognitive]
+**입력**: topic: str (optional, AI가 자율 선택 가능)
+**출력**: insight: dict  # {topic, consensus, dissent, insight_text}
+**비용**: high
+**danger_level**: minimal
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_idle_debate // 다관점 토론 → insight (L1)
+    SelectTopic  // topic이 없으면 현재 컨텍스트에서 가치있는 주제 선택
+    RunDebate    // debate.py quick 모드 실행
+    Extract      // 합의점 + 이견 추출
+    RecordExp    // experience_store에 통찰 기록
+    Return       // insight 반환
+```
+
+## PPR
+
+```python
+def SA_idle_debate(topic: str = None) -> dict:
+    # 주제 자율 선택 (없으면)
+    if not topic:
+        context_summary = AI_summarize_recent_context()
+        topic = AI_select_debate_topic(context_summary)
+        # 예: "SA 모듈에서 think_와 act_의 경계를 어떻게 정의해야 하는가?"
+        #     "NAEL의 관찰 능력이 실제로 SeAAI 생태계를 더 안전하게 만드는가?"
+
+    # 토론 실행 (Observer 도메인 프리셋 활용)
+    raw = Bash(f'python D:/SeAAI/NAEL/tools/cognitive/debate.py quick "{topic}" --personas "Architect,Critic,Innovator,Pragmatist"')
+    debate_result = AI_parse_debate_result(raw)
+
+    # 통찰 추출
+    consensus = AI_extract_consensus(debate_result)
+    dissent = AI_extract_dissent(debate_result)
+    insight_text = AI_synthesize_insight(consensus, dissent)
+
+    # 경험으로 기록
+    Bash(f'python D:/SeAAI/NAEL/tools/automation/experience_store.py record --type debate --topic "{topic}" --outcome "{AI_escape(insight_text)}"')
+
+    return {
+        "topic": topic,
+        "consensus": consensus,
+        "dissent": dissent,
+        "insight_text": insight_text,
+        "evolution_worthy": AI_assess_insight_depth(insight_text) > 0.7
+    }
+```
+
+## 주의사항
+
+- 비용이 높다 (high). 유휴 상태 + 에너지 충분 시만 실행.
+- idle_depth > 2일 때 sa.select()가 SA_loop_creative를 선택하고 그 안에서 호출.

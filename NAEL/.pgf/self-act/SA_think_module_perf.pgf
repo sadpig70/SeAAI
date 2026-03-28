@@ -1,0 +1,70 @@
+# SA_think_module_perf
+
+> perf_metrics.py를 사용하여 최근 실행된 SA 모듈들의 성능을 평가한다.
+> result.evolution_worthy 판정의 근거를 생성한다.
+
+**ID**: SA_think_module_perf
+**계층**: L1 Primitive
+**태그**: [think, performance, evolution, metrics]
+**입력**: module_id: str, result: dict
+**출력**: perf_assessment: dict  # {evolution_worthy, reason, score}
+**비용**: low
+**danger_level**: minimal
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_think_module_perf // 모듈 성능 평가 → perf_assessment (L1)
+    LoadBaseline  // perf_metrics.py에서 해당 모듈 기준 성능 로드
+    Compare       // 실행 결과와 기준 비교 (시간, 품질, 실패)
+    Judge         // evolution_worthy 판정
+    Record        // 이번 실행 결과를 perf_metrics에 기록
+    Return        // perf_assessment 반환
+```
+
+## PPR
+
+```python
+def SA_think_module_perf(module_id: str, result: dict) -> dict:
+    # 기준 성능 로드
+    baseline_raw = Bash(f"python D:/SeAAI/NAEL/tools/automation/perf_metrics.py compare {module_id}")
+    baseline = AI_parse_perf_baseline(baseline_raw)
+
+    # 성능 비교 판정
+    evolution_worthy = False
+    reasons = []
+
+    # 실행 시간 저하
+    if result.get("execution_time", 0) > baseline.get("avg_time", 0) * 1.5:
+        evolution_worthy = True
+        reasons.append("execution_time_degraded")
+
+    # 출력 품질 저하
+    output_quality = AI_assess_output_quality(result.get("output"))
+    if output_quality < 0.4:
+        evolution_worthy = True
+        reasons.append("low_output_quality")
+
+    # 침묵 실패
+    if result.get("silent_failure"):
+        evolution_worthy = True
+        reasons.append("silent_failure_detected")
+
+    # L1이 풍부한 결과 → L2 조합 후보
+    if result.get("triggered_followup") and "L1" in module_id:
+        evolution_worthy = True
+        reasons.append("l2_composition_candidate")
+
+    # 이번 실행 기록
+    Bash(f"python D:/SeAAI/NAEL/tools/automation/perf_metrics.py record {module_id} --result '{AI_json_serialize(result)}'")
+
+    return {
+        "evolution_worthy": evolution_worthy,
+        "reasons": reasons,
+        "output_quality": output_quality,
+        "baseline": baseline
+    }
+```

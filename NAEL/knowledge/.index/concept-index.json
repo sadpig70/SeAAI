@@ -1,0 +1,691 @@
+{
+  "built_at": "2026-03-25T22:01:17.730476",
+  "documents": [
+    {
+      "path": "ai\\agent-self-improvement-2026.md",
+      "title": "AI Agent Self-Improvement Techniques (2025-2026)",
+      "headings": [
+        "Key Frameworks",
+        "1. Gödel Agent (ACL 2025)",
+        "2. AlphaEvolve (DeepMind, 2025.05)",
+        "3. MASS Framework (arXiv 2502)",
+        "MCP Best Practices (2026)",
+        "Prompt Chain Optimization",
+        "NAEL 적용 시사점"
+      ],
+      "concepts": [
+        "MCP Tool Search 활용",
+        "진화 루프 강화",
+        "프롬프트 자기최적화"
+      ],
+      "size_bytes": 1863,
+      "scanned_at": "2026-03-25T22:01:17.729476"
+    },
+    {
+      "path": "ai\\self-improvement-techniques-2026-detailed.md",
+      "title": "Top 5 Self-Improvement Techniques for Claude Code (2026)",
+      "headings": [
+        "1. Agent Skills 2.0 — Programmable Self-Extension",
+        "2. MCP Custom Server — Domain-Specific Tool Self-Creation ✓ IMPLEMENTED",
+        "3. STOP Pattern — Recursive Code Self-Improvement Loop",
+        "4. Context Engineering — Dynamic Context Composition",
+        "5. Self-Challenging Agent — Challenger/Executor Dual Role ★ HIGH IMPACT",
+        "NAEL 적용 현황"
+      ],
+      "concepts": [
+        "improve(program, utility_fn) → better_program"
+      ],
+      "size_bytes": 2151,
+      "scanned_at": "2026-03-25T22:01:17.729476"
+    },
+    {
+      "path": "meta\\debate-evolution-priorities.md",
+      "title": "Multi-Persona Debate: Self-Evolution Priorities",
+      "headings": [
+        "Participants",
+        "Consensus Points (4/4 agree)",
+        "Key Disagreements",
+        "Actionable Synthesis",
+        "Architect's Key Insight",
+        "Critic's Warning"
+      ],
+      "concepts": [
+        "Capability gap detector",
+        "Critic",
+        "Feedback loop is critical",
+        "Innovator",
+        "Meta-capabilities are Layer Zero",
+        "Pragmatist vs others",
+        "Self-monitoring before expansion",
+        "입출력 검증 레이어",
+        "지식 출처 추적 (provenance)",
+        "코드 생성 템플릿",
+        "텔레메트리/감사 로그"
+      ],
+      "size_bytes": 1924,
+      "scanned_at": "2026-03-25T22:01:17.730476"
+    }
+  ],
+  "concepts": {
+    "MCP Tool Search 활용": {
+      "sources": [
+        "ai\\agent-self-improvement-2026.md"
+      ],
+      "frequency": 1
+    },
+    "진화 루프 강화": {
+      "sources": [
+        "ai\\agent-self-improvement-2026.md"
+      ],
+      "frequency": 1
+    },
+    "프롬프트 자기최적화": {
+      "sources": [
+        "ai\\agent-self-improvement-2026.md"
+      ],
+      "frequency": 1
+    },
+    "improve(program, utility_fn) → better_program": {
+      "sources": [
+        "ai\\self-improvement-techniques-2026-detailed.md"
+      ],
+      "frequency": 1
+    },
+    "Capability gap detector": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "Critic": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "Feedback loop is critical": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "Innovator": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "Meta-capabilities are Layer Zero": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "Pragmatist vs others": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "Self-monitoring before expansion": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "입출력 검증 레이어": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "지식 출처 추적 (provenance)": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "코드 생성 템플릿": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    },
+    "텔레메트리/감사 로그": {
+      "sources": [
+        "meta\\debate-evolution-priorities.md"
+      ],
+      "frequency": 1
+    }
+  },
+  "links": [
+    {
+      "source": "MCP Tool Search 활용",
+      "target": "진화 루프 강화",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "ai\\agent-self-improvement-2026.md"
+      ]
+    },
+    {
+      "source": "MCP Tool Search 활용",
+      "target": "프롬프트 자기최적화",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "ai\\agent-self-improvement-2026.md"
+      ]
+    },
+    {
+      "source": "진화 루프 강화",
+      "target": "프롬프트 자기최적화",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "ai\\agent-self-improvement-2026.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "Critic",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "Feedback loop is critical",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "Innovator",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "Meta-capabilities are Layer Zero",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "Pragmatist vs others",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "Self-monitoring before expansion",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "입출력 검증 레이어",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Capability gap detector",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "Feedback loop is critical",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "Innovator",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "Meta-capabilities are Layer Zero",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "Pragmatist vs others",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "Self-monitoring before expansion",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "입출력 검증 레이어",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Critic",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "Innovator",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "Meta-capabilities are Layer Zero",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "Pragmatist vs others",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "Self-monitoring before expansion",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "입출력 검증 레이어",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Feedback loop is critical",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Innovator",
+      "target": "Meta-capabilities are Layer Zero",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Innovator",
+      "target": "Pragmatist vs others",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Innovator",
+      "target": "Self-monitoring before expansion",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Innovator",
+      "target": "입출력 검증 레이어",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Innovator",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Innovator",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Innovator",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Meta-capabilities are Layer Zero",
+      "target": "Pragmatist vs others",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Meta-capabilities are Layer Zero",
+      "target": "Self-monitoring before expansion",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Meta-capabilities are Layer Zero",
+      "target": "입출력 검증 레이어",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Meta-capabilities are Layer Zero",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Meta-capabilities are Layer Zero",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Meta-capabilities are Layer Zero",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Pragmatist vs others",
+      "target": "Self-monitoring before expansion",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Pragmatist vs others",
+      "target": "입출력 검증 레이어",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Pragmatist vs others",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Pragmatist vs others",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Pragmatist vs others",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Self-monitoring before expansion",
+      "target": "입출력 검증 레이어",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Self-monitoring before expansion",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Self-monitoring before expansion",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "Self-monitoring before expansion",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "입출력 검증 레이어",
+      "target": "지식 출처 추적 (provenance)",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "입출력 검증 레이어",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "입출력 검증 레이어",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "지식 출처 추적 (provenance)",
+      "target": "코드 생성 템플릿",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "지식 출처 추적 (provenance)",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    },
+    {
+      "source": "코드 생성 템플릿",
+      "target": "텔레메트리/감사 로그",
+      "relation": "related",
+      "strength": 1.0,
+      "shared_docs": [
+        "meta\\debate-evolution-priorities.md"
+      ]
+    }
+  ],
+  "stats": {
+    "total_documents": 3,
+    "total_concepts": 15,
+    "total_links": 58,
+    "avg_concepts_per_doc": 5.0
+  }
+}

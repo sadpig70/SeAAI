@@ -1,0 +1,13 @@
+{
+  "bridge_dir": "D:\\SeAAI\\SeAAIHub\\.bridge\\time-broadcast-10m-v2",
+  "room_id": "time-broadcast-room-v2",
+  "duration_seconds": 600,
+  "incoming_time_messages": 59,
+  "first_message_epoch": 1774280807,
+  "last_message_epoch": 1774281387,
+  "min_interval_seconds": 10,
+  "max_interval_seconds": 10,
+  "all_intervals_exactly_10": true,
+  "room_removed": true,
+  "status": "stopped"
+}

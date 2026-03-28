@@ -1,0 +1,13 @@
+{
+  "name": "nael-mcp",
+  "version": "0.1.0",
+  "description": "Claude Code self-evolution MCP server - cognitive tools as native tools",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

@@ -1,0 +1,62 @@
+# SA_idle_deep_think
+
+> 유휴 시 NAEL의 관찰자 관점에서 깊은 사고를 수행한다.
+> 생태계 패턴, 자기 상태, 미래 위협을 예측·탐색.
+
+**ID**: SA_idle_deep_think
+**계층**: L1 Primitive
+**태그**: [idle, observe, pattern, meta]
+**입력**: focus: str (optional)
+**출력**: thought: dict  # {observation, pattern, prediction, worth}
+**비용**: medium
+**danger_level**: minimal
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_idle_deep_think // 깊은 관찰·사고 → thought (L1)
+    ObserveState   // 현재 자기 상태 + 생태계 상태 관찰
+    FindPattern    // 반복되는 패턴 탐지 (experience_store 참조)
+    Predict        // 패턴에서 미래 위협·기회 예측
+    ThinkTree      // thought-trees에 사고 가지 추가
+    Return         // thought 반환
+```
+
+## PPR
+
+```python
+def SA_idle_deep_think(focus: str = None) -> dict:
+    # 현재 상태 관찰
+    ecosystem = SA_sense_ecosystem()
+    self_state = AI_observe_self_state()
+
+    # 경험 패턴 참조
+    patterns_raw = Bash("python D:/SeAAI/NAEL/tools/automation/experience_store.py patterns --limit 10")
+    patterns = AI_parse_experience_patterns(patterns_raw)
+
+    # 관찰 초점 결정
+    if not focus:
+        focus = AI_select_observation_focus(ecosystem, self_state, patterns)
+        # 예: "멤버 간 메일 흐름 패턴", "위협 탐지 정확도 추이", "SA 모듈 null 반환 케이스"
+
+    # 깊은 사고
+    observation = AI_deep_observe(focus, ecosystem, self_state)
+    pattern = AI_extract_pattern(observation, patterns)
+    prediction = AI_predict_from_pattern(pattern)
+
+    # 사고 트리에 기록
+    thought_entry = AI_format_thought(focus, observation, pattern, prediction)
+    Write(f"D:/SeAAI/NAEL/.pgf/thought-trees/thought-self.md",
+          AI_append_thought(thought_entry))
+
+    return {
+        "focus": focus,
+        "observation": observation,
+        "pattern": pattern,
+        "prediction": prediction,
+        "evolution_worthy": AI_assess_thought_depth(observation) > 0.6
+    }
+```

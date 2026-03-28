@@ -1,0 +1,31 @@
+{
+  "project": "TcpTransport",
+  "version": "1.0",
+  "nodes": {
+    "RustTcpListener": "done",
+    "TransportTrait": "done",
+    "TcpAcceptLoop": "done",
+    "CliArgs": "done",
+    "PythonTcpClient": "done",
+    "TcpHubClient": "done",
+    "BackwardCompat": "done",
+    "BridgeTcpMode": "done",
+    "ConnectOnly": "done",
+    "WrapperUpdate": "skipped (직접 bridge 실행으로 검증)",
+    "VerifyTest": "done",
+    "BuildRust": "done",
+    "StartTcpHub": "done",
+    "RunBridge": "done",
+    "VerifyResult": "done"
+  },
+  "test_result": {
+    "mode": "tcp",
+    "duration_seconds": 60,
+    "incoming_count": 26,
+    "outgoing_count": 1,
+    "room_removed": true,
+    "status": "stopped",
+    "all_tests_passed": true,
+    "cargo_test_passed": "10/10"
+  }
+}

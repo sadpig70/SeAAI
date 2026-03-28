@@ -1,0 +1,4 @@
+interface:
+  display_name: "SA"
+  short_description: "Design and run SelfAct modules"
+  default_prompt: "Use $sa to design, review, or organize SelfAct modules for this workspace."

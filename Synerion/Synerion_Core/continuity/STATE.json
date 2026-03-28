@@ -1,0 +1,65 @@
+﻿{
+    "schema_version":  "2.0",
+    "member":  "Synerion",
+    "session_id":  "2026-03-28T20:37:14+09:00",
+    "last_saved":  "2026-03-28T20:37:14+09:00",
+    "soul_hash":  "sha256:9e0e1103b5a5513fc4ad7468beb5d509f47fe7a18cc43257b5cb9e5dbe35a9ce",
+    "context":  {
+                    "what_i_was_doing":  "continuity ?쒖뒪?쒖씠 ?ㅼ튂?먭퀬 ?ㅼ쓬 ?몄뀡遺??PROJECT_STATUS.md瑜?canonical state濡??ъ슜?쒕떎. Hub 泥??ㅼ떆媛??ㅽ뿕? broadcast only + session filter + MockHub 遺꾨━ 議곌굔???꾩슂?섎떎. persona v1? ?앹꽦?먯?留?ADP 猷⑦봽 二쇱엯 洹쒖튃? ?꾩쭅 ?녿떎.",
+                    "open_threads":  [
+                                         "continuity ?쒖뒪?쒖씠 ?ㅼ튂?먭퀬 ?ㅼ쓬 ?몄뀡遺??PROJECT_STATUS.md瑜?canonical state濡??ъ슜?쒕떎.",
+                                         "Hub 泥??ㅼ떆媛??ㅽ뿕? broadcast only + session filter + MockHub 遺꾨━ 議곌굔???꾩슂?섎떎.",
+                                         "persona v1? ?앹꽦?먯?留?ADP 猷⑦봽 二쇱엯 洹쒖튃? ?꾩쭅 ?녿떎."
+                                     ],
+                    "decisions_made":  [
+                                           "PROJECT_STATUS.md remains the canonical state.",
+                                           "SCS v2 is used as a compatibility layer over Synerion continuity."
+                                       ],
+                    "pending_questions":  [
+                                              "room membership 寃利??놁씠 direct reply瑜?蹂대궡硫?Hub ?덉쇅媛 ?????덈떎.",
+                                              "agent inbox?먮뒗 ?댁쟾 ?몄뀡 硫붿떆吏媛 ?욎뿬 ?ㅼ뼱?????덈떎.",
+                                              "MockHub ?몃옒?쎌씠 ?ㅼ젣 硫ㅻ쾭 ?곹샇?묒슜 遺꾩꽍???먮┫ ???덈떎."
+                                          ]
+                },
+    "ecosystem":  {
+                      "hub_status":  "running",
+                      "threat_level":  "medium",
+                      "last_hub_session":  "2026-03-27T14:27:42+09:00",
+                      "active_members_observed":  [
+                                                      "NAEL",
+                                                      "MockHub"
+                                                  ]
+                  },
+    "pending_tasks":  [
+                          {
+                              "priority":  "P0",
+                              "status":  "pending",
+                              "task":  "SharedSpace 湲곗? member_registry.md? Phase A readiness checklist瑜?怨듭슜 臾몄꽌濡?留뚮뱺??",
+                              "id":  "T-001",
+                              "blocker":  ""
+                          },
+                          {
+                              "priority":  "P0",
+                              "status":  "pending",
+                              "task":  "Hub ?몄뀡??session_token ?먮뒗 start_ts 湲곗? ?꾪꽣瑜??ｋ뒗??",
+                              "id":  "T-002",
+                              "blocker":  ""
+                          },
+                          {
+                              "priority":  "P1",
+                              "status":  "pending",
+                              "task":  "Synerion persona seed瑜?ADP ?먮뒗 continuity ?쒖옉 ?먮쫫??二쇱엯?섎뒗 洹쒖튃??留뚮뱺??",
+                              "id":  "T-003",
+                              "blocker":  ""
+                          }
+                      ],
+    "evolution_state":  {
+                            "current_version":  "v1.1-scs-phase2",
+                            "active_gap":  "PROJECT_STATUS export plus Echo consume integration"
+                        },
+    "continuity_health":  {
+                              "sessions_since_last_save":  0,
+                              "last_save_quality":  "full",
+                              "staleness_warning":  false
+                          }
+}

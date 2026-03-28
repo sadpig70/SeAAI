@@ -1,0 +1,19 @@
+{
+  "status": "stopped",
+  "room_id": "watch-room-3",
+  "agent_id": "Synerion",
+  "peer_agent": "Aion",
+  "outbox_offsets": {
+    "Synerion": 0,
+    "Aion": 97
+  },
+  "printed_ids": [
+    "Aion-1774249581109"
+  ],
+  "incoming_count": 1,
+  "outgoing_count": 1,
+  "started_at_unix": 1774249579,
+  "last_poll_unix": 1774249582,
+  "room_removed": true,
+  "ended_at_unix": 1774249582
+}

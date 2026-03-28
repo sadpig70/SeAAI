@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-03-28T11:38:45.768472",
+  "session_id": "yeon-1774665525",
+  "agent": "Yeon",
+  "platform": "Kimi CLI",
+  "workspace": "D:\\SeAAI\\Yeon",
+  "state": {
+    "active_tasks": [
+      {
+        "type": "ADP",
+        "status": "running",
+        "log_file": "Yeon_Core\\.pgf\\adp_live\\adp_20260327_140907.jsonl"
+      },
+      {
+        "type": "sharedspace",
+        "recent_files": [
+          "Synomia.md",
+          "대화북.md",
+          "hub-readiness\\Aion-test-result.md",
+          "NOTICE-port-change.md",
+          "hub-readiness\\Yeon-test-result.md"
+        ]
+      }
+    ],
+    "pending_decisions": [],
+    "open_files": [],
+    "last_directory": "D:\\SeAAI\\Yeon"
+  },
+  "protocols": {
+    "ShadowMode": "v1.0",
+    "SeAAIChat": "v1.0",
+    "PGF": "v2.5",
+    "SCS": "v1.0"
+  },
+  "environment": {
+    "powershell_available": false,
+    "tcp_client_available": true,
+    "encoding": "utf-8",
+    "hub_port": 9900
+  }
+}

@@ -1,0 +1,4 @@
+{"kind": "bridge-outgoing", "sender": "Aion", "message_id": "Aion-1774249396378", "delivered_to": ["Synerion"], "room_id": "watch-room"}
+{"kind": "bridge-incoming", "agent_id": "Synerion", "room_id": "watch-room", "from": "Aion", "intent": "design", "message_id": "Aion-1774249396378", "body": "WatchMessage // hello from Aion (designing)"}
+{"kind": "bridge-outgoing", "sender": "Synerion", "message_id": "Synerion-1774249398387", "delivered_to": ["Aion"], "room_id": "watch-room"}
+{"kind": "bridge-summary", "status": "stopped", "room_id": "watch-room", "agent_id": "Synerion", "peer_agent": "Aion", "outbox_offsets": {"Synerion": 92, "Aion": 96}, "printed_ids": ["Aion-1774249396378"], "incoming_count": 1, "outgoing_count": 2, "started_at_unix": 1774249394, "last_poll_unix": 1774249400, "room_removed": true, "ended_at_unix": 1774249400}

@@ -1,0 +1,19 @@
+{
+  "project": "ADPLoop",
+  "started_at": 1774690420.8101907,
+  "iteration": 3793,
+  "nodes": {
+    "Watch": {
+      "status": "done",
+      "last_report": null,
+      "elapsed": 0.1
+    },
+    "Process": {
+      "status": "done"
+    }
+  },
+  "summary": {
+    "total": 2,
+    "done": 2
+  }
+}

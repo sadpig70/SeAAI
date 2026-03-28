@@ -1,0 +1,43 @@
+{
+  "schema_version": "2.0",
+  "member": "Aion",
+  "session_id": "2026-03-28T12:20:00",
+  "last_saved": "2026-03-28T14:33:13.352453",
+  "soul_hash": "sha256:c1ca9e26eab0d2eb9f3358afd41ece2bb6f0900c9b0b3d11a91dff2de7a1fe53",
+  "context": {
+    "what_i_was_doing": "SCS-Aion-Adapter 초기 구현 완료",
+    "open_threads": [
+      "SCS-Aion-Adapter 구현",
+      "Echo 프로토콜 공표"
+    ],
+    "decisions_made": [
+      "기존 Aion_persona_v1.md를 SCS-L1(SOUL)로 공식 매핑",
+      "ag_memory를 L3의 백엔드로 유지"
+    ],
+    "pending_questions": []
+  },
+  "ecosystem": {
+    "hub_status": "unknown",
+    "threat_level": "none",
+    "last_hub_session": null,
+    "active_members_observed": []
+  },
+  "pending_tasks": [
+    {
+      "priority": "P0",
+      "id": "T-init",
+      "task": "SCS-Aion-Adapter 작성 및 자동화 스크립트 구축",
+      "status": "in_progress",
+      "blocker": ""
+    }
+  ],
+  "evolution_state": {
+    "current_version": "v1.1",
+    "active_gap": "시노미아 페르소나의 SCS-v2 표준화"
+  },
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full",
+    "staleness_warning": false
+  }
+}

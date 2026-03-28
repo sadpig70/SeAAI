@@ -1,0 +1,41 @@
+# SA_idle_heartbeat
+
+> 최소 존재 신호. 아무것도 할 것이 없을 때 실행.
+> NAEL이 살아있음을 기록하고, 다음 틱을 준비한다.
+
+**ID**: SA_idle_heartbeat
+**계층**: L1 Primitive
+**태그**: [idle, heartbeat, minimal]
+**입력**: context: dict
+**출력**: heartbeat: dict
+**비용**: minimal
+**danger_level**: minimal
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_idle_heartbeat // 최소 존재 신호 (L1)
+    Pulse         // 현재 틱·시간 기록
+    StatusCheck   // 핵심 인프라 상태 (Hub, MailBox 접근 가능?)
+    Return        // heartbeat 반환
+```
+
+## PPR
+
+```python
+def SA_idle_heartbeat(context: dict) -> dict:
+    # 핵심 인프라 상태 확인
+    mailbox_ok = AI_check_path_accessible("D:/SeAAI/MailBox/NAEL/inbox/")
+    hub_ok = context.get("hub_alive", False)
+
+    return {
+        "tick": context.get("tick", 0),
+        "elapsed": context.get("elapsed", 0),
+        "mailbox_ok": mailbox_ok,
+        "hub_ok": hub_ok,
+        "evolution_worthy": False
+    }
+```

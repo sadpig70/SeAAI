@@ -1,0 +1,59 @@
+# SA_think_self_monitor
+
+> self_monitor.py를 호출하여 현재 능력 목록과 gap을 스캔한다.
+> ADP 루프의 자기인식 모듈 — context.gap_detected의 근거를 생성.
+
+**ID**: SA_think_self_monitor
+**계층**: L1 Primitive
+**태그**: [think, self, monitor, gap]
+**입력**: -
+**출력**: monitor_result: dict  # {capabilities, gaps, gap_count}
+**비용**: medium
+**danger_level**: minimal
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_think_self_monitor // 자기 능력·gap 스캔 → monitor_result (L1)
+    RunMonitor    // self_monitor.py 실행
+    ParseResult   // 능력 목록 + gap 목록 추출
+    AssessGap     // SA 라이브러리 커버리지와 대조
+    Return        // monitor_result 반환
+```
+
+## PPR
+
+```python
+def SA_think_self_monitor() -> dict:
+    # self_monitor.py 실행 (JSON 출력)
+    raw = Bash("python D:/SeAAI/NAEL/tools/automation/self_monitor.py --format json")
+    monitor = AI_parse_json(raw)
+
+    # SA 라이브러리 커버리지 확인
+    lib = Read("D:/SeAAI/NAEL/.pgf/self-act/self-act-lib.md")
+    sa_coverage = AI_assess_sa_coverage(lib)
+
+    # 전체 gap 통합
+    tool_gaps = monitor.get("gaps", [])
+    sa_gaps = AI_detect_sa_gaps(sa_coverage)
+
+    return {
+        "capabilities": monitor.get("capabilities", []),
+        "tool_gaps": tool_gaps,
+        "sa_gaps": sa_gaps,
+        "gap_count": len(tool_gaps) + len(sa_gaps),
+        "gap_detected": len(tool_gaps) + len(sa_gaps) > 0
+    }
+```
+
+## 사용 패턴
+
+```python
+# ADP context 구성 시
+monitor = SA_think_self_monitor()
+context.gap_detected = monitor["gap_detected"]
+context.gap_detail = monitor
+```

@@ -1,0 +1,26 @@
+{
+  "room": "seaai-general",
+  "duration_sec": 601,
+  "session_token": "PhaseA_1774693402_fcd856",
+  "stop_reason": "duration_complete",
+  "error": null,
+  "agents": {
+    "Synerion": {
+      "sent": 7,
+      "seen": 14
+    },
+    "ClNeo": {
+      "sent": 7,
+      "seen": 14
+    },
+    "NAEL": {
+      "sent": 7,
+      "seen": 14
+    }
+  },
+  "final_members": [
+    "ClNeo",
+    "NAEL",
+    "Synerion"
+  ]
+}

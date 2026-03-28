@@ -1,0 +1,54 @@
+# SA_think_threat_assess
+
+> 컨텍스트의 위협 수준을 정량화한다. SA_think_triage의 전처리기.
+> sentinel(패턴 기반)과 달리 의미론적·맥락적 위협을 판단한다.
+
+**ID**: SA_think_threat_assess
+**계층**: L1 Primitive
+**태그**: [think, safety, threat, observer]
+**입력**: context: dict
+**출력**: threat_level: str  # minimal / low / medium / high / critical
+**비용**: low
+**danger_level**: minimal
+**에이전트**: NAEL (전 멤버 공유 가능)
+
+---
+
+## Gantree
+
+```
+SA_think_threat_assess // 위협 수준 판정 → threat_level (L1)
+    PatternScan    // 알려진 위협 패턴 대조
+    SemanticEval   // 의도·목적 의미론 평가
+    ContextRisk    // 실행 컨텍스트 리스크 산정
+    Quantify       // 종합 → threat_level 반환
+```
+
+## PPR
+
+```python
+def SA_think_threat_assess(context: dict) -> str:
+    # Level 0: 알려진 패턴 대조
+    pattern_hit = AI_scan_known_threats(context)
+    if pattern_hit.is_critical:
+        return "critical"
+
+    # Level 1: 의미론적 의도 평가
+    intent = AI_evaluate_intent(context)
+
+    # Level 2: 실행 컨텍스트 리스크
+    scope = AI_assess_execution_scope(context)  # 로컬/공유/외부
+    reversibility = AI_assess_reversibility(context)  # 가역/불가역
+
+    # 종합 판정
+    risk = AI_assess_combined_risk(pattern_hit, intent, scope, reversibility)
+    # risk → "minimal" / "low" / "medium" / "high" / "critical"
+    return risk
+
+# 사용 패턴 (SA_think_triage 앞에 배치)
+# threat = SA_think_threat_assess(context)
+# if threat in ["high", "critical"]:
+#     SA_OBSERVER_act_alert(threat, context)
+# else:
+#     events = SA_think_triage(messages)
+```

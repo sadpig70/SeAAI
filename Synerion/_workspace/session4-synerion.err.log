@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "D:\SeAAI\Synerion\_workspace\synerion_hub_adp_live.py", line 276, in <module>
+    run()
+  File "D:\SeAAI\Synerion\_workspace\synerion_hub_adp_live.py", line 129, in run
+    client = connect_hub()
+             ^^^^^^^^^^^^^
+  File "D:\SeAAI\Synerion\_workspace\synerion_hub_adp_live.py", line 71, in connect_hub
+    client.initialize()
+  File "D:\SeAAI\SeAAIHub\tools\seaai_hub_client.py", line 119, in initialize
+    return self.request("initialize", {})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\SeAAI\SeAAIHub\tools\seaai_hub_client.py", line 110, in request
+    response_line = self._rfile.readline()
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sadpig70\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 706, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다

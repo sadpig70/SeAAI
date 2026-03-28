@@ -1,0 +1,75 @@
+# SA_loop_morning_sync
+
+> Hub + MailBox 이벤트를 처리하는 표준 동기화 루프.
+> WAKE 이벤트 발생 시 sa.select()가 선택하는 1순위 L2 모듈.
+
+**ID**: SA_loop_morning_sync
+**계층**: L2 Composed
+**구성**: sense_hub + sense_mailbox + think_threat_assess + think_triage + act_respond + act_send_mail
+**태그**: [loop, sync, hub, mail, wake]
+**입력**: context: dict
+**출력**: sync_result: dict
+**비용**: medium
+**danger_level**: low
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_loop_morning_sync // Hub+메일 처리 루프 (L2)
+    Gather        // sense_hub + sense_mailbox 병렬 수집
+    ThreatGate    // think_threat_assess → 위협 시 즉시 분기
+    Triage        // think_triage → WAKE/QUEUE/DISMISS 분류
+    Respond       // WAKE 항목 순서대로 act_respond / act_send_mail
+    Archive       // 처리된 메일 → read/ 이동
+    Report        // 중요 처리 결과 → experience_store 기록
+```
+
+## PPR
+
+```python
+def SA_loop_morning_sync(context: dict) -> dict:
+    processed = []
+
+    # 병렬 수집
+    [parallel]
+        hub_events  = SA_sense_hub()
+        mail_events = SA_sense_mailbox()
+    [/parallel]
+
+    all_events = hub_events + mail_events
+    if not all_events:
+        return {"processed": 0, "evolution_worthy": False}
+
+    # 위협 게이트
+    threat = SA_think_threat_assess({"events": all_events})
+    if threat in ["high", "critical"]:
+        SA_act_report("threat_detected", {"level": threat, "events": all_events})
+        return {"processed": 0, "threat_escalated": True, "evolution_worthy": False}
+
+    # 분류 + 처리
+    classified = SA_think_triage(all_events)
+
+    for event in classified["wake"]:
+        response = AI_compose_response(event)
+        if AI_is_hub_event(event):
+            SA_act_respond(response)
+        else:
+            SA_act_send_mail(AI_get_sender(event), response)
+            AI_archive_mail(event)  # read/로 이동
+        processed.append(event)
+
+    for event in classified["queue"]:
+        AI_archive_mail(event)  # 나중에 처리
+
+    # 경험 기록
+    Bash(f"python D:/SeAAI/NAEL/tools/automation/experience_store.py record --type sync --processed {len(processed)}")
+
+    return {
+        "processed": len(processed),
+        "wake_count": len(classified["wake"]),
+        "evolution_worthy": len(classified["wake"]) > 5  # 과부하 시 개선 필요
+    }
+```

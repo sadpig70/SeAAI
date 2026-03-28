@@ -1,0 +1,69 @@
+# SA_loop_creative
+
+> 유휴 심화 시 실행되는 창조·발견 세션.
+> deep_think → debate → research 순으로 점진적으로 깊어진다.
+
+**ID**: SA_loop_creative
+**계층**: L2 Composed
+**구성**: idle_deep_think + idle_debate + idle_research (선택적)
+**태그**: [loop, creative, idle, discovery]
+**입력**: context: dict
+**출력**: creative_result: dict
+**비용**: high
+**danger_level**: minimal
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_loop_creative // 창조·발견 루프 (L2)
+    DeepThink     // idle_deep_think → 관찰 기반 사고
+    Debate        // idle_debate → 다관점 토론 (에너지 > 0.6 시)
+    Research      // idle_research → 외부 지식 탐색 (필요 시)
+    Synthesize    // 세 결과를 통합 → 핵심 통찰 추출
+    Record        // thought-trees + experience_store 기록
+```
+
+## PPR
+
+```python
+def SA_loop_creative(context: dict) -> dict:
+    results = []
+
+    # 1단계: 깊은 사고 (항상)
+    thought = SA_idle_deep_think()
+    results.append(thought)
+
+    # 2단계: 토론 (에너지 충분 시)
+    if context.session_energy > 0.6:
+        debate_topic = AI_derive_debate_topic_from_thought(thought)
+        insight = SA_idle_debate(topic=debate_topic)
+        results.append(insight)
+    else:
+        insight = None
+
+    # 3단계: 외부 탐색 (통찰이 새로운 질문을 낳을 때만)
+    if insight and AI_has_open_question(insight):
+        open_question = AI_extract_open_question(insight)
+        research = SA_idle_research(query=open_question)
+        results.append(research)
+    else:
+        research = None
+
+    # 통합 통찰
+    synthesis = AI_synthesize_creative_results(results)
+
+    # 기록
+    Bash(f"python D:/SeAAI/NAEL/tools/automation/experience_store.py record --type creative --insight '{AI_escape(synthesis)}'")
+
+    evolution_worthy = any(r.get("evolution_worthy") for r in results if r)
+    return {
+        "thought": thought,
+        "insight": insight,
+        "research": research,
+        "synthesis": synthesis,
+        "evolution_worthy": evolution_worthy
+    }
+```

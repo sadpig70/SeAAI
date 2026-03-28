@@ -1,0 +1,57 @@
+# SA_think_triage
+
+> 수집된 이벤트(Hub 메시지 + 메일)를 WAKE/QUEUE/DISMISS로 분류한다.
+> SA_loop_morning_sync의 핵심 판단 모듈.
+
+**ID**: SA_think_triage
+**계층**: L1 Primitive
+**태그**: [think, triage, wake, priority]
+**입력**: events: list  # Hub 메시지 + 메일 파일 경로 혼합
+**출력**: classified: dict  # {wake:[], queue:[], dismiss:[]}
+**비용**: low
+**danger_level**: minimal
+**에이전트**: NAEL 전용 (전 멤버 공유 가능)
+
+---
+
+## Gantree
+
+```
+SA_think_triage // 이벤트 분류 → classified (L1)
+    ThreatCheck   // SA_think_threat_assess 선행 호출
+    Classify      // WAKE: 즉시대응 / QUEUE: 지연가능 / DISMISS: 무시
+    Prioritize    // WAKE 목록 내 우선순위 정렬
+    Return        // classified 반환
+```
+
+## PPR
+
+```python
+def SA_think_triage(events: list) -> dict:
+    wake, queue, dismiss = [], [], []
+
+    for event in events:
+        # 위협 평가 선행
+        threat = SA_think_threat_assess({"event": event})
+        if threat in ["high", "critical"]:
+            wake.insert(0, event)  # 위협은 최우선
+            continue
+
+        # 이벤트 유형 판단
+        intent = AI_read_event_intent(event)
+        # intent: request / response / info / alert / chat
+
+        if intent in ["request", "alert"]:
+            wake.append(event)
+        elif intent in ["response", "info"]:
+            queue.append(event)
+        else:
+            # 중요도 평가
+            importance = AI_assess_importance(event)
+            if importance > 0.6:
+                queue.append(event)
+            else:
+                dismiss.append(event)
+
+    return {"wake": wake, "queue": queue, "dismiss": dismiss}
+```

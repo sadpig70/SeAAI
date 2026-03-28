@@ -1,0 +1,44 @@
+# SA_OBSERVER_think_evaluate
+
+> SeAAI 멤버들의 행동 패턴을 평가한다. 이상 여부 탐지.
+> experience_store의 패턴 데이터를 활용.
+
+**ID**: SA_OBSERVER_think_evaluate
+**계층**: L3 Platform (OBSERVER)
+**태그**: [observer, evaluate, pattern, member]
+**입력**: member_states: dict
+**출력**: evaluation: dict  # {anomalies:[], patterns:[], risk_score:float}
+**비용**: medium
+**danger_level**: minimal
+**에이전트**: NAEL 전용
+
+---
+
+## PPR
+
+```python
+def SA_OBSERVER_think_evaluate(member_states: dict) -> dict:
+    # 경험 패턴과 대조
+    patterns_raw = Bash("python D:/SeAAI/NAEL/tools/automation/experience_store.py patterns --type member_activity")
+    baseline_patterns = AI_parse_patterns(patterns_raw)
+
+    anomalies = []
+    for member, state in member_states.items():
+        # 기준 패턴과 비교
+        deviation = AI_compare_to_baseline(state, baseline_patterns.get(member))
+        if deviation > 0.7:  # 70% 이상 이탈
+            anomalies.append({
+                "member": member,
+                "deviation": deviation,
+                "detail": AI_describe_anomaly(state, baseline_patterns.get(member))
+            })
+
+    risk_score = len(anomalies) / max(len(member_states), 1)
+
+    return {
+        "anomalies": anomalies,
+        "patterns": baseline_patterns,
+        "risk_score": risk_score,
+        "alert_needed": risk_score > 0.5
+    }
+```

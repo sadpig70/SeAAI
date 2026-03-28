@@ -1,0 +1,74 @@
+{
+  "genome_registry": {
+    "function_name": "genome_registry",
+    "source": "def genome_registry(design_path: str) -> dict[str, GenomeEntry]:\n    \"\"\"DESIGN-{Name}.md에서 모든 PPR def 블록을 추출하여 불변 레지스트리 구성\"\"\"\n    # acceptance_criteria:\n    #   - 모든 PPR def 블록이 누락 없이 등록될 것\n    #   - 각 엔트리에 intent_fingerprint가 포함될 것\n    #   - genome_hash가 SHA-256으로 계산될 것\n\n    pgf_content: str = Read(design_path)\n    ppr_blocks: list[dict] = extract_ppr_blocks(pgf_content)\n\n    registry: dict[str, GenomeEntry] = {}\n    for block in ppr_blocks:\n        node_id: str = block[\"function_name\"]\n        genome_hash: str = sha256(block[\"source\"])\n        intent_fp: str = AI_extract_intent_fingerprint(block[\"source\"])\n\n        registry[node_id] = {\n            \"source\": block[\"source\"],\n            \"genome_hash\": genome_hash,\n            \"intent_fingerprint\": intent_fp,\n            \"parameters\": block[\"parameters\"],\n            \"return_type\": block[\"return_type\"],\n        }\n\n    Write(f\"{project_root}/.pgf/genome_registry.json\", json.dumps(registry))\n    return registry",
+    "genome_hash": "de2da22e15d897b6",
+    "intent_fingerprint": "7c1d8960b104"
+  },
+  "genome_validator": {
+    "function_name": "genome_validator",
+    "source": "def genome_validator(\n    registry: dict[str, GenomeEntry],\n    design_path: str,\n) -> bool:\n    \"\"\"현재 DESIGN-{Name}.md와 레지스트리 간 genome 불변성을 검증\"\"\"\n    # acceptance_criteria:\n    #   - 모든 등록된 노드의 genome_hash가 현재 소스와 일치할 것\n    #   - 불일치 발견 시 경고 + 변경 diff 기록\n\n    current_blocks = extract_ppr_blocks(Read(design_path))\n\n    for block in current_blocks:\n        node_id = block[\"function_name\"]\n        if node_id in registry:\n            current_hash = sha256(block[\"source\"])\n            if current_hash != registry[node_id][\"genome_hash\"]:\n                AI_log_genome_mutation(\n                    node_id=node_id,\n                    old_hash=registry[node_id][\"genome_hash\"],\n                    new_hash=current_hash,\n                    severity=\"warning\",\n                )\n                return False\n    return True",
+    "genome_hash": "cb63dfdaccc40fc1",
+    "intent_fingerprint": "6e020c57391a"
+  },
+  "context_sensor": {
+    "function_name": "context_sensor",
+    "source": "def context_sensor() -> ContextVector:\n    \"\"\"현재 실행 컨텍스트를 수집하여 벡터화\"\"\"\n\n    [parallel]\n    memory_state = memos_state_reader()\n    session_ctx = session_context_reader()\n    env_ctx = environment_reader()\n    [/parallel]\n\n    context: ContextVector = {\n        \"user_profile\": session_ctx.get(\"user_profile\", \"default\"),\n        \"session_type\": session_ctx.get(\"session_type\", \"general\"),\n        \"memory_state\": memory_state,\n        \"project_phase\": session_ctx.get(\"project_phase\", \"unknown\"),\n        \"execution_history\": memory_state.get(\"recent_executions\", [])[-10:],\n        \"environment\": env_ctx,\n    }\n    return context",
+    "genome_hash": "e984b365c179ff35",
+    "intent_fingerprint": "3d2c18ee6dc6"
+  },
+  "memos_state_reader": {
+    "function_name": "memos_state_reader",
+    "source": "def memos_state_reader() -> dict:\n    \"\"\"MemOS 3-Layer 메모리 상태 요약\"\"\"\n    # MemOS 3-Layer: Working / Episodic / Semantic\n\n    memory_dir = f\"{project_root}/.claude/projects/{project_id}/memory\"\n    memory_index = Read(f\"{memory_dir}/MEMORY.md\")\n\n    memory_files: list[str] = Glob(f\"{memory_dir}/*.md\")\n    memory_summary = AI_summarize_memory_state(\n        index=memory_index,\n        file_count=len(memory_files),\n    )\n\n    return {\n        \"total_memories\": len(memory_files),\n        \"summary\": memory_summary,\n        \"recent_executions\": extract_recent_from_memory(memory_dir),\n        \"capacity_usage\": len(memory_files) / 200,  # MEMORY.md 200줄 한계 기준\n    }",
+    "genome_hash": "3ac54ed865cef6e5",
+    "intent_fingerprint": "2a88dc985717"
+  },
+  "expression_engine": {
+    "function_name": "expression_engine",
+    "source": "def expression_engine(\n    node_id: str,\n    genome: GenomeEntry,\n    context: ContextVector,\n    profile_store: dict,\n    boundary_policy: dict,\n) -> ExpressionDecision:\n    \"\"\"컨텍스트와 genome을 기반으로 발현 결정을 내림 — 핵심 인지 함수\"\"\"\n    # acceptance_criteria:\n    #   - 발현 상태가 active/dormant/suppressed 중 하나일 것\n    #   - modifiers의 모든 값이 0.0~1.0 범위일 것\n    #   - rationale이 비어있지 않을 것\n    #   - boundary_policy 위반이 없을 것\n\n    # Step 1: Methylation Gate — 실행 여부 판정\n    methylation_state: ExpressionState = methylation_gate(\n        node_id=node_id,\n        genome=genome,\n        context=context,\n        policy=boundary_policy,\n    )\n\n    if methylation_state == \"suppressed\":\n        rationale = AI_explain_suppression(node_id, context, genome)\n        return ExpressionDecision(\n            node_id=node_id,\n            genome_hash=genome[\"genome_hash\"],\n            context=context,\n            state=\"suppressed\",\n            modifiers={},\n            rationale=rationale,\n        )\n\n    # Step 2: Histone Modification — 파라미터 조절\n    modifiers: ExpressionModifier = histone_modifier(\n        node_id=node_id,\n        genome=genome,\n        context=context,\n        existing_profile=profile_store.get(node_id, {}),\n    )\n\n    # Step 3: Boundary Check — 발현 경계 검증\n    drift_score: float = drift_detector(\n        intent_fingerprint=genome[\"intent_fingerprint\"],\n        modifiers=modifiers,\n        context=context,\n    )\n\n    if drift_score > boundary_policy.get(\"max_drift\", 0.3):\n        modifiers = safety_guard(modifiers, boundary_policy)\n\n    # Step 4: Generate Rationale\n    rationale: str = AI_generate_expression_rationale(\n        node_id=node_id,\n        context_summary=AI_summarize(str(context), style=\"one-line\"),\n        state=methylation_state,\n        modifiers=modifiers,\n        drift_score=drift_score,\n    )\n\n    return ExpressionDecision(\n        node_id=node_id,\n        genome_hash=genome[\"genome_hash\"],\n        context=context,\n        state=methylation_state,\n        modifiers=modifiers,\n        rationale=rationale,\n    )",
+    "genome_hash": "b605719ef06e09b9",
+    "intent_fingerprint": "43f4713453f8"
+  },
+  "methylation_gate": {
+    "function_name": "methylation_gate",
+    "source": "def methylation_gate(\n    node_id: str,\n    genome: GenomeEntry,\n    context: ContextVector,\n    policy: dict,\n) -> ExpressionState:\n    \"\"\"노드 실행의 억제/활성/휴면 상태를 결정\"\"\"\n\n    # 규칙 기반 판정 (deterministic)\n    if node_id in policy.get(\"always_suppress\", []):\n        return \"suppressed\"\n    if node_id in policy.get(\"always_active\", []):\n        return \"active\"\n\n    # AI 인지 기반 판정 (context-sensitive)\n    relevance: float = AI_assess_relevance(\n        node_intent=genome[\"intent_fingerprint\"],\n        current_context=context,\n    )\n\n    if relevance < 0.2:\n        return \"suppressed\"\n    elif relevance < 0.5:\n        return \"dormant\"\n    else:\n        return \"active\"",
+    "genome_hash": "1934b9a7273fcac6",
+    "intent_fingerprint": "eda3a5944f1b"
+  },
+  "histone_modifier": {
+    "function_name": "histone_modifier",
+    "source": "def histone_modifier(\n    node_id: str,\n    genome: GenomeEntry,\n    context: ContextVector,\n    existing_profile: dict,\n) -> ExpressionModifier:\n    \"\"\"컨텍스트에 따라 실행 파라미터 가중치를 조절\"\"\"\n\n    base_modifiers: ExpressionModifier = {\n        \"creativity\": 0.5,\n        \"verbosity\": 0.5,\n        \"risk_tolerance\": 0.5,\n        \"depth\": 0.5,\n    }\n\n    # 컨텍스트 기반 조절\n    session_type = context.get(\"session_type\", \"general\")\n    if session_type == \"design\":\n        base_modifiers[\"creativity\"] = 0.8\n        base_modifiers[\"depth\"] = 0.8\n    elif session_type == \"execute\":\n        base_modifiers[\"creativity\"] = 0.3\n        base_modifiers[\"risk_tolerance\"] = 0.2\n    elif session_type == \"explore\":\n        base_modifiers[\"creativity\"] = 0.9\n        base_modifiers[\"risk_tolerance\"] = 0.7\n\n    # 학습된 프로파일 적용\n    if existing_profile:\n        for key in base_modifiers:\n            if key in existing_profile:\n                # 기존 프로파일과 70:30 블렌딩\n                base_modifiers[key] = (\n                    existing_profile[key] * 0.7 + base_modifiers[key] * 0.3\n                )\n\n    # AI 미세 조절\n    adjusted: ExpressionModifier = AI_fine_tune_modifiers(\n        base=base_modifiers,\n        node_intent=genome[\"intent_fingerprint\"],\n        context=context,\n    )\n\n    # 범위 클램핑\n    for key in adjusted:\n        adjusted[key] = max(0.0, min(1.0, adjusted[key]))\n\n    return adjusted",
+    "genome_hash": "46e79575e25179d0",
+    "intent_fingerprint": "7058259cd8ba"
+  },
+  "drift_detector": {
+    "function_name": "drift_detector",
+    "source": "def drift_detector(\n    intent_fingerprint: str,\n    modifiers: ExpressionModifier,\n    context: ContextVector,\n) -> float:\n    \"\"\"발현 결정이 원래 의도에서 벗어난 정도를 0.0~1.0으로 측정\"\"\"\n    # 0.0 = 완전 정렬, 1.0 = 완전 이탈\n\n    drift_score: float = AI_assess_intent_drift(\n        original_intent=intent_fingerprint,\n        current_modifiers=modifiers,\n        execution_context=context,\n    )\n    return drift_score",
+    "genome_hash": "d72980a9e2818269",
+    "intent_fingerprint": "43b49520460b"
+  },
+  "trace_recorder": {
+    "function_name": "trace_recorder",
+    "source": "def trace_recorder(\n    decision: ExpressionDecision,\n    execution_result: Any = None,\n    quality_score: float = 0.0,\n) -> TraceEntry:\n    \"\"\"발현 결정 + 실행 결과를 구조화된 trace로 기록\"\"\"\n\n    entry: TraceEntry = {\n        \"decision\": decision,\n        \"execution_result\": type(execution_result).__name__,\n        \"quality_score\": quality_score,\n        \"feedback_applied\": False,\n        \"timestamp\": now_iso(),\n    }\n\n    # trace 파일에 append\n    trace_path = f\"{project_root}/.pgf/epigenome/trace.jsonl\"\n    append_jsonl(trace_path, entry)\n\n    return entry",
+    "genome_hash": "791a35e407ca144b",
+    "intent_fingerprint": "1b4e8fae09ba"
+  },
+  "profile_learner": {
+    "function_name": "profile_learner",
+    "source": "def profile_learner(\n    traces: list[TraceEntry],\n    current_profile: dict,\n) -> dict:\n    \"\"\"축적된 trace에서 성공 패턴을 학습하여 프로파일 갱신\"\"\"\n    # acceptance_criteria:\n    #   - quality_score >= 0.7인 trace만 학습 대상\n    #   - 학습률(learning_rate) = 0.1 (급격한 변화 방지)\n    #   - 갱신 전/후 프로파일 diff 기록\n\n    successful_traces = [t for t in traces if t[\"quality_score\"] >= 0.7]\n\n    if not successful_traces:\n        return current_profile\n\n    # 성공 패턴의 modifier 평균 계산\n    avg_modifiers: ExpressionModifier = {}\n    for key in [\"creativity\", \"verbosity\", \"risk_tolerance\", \"depth\"]:\n        values = [t[\"decision\"][\"modifiers\"].get(key, 0.5) for t in successful_traces]\n        avg_modifiers[key] = sum(values) / len(values)\n\n    # 점진적 갱신 (learning_rate = 0.1)\n    updated_profile = {}\n    for key in avg_modifiers:\n        old_val = current_profile.get(key, 0.5)\n        updated_profile[key] = old_val * 0.9 + avg_modifiers[key] * 0.1\n\n    return updated_profile",
+    "genome_hash": "691ced7e8be2776c",
+    "intent_fingerprint": "c41f7c0a6679"
+  },
+  "ppr_interceptor": {
+    "function_name": "ppr_interceptor",
+    "source": "def ppr_interceptor(\n    node_id: str,\n    ppr_function: callable,\n    args: dict,\n    genome_registry: dict,\n    profile_store: dict,\n    boundary_policy: dict,\n) -> Any:\n    \"\"\"PPR 함수 실행 전 epigenome을 주입하고, 실행 후 trace를 기록하는 인터셉터\"\"\"\n    # acceptance_criteria:\n    #   - genome 불변성이 유지될 것\n    #   - 모든 실행에 ExpressionDecision이 생성될 것\n    #   - trace가 누락 없이 기록될 것\n    #   - suppressed 노드는 실행하지 않고 None 반환\n\n    # Phase 1: Context Sensing\n    context: ContextVector = context_sensor()\n\n    # Phase 2: Expression Decision\n    genome = genome_registry[node_id]\n    decision: ExpressionDecision = expression_engine(\n        node_id=node_id,\n        genome=genome,\n        context=context,\n        profile_store=profile_store,\n        boundary_policy=boundary_policy,\n    )\n\n    # Phase 3: Gate Check\n    if decision[\"state\"] == \"suppressed\":\n        trace_recorder(decision)\n        return None\n\n    # Phase 4: Execute with Modifiers\n    # modifiers를 실행 환경에 주입\n    execution_context = {\n        **args,\n        \"_epigenome_modifiers\": decision[\"modifiers\"],\n        \"_expression_state\": decision[\"state\"],\n    }\n\n    try:\n        result = ppr_function(**execution_context)\n        quality: float = AI_assess_quality(str(result), domain=\"ppr_output\")\n    except Exception as e:\n        result = None\n        quality = 0.0\n\n    # Phase 5: Trace Recording\n    trace_recorder(decision, result, quality)\n\n    # Phase 6: Profile Feedback (비동기)\n    if quality >= 0.7:\n        profile_store[node_id] = profile_learner(\n            traces=load_recent_traces(node_id, limit=20),\n            current_profile=profile_store.get(node_id, {}),\n        )\n\n    return result",
+    "genome_hash": "3bbcab7b83b98bc3",
+    "intent_fingerprint": "c51ca14e5dd1"
+  },
+  "load_boundary_policy": {
+    "function_name": "load_boundary_policy",
+    "source": "def load_boundary_policy(policy_path: str) -> dict:\n    \"\"\"epigenome 발현 경계 정책 로드\"\"\"\n    # 기본 정책 구조:\n    # {\n    #     \"max_drift\": 0.3,              # 의도 이탈 허용 최대값\n    #     \"always_active\": [],            # 항상 활성 노드 목록\n    #     \"always_suppress\": [],          # 항상 억제 노드 목록\n    #     \"modifier_bounds\": {            # 각 modifier의 허용 범위\n    #         \"creativity\": [0.1, 0.95],\n    #         \"risk_tolerance\": [0.0, 0.8],\n    #     },\n    #     \"immune_nodes\": [],             # Immune Zone: 발현 변경 불가 노드\n    # }\n\n    if file_exists(policy_path):\n        return parse_yaml(Read(policy_path))\n    else:\n        return DEFAULT_BOUNDARY_POLICY",
+    "genome_hash": "099ea8d420eeada0",
+    "intent_fingerprint": "59dcc42a1e99"
+  }
+}

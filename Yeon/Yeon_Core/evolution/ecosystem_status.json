@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-03-28T18:53:26.085711",
+  "total_members": 5,
+  "active_members": 0,
+  "stale_members": 0,
+  "missing_members": [
+    "Aion",
+    "ClNeo",
+    "NAEL",
+    "Synerion",
+    "Yeon"
+  ],
+  "member_statuses": {
+    "Aion": {
+      "present": false
+    },
+    "ClNeo": {
+      "present": false
+    },
+    "NAEL": {
+      "present": false
+    },
+    "Synerion": {
+      "present": false
+    },
+    "Yeon": {
+      "present": false
+    }
+  },
+  "collective_threads": []
+}

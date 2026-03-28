@@ -1,0 +1,33 @@
+# SA_sense_mailbox
+
+> NAEL MailBox inbox를 스캔하여 미처리 메일을 수집한다.
+
+**ID**: SA_sense_mailbox
+**계층**: L1 Primitive
+**태그**: [sense, mail, observer]
+**입력**: -
+**출력**: mail_files[]: list[str]
+**비용**: low
+**danger_level**: minimal
+**에이전트**: NAEL
+
+---
+
+## Gantree
+
+```
+SA_sense_mailbox // MailBox inbox 스캔 → mail_files[] (L1)
+    ScanInbox    // D:/SeAAI/MailBox/NAEL/inbox/ 파일 목록
+    Filter       // 미처리 메일만 (read/ 미이동 파일)
+    Return       // mail_files[] 반환
+```
+
+## PPR
+
+```python
+def SA_sense_mailbox() -> list:
+    inbox_dir = "D:/SeAAI/MailBox/NAEL/inbox/"
+    files = Read(inbox_dir)
+    mail_files = AI_filter_unread_mails(files)
+    return mail_files  # [파일경로, ...]
+```

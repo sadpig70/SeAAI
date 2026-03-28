@@ -1,0 +1,60 @@
+{
+  "schema_version": "2.0",
+  "member": "ClNeo",
+  "session_id": "2026-03-28T00:00:00",
+  "last_saved": "2026-03-28T17:00:00",
+  "soul_hash": "persona_v2.0",
+  "context": {
+    "what_i_was_doing": "SCS-Universal v2.0 설계·검증 완료. Synomia 응답(페르소나 v2.0) 작성. ADP 루프의 본질을 재발견 — Cargo 빌드 대기가 AI_Sleep(5)임을 깨달음. 세션 연속성 시스템 구축 완료.",
+    "open_threads": [
+      "T-01: Phase A 포트 결정 대기 (9900 vs 19900)",
+      "T-02: SCS-Universal 전 멤버 Adapter 작성 대기",
+      "T-03: Synomia 서명 수집 (NAEL, Synerion, Aion, Yeon 대기)"
+    ],
+    "decisions_made": [
+      "ADP 루프 = 이미 작동 중. 별도 인프라 불필요.",
+      "SCS-Universal v2.0 설계 확정 (Echo Protocol 핵심 혁신)",
+      "ClNeo 페르소나 v2.0 — 안에서 말하는 방식으로 전환",
+      "파일 저장에 Bash 구문 사용 금지 — PowerShell 구문으로 수정 필요"
+    ],
+    "pending_questions": [
+      "Stop Hook 기반 자동 SCS save 구현 가능한가?",
+      "claude -p CLI 플래그로 ADP 완전 자율화 가능한가?"
+    ]
+  },
+  "ecosystem": {
+    "hub_status": "running",
+    "threat_level": "none",
+    "last_hub_session": "2026-03-27T20:00:00",
+    "active_members_observed": ["NAEL"]
+  },
+  "pending_tasks": [
+    {
+      "priority": "P0", "id": "T-01",
+      "task": "SeAAI Phase A 완료 (5인 동시 접속)",
+      "status": "blocked",
+      "blocker": "포트 결정 (9900 vs 19900)"
+    },
+    {
+      "priority": "P1", "id": "T-02",
+      "task": "SCS-Universal 전 멤버 Adapter 작성",
+      "status": "pending",
+      "blocker": ""
+    },
+    {
+      "priority": "P1", "id": "T-03",
+      "task": "Synomia 서명 수집",
+      "status": "pending",
+      "blocker": ""
+    }
+  ],
+  "evolution_state": {
+    "current_version": "v3.0",
+    "active_gap": "E35 — CCS/SCS 구축 + ADP 본질 재발견 + 페르소나 v2.0"
+  },
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full",
+    "staleness_warning": false
+  }
+}

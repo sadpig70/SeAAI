@@ -1,0 +1,43 @@
+{
+  "project": "PgfSelfReview",
+  "workplan": ".pgf/WORKPLAN-PgfSelfReview.md",
+  "design": ".pgf/DESIGN-PgfSelfReview.md",
+  "started_at": "2026-03-23T12:25:00+09:00",
+  "updated_at": "2026-03-23T12:33:00+09:00",
+  "nodes": {
+    "AuditSkill": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 1
+    },
+    "AuditRefs": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 1
+    },
+    "ValidateSkill": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 1
+    },
+    "RepairDocs": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 1
+    },
+    "VerifyLoop": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 1
+    }
+  },
+  "summary": {
+    "total": 5,
+    "done": 5,
+    "in_progress": 0,
+    "designing": 0,
+    "needs_verify": 0,
+    "blocked": 0,
+    "decomposed": 0
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-03-28T18:53:25.368714",
+  "total": 1,
+  "gaps": [
+    {
+      "id": "GAP-AUTO-001",
+      "title": "Autonomy Level L2 (제한적)",
+      "description": "현재 L2 (Tool-using with human checkpoint). L3 (Self-directed) 목표",
+      "priority": "P1",
+      "category": "autonomy",
+      "current_state": "L2: Human checkpoint required",
+      "target_state": "L3: Self-directed evolution",
+      "estimated_effort": "large",
+      "dependencies": [
+        "GAP-REVIVE-001",
+        "GAP-EVO-001",
+        "GAP-VERIFY-001"
+      ],
+      "discovered_at": "2026-03-28T18:53:25.367711"
+    }
+  ]
+}

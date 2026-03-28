@@ -1,0 +1,1 @@
+{"status": "ok", "duration_seconds": 600, "interval_seconds": 1.0, "ticks": 593, "messages_sent": 593, "room_id": "ten-minute-room", "agents": ["Synerion", "Aion"], "inbox_counts": {"Synerion": 297, "Aion": 296}, "started_at_unix": 1774247714, "ended_at_unix": 1774248314}

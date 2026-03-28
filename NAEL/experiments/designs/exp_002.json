@@ -1,0 +1,12 @@
+{
+  "id": "exp_002",
+  "hypothesis": "All 14 NAEL tools pass functional tests",
+  "independent_var": "(to be specified)",
+  "dependent_var": "(to be specified)",
+  "control_value": "(current default)",
+  "test_value": "(to be specified)",
+  "prediction": "Zero unhandled exceptions",
+  "method": "CLI execution and output verification",
+  "created_at": "2026-03-25T22:01:55.014278",
+  "status": "completed"
+}

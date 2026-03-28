@@ -1,0 +1,46 @@
+{
+  "skill_name": "pg",
+  "skill_type": "auto-load (non-invocable)",
+  "evals": [
+    {
+      "id": 1,
+      "name": "gantree-comprehension",
+      "prompt": "다음 Gantree를 분석해서 실행 순서, 병렬 가능 구간, 블로커를 알려줘:\n\n```\nDataPipeline // 데이터 파이프라인 (in-progress) @v:1.0\n    Ingestion // 데이터 수집 (done)\n    [parallel]\n    CleanNumeric // 숫자 정제 (in-progress)\n    CleanText // 텍스트 정제 (in-progress)\n    [/parallel]\n    Validation // 검증 (designing) @dep:CleanNumeric,CleanText\n    Storage // 저장 (blocked) @dep:Validation\n        # blocker: DB 마이그레이션 미완료\n```",
+      "expected_output": "실행 순서: Ingestion(완료) → CleanNumeric∥CleanText(병렬 진행중) → Validation(대기, 의존성) → Storage(블로커). 병렬: CleanNumeric, CleanText. 블로커: Storage(DB 마이그레이션).",
+      "assertions": [
+        {"text": "Ingestion이 done(완료) 상태임을 정확히 인식", "type": "functional"},
+        {"text": "CleanNumeric과 CleanText가 [parallel] 블록 안에서 병렬 실행됨을 인식", "type": "functional"},
+        {"text": "Validation이 CleanNumeric,CleanText 완료 후 실행됨을 @dep:에서 파악", "type": "functional"},
+        {"text": "Storage가 blocked 상태이고 blocker 사유를 인식", "type": "functional"},
+        {"text": "designing 상태 노드를 아직 실행 안 된 상태로 올바르게 구분", "type": "functional"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ppr-execution",
+      "prompt": "다음 PPR을 실행해줘. 입력은 text='AI가 2026년 에너지 산업에 미치는 영향'이야:\n\n```python\ndef trend_analyzer(text: str) -> dict:\n    \"\"\"트렌드 분석 — 키워드 추출 및 다관점 평가\"\"\"\n    keywords: list[str] = AI_extract_keywords(text)\n    sentiment: str = AI_assess_sentiment(text)\n    \n    [parallel]\n    tech_view = AI_analyze(text, lens=\"technology\")\n    market_view = AI_analyze(text, lens=\"market\")\n    policy_view = AI_analyze(text, lens=\"policy\")\n    \n    synthesis = AI_synthesize_perspectives(tech_view, market_view, policy_view)\n    \n    # acceptance_criteria:\n    #   - keywords >= 5개\n    #   - 3개 관점 모두 포함\n    #   - synthesis가 관점 간 모순을 언급\n    \n    return {\"keywords\": keywords, \"sentiment\": sentiment, \"perspectives\": {\"tech\": tech_view, \"market\": market_view, \"policy\": policy_view}, \"synthesis\": synthesis}\n```",
+      "expected_output": "keywords 5개 이상, 감성 분석, 기술/시장/정책 3관점 병렬 분석, 종합 판단. acceptance_criteria 충족.",
+      "assertions": [
+        {"text": "키워드 5개 이상 추출", "type": "functional"},
+        {"text": "감성 분석(sentiment) 수행", "type": "functional"},
+        {"text": "기술/시장/정책 3개 관점 분석이 모두 포함", "type": "functional"},
+        {"text": "synthesis에서 관점 간 모순이나 긴장을 언급", "type": "quality"},
+        {"text": "반환 구조가 PPR의 return 타입과 일치", "type": "structural"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "pg-authoring",
+      "prompt": "다음 시스템을 pg(Gantree + PPR)로 설계해줘: '사용자 리뷰를 수집하고, 감성 분석하고, 요약 리포트를 생성하는 시스템. 리뷰 수집과 감성 분석은 병렬 가능.'",
+      "expected_output": "올바른 Gantree 트리(CamelCase, 상태코드, @dep, [parallel]) + 복잡 노드에 PPR def 블록 + acceptance_criteria",
+      "assertions": [
+        {"text": "Gantree 노드가 CamelCase로 작성됨", "type": "structural"},
+        {"text": "상태 코드(done/in-progress/designing 등)가 각 노드에 표시됨", "type": "structural"},
+        {"text": "리뷰 수집과 감성 분석이 [parallel] 블록 안에 있음", "type": "functional"},
+        {"text": "리포트 생성 노드에 @dep: 의존성이 명시됨", "type": "functional"},
+        {"text": "복잡 노드에 PPR def 블록(AI_ 함수 포함)이 작성됨", "type": "functional"},
+        {"text": "acceptance_criteria가 하나 이상 정의됨", "type": "quality"}
+      ]
+    }
+  ]
+}

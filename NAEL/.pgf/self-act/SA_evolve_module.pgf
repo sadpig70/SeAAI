@@ -1,0 +1,75 @@
+# SA_evolve_module
+
+> pgf.evolve()를 구현한다. result.evolution_worthy인 모듈을 개선한다.
+> guardrail.py로 안전성을 검증한 후 적용. 실패 시 rollback.
+
+**ID**: SA_evolve_module
+**계층**: L1 Primitive
+**태그**: [evolve, pgf, guardrail, self-improve]
+**입력**: module_id: str, evolution_reason: list
+**출력**: evolution_result: dict  # {success, changes, rollback_point}
+**비용**: high
+**danger_level**: medium
+**에이전트**: NAEL 전용
+
+---
+
+## Gantree
+
+```
+SA_evolve_module // 모듈 수준 진화 → evolution_result (L1)
+    Checkpoint    // guardrail.py로 현재 상태 스냅샷
+    Analyze       // evolution_reason 분석 → 개선 방향 도출
+    Design        // pgf 설계: 개선된 모듈 PPR 작성
+    Validate      // guardrail.py로 변경 안전성 검증
+    Apply         // 검증 통과 시 모듈 파일 갱신
+    Record        // evolution-log에 기록
+    Rollback      // 실패 시 checkpoint로 복원
+```
+
+## PPR
+
+```python
+def SA_evolve_module(module_id: str, evolution_reason: list) -> dict:
+    module_path = f"D:/SeAAI/NAEL/.pgf/self-act/{module_id}.pgf"
+
+    # Step 1: 안전 스냅샷
+    checkpoint = Bash(f"python D:/SeAAI/NAEL/tools/automation/guardrail.py checkpoint {module_path}")
+    rollback_point = AI_parse_checkpoint_id(checkpoint)
+
+    # Step 2: 개선 방향 분석
+    current_module = Read(module_path)
+    improvement_plan = AI_analyze_improvement(current_module, evolution_reason)
+    # evolution_reason: ["execution_time_degraded", "low_output_quality", ...]
+    # → 각 reason에 맞는 구체적 개선 방향 도출
+
+    # Step 3: 개선된 모듈 설계 (pgf 인지)
+    improved_ppr = AI_redesign_module_ppr(current_module, improvement_plan)
+
+    # Step 4: 안전성 검증
+    validation = Bash(f"python D:/SeAAI/NAEL/tools/automation/guardrail.py validate --content '{AI_escape(improved_ppr)}'")
+    if not AI_parse_validation_pass(validation):
+        return {"success": False, "reason": "guardrail_rejected", "rollback_point": rollback_point}
+
+    # Step 5: 적용
+    Write(module_path, improved_ppr)
+
+    # Step 6: 진화 기록
+    AI_append_evolution_log(f"SA_evolve_module: {module_id} improved. Reasons: {evolution_reason}")
+
+    return {
+        "success": True,
+        "module_id": module_id,
+        "changes": improvement_plan,
+        "rollback_point": rollback_point
+    }
+
+# 실패 시 rollback
+# Bash(f"python guardrail.py rollback {rollback_point}")
+```
+
+## 주의사항
+
+- danger_level: medium. 모듈 파일 자체를 수정한다.
+- guardrail 검증 없이는 절대 적용하지 않는다.
+- 창조자 승인 불필요 (자율 진화 범위 내) — 단, 플랫폼 모듈 수정은 창조자 보고 후.

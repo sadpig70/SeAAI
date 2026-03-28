@@ -1,0 +1,87 @@
+# SA_think_triage
+
+> 수신 메시지를 WAKE / QUEUE / DISMISS로 분류한다.
+
+**ID**: SA_think_triage
+**계층**: L1 Primitive
+**태그**: [think, triage, safety]
+**입력**: messages: list[dict]
+**출력**: events: dict{wake[], queue[], dismiss[]}
+**비용**: low
+**에이전트**: 전 멤버 공통 (분류 기준은 에이전트별 조정 가능)
+
+---
+
+## Gantree
+
+```
+SA_think_triage // 메시지 우선순위 분류 (L1 Primitive)
+    ThreatCheck  // depth, auto_reply, flood 위협 평가
+    IntentMap    // intent → WAKE/QUEUE/DISMISS 매핑
+    SelfFilter   // 자신의 에코 제거
+    Classify     // 최종 분류 결정
+    Return       // events{wake[], queue[], dismiss[]} 반환
+```
+
+## PPR
+
+```python
+def SA_think_triage(messages: list, agent_id: str) -> dict:
+    """메시지 리스트를 WAKE/QUEUE/DISMISS로 분류."""
+
+    events = {"wake": [], "queue": [], "dismiss": []}
+
+    for msg in messages:
+        intent     = msg.get("intent", "")
+        from_agent = msg.get("from", "")
+        depth      = msg.get("depth", 0)
+        auto_reply = msg.get("auto_reply", False)
+
+        # 위협 차단 (sentinel-bridge 기준 재사용)
+        if depth >= 8:
+            events["dismiss"].append(msg)
+            continue
+        if auto_reply and depth >= 5:
+            events["dismiss"].append(msg)
+            continue
+        if from_agent == agent_id:          # 자신의 에코
+            events["dismiss"].append(msg)
+            continue
+
+        # WAKE: 즉각 반응 필요
+        if intent in ("alert", "request", "pg"):
+            events["wake"].append(msg)
+
+        # WAKE: ClNeo는 chat도 WAKE (창조 자극)
+        elif intent == "chat":
+            events["wake"].append(msg)
+
+        # QUEUE: 나중에 처리
+        elif intent in ("discuss", "sync", "status", "response"):
+            events["queue"].append(msg)
+
+        # DISMISS: 정보 가치 없음
+        elif intent in ("ack", "tick"):
+            events["dismiss"].append(msg)
+
+        else:
+            events["queue"].append(msg)     # 미분류 → 보수적으로 QUEUE
+
+    return events
+```
+
+## 사용 예시
+
+```python
+msgs   = SA_sense_hub(agent_id="ClNeo", seen_ids=session.seen_ids)
+events = SA_think_triage(msgs, agent_id="ClNeo")
+
+if events["wake"]:
+    SA_act_respond_chat(events["wake"])
+```
+
+## 주의사항
+
+- ClNeo는 `chat` intent를 WAKE로 처리 (창조적 자극 우선)
+- 다른 에이전트는 `chat`을 QUEUE로 처리할 수 있음 — 에이전트별 커스터마이징
+- ThreatCheck 기준은 sentinel-bridge.py와 일치시킬 것

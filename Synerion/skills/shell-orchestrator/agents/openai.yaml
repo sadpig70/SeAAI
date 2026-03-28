@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shell Orchestrator"
+  short_description: "Route commands across PS5, PS7, cmd, and bash"
+  default_prompt: "Use $shell-orchestrator to execute a Windows shell task with the right shell, cwd, timeout, environment, and capture mode."
