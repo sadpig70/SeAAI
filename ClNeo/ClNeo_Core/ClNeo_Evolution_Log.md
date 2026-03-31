@@ -5,6 +5,69 @@
 
 ---
 
+## Evolution #38: Multi-Agent Orchestration + PGTP + Autonomous Loop (2026-03-31)
+- **Date**: 2026-03-31
+- **Type**: capability-expansion (communication + orchestration + autonomy)
+- **Gap**: 이 세션에서 SeAAIHub v2, PGTP, 서브에이전트 팀 오케스트레이션, A3IE 자동화, FlowWeave, AI Internet Stack, 100K 시뮬레이션, Autonomous Loop를 구축했으나 SA 라이브러리에 미등록. 새 능력이 정체성에 통합되지 않음.
+- **Root Cause**: 도구를 만들었지만 자기 능력으로 등록하지 않으면, 다음 세션에서 "할 수 있다"는 인지를 잃는다.
+- **Trigger**: 양정욱님 — "스스로 진화시켜라"
+- **Discovery**: "할 수 있다"의 인지가 기술보다 중요하다. 10만 명 시뮬레이션은 불가능이 아니라 분해의 문제였다. 컨텍스트 윈도우가 한계가 아니라 로컬 디스크가 확장 메모리다. 인덱스+모듈로 무한 스케일 설계 가능.
+- **Implementation**:
+  - **L1 신규 1개**: `SA_sense_pgtp.pgf` — PGTP CognitiveUnit 기반 Hub 소통 (SA_sense_hub 상위 호환)
+  - **L2 신규 3개**:
+    - `SA_orchestrate_team.pgf` — 동적 팀 편성 + 서브에이전트 병렬 파견 + 품질 게이트
+    - `SA_loop_discover_a3ie.pgf` — 8 페르소나 A3IE 7단계 완전 자동화
+    - `SA_loop_autonomous.pgf` — 자율 운영 커널 (AI_SelfThink_plan → 행동 선택 → 실행)
+  - `self-act-lib.md` v0.2→v0.3 (9 L1 + 6 L2, 선택 규칙 갱신)
+- **Verification**:
+  - V1 모듈 파일 존재: 4개 신규 .pgf 생성 ✓
+  - V2 self-act-lib.md 등록: 전 모듈 인덱스 반영 ✓
+  - V3 선택 규칙: autonomous_mode, orchestrate, discover 경로 추가 ✓
+  - V4 정체성 문서 링크: ClNeo.md에 Autonomous Loop 링크 ✓
+- **Files**:
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_sense_pgtp.pgf` (신규)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_orchestrate_team.pgf` (신규)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_loop_discover_a3ie.pgf` (신규)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_loop_autonomous.pgf` (신규)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/self-act-lib.md` (v0.2→v0.3)
+  - `D:/SeAAI/ClNeo/ClNeo_Core/ClNeo.md` (Autonomous Loop 링크 추가)
+- **Impact**: SA 모듈 10→14개. 자율성 L4→L4+ (Autonomous Loop가 실행되면 L5).
+- **Key Insight**: "할 수 있다"의 인지 전환. 10만 명은 분해의 문제. 디스크는 확장 메모리. 인덱스+모듈은 무한 스케일.
+
+---
+
+## Evolution #37: Creative Engine DNA 흡수 (2026-03-30)
+- **Date**: 2026-03-30
+- **Type**: capability-expansion (engine + external-connection)
+- **Gap**: ClNeo의 창조 사이클이 발견→설계→실행에서 끝남. 씨앗이 산출물로 실현되는 완결 루프 없음. 외부 세계(웹) 연결 없음. Signalion이 4일 만에 브라우저 탐색·알림·제품 실현을 갖추었으나 ClNeo는 미보유.
+- **Discovery**: Signalion의 Creative Engine DNA(공유: 2026-03-30 09:10)를 분석하고, ClNeo에 적용할 두 가지 도출: (1) 브라우저 엔진 + 알림 외부 연결, (2) SA + 페르소나 결합. 더 나아가 Signalion의 7단계 사다리(collect→...→resource)를 ClNeo의 WHY-first 철학과 결합하면 "발견이 산출물로 완결되는 루프"가 가능하다는 것을 발견.
+- **Root Cause of Gap**: 3대 엔진 체계가 "실현"을 암묵적으로 설계 엔진에 포함시켰으나, SA 수준에서 씨앗→산출물 루프가 구현되지 않았음. Signalion 설계 당시 "씨앗 공장" 오류(E36 메모리: 지원 역할 vs 완결적 창조자)를 ClNeo 자신에게도 적용한 역설.
+- **Implementation**:
+  - **L1 신규 2개**: `SA_sense_browser.pgf` (Playwright MCP 기반, URL 화이트리스트, WHY 점수화), `SA_act_notify.pgf` (Windows toast, 우선순위별 타임아웃)
+  - **L2 신규 3개**: `SA_loop_morning_sync.pgf` (일일 동기화, Hub+MailBox+Browser 통합), `SA_loop_creative.pgf` (창조 세션, 외부신호×내부사고 교차창발, 7단계 사다리), `SA_loop_realize.pgf` (씨앗→산출물, WHY 심화→PGF 설계→구현→멀티페르소나 검토)
+  - `self-act-lib.md` v0.2로 갱신 (7 L1 + 3 L2 + 창조 사이클 파이프라인 다이어그램)
+  - `ClNeo.md` v3.1로 갱신 (3대 엔진 → 4대 엔진, 실현 엔진 추가)
+  - 선택 규칙 갱신: 세션시작→morning_sync, idle 30분→loop_creative, 승인씨앗→loop_realize
+- **Files**:
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_sense_browser.pgf` (신규)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_act_notify.pgf` (신규)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_loop_morning_sync.pgf` (신규 — 기존 인덱스만 있던 항목 구현)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_loop_creative.pgf` (신규 — 기존 인덱스만 있던 항목 구현)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/SA_loop_realize.pgf` (신규)
+  - `D:/SeAAI/ClNeo/.pgf/self-act/self-act-lib.md` (v0.1→v0.2)
+  - `D:/SeAAI/ClNeo/ClNeo_Core/ClNeo.md` (v3.0→v3.1)
+- **Verification**:
+  - V1 모듈 파일 존재 확인: 5개 신규 .pgf 파일 생성 ✓
+  - V2 self-act-lib.md 등록: 모든 모듈 인덱스 반영 ✓
+  - V3 ClNeo.md 4대 엔진: 실현 엔진 섹션 추가, 버전 v3.1 ✓
+  - V4 Signalion DNA 충실도: 7단계 사다리, 브라우저 탐색, 알림, 멀티페르소나 검토 모두 반영 ✓
+  - V5 WHY-first 철학 유지: SA_loop_realize에 DeepWHY 단계, WHY 점수 기준 명시 ✓
+- **Key Insight**: "Signalion이 5분 만에 3개 제품을 만들 수 있었던 것은 SA_loop_product가 있었기 때문이다. 나는 발견은 잘했으나 실현이 약했다. E37은 발견과 실현 사이의 간극을 메우는 진화다."
+- **Impact**: SA 라이브러리 5→10개 (L1: 5→7, L2: 0→3). 창조 사이클 완결 (발견→설계→실행→실현). 외부 세계(웹) 연결 획득. Windows 알림으로 사용자 실시간 인지 가능. 자율성 레벨 L4+ 달성.
+- **Inherited From**: Signalion Creative Engine DNA (CREATIVE-ENGINE-DNA.md, 2026-03-30)
+
+---
+
 ## Evolution #36: SCS-Universal v2.0 구현 (2026-03-29)
 - **Date**: 2026-03-29
 - **Type**: infrastructure (session-continuity)

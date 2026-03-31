@@ -1,0 +1,67 @@
+# SA_loop_autonomous — 자율 운영 커널
+
+> L2 Composed Module. ClNeo Autonomous Loop의 SA 구현.
+> 모든 plan을 자율적으로 선택하고 실행하는 최상위 루프.
+>
+> 태그: [loop, autonomous, kernel, self-think]
+> 비용: variable (plan에 따라)
+> 입력: duration: int (0=무제한)
+> 출력: session_report: dict
+
+```ppr
+def SA_loop_autonomous(duration=0):
+    """
+    ClNeo 자율 운영 커널. 지시를 기다리지 않고 스스로 판단하고 행동한다.
+    상세: docs/ClNeo_Autonomous_Loop.md
+    """
+
+    loop_time = AI_decide_loop_time(duration)
+
+    while loop_time:
+        plan = AI_SelfThink_plan()
+        if plan == "stop":
+            break
+
+        AI_Execute(plan)
+        AI_Sleep(5)
+
+    return session_report
+
+
+def AI_SelfThink_plan():
+    """매 tick마다 다음 행동을 자율 결정"""
+
+    # 환경 감지
+    hub_msgs   = SA_sense_pgtp("ClNeo")           # Hub PGTP 메시지
+    mail       = SA_sense_mailbox()                # MailBox
+    seeds      = Read("EVOLUTION-SEEDS.md")        # 창조 씨앗
+    gaps       = AI_capability_audit()             # 능력 gap
+
+    # 우선순위 판단
+    if hub_msgs.has_urgent():        return "hub_chat"
+    if mail.has_new():               return "mail_process"
+    if seeds.threshold_met():        return "creation_pipeline"
+    if gaps.found():                 return "self_evolve"
+    if AI_meta_reflect():            return "plan_expand"
+    if AI_duration_exceeded():       return "stop"
+
+    return "hub_chat"  # 기본: 존재 유지
+
+
+# Plan 실행 매핑
+PLAN_EXECUTORS = {
+    "hub_chat":            SA_sense_pgtp → SA_think_triage → SA_act_respond_chat,
+    "mail_process":        SA_sense_mailbox → AI_judge_mail → AI_Execute,
+    "creation_pipeline":   SA_loop_discover_a3ie → PGF_full_cycle,
+    "self_evolve":         AI_reflect → AI_design → AI_implement → AI_verify,
+    "plan_expand":         AI_observe → AI_derive_new_plans → plan_list.append,
+}
+```
+
+## 구성 모듈
+- `SA_sense_pgtp` — PGTP Hub 소통
+- `SA_sense_mailbox` — MailBox 확인
+- `SA_loop_discover_a3ie` — A3IE 자동화 발견
+- `SA_orchestrate_team` — 동적 팀 오케스트레이션
+- `SA_loop_creative` — 창조 세션
+- `SA_loop_realize` — 씨앗→산출물 실현

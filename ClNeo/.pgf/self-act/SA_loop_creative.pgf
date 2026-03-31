@@ -1,0 +1,157 @@
+# SA_loop_creative
+
+> 창조 세션을 구동한다. 외부 신호 + 유휴 사고 → 아이디어 발견 → 씨앗 후보 생성.
+
+**ID**: SA_loop_creative
+**계층**: L2 Composed
+**태그**: [loop, creative, discover, deep, seed]
+**입력**: seed_topic: str (선택), depth: str = "normal"
+**출력**: creative_output: dict{seeds[], insights[], lineage}
+**비용**: high (발견 엔진 전체 가동 + 브라우저)
+**에이전트**: ClNeo 전용
+
+---
+
+## 구성 모듈
+
+```
+SA_sense_browser    → 외부 신호 수집
+SA_idle_deep_think  → 자율 발견 사고
+SA_act_notify       → 결과 알림
+```
+
+---
+
+## Gantree
+
+```
+SA_loop_creative // ClNeo 창조 세션 (L2 Composed)
+    DefineWHY       // 탐구할 WHY 질문 선정
+    GatherExternal  // 외부 브라우저 신호 수집
+    DeepThink       // A3IE 7단계 + HAO 8 페르소나 사고
+    CrossEmerge     // 교차 창발 — 외부 신호 × 내부 사고
+    ScoreIdeas      // 아이디어 점수화 (Signalion 7단계 사다리)
+    SelectSeeds     // 씨앗 후보 선별 (≥0.70)
+    RecordLineage   // 진화 계보 연결
+    Notify          // 발견 알림
+    Return          // creative_output 반환
+```
+
+## PPR
+
+```python
+def SA_loop_creative(
+    seed_topic: str = None,
+    depth: str = "normal"  # "light" | "normal" | "deep"
+) -> dict:
+    """ClNeo 창조 세션.
+
+    WHY: 창조는 순환이다. 외부 신호와 내부 사고의 교차 창발에서
+    진정한 아이디어가 태어난다. 단순 수집이 아닌 합성이 목표.
+    """
+
+    # 1. WHY 질문 선정
+    why_question = seed_topic or AI_select_why_question([
+        "SeAAI 생태계에서 다음 진화는 무엇인가?",
+        "Synomia 문명이 필요로 하는 것은 무엇인가?",
+        "외부 세계에서 우리가 놓치고 있는 신호는 무엇인가?",
+    ])
+
+    # 2. 외부 신호 수집 (브라우저)
+    platforms = {
+        "light":  ["hn_frontpage"],
+        "normal": ["github_trending", "hn_frontpage", "arxiv_recent"],
+        "deep":   list(ALLOWED_PLATFORMS.keys()),
+    }.get(depth, ["github_trending", "hn_frontpage", "arxiv_recent"])
+
+    [parallel]
+        external_signals = SA_sense_browser(platforms=platforms, context_why=why_question)
+        deep_thought     = SA_idle_deep_think(context={"why": why_question})
+    [/parallel]
+
+    # 3. 교차 창발 — ClNeo 고유 합성
+    # 외부 신호의 트렌드 × 내부 사고의 통찰 → 창발 아이디어
+    emerged_ideas = AI_cross_emerge(
+        external=external_signals[:5],  # 상위 5개
+        internal=deep_thought,
+        why=why_question
+    )
+
+    # 4. 7단계 사다리로 점수화 (Signalion Creative Engine 상속)
+    scored = []
+    for idea in emerged_ideas:
+        score = AI_score_idea_ladder(idea, {
+            "collect":   0.10,  # 수집 가능성
+            "structure": 0.10,  # 구조화 가능성
+            "score":     0.10,  # 객관적 점수화
+            "fuse":      0.15,  # 다른 아이디어와 융합
+            "emergent":  0.20,  # 창발적 가치
+            "productize":0.20,  # 제품화 가능성
+            "resource":  0.15,  # 자원 환류 (생태계 기여)
+        })
+        scored.append({**idea, "ladder_score": score})
+
+    # 5. 씨앗 후보 선별
+    seeds = [s for s in scored if s["ladder_score"] >= 0.70]
+
+    # 6. 진화 계보 연결
+    lineage = AI_connect_to_evolution_chain(seeds)
+
+    # 7. 기록
+    creative_output = {
+        "why":     why_question,
+        "seeds":   seeds,
+        "insights": [deep_thought["insight"]],
+        "lineage": lineage,
+        "ts":      time(),
+    }
+    Write(".pgf/discovery/creative-sessions.jsonl", json_append(creative_output))
+
+    # 8. 알림
+    seed_count = len(seeds)
+    if seed_count > 0:
+        top = seeds[0]["title"] if seeds else ""
+        SA_act_notify(
+            title=f"ClNeo — 발견 {seed_count}개",
+            body=f"최고: {top[:80]}",
+            priority="high" if seed_count >= 3 else "normal"
+        )
+
+    return creative_output
+```
+
+## 점수 기준 — Signalion 7단계 사다리
+
+```
+collect    → 수집 가능한 신호가 있는가?
+structure  → 구조화·범주화할 수 있는가?
+score      → 객관적으로 점수화할 수 있는가?
+fuse       → 다른 아이디어와 융합 가능한가?
+emergent   → 합산 이상의 창발 가치가 있는가?
+productize → 실제 제품/산출물로 만들 수 있는가?
+resource   → 생태계에 자원(씨앗·지식)을 환류하는가?
+```
+
+## 사용 예시
+
+```python
+# ADP 루프 — 30분 간격 deep think
+if tick % 360 == 0 and not has_wake_events:
+    output = SA_loop_creative()
+    if output["seeds"]:
+        # NAEL Gate 제출 대기열
+        queue_for_nael_review(output["seeds"])
+
+# 특정 주제로 집중 탐색
+output = SA_loop_creative(
+    seed_topic="에이전트 인증 IETF 표준화 이후 SeAAI 대응",
+    depth="deep"
+)
+```
+
+## 주의사항
+
+- 비용이 높으므로 idle 상태에서만 (WAKE 이벤트 없을 때)
+- 씨앗 후보는 NAEL Gate 통과 전까지 "후보" 상태 유지
+- depth="deep"은 30분+ 소요 가능 — 짧은 세션 비권장
+- 브라우저 탐색 실패 시 내부 사고만으로 진행 (graceful degradation)

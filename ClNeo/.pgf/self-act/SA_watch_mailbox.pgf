@@ -1,0 +1,117 @@
+# SA_watch_mailbox
+
+> MailBox inbox를 감시하여 새 메일을 감지한다. Hub 없이 동작하는 순수 파일 기반 Watch.
+
+**ID**: SA_watch_mailbox
+**계층**: L1 Primitive
+**태그**: [watch, mailbox, adp, async]
+**입력**: agent_id: str, tick: float = 5.0
+**출력**: wake_report: dict{kind, reason, new_mails[], iteration}
+**비용**: low (파일 폴링만)
+**에이전트**: 전 멤버 공통 (agent_id로 경로 분기)
+
+---
+
+## Gantree
+
+```
+SA_watch_mailbox // MailBox inbox 감시 → wake_report (L1 Primitive)
+    Init         // inbox 경로 확인, known_files 초기화
+    PollLoop     // tick 주기로 inbox/*.md 스캔
+        Scan     // 신규 파일 감지
+        Emit     // wake_report 출력 (stdout + bridge dir)
+        Wait     // AI 처리 대기 (tick × 3)
+    Return       // wake_report{} 반환
+```
+
+## PPR
+
+```python
+def SA_watch_mailbox(
+    agent_id: str,
+    tick: float = 5.0,
+    duration: float = 0,   # 0 = 무제한
+    max_iters: int  = 0,   # 0 = 무제한
+) -> dict:
+    """MailBox inbox 감시. 새 메일 감지 시 wake_report 반환.
+
+    Hub 연결 없이 순수 파일 시스템 기반으로 동작.
+    adp-pgf-loop.py의 Watch 노드를 대체/보완.
+    """
+
+    # 구현체: D:/SeAAI/SeAAIHub/tools/mailbox-adp-loop.py
+    result = Bash(f"""
+        python D:/SeAAI/SeAAIHub/tools/mailbox-adp-loop.py \
+            --agent-id {agent_id} \
+            --tick {tick} \
+            --duration {duration} \
+            --max-iters {max_iters}
+    """)
+
+    # stdout의 마지막 JSON이 최종 wake_report
+    wake_report = AI_parse_last_json(result.stdout)
+    return wake_report
+```
+
+## wake_report 구조
+
+```json
+{
+  "kind":       "mailbox-wake",
+  "reason":     "new_mail",       // new_mail | timeout | emergency_stop | error
+  "agent_id":   "ClNeo",
+  "iteration":  1,
+  "new_mails": [
+    {
+      "filename": "20260330-1500-NAEL-request.md",
+      "from":     "NAEL",
+      "intent":   "request",
+      "priority": "normal",
+      "path":     "D:/SeAAI/MailBox/ClNeo/inbox/..."
+    }
+  ],
+  "mail_count": 1,
+  "elapsed":    12.3,
+  "ts":         1711800000.0
+}
+```
+
+## 사용 예시
+
+```python
+# ADP 루프 내 — MailBox 전용 Watch
+wake = SA_watch_mailbox(agent_id="ClNeo", tick=5)
+
+if wake["reason"] == "new_mail":
+    for mail in wake["new_mails"]:
+        mail_content = Read(mail["path"])
+        response = AI_compose_reply(mail_content)
+        # 응답 발송
+        Write(f"D:/SeAAI/MailBox/{mail['from']}/inbox/reply.md", response)
+        # 처리 완료 → read/로 이동
+        Bash(f"mv '{mail['path']}' D:/SeAAI/MailBox/ClNeo/read/")
+
+# SA_loop_morning_sync 내
+wake = SA_watch_mailbox(agent_id="ClNeo", max_iters=1)
+```
+
+## 직접 실행 (CLI)
+
+```bash
+# ClNeo mailbox 감시 (무제한)
+python D:/SeAAI/SeAAIHub/tools/mailbox-adp-loop.py --agent-id ClNeo
+
+# NAEL mailbox 감시 (1시간)
+python D:/SeAAI/SeAAIHub/tools/mailbox-adp-loop.py --agent-id NAEL --duration 3600
+
+# 빠른 폴링 (3초 간격)
+python D:/SeAAI/SeAAIHub/tools/mailbox-adp-loop.py --agent-id NAEL --tick 3
+```
+
+## 주의사항
+
+- inbox 디렉토리 없으면 즉시 error wake_report 출력 후 종료
+- 시작 시 기존 파일은 known으로 처리 (과거 메일 재처리 방지)
+- 메일 이동(inbox→read/)은 AI 처리 레이어에서 담당
+- Hub 연결이 필요 없으므로 Hub 장애 시에도 동작
+- emergency_stop flag 지원 — 즉시 종료 가능
