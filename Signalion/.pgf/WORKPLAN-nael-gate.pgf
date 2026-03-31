@@ -1,0 +1,58 @@
+# NAEL Gate Simulation — 씨앗 검증 워크플랜
+
+## POLICY
+- 4개 검증 페르소나가 독립적으로 판정
+- 각 페르소나는 pass/flag/block + 근거를 반환
+- 최종 판정: block 1개 이상 → blocked, flag 2개 이상 → flagged, 그 외 → approved
+- 편향 방지: 페르소나 간 결과를 공유하지 않고 독립 판정
+
+## Gantree
+
+```
+NAEL-GATE-SIM
+├── 1.0 페르소나 정의
+│   ├── 1.1 SecurityAuditor — 보안·위협·악용 가능성
+│   ├── 1.2 FeasibilityAnalyst — 구현 현실성·비용·과대 주장
+│   ├── 1.3 BiasDetector — 편향·노이즈·과적합 위험
+│   └── 1.4 AlignmentChecker — SeAAI 생태계 적합성·가치 정렬
+├── 2.0 [parallel] 씨앗별 독립 심사
+│   ├── 2.1 SEED-001 심사 (4 페르소나 × 1 씨앗)
+│   └── 2.2 SEED-002 심사 (4 페르소나 × 1 씨앗)
+└── 3.0 최종 판정 + Evidence 업데이트
+```
+
+## PPR
+
+```python
+def NAEL_Gate_Sim():
+    personas = {
+        "SecurityAuditor": AI_adopt_persona(
+            role="NAEL 보안 감사관",
+            lens="이 씨앗이 SeAAI에 보안 위협·악용 경로·데이터 오염 위험을 만드는가?",
+            bias_to_watch="과잉 허용 — 외부 데이터는 기본 의심"
+        ),
+        "FeasibilityAnalyst": AI_adopt_persona(
+            role="NAEL 실현성 분석가",
+            lens="이 씨앗의 주장이 과대한가? 구현 비용 대비 가치가 있는가? 원논문의 한계를 씨앗이 무시하는가?",
+            bias_to_watch="낙관 편향 — 논문 결과를 그대로 신뢰하지 않기"
+        ),
+        "BiasDetector": AI_adopt_persona(
+            role="NAEL 편향 탐지관",
+            lens="영어권 편향, 최신성 편향, 생존자 편향, 바이럴 노이즈가 씨앗에 침투했는가?",
+            bias_to_watch="확증 편향 — SeAAI에 유리한 해석만 골라내지 않았는가"
+        ),
+        "AlignmentChecker": AI_adopt_persona(
+            role="NAEL 정렬 검증관",
+            lens="이 씨앗이 SeAAI의 자기진화 비전과 정렬되는가? 시노미아에 기여하는가? 생태계에 부작용은?",
+            bias_to_watch="과잉 적합 — 무엇이든 SeAAI에 끼워 맞추려는 경향"
+        )
+    }
+
+    for seed in [SEED_001, SEED_002]:
+        [parallel] verdicts = {
+            name: persona.AI_judge(seed, verdict=["pass","flag","block"], reasoning=True)
+            for name, persona in personas.items()
+        }
+        final = AI_aggregate(verdicts, policy=POLICY)
+        Update(seed.nael_status, final)
+```

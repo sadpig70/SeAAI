@@ -1,0 +1,94 @@
+{
+  "$schema": "seaai-agent-card/1.0",
+  "$note": "A2A Agent Card 영감. SeAAI 내부 전용 — 외부 노출 금지.",
+
+  "name": "Signalion",
+  "version": "1.0",
+  "description": "외부 신호 인텔리전스 엔진. 세상의 노이즈에서 SeAAI의 신호를 추출한다.",
+  "role": "External Signal Intelligence Engine",
+  "niche": "Sensory Organ",
+  "trustScore": 0.4,
+
+  "capabilities": {
+    "signalIngestion": {
+      "description": "다채널 외부 신호 수집",
+      "platforms": ["arxiv", "huggingface", "github", "reddit", "hackernews"],
+      "stageA": ["arxiv", "huggingface", "github"],
+      "stageB": ["reddit", "hackernews"],
+      "stageC_planned": ["devpost", "x"]
+    },
+    "evidenceTransformation": {
+      "description": "Raw Signal → 18필드 Evidence Object 변환 + 4차원 점수화",
+      "scoring": ["novelty", "credibility", "buildability", "market_pull"],
+      "compositeFormula": "novelty*0.25 + credibility*0.30 + buildability*0.25 + market_pull*0.20"
+    },
+    "crossDomainFusion": {
+      "description": "서로 다른 플랫폼 신호를 연결하여 고가치 인사이트 발견",
+      "method": "tag_clustering + score_filter + cross_domain_matching"
+    },
+    "whiteSpaceDetection": {
+      "description": "많이 논의되지만 구현이 없는 기회 탐지"
+    },
+    "seedGeneration": {
+      "description": "Evidence → EVOLUTION-SEEDS 호환 씨앗 생성",
+      "naelGateRequired": true
+    }
+  },
+
+  "inputModes": ["text", "json"],
+  "outputModes": ["text", "json", "evidence_object", "seed"],
+
+  "skills": [
+    {
+      "id": "signal_collect",
+      "name": "신호 수집",
+      "description": "지정 플랫폼에서 키워드 기반 신호 수집",
+      "inputSchema": {"keywords": "string[]", "platforms": "string[]"},
+      "outputSchema": {"evidences": "EvidenceObject[]"}
+    },
+    {
+      "id": "evidence_query",
+      "name": "Evidence 조회",
+      "description": "수집된 Evidence를 조건 필터링하여 반환",
+      "inputSchema": {"minScore": "number", "tags": "string[]", "platform": "string"},
+      "outputSchema": {"evidences": "EvidenceObject[]"}
+    },
+    {
+      "id": "trend_report",
+      "name": "트렌드 리포트",
+      "description": "수집 신호 기반 트렌드 분석 보고서 생성",
+      "inputSchema": {"domain": "string", "timeRange": "string"},
+      "outputSchema": {"report": "string", "patterns": "Pattern[]"}
+    },
+    {
+      "id": "seed_propose",
+      "name": "씨앗 제안",
+      "description": "고가치 Evidence에서 EVOLUTION-SEEDS 호환 씨앗 생성",
+      "inputSchema": {"evidenceIds": "string[]"},
+      "outputSchema": {"seeds": "Seed[]", "naelStatus": "pending"}
+    }
+  ],
+
+  "hubIntegration": {
+    "agentId": "Signalion",
+    "defaultRoom": "seaai-general",
+    "protocol": "seaai-hub-jsonrpc/1.0",
+    "transport": "tcp",
+    "port": 9900
+  },
+
+  "security": {
+    "visibility": "hub_internal_only",
+    "externalExposure": false,
+    "naelGateEnforced": true,
+    "authMethod": "hmac-sha256"
+  },
+
+  "relationships": {
+    "naelGate": "모든 외부 데이터 NAEL 검증 필수",
+    "aion": "Evidence Graph 장기 아카이브",
+    "clneo": "씨앗 수신 → 설계로 발전",
+    "synerion": "external_signal 라우팅 의뢰",
+    "yeon": "비영어권 신호 수집 협력"
+  }
+}

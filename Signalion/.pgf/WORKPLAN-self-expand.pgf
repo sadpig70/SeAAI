@@ -1,0 +1,16 @@
+# Signalion 자기 확장 — 현재 역량 gap 분석 → 자율 구축
+
+## POLICY
+- CAPABILITIES.md 기준으로 gap 도출
+- 각 gap을 즉시 구현 가능/설계 필요로 분류
+- 즉시 구현 가능한 것부터 실행·검증
+- 완료마다 CAPABILITIES.md 갱신
+
+## Gantree
+```
+SELF_EXPAND
+    1.0_GapAnalysis // 현재 역량 vs 실제 필요 gap 도출
+    2.0_Prioritize // 영향도 × 구현 용이성 우선순위
+    3.0_Build // 상위 항목부터 구현
+    4.0_Verify // 테스트 + CAPABILITIES 갱신
+```

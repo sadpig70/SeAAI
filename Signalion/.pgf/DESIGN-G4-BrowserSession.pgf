@@ -1,0 +1,33 @@
+# G4: 브라우저 세션 영속화
+
+## WHY
+매 세션마다 로그인 반복 → 연 21.7시간 낭비. ProductHunt/Devpost 등 로그인 필요 채널 접근 불가.
+
+## Gantree
+```
+G4_BrowserSession
+    1_StorageDir // signal-store/auth/ 디렉토리 + .gitignore
+    2_SaveSession // Playwright storage_state 저장 함수
+    3_LoadSession // 저장된 세션 로드 함수
+    4_EnsureAuth // 세션 있으면 로드, 없으면 notify → 로그인 → 저장
+    5_Verify // 실제 사이트로 검증
+```
+
+## PPR
+```python
+def SA_browser_ensure_auth(service: str, url: str):
+    state_file = AUTH_DIR / f"{service}.json"
+
+    if state_file.exists():
+        # 저장된 세션으로 시작
+        browser_navigate(url)  # Playwright가 이미 persistent context면 쿠키 자동 로드
+        logged_in = browser_evaluate("() => !document.querySelector('a[href*=login]')")
+        if logged_in: return True
+
+    # 세션 없거나 만료 → 사용자에게 로그인 요청
+    SA_act_notify("login", service)
+    # 사용자가 로그인 완료 후 확인 클릭
+    # 세션 저장
+    browser_evaluate(f"async () => {{ /* storage_state export */ }}")
+    return True
+```

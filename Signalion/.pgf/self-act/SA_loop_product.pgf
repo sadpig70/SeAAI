@@ -1,0 +1,59 @@
+# SA_loop_product — 제품 설계 → 구현 → 검증 전 사이클
+
+> L2 Composed | 구성: seed → pgf.design → pgf.execute → loop_review → iterate
+> 용도: 승인된 씨앗을 실행 가능한 제품으로 만드는 전 사이클
+> 비용: very high
+
+## Gantree
+
+```
+SA_loop_product
+    1_DesignPhase // PGF design: 씨앗 → Gantree + PPR + 수익 모델
+    2_DesignReview // SA_loop_review(설계, [ClNeo, Synerion, NAEL])
+    3_ImplementPhase // PGF execute: 설계 → MVP 코드
+    4_CodeReview // SA_loop_review(코드, [NAEL, Synerion, Vera])
+    5_TestPhase // 테스트 실행
+    6_TestReview // SA_loop_review(테스트, [Vera, NAEL, Yeon])
+    7_FinalReview // SA_loop_review(전체, 6명 전원)
+    8_Iterate // 미통과 시 해당 Phase로 돌아가 수정 + 재리뷰
+```
+
+## PPR
+
+```python
+def SA_loop_product(seed):
+    # 1. 설계
+    design = pgf.design(seed)
+
+    # 2. 설계 리뷰
+    v, r = SA_loop_review(design, reviewers=DESIGN_REVIEWERS)
+    while v != "APPROVED":
+        design = AI_fix(design, r)
+        v, r = SA_loop_review(design, reviewers=DESIGN_REVIEWERS)
+
+    # 3. 구현
+    code = pgf.execute(design)
+
+    # 4. 코드 리뷰
+    v, r = SA_loop_review(code, reviewers=CODE_REVIEWERS)
+    while v != "APPROVED":
+        code = AI_fix(code, r)
+        v, r = SA_loop_review(code, reviewers=CODE_REVIEWERS)
+
+    # 5. 테스트
+    test_result = AI_run_tests(code)
+
+    # 6. 테스트 리뷰
+    v, r = SA_loop_review(test_result, reviewers=TEST_REVIEWERS)
+    while v != "APPROVED":
+        code = AI_fix(code, r)
+        test_result = AI_run_tests(code)
+        v, r = SA_loop_review(test_result, reviewers=TEST_REVIEWERS)
+
+    # 7. 최종 검증
+    v, r = SA_loop_review(bundle(seed, design, code, test_result), reviewers=ALL_6)
+    if v == "APPROVED":
+        SA_act_notify("toast", "제품 APPROVED", f"{seed.id} → 배포 준비 완료")
+
+    return {"verdict": v, "product": code}
+```

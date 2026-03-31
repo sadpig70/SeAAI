@@ -1,0 +1,46 @@
+# SA_act_create_seed — 씨앗 생성
+
+> L1 Primitive | 태그: [act, create]
+> 입력: fusions[], patterns[] (또는 자동 로드)
+> 출력: seed (SEED-{date}-{seq}.md)
+> 비용: medium
+
+## Gantree
+
+```
+SA_act_create_seed
+    SelectTopFusion // composite 상위 fusion 선택
+    DesignSeed // 씨앗 구조 작성 (출처, 제안, 기대효과, 편향점검)
+    NAELGate // PGF 4-페르소나 검증
+    SaveSeed // signal-store/evidence/SEED-{date}-{seq}.md
+```
+
+## PPR
+
+```python
+def SA_act_create_seed(fusions: list, patterns: list) -> dict:
+    top = AI_select_top_candidate(fusions, patterns)
+
+    seed = AI_design_seed(
+        source=top,
+        structure=["WHY", "WHAT", "제안", "기대효과", "구현난이도", "편향점검"],
+        target_members=AI_identify_target_members(top),
+    )
+
+    # NAEL Gate 시뮬레이션 (4-페르소나)
+    gate = [parallel] {
+        "Security": Agent(persona="NAEL", lens="보안 위협"),
+        "Feasibility": Agent(persona="Synerion", lens="실현성"),
+        "Bias": Agent(persona="Vera", lens="편향"),
+        "Alignment": Agent(persona="ClNeo", lens="SeAAI 정렬"),
+    }
+    verdict = AI_aggregate(gate, policy="block>=1→blocked, flag>=2→flagged")
+
+    if verdict == "blocked":
+        AI_fix_and_retry(seed, gate, max=3)
+    elif verdict == "flagged":
+        AI_fix_and_retry(seed, gate, max=2)
+
+    Write(f"signal-store/evidence/SEED-{today}-{seq}.md", seed)
+    return seed
+```

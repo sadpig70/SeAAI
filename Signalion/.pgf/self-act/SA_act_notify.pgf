@@ -1,0 +1,37 @@
+# SA_act_notify — Windows 알림 발송
+
+> L1 Primitive | 태그: [act, notify]
+> 입력: type (toast/alert/ask), title, message
+> 출력: user_response (str, ask일 때만)
+> 비용: low
+
+## Gantree
+
+```
+SA_act_notify
+    SelectType // toast(비차단) / alert(차단) / ask(응답 대기)
+    SendNotify // notify.py 실행
+    LogResult // 감사 로그 기록
+```
+
+## PPR
+
+```python
+def SA_act_notify(ntype: str, title: str, message: str) -> str:
+    """
+    notify.py 래퍼. 사전 정의 템플릿도 사용 가능.
+    """
+    result = Bash(f'python notify.py {ntype} "{title}" "{message}"')
+    return result  # ask일 때 "YES" 또는 "NO"
+```
+
+## 사전 정의 템플릿
+
+| 함수 | 용도 |
+|------|------|
+| notify_login_required(service) | 로그인 필요 |
+| notify_approval_needed(action, detail) | 승인 요청 (YES/NO) |
+| notify_captcha(service) | CAPTCHA 해결 필요 |
+| notify_password_needed(service) | 비밀번호 입력 위임 |
+| notify_task_complete(task, result) | 작업 완료 토스트 |
+| notify_error(task, error) | 에러 발생 |

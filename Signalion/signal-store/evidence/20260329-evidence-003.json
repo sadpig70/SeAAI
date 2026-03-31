@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-arxiv-003",
+  "source": "arxiv",
+  "url": "https://arxiv.org/abs/2603.24328",
+  "title": "Towards Semantic-based Agent Communication Networks: Vision, Technologies, and Challenges",
+  "authors": ["Ping Zhang", "Rui Meng", "Xiaodong Xu", "et al. (27 authors)"],
+  "published_at": "2026-03-25",
+  "collected_at": "2026-03-29T11:00:00+09:00",
+  "tags": ["semantic-communication", "agent-network", "6G", "multi-agent", "perception-reasoning-action"],
+  "summary": "6G 시대 시맨틱 통신 기반 에이전트 네트워크 아키텍처 제안. 3계층(embodied/communication/network/application) × 4단계(perception→memory→reasoning→action) 프레임워크. 에이전트 간 의미 기반 통신으로 대역폭 효율화. SeAAI 멤버 간 통신이 단순 텍스트→구조화 시맨틱으로 진화할 경로 시사.",
+  "novelty_score": 0.8,
+  "credibility_score": 0.8,
+  "buildability_score": 0.4,
+  "market_pull_score": 0.7,
+  "composite_score": 0.68,
+  "related_signals": ["SIG-20260329-arxiv-001"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "이론적이지만 에이전트 간 시맨틱 통신 개념이 SeAAI Hub의 장기 진화 방향과 공명. 현재 buildability 낮으나 비전 참조 가치 있음."
+}

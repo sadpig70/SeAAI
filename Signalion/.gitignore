@@ -1,0 +1,11 @@
+# API 키 / 비밀 정보
+.env
+.credentials/
+signal-store/auth/
+
+# Python
+__pycache__/
+*.pyc
+
+# 로그 (선택)
+# _workspace/browser-engine/logs/

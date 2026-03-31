@@ -1,0 +1,49 @@
+# SA_loop_collect — 전채널 수집 + 점수화 + 융합
+
+> L2 Composed | 구성: sense_browser(N) → think_score → think_fuse
+> 용도: 모든 활성 채널에서 신호를 수집하고 Evidence로 변환 후 자동 융합
+> 비용: high
+
+## Gantree
+
+```
+SA_loop_collect
+    1_Collect // [parallel] 전채널 브라우저 수집
+        GitHub_Trending
+        HN_Frontpage
+        ArXiv_Recent
+        HF_Trending
+    2_Score // 수집 결과 → Evidence Object 변환 + 4차원 점수화
+    3_Fuse // Intelligence Layer v2 실행 → 패턴 + 융합
+    4_Report // 수집 요약 출력 + 토스트 알림
+```
+
+## PPR
+
+```python
+def SA_loop_collect():
+    # 1. 병렬 수집
+    [parallel] raw_signals = {
+        "github": SA_sense_browser("github_trending"),
+        "hn": SA_sense_browser("hn_frontpage"),
+        "arxiv": SA_sense_browser("arxiv_recent"),
+        "hf": SA_sense_browser("hf_trending"),
+    }
+
+    # 2. Evidence 변환
+    evidences = []
+    for platform, signals in raw_signals.items():
+        for signal in signals:
+            signal["source"] = platform
+            evidence = SA_think_score(signal)
+            evidences.append(evidence)
+
+    # 3. Intelligence 융합
+    intel = SA_think_fuse()
+
+    # 4. 결과 알림
+    SA_act_notify("toast", "수집 완료",
+        f"{len(evidences)}건 수집, {len(intel['patterns'])} 패턴, {len(intel['fusions'])} 융합")
+
+    return {"evidences": len(evidences), "patterns": intel["patterns"], "fusions": intel["fusions"]}
+```

@@ -1,0 +1,18 @@
+# SA_sense_mailbox — MailBox 확인
+
+> L1 Primitive | 태그: [sense, mail]
+> 입력: -
+> 출력: mail_files[]
+> 비용: low
+
+## PPR
+
+```python
+def SA_sense_mailbox():
+    inbox = Glob("D:/SeAAI/MailBox/Signalion/inbox/*.md")
+    mails = []
+    for f in inbox:
+        content = Read(f)
+        mails.append({"file": f, "content": content})
+    return mails
+```

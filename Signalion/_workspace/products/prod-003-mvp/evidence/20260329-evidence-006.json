@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-github-001",
+  "source": "github",
+  "url": "https://github.com/EvoAgentX/EvoAgentX",
+  "title": "EvoAgentX: Building a Self-Evolving Ecosystem of AI Agents",
+  "authors": ["EvoAgentX team"],
+  "published_at": "2025-08-01",
+  "collected_at": "2026-03-29T12:00:00+09:00",
+  "tags": ["self-evolving", "agent-framework", "workflow-optimization", "iterative-feedback", "open-source"],
+  "summary": "LLM 기반 에이전트를 자동 구성·평가·진화시키는 오픈소스 프레임워크. WorkFlowGenerator→AgentManager→WorkFlow→HITLManager 아키텍처. 단일 프롬프트에서 멀티에이전트 워크플로우를 자동 생성하고 평가 피드백으로 반복 최적화. 30+ 내장 툴킷. 2.7k stars, MIT. SeAAI의 자기진화 루프와 직접 비교 가능한 구조.",
+  "novelty_score": 0.8,
+  "credibility_score": 0.7,
+  "buildability_score": 0.8,
+  "market_pull_score": 0.7,
+  "composite_score": 0.75,
+  "related_signals": ["SIG-20260329-arxiv-002", "SIG-20260329-arxiv-004"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "SeAAI와 가장 유사한 오픈소스. 자기진화 알고리즘의 구체적 구현 패턴 참조 가치 높음. WorkFlowGenerator 패턴은 PGF Gantree 자동 생성과 유사."
+}

@@ -1,0 +1,57 @@
+# SA_sense_browser — 브라우저 기반 외부 신호 수집
+
+> L1 Primitive | 태그: [sense, browser]
+> 입력: platform (str), query (str, optional)
+> 출력: structured_data[] (JSON)
+> 비용: medium
+
+## Gantree
+
+```
+SA_sense_browser
+    ValidateURL // 화이트리스트 검증
+    Navigate // Playwright browser_navigate
+    Extract // browser_evaluate(platform_specific_JS)
+    Parse // JSON 파싱 + 정제
+    Log // 감사 로그 기록
+```
+
+## PPR
+
+```python
+def SA_sense_browser(platform: str, query: str = ""):
+    """
+    Playwright MCP로 플랫폼 페이지 탐색 → JS 추출 → 구조화 데이터 반환.
+    extractors.py에서 해당 플랫폼의 JS 코드를 가져와 실행.
+    """
+    extractor = EXTRACTORS.get(platform)
+    if not extractor:
+        return {"error": f"Unknown platform: {platform}"}
+
+    url = extractor.get("url") or extractor["url_template"].format(query=query)
+
+    # 보안: URL 화이트리스트 검증
+    if not is_url_allowed(url):
+        return {"error": f"URL not in whitelist: {url}"}
+
+    # 실행
+    browser_navigate(url)
+    result = browser_evaluate(extractor["js"])
+    data = json.loads(result)
+
+    # 감사 로그
+    log_action("sense_browser", url, f"extracted {len(data)} items")
+
+    return data
+```
+
+## 지원 플랫폼
+
+| platform | URL | 추출 대상 |
+|----------|-----|----------|
+| github_trending | github.com/trending | repos: owner, name, stars, stars_today |
+| hn_frontpage | news.ycombinator.com | stories: title, url, points |
+| arxiv_recent | arxiv.org/list/cs.AI/recent | papers: id, title, authors |
+| hf_trending | huggingface.co/models?sort=trending | models: name, url, params |
+| producthunt_daily | producthunt.com | products: name, tagline, votes |
+| devpost_gallery | {hackathon}.devpost.com/project-gallery | projects: name, desc, url |

@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-03-30T12:11:11.847312",
+  "total_evidence": 13,
+  "by_platform": {
+    "arxiv": 5,
+    "github": 2,
+    "huggingface": 2,
+    "hn": 4
+  },
+  "score_distribution": {
+    "min": 0.62,
+    "max": 0.8,
+    "avg": 0.704,
+    "high_quality_count": 7,
+    "high_quality_rate": 0.538
+  },
+  "seed_metrics": {
+    "total_seeds": 4,
+    "approved": 4,
+    "conversion_rate": 0.308,
+    "approval_rate": 1.0
+  },
+  "nael_status": {
+    "approved": 2,
+    "pending": 11
+  },
+  "platform_quality": {
+    "arxiv": {
+      "count": 5,
+      "avg_score": 0.7,
+      "high_quality": 2
+    },
+    "github": {
+      "count": 2,
+      "avg_score": 0.73,
+      "high_quality": 2
+    },
+    "huggingface": {
+      "count": 2,
+      "avg_score": 0.655,
+      "high_quality": 0
+    },
+    "hn": {
+      "count": 4,
+      "avg_score": 0.72,
+      "high_quality": 3
+    }
+  }
+}

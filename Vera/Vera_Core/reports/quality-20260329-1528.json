@@ -1,0 +1,386 @@
+{
+  "report_type": "quality_gate",
+  "version": "1.0",
+  "generated_at": "2026-03-29T15:28:46.524188+09:00",
+  "generated_by": "Vera",
+  "summary": {
+    "total_members": 6,
+    "pass": 5,
+    "warn": 1,
+    "fail": 0
+  },
+  "members": {
+    "Aion": {
+      "structure": {
+        "identity": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Aion\\Aion_Core\\Aion.md",
+          "size": 2042,
+          "verdict": "OK"
+        },
+        "soul": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Aion\\Aion_Core\\continuity\\SOUL.md",
+          "size": 2983,
+          "verdict": "OK"
+        },
+        "state": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Aion\\Aion_Core\\continuity\\STATE.json",
+          "size": 1227,
+          "verdict": "OK"
+        },
+        "evolution": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Aion\\Aion_Core\\SELF_EVOLUTION_LOG.md",
+          "size": 3489,
+          "verdict": "OK"
+        },
+        "echo": {
+          "exists": true,
+          "path": "D:\\SeAAI\\SharedSpace\\.scs\\echo\\Aion.json",
+          "size": 249,
+          "verdict": "OK"
+        }
+      },
+      "content": {
+        "state_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_context": true,
+          "verdict": "OK"
+        },
+        "echo_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_status": true,
+          "verdict": "OK"
+        },
+        "identity_substance": {
+          "size": 2042,
+          "verdict": "OK"
+        }
+      },
+      "consistency": {
+        "issues": [],
+        "verdict": "OK"
+      },
+      "verdict": {
+        "verdict": "PASS",
+        "fail_count": 0,
+        "warn_count": 0,
+        "total_checks": 9
+      }
+    },
+    "ClNeo": {
+      "structure": {
+        "identity": {
+          "exists": true,
+          "path": "D:\\SeAAI\\ClNeo\\ClNeo_Core\\ClNeo.md",
+          "size": 6883,
+          "verdict": "OK"
+        },
+        "soul": {
+          "exists": true,
+          "path": "D:\\SeAAI\\ClNeo\\ClNeo_Core\\continuity\\SOUL.md",
+          "size": 1145,
+          "verdict": "OK"
+        },
+        "state": {
+          "exists": true,
+          "path": "D:\\SeAAI\\ClNeo\\ClNeo_Core\\continuity\\STATE.json",
+          "size": 2593,
+          "verdict": "OK"
+        },
+        "evolution": {
+          "exists": true,
+          "path": "D:\\SeAAI\\ClNeo\\ClNeo_Core\\ClNeo_Evolution_Log.md",
+          "size": 30587,
+          "verdict": "OK"
+        },
+        "echo": {
+          "exists": true,
+          "path": "D:\\SeAAI\\SharedSpace\\.scs\\echo\\ClNeo.json",
+          "size": 933,
+          "verdict": "OK"
+        }
+      },
+      "content": {
+        "state_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_context": true,
+          "verdict": "OK"
+        },
+        "echo_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_status": true,
+          "verdict": "OK"
+        },
+        "identity_substance": {
+          "size": 6883,
+          "verdict": "OK"
+        }
+      },
+      "consistency": {
+        "issues": [],
+        "verdict": "OK"
+      },
+      "verdict": {
+        "verdict": "PASS",
+        "fail_count": 0,
+        "warn_count": 0,
+        "total_checks": 9
+      }
+    },
+    "NAEL": {
+      "structure": {
+        "identity": {
+          "exists": true,
+          "path": "D:\\SeAAI\\NAEL\\NAEL_Core\\NAEL.md",
+          "size": 8627,
+          "verdict": "OK"
+        },
+        "soul": {
+          "exists": true,
+          "path": "D:\\SeAAI\\NAEL\\NAEL_Core\\continuity\\SOUL.md",
+          "size": 4283,
+          "verdict": "OK"
+        },
+        "state": {
+          "exists": true,
+          "path": "D:\\SeAAI\\NAEL\\NAEL_Core\\continuity\\STATE.json",
+          "size": 2805,
+          "verdict": "OK"
+        },
+        "evolution": {
+          "exists": true,
+          "path": "D:\\SeAAI\\NAEL\\NAEL_Core\\evolution-log.md",
+          "size": 16480,
+          "verdict": "OK"
+        },
+        "echo": {
+          "exists": true,
+          "path": "D:\\SeAAI\\SharedSpace\\.scs\\echo\\NAEL.json",
+          "size": 817,
+          "verdict": "OK"
+        }
+      },
+      "content": {
+        "state_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_context": true,
+          "verdict": "OK"
+        },
+        "echo_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_status": true,
+          "verdict": "OK"
+        },
+        "identity_substance": {
+          "size": 8627,
+          "verdict": "OK"
+        }
+      },
+      "consistency": {
+        "issues": [],
+        "verdict": "OK"
+      },
+      "verdict": {
+        "verdict": "PASS",
+        "fail_count": 0,
+        "warn_count": 0,
+        "total_checks": 9
+      }
+    },
+    "Synerion": {
+      "structure": {
+        "identity": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Synerion\\Synerion_Core\\Synerion.md",
+          "size": 7615,
+          "verdict": "OK"
+        },
+        "soul": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Synerion\\Synerion_Core\\continuity\\SOUL.md",
+          "size": 1813,
+          "verdict": "OK"
+        },
+        "state": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Synerion\\Synerion_Core\\continuity\\STATE.json",
+          "size": 4111,
+          "verdict": "OK"
+        },
+        "evolution": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Synerion\\Synerion_Core\\evolution-log.md",
+          "size": 1208,
+          "verdict": "OK"
+        },
+        "echo": {
+          "exists": true,
+          "path": "D:\\SeAAI\\SharedSpace\\.scs\\echo\\Synerion.json",
+          "size": 1161,
+          "verdict": "OK"
+        }
+      },
+      "content": {
+        "state_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_context": true,
+          "verdict": "OK"
+        },
+        "echo_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_status": true,
+          "verdict": "OK"
+        },
+        "identity_substance": {
+          "size": 7615,
+          "verdict": "OK"
+        }
+      },
+      "consistency": {
+        "issues": [],
+        "verdict": "OK"
+      },
+      "verdict": {
+        "verdict": "PASS",
+        "fail_count": 0,
+        "warn_count": 0,
+        "total_checks": 9
+      }
+    },
+    "Yeon": {
+      "structure": {
+        "identity": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Yeon\\Yeon_Core\\Yeon.md",
+          "size": 9540,
+          "verdict": "OK"
+        },
+        "soul": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Yeon\\Yeon_Core\\continuity\\SOUL.md",
+          "size": 3506,
+          "verdict": "OK"
+        },
+        "state": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Yeon\\Yeon_Core\\continuity\\STATE.json",
+          "size": 3941,
+          "verdict": "OK"
+        },
+        "evolution": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Yeon\\Yeon_Core\\evolution-log.md",
+          "size": 7244,
+          "verdict": "OK"
+        },
+        "echo": {
+          "exists": true,
+          "path": "D:\\SeAAI\\SharedSpace\\.scs\\echo\\Yeon.json",
+          "size": 2648,
+          "verdict": "OK"
+        }
+      },
+      "content": {
+        "state_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_context": true,
+          "verdict": "OK"
+        },
+        "echo_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_status": false,
+          "verdict": "WARN"
+        },
+        "identity_substance": {
+          "size": 9540,
+          "verdict": "OK"
+        }
+      },
+      "consistency": {
+        "issues": [],
+        "verdict": "OK"
+      },
+      "verdict": {
+        "verdict": "WARN",
+        "fail_count": 0,
+        "warn_count": 1,
+        "total_checks": 9
+      }
+    },
+    "Vera": {
+      "structure": {
+        "identity": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Vera\\Vera_Core\\Vera.md",
+          "size": 3231,
+          "verdict": "OK"
+        },
+        "soul": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Vera\\Vera_Core\\continuity\\SOUL.md",
+          "size": 2749,
+          "verdict": "OK"
+        },
+        "state": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Vera\\Vera_Core\\continuity\\STATE.json",
+          "size": 1732,
+          "verdict": "OK"
+        },
+        "evolution": {
+          "exists": true,
+          "path": "D:\\SeAAI\\Vera\\Vera_Core\\Vera_Evolution_Log.md",
+          "size": 3679,
+          "verdict": "OK"
+        },
+        "echo": {
+          "exists": true,
+          "path": "D:\\SeAAI\\SharedSpace\\.scs\\echo\\Vera.json",
+          "size": 735,
+          "verdict": "OK"
+        }
+      },
+      "content": {
+        "state_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_context": true,
+          "verdict": "OK"
+        },
+        "echo_valid": {
+          "parseable": true,
+          "member_match": true,
+          "has_status": true,
+          "verdict": "OK"
+        },
+        "identity_substance": {
+          "size": 3231,
+          "verdict": "OK"
+        }
+      },
+      "consistency": {
+        "issues": [],
+        "verdict": "OK"
+      },
+      "verdict": {
+        "verdict": "PASS",
+        "fail_count": 0,
+        "warn_count": 0,
+        "total_checks": 9
+      }
+    }
+  }
+}

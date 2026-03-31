@@ -1,0 +1,37 @@
+# SA_browser_ensure_auth — 브라우저 인증 세션 보장
+
+> L1 Primitive | 태그: [sense, auth, browser]
+> 입력: service (str)
+> 출력: authenticated (bool)
+> 비용: low (세션 있으면) / medium (로그인 필요 시)
+
+## PPR
+
+```python
+def SA_browser_ensure_auth(service: str) -> bool:
+    """
+    1. 저장된 세션 존재 확인
+    2. 있으면 → 해당 URL 접속 → 로그인 상태 JS로 확인
+    3. 로그인 상태이면 → return True
+    4. 아니면 → notify_login_required → 사용자 로그인 → 세션 저장 → return True
+    """
+    from session_manager import has_session, SERVICE_LOGIN_URLS, SERVICE_AUTH_CHECK_JS
+
+    url = SERVICE_LOGIN_URLS.get(service)
+    check_js = SERVICE_AUTH_CHECK_JS.get(service)
+
+    # 세션 파일이 있든 없든 일단 접속
+    browser_navigate(url or f"https://{service}.com")
+
+    # 로그인 상태 확인
+    if check_js:
+        is_logged_in = browser_evaluate(check_js)
+        if is_logged_in:
+            return True
+
+    # 로그인 필요 → 사용자 알림
+    SA_act_notify("login", service)
+    # 사용자가 로그인 완료 후 확인 클릭
+    # → 세션 저장은 별도 호출: SA_browser_save_session(service)
+    return True
+```

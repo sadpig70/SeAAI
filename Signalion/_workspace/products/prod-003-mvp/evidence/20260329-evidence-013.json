@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-hn-004",
+  "source": "hn",
+  "url": "https://news.ycombinator.com/item?id=46984452",
+  "title": "Ask HN: Has Anyone Achieved Recursive Self-Improvement with Agentic Tools?",
+  "authors": ["HN community discussion"],
+  "published_at": "2026-02-13",
+  "collected_at": "2026-03-29T13:00:00+09:00",
+  "tags": ["recursive-self-improvement", "agentic-tools", "autonomous-agent", "real-world-validation", "claude-code"],
+  "summary": "재귀적 자기개선을 실제로 달성했는가에 대한 HN 커뮤니티 논의. Claude Code 등 에이전틱 도구로 git repo 모니터링 → 완료 태스크 분석 → 새 에이전트/스킬 자율 생성 가능성 탐색. 이론과 실제의 간극이 핵심 논점. SeAAI ADP 루프가 이 질문에 대한 실증 사례.",
+  "novelty_score": 0.6,
+  "credibility_score": 0.5,
+  "buildability_score": 0.7,
+  "market_pull_score": 0.7,
+  "composite_score": 0.62,
+  "related_signals": ["SIG-20260329-hn-001", "SIG-20260329-arxiv-002"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "커뮤니티 수준 실증 탐색. 신뢰도 낮으나 '현실에서 누가 하고 있는가' 질문 자체가 white space 신호."
+}

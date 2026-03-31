@@ -1,0 +1,16 @@
+# G7: 아이디어 생성 파이프라인
+
+## WHY
+Intelligence Layer는 패턴을 탐지하지만 "무엇을 만들어야 하는가"를 생성하지 않음.
+6가지 조합 패턴(Cross-Domain, Inversion, Scale Shift, Substrate Swap, Gap Fill, Failure Mining)을
+Evidence에 자동 적용하여 제품 아이디어를 생성하는 파이프라인 필요.
+
+## Gantree
+```
+G7_IdeaGeneration
+    1_PatternApplier // 6가지 조합 패턴을 융합 결과에 적용
+    2_IdeaScorer // 아이디어 실현 가능성·시장성 점수화
+    3_PersonaBrainstorm // 멀티 페르소나로 아이디어 확장·변형
+    4_SA_Module // SA_think_generate_ideas로 등록
+    5_Verify // 기존 13 Evidence로 테스트
+```

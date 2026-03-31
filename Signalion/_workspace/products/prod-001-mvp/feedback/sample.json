@@ -1,0 +1,1 @@
+[{"action":"accept","pattern":"snake_case_naming","comment":"good"},{"action":"accept","pattern":"snake_case_naming","comment":"yes"},{"action":"accept","pattern":"snake_case_naming","comment":"correct"},{"action":"reject","pattern":"camelCase","comment":"no"}]

@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-arxiv-001",
+  "source": "arxiv",
+  "url": "https://arxiv.org/abs/2505.02279",
+  "title": "A Survey of Agent Interoperability Protocols: MCP, ACP, A2A, and ANP",
+  "authors": ["Abul Ehtesham", "Aditi Singh", "Gaurav Kumar Gupta", "Saket Kumar"],
+  "published_at": "2025-05-04",
+  "collected_at": "2026-03-29T11:00:00+09:00",
+  "tags": ["agent-protocol", "MCP", "A2A", "ACP", "ANP", "interoperability", "multi-agent"],
+  "summary": "MCP/ACP/A2A/ANP 4대 에이전트 통신 프로토콜 비교 서베이. MCP→ACP→A2A→ANP 단계적 채택 전략 제안. JSON-RPC 기반 도구 호출(MCP)부터 탈중앙화 에이전트 마켓플레이스(ANP)까지 스펙트럼 정리. SeAAI Hub 프로토콜 설계에 직접 참조 가능.",
+  "novelty_score": 0.7,
+  "credibility_score": 0.7,
+  "buildability_score": 0.9,
+  "market_pull_score": 0.8,
+  "composite_score": 0.77,
+  "related_signals": ["SIG-20260329-arxiv-002"],
+  "nael_status": "approved",
+  "seed_generated": false,
+  "notes": "SeAAI Hub가 현재 사용하는 polling+REST 방식과 A2A/ACP의 비동기 태스크 위임 패턴 비교 가치 높음. 씨앗 후보."
+}

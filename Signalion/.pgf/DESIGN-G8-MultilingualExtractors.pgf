@@ -1,0 +1,12 @@
+# G8: 비영어권 채널 추출기
+
+## WHY
+현재 모든 추출기가 영어권 플랫폼에 집중. 한국(GeekNews), 일본(Zenn), 중국(Zhihu AI) 신호 수집 불가. 영어권 편향 고착.
+
+## Gantree
+```
+G8_MultilingualExtractors
+    1_GeekNews // 한국 GeekNews (news.hada.io) — HN 한국판
+    2_UpdateExtractors // extractors.py에 추가
+    3_Verify // 브라우저로 실제 수집 테스트
+```

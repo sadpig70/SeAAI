@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-03-30T12:23:17.784449",
+  "count": 15,
+  "ideas": [
+    {
+      "pattern": "cross_domain",
+      "source_pair": [
+        "SIG-20260329-github-001",
+        "SIG-20260329-hn-001"
+      ],
+      "idea": "github의 'EvoAgentX: Building a Self-Evolving Ecos'과 hn의 'Meta HyperAgents: Self-Referential Self-'을 결합",
+      "shared_tags": [
+        "open-source"
+      ],
+      "score": 0.775
+    },
+    {
+      "pattern": "cross_domain",
+      "source_pair": [
+        "SIG-20260329-arxiv-001",
+        "SIG-20260329-github-002"
+      ],
+      "idea": "arxiv의 'A Survey of Agent Interoperability Proto'과 github의 'a2a-rs: Agent2Agent Protocol v0.3.0 in R'을 결합",
+      "shared_tags": [
+        "A2A",
+        "agent-protocol"
+      ],
+      "score": 0.74
+    },
+    {
+      "pattern": "gap_fill",
+      "tag": "A2A",
+      "idea": "'A2A'에 대한 논의가 2건이지만 GitHub 구현은 1건. 오픈소스 구현 기회.",
+      "score": 0.733
+    },
+    {
+      "pattern": "cross_domain",
+      "source_pair": [
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-github-001"
+      ],
+      "idea": "arxiv의 'EvoConfig: Self-Evolving Multi-Agent Sys'과 github의 'EvoAgentX: Building a Self-Evolving Ecos'을 결합",
+      "shared_tags": [
+        "self-evolving"
+      ],
+      "score": 0.715
+    },
+    {
+      "pattern": "gap_fill",
+      "tag": "self-evolving",
+      "idea": "'self-evolving'에 대한 논의가 4건이지만 GitHub 구현은 1건. 오픈소스 구현 기회.",
+      "score": 0.708
+    },
+    {
+      "pattern": "cross_domain",
+      "source_pair": [
+        "SIG-20260329-arxiv-005",
+        "SIG-20260329-github-001"
+      ],
+      "idea": "arxiv의 'Self-Evolving Multi-Agent Framework for '과 github의 'EvoAgentX: Building a Self-Evolving Ecos'을 결합",
+      "shared_tags": [
+        "self-evolving"
+      ],
+      "score": 0.695
+    },
+    {
+      "pattern": "gap_fill",
+      "tag": "multi-agent",
+      "idea": "'multi-agent'에 대한 논의가 4건이지만 GitHub 구현은 0건. 오픈소스 구현 기회.",
+      "score": 0.693
+    },
+    {
+      "pattern": "inversion",
+      "source": "SIG-20260329-hn-001",
+      "idea": "'Meta HyperAgents: Self-Referential Self-Improving '의 반대 — 이것을 하지 않았을 때의 문제를 해결하는 도구?",
+      "score": 0.6400000000000001
+    },
+    {
+      "pattern": "inversion",
+      "source": "SIG-20260329-arxiv-001",
+      "idea": "'A Survey of Agent Interoperability Protocols: MCP,'의 반대 — 이것을 하지 않았을 때의 문제를 해결하는 도구?",
+      "score": 0.6160000000000001
+    },
+    {
+      "pattern": "inversion",
+      "source": "SIG-20260329-github-001",
+      "idea": "'EvoAgentX: Building a Self-Evolving Ecosystem of A'의 반대 — 이것을 하지 않았을 때의 문제를 해결하는 도구?",
+      "score": 0.6000000000000001
+    },
+    {
+      "pattern": "inversion",
+      "source": "SIG-20260329-hn-003",
+      "idea": "'Gödel Agent: Recursive Self-Modifying LLM Framewor'의 반대 — 이것을 하지 않았을 때의 문제를 해결하는 도구?",
+      "score": 0.592
+    },
+    {
+      "pattern": "inversion",
+      "source": "SIG-20260329-arxiv-002",
+      "idea": "'Self-Evolving Recommendation System: End-To-End Au'의 반대 — 이것을 하지 않았을 때의 문제를 해결하는 도구?",
+      "score": 0.584
+    },
+    {
+      "pattern": "inversion",
+      "source": "SIG-20260329-hn-002",
+      "idea": "'The Agent Internet's Immune System — A2A/MCP Authe'의 반대 — 이것을 하지 않았을 때의 문제를 해결하는 도구?",
+      "score": 0.576
+    },
+    {
+      "pattern": "inversion",
+      "source": "SIG-20260329-github-002",
+      "idea": "'a2a-rs: Agent2Agent Protocol v0.3.0 in Rust'의 반대 — 이것을 하지 않았을 때의 문제를 해결하는 도구?",
+      "score": 0.568
+    },
+    {
+      "pattern": "scale_shift",
+      "source": "SIG-20260329-huggingface-002",
+      "idea": "'Agent Leaderboard v2: Enterprise-Grade Benchmark f'을 개인/로컬 도구로 축소하면?",
+      "direction": "enterprise → personal",
+      "score": 0.5670000000000001
+    }
+  ]
+}

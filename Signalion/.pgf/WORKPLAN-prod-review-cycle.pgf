@@ -1,0 +1,19 @@
+# 3개 제품 리뷰-수정-구현-검증 사이클
+
+## POLICY
+- REVIEW-PIPELINE.pgf 정책 준수
+- block >= 1 → 수정 후 재리뷰
+- revise >= 3 → 수정 권고 반영 후 재리뷰
+- 3개 제품 병렬 처리, Phase별 게이트 통과 후 다음 Phase
+
+## Gantree
+```
+PROD_REVIEW_CYCLE
+    1.0_DesignReview // Phase 1: 3개 제품 설계 리뷰 [ClNeo+Synerion+NAEL]
+    2.0_DesignFix // 리뷰 결과 반영 수정
+    3.0_Implement // Phase 2: MVP 구현
+    4.0_CodeReview // [NAEL+Synerion+Vera] 구현 리뷰
+    5.0_Test // Phase 3: 테스트 + [Vera+NAEL+Yeon] 리뷰
+    6.0_FinalReview // Phase 4: 6명 전원 최종 검증
+    7.0_Iterate // 미통과 시 수정 후 재리뷰
+```

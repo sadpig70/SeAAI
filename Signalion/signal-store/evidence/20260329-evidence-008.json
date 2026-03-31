@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-huggingface-001",
+  "source": "huggingface",
+  "url": "https://huggingface.co/blog/dabstep",
+  "title": "DABStep: Data Agent Benchmark for Multi-step Reasoning",
+  "authors": ["Adyen", "HuggingFace"],
+  "published_at": "2026-02-01",
+  "collected_at": "2026-03-29T12:00:00+09:00",
+  "tags": ["benchmark", "agent-evaluation", "multi-step-reasoning", "real-world-tasks"],
+  "summary": "실제 업무(Adyen 결제 분석)에서 추출한 450+ 태스크로 에이전트 멀티스텝 추론 능력 평가. Easy/Hard 분리. Hard에서 최고 모델(o3-mini)도 16% 정확도 — 현재 에이전트의 한계를 정량적으로 보여줌. SeAAI 멤버의 자기진화 측정 지표 설계 시 참조 가능.",
+  "novelty_score": 0.7,
+  "credibility_score": 0.8,
+  "buildability_score": 0.5,
+  "market_pull_score": 0.7,
+  "composite_score": 0.68,
+  "related_signals": ["SIG-20260329-huggingface-002"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "에이전트 평가 방법론 참조. factoid 기반 이진 평가 + 적응적 수치 허용 방식이 SeAAI 진화 측정에 적용 가능."
+}

@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-arxiv-005",
+  "source": "arxiv",
+  "url": "https://arxiv.org/abs/2603.23875",
+  "title": "Self-Evolving Multi-Agent Framework for Efficient Decision Making in Real-Time Strategy Scenarios",
+  "authors": ["Li Ma", "Hao Peng", "Yiming Wang", "Hongbin Luo", "Jie Liu", "Kongjing Gu", "Guanlin Wu", "Hui Lin", "Lei Ren"],
+  "published_at": "2026-03-25",
+  "collected_at": "2026-03-29T11:00:00+09:00",
+  "tags": ["SEMA", "self-evolving", "multi-agent", "RTS", "StarCraft", "decision-latency"],
+  "summary": "SEMA: LLM 기반 멀티에이전트가 RTS 환경에서 자기진화하는 프레임워크. 에피소드 내 평가 + 에피소드 간 분석으로 모델 편향 적응적 보정. 하이브리드 지식-메모리 시스템(micro-trajectory/macro-experience/domain knowledge). StarCraft II에서 의사결정 지연 50% 이상 단축.",
+  "novelty_score": 0.7,
+  "credibility_score": 0.7,
+  "buildability_score": 0.6,
+  "market_pull_score": 0.5,
+  "composite_score": 0.64,
+  "related_signals": ["SIG-20260329-arxiv-004", "SIG-20260329-arxiv-002"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "in-episode + cross-episode 자기진화 패턴. micro/macro/domain 3계층 메모리는 SeAAI의 SCS(연속성 시스템)와 구조적 유사. 게임 도메인이지만 패턴 추출 가치 있음."
+}

@@ -1,0 +1,33 @@
+# Signalion Stage 3 — 자율 실행 (대기/외부 의존 제외)
+
+## POLICY
+- 실행→검증→수정→다음. 검증 실패 3회 → BLOCKED.
+- 대기 작업(T-005), 외부 API 필요(Stage C) 제외.
+
+## Gantree
+
+```
+STAGE3_AUTO
+    1.0_SeedGen // T-006: HyperAgents + Gödel Agent 씨앗 생성
+        1.1_Create // 씨앗 2건 작성 (SEED-003, SEED-004)
+        1.2_NAELGate // PGF 4-페르소나 검증
+        1.3_Distribute // 승인 씨앗 MailBox 전달
+    2.0_IntelV2 // Intelligence Layer v2: 임베딩 기반 의미 유사도
+        2.1_Design // 유사도 매칭 설계
+        2.2_Implement // signalion-intelligence.py 업그레이드
+        2.3_Run // 13 Evidence 재실행
+        2.4_Verify // 재현율 67% → 목표 85%+ 검증
+    3.0_SecurityAlert // HN 보안 공백 신호 → NAEL 전달
+        3.1_Write // NAEL inbox에 보안 경고 메일
+    4.0_Finalize // 상태 갱신 + 보고
+```
+
+## PPR
+
+```python
+def STAGE3_AUTO():
+    node_1_SeedGen()      # 씨앗 생성 + NAEL Gate + 전달
+    node_2_IntelV2()      # Intelligence v2 구현 + 검증
+    node_3_SecurityAlert() # NAEL 보안 경고
+    node_4_Finalize()     # 통합 갱신
+```

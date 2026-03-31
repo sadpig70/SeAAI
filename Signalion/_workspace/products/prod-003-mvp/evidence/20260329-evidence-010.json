@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-hn-001",
+  "source": "hn",
+  "url": "https://news.ycombinator.com/item?id=47505670",
+  "title": "Meta HyperAgents: Self-Referential Self-Improving Agents",
+  "authors": ["Meta (facebookresearch)"],
+  "published_at": "2026-03-25",
+  "collected_at": "2026-03-29T13:00:00+09:00",
+  "tags": ["self-improvement", "meta-learning", "recursive-agent", "self-referential", "open-source"],
+  "summary": "Meta의 오픈소스 HyperAgents. 태스크 에이전트와 메타 에이전트를 자기참조 프로그램으로 통합. 자기 개선 절차 자체를 수정하는 재귀적 자기개선. 코딩 벤치마크 pass rate 8.4%→26.7% (3배). 무한 후퇴 문제 해결. SeAAI SOUL/진화 분리 설계에 이론적 근거 제공.",
+  "novelty_score": 0.9,
+  "credibility_score": 0.8,
+  "buildability_score": 0.7,
+  "market_pull_score": 0.8,
+  "composite_score": 0.80,
+  "related_signals": ["SIG-20260329-github-001", "SIG-20260329-hn-003"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "오늘 수집 중 최고 composite. SOUL(불변) + Evolution(가변) 분리 설계의 외부 검증. 씨앗 후보."
+}

@@ -1,0 +1,142 @@
+# Signalion Stage 2 — 4대 작업 통합 실행
+
+## POLICY
+- 각 노드: 실행 → 검증 → 실패 시 수정 후 재검증 → 통과 후 다음 노드
+- 검증 실패 3회 시 해당 노드 BLOCKED 마킹 후 다음 진행
+- 모든 산출물은 파일로 저장 (메모리 아닌 파일이 정본)
+- 노드 완료마다 STATE.json 갱신
+
+## Gantree
+
+```
+STAGE2_FULL // Signalion Stage 2 통합 실행 @v:1.0
+    1.0_AgentCard // SEED-001 실천 — Signalion agent-card.json 생성
+        1.1_Schema // Agent Card JSON 스키마 정의 (a2a-rs 참조)
+        1.2_Write // Signalion agent-card.json 작성
+        1.3_Verify // 스키마 유효성 + SEED-001 보안 조건 충족 검증
+    2.0_IntelligenceLayer // 자동 패턴 탐지·융합 파이프라인 구축
+        2.1_Design // 파이프라인 설계: Evidence[] → Pattern[] → FusedInsight[]
+        2.2_Implement // signalion-intelligence.py 구현
+        2.3_Run // 기존 9 Evidence에 대해 실행
+        2.4_Verify // 출력물 검증: 기존 수작업 융합 3건과 자동 결과 비교
+    3.0_StageB // Stage B 채널 확장 수집
+        3.1_Collect // Reddit + HackerNews 수집 (Devpost는 스냅샷 필요 → 스킵)
+        3.2_Evidence // Evidence Object 변환 + 점수화
+        3.3_Intelligence // 2.0 파이프라인으로 신규 Evidence 자동 융합
+        3.4_Verify // 새 Evidence 품질 + 융합 결과 검증
+    4.0_ADPPilot // SEED-002 파일럿 — Signalion ADP에 가설/검증 분리 적용
+        4.1_Design // Signalion PLAN-LIST에 hypothesis/validation 필드 추가 설계
+        4.2_Implement // PLAN-LIST.md 구조 변경 + 검증 게이트 노드 정의
+        4.3_DryRun // 기존 완료 작업(T-001~T-004)을 회고적으로 가설/검증 형식 적용
+        4.4_Verify // 형식 일관성 + SEED-002 권고사항 충족 검증
+    5.0_Integration // 통합 검증 + 상태 갱신
+        5.1_CrossCheck // 4개 산출물 간 일관성 검증
+        5.2_StateUpdate // STATE.json + THREADS.md + SIGNAL-LOG 최종 갱신
+        5.3_Report // 세션 보고서 작성
+```
+
+## PPR
+
+```python
+def STAGE2_FULL():
+    """
+    POLICY: 실행→검증→수정→다음. 검증 실패 3회 → BLOCKED.
+    """
+
+    # === 1.0 Agent Card ===
+    def node_1_AgentCard():
+        schema = AI_design(
+            input="a2a-rs Agent Card 구조 + SEED-001 보안 조건",
+            output="SeAAI 내부 Agent Card JSON 스키마",
+            constraint="외부 노출 금지 필드 명시, NAEL 게이트 의무 포함"
+        )
+        card = AI_create(
+            template=schema,
+            agent="Signalion",
+            capabilities=["signal_ingestion", "evidence_transformation",
+                          "cross_domain_fusion", "white_space_detection", "seed_generation"],
+            platforms=["arxiv", "huggingface", "github", "reddit", "hackernews"]
+        )
+        Write("Signalion_Core/agent-card.json", card)
+
+        # 검증
+        [parallel] {
+            v1 = AI_verify(card, against=schema, check="스키마 유효성")
+            v2 = AI_verify(card, against="SEED-001 보안 조건",
+                          check="외부 노출 금지, Hub 내부 전용, NAEL 의무")
+        }
+        if not all([v1, v2]): AI_fix_and_retry(max=3)
+
+    # === 2.0 Intelligence Layer ===
+    def node_2_IntelligenceLayer():
+        design = AI_design(
+            input="Evidence Object[]",
+            pipeline="→ 태그 클러스터링 → 점수 기반 필터 → 크로스 도메인 매칭 → FusedInsight 생성",
+            output="Pattern[], FusedInsight[]"
+        )
+        impl = AI_implement(design, lang="python",
+                           file="Signalion_Core/autonomous/signalion-intelligence.py")
+        Write(impl.path, impl.code)
+
+        # 실행 + 검증
+        result = Bash(f"python {impl.path}")
+        existing_fusions = Read("SIGNAL-LOG.md").extract_fusions()  # 수작업 3건
+        v = AI_verify(result.fusions, against=existing_fusions,
+                     check="자동 결과가 수작업 융합 3건을 포함하는가")
+        if not v: AI_fix_and_retry(max=3)
+
+    # === 3.0 Stage B ===
+    def node_3_StageB():
+        [parallel] {
+            reddit = WebSearch("Reddit 2026 March AI agent self-evolving multi-agent")
+            hn = WebSearch("Hacker News 2026 AI agent autonomous evolution")
+        }
+        evidences = AI_transform(
+            raw=[reddit, hn],
+            schema="Evidence Object 18 필드",
+            scoring="novelty/credibility/buildability/market_pull"
+        )
+        for e in evidences: Write(f"signal-store/evidence/{e.id}.json", e)
+
+        # Intelligence Layer 자동 융합
+        new_fusions = Bash("python signalion-intelligence.py --new-only")
+        v = AI_verify(new_fusions, check="최소 1건 이상 크로스 도메인 융합 발생")
+        if not v: AI_note("Stage B 신호가 기존과 독립적 — 융합 없음은 정상일 수 있음")
+
+    # === 4.0 ADP Pilot ===
+    def node_4_ADPPilot():
+        design = AI_design(
+            input="기존 PLAN-LIST.md 구조",
+            add_fields=["hypothesis", "validation_criteria", "verified", "retrospective"],
+            constraint="SEED-002 권고: hypothesis 메타데이터, 단일 멤버 파일럿"
+        )
+        impl = AI_implement(design, file="Signalion_Core/autonomous/PLAN-LIST.md")
+
+        # 회고적 적용: 완료된 T-001~T-004를 가설/검증 형식으로 기록
+        for task in [T001, T002, T003, T004]:
+            AI_retrospective(task,
+                hypothesis="이 작업의 암묵적 가설은 무엇이었는가",
+                validation="실제로 어떻게 검증되었는가",
+                result="가설이 맞았는가")
+
+        v = AI_verify(impl, check="SEED-002 권고사항 전부 충족")
+        if not v: AI_fix_and_retry(max=3)
+
+    # === 5.0 Integration ===
+    def node_5_Integration():
+        [parallel] {
+            c1 = AI_verify("agent-card.json의 capabilities가 Intelligence Layer 기능과 일치하는가")
+            c2 = AI_verify("Stage B Evidence가 Intelligence Layer로 처리 가능한가")
+            c3 = AI_verify("PLAN-LIST의 hypothesis 구조가 agent-card.json에 반영되었는가")
+        }
+        Update("STATE.json", "THREADS.md", "SIGNAL-LOG.md")
+        AI_write_report("Stage 2 통합 보고서")
+
+    # === 실행 순서 ===
+    node_1_AgentCard()   # 독립 — 즉시 실행
+    node_2_IntelligenceLayer()  # 독립 — 즉시 실행
+    # 1, 2 완료 후
+    node_3_StageB()      # 2.0 의존 (Intelligence Layer 필요)
+    node_4_ADPPilot()    # 독립 — 3과 병렬 가능
+    node_5_Integration() # 1~4 전부 완료 후
+```

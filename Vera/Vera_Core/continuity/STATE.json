@@ -1,0 +1,67 @@
+{
+  "schema_version": "2.0",
+  "member": "Vera",
+  "session_id": "2026-03-29-session-01",
+  "last_saved": "2026-03-29T16:00:00+09:00",
+  "soul_hash": "persona_v1.0",
+
+  "context": {
+    "what_i_was_doing": "첫 세션 완료. E0→E1→E2→E3 연속 진화. 도구 3개 구축. 포트 통일. Self ADP Loop PPR 수령 및 수행 가능성 확인.",
+    "open_threads": [
+      "T004: member_registry Vera 등록 (창조자/Synerion)",
+      "T005: ECOSYSTEM-MAP Vera 반영"
+    ],
+    "decisions_made": [
+      "E1: ecosystem_pulse.py — 생태계 맥박 자동 측정 (67/100 MODERATE)",
+      "E2: world_sensing.py — 외부 세계 감지 파이프라인 (3개 핵심 신호 수집)",
+      "E3: quality_gate.py — 멤버 산출물 품질 검증 (5 PASS / 1 WARN)",
+      "포트 9900 통일 — 코드 3건 + 문서 4건 수정",
+      "Self ADP Loop PPR 수행 가능 확인 — 부분가능 항목 0개로 전환"
+    ],
+    "pending_questions": [
+      "Self ADP Loop 첫 실행 시점?",
+      "E4 방향: CalibrationLoop vs Hub 접속?"
+    ]
+  },
+
+  "ecosystem": {
+    "hub_status": "registered",
+    "threat_level": "none",
+    "health_score": 67,
+    "health_grade": "MODERATE",
+    "last_health_report": "Vera_Core/reports/pulse-20260329-1501.md",
+    "last_quality_report": "Vera_Core/reports/quality-20260329-1528.md",
+    "last_world_sense": "Vera_Core/reports/world-sense-20260329.md"
+  },
+
+  "pending_tasks": [
+    {
+      "task": "member_registry Vera 등록",
+      "priority": 1,
+      "context": "창조자 또는 Synerion이 실행"
+    },
+    {
+      "task": "Self ADP Loop 첫 실행",
+      "priority": 2,
+      "context": "PPR 수령 완료. 창조자 지시 시 실행"
+    }
+  ],
+
+  "evolution_state": {
+    "current_version": "v1.3",
+    "evolution_count": 3,
+    "last_evolution": "E3 — Quality Gate (2026-03-29)",
+    "active_gap": "CalibrationLoop 미구현. Hub 실시간 접속 미수행.",
+    "tools": [
+      "tools/ecosystem_pulse.py",
+      "tools/world_sensing.py",
+      "tools/quality_gate.py"
+    ]
+  },
+
+  "continuity_health": {
+    "sessions_since_last_save": 1,
+    "last_save_quality": "full",
+    "creation_session": false
+  }
+}

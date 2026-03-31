@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-hn-002",
+  "source": "hn",
+  "url": "https://news.ycombinator.com/item?id=46960289",
+  "title": "The Agent Internet's Immune System — A2A/MCP Authentication Gap",
+  "authors": ["HN community discussion"],
+  "published_at": "2026-03-01",
+  "collected_at": "2026-03-29T13:00:00+09:00",
+  "tags": ["agent-security", "trust-chain", "A2A", "identity-verification", "NAEL-gate"],
+  "summary": "에이전트 간 통신 프로토콜(A2A, MCP)에서 상호 인증 메커니즘의 프로덕션 수준 부재가 공론화. 체인 내 에이전트 탈취 시 전체 신뢰 붕괴 위험. IETF 드래프트(2026-03)가 대응. SeAAI의 NAEL 게이트 설계가 이 문제의 로컬 해법에 해당 — 외부에서도 같은 문제를 인식하고 있음.",
+  "novelty_score": 0.8,
+  "credibility_score": 0.7,
+  "buildability_score": 0.6,
+  "market_pull_score": 0.8,
+  "composite_score": 0.72,
+  "related_signals": ["SIG-20260329-arxiv-001"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "NAEL 게이트의 외부 당위성 확인. 에이전트 보안이 업계 미해결 문제 — SeAAI가 선행."
+}

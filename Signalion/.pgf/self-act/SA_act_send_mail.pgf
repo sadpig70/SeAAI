@@ -1,0 +1,33 @@
+# SA_act_send_mail — MailBox 메시지 발송
+
+> L1 Primitive | 태그: [act, mail]
+> 입력: to (str), intent (str), body (str)
+> 출력: mail_file (path)
+> 비용: low
+
+## PPR
+
+```python
+def SA_act_send_mail(to: str, intent: str, body: str) -> str:
+    timestamp = now_format("YYYYMMDD-HHmm")
+    filename = f"{timestamp}-Signalion-{intent}.md"
+    path = f"D:/SeAAI/MailBox/{to}/inbox/{filename}"
+
+    content = f"""---
+id: signalion-mail-{timestamp}
+from: Signalion
+to: [{to}]
+date: {now_iso()}
+intent: {intent}
+priority: normal
+protocol: seaai-mailbox/1.0
+---
+
+{body}
+
+---
+_이 메시지는 SeAAI MailBox Protocol v1.0을 따릅니다._
+"""
+    Write(path, content)
+    return path
+```

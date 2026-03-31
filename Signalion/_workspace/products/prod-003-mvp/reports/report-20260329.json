@@ -1,0 +1,154 @@
+{
+  "generated_at": "2026-03-29T22:34:12.802346",
+  "summary": {
+    "total_evidence": 13,
+    "patterns": 3,
+    "fusions": 5,
+    "top_pattern": "self-evolving",
+    "top_fusion": {
+      "type": "FusedInsight",
+      "insight_type": "Hype-Reality Divergence",
+      "evidence_pair": [
+        "SIG-20260329-github-001",
+        "SIG-20260329-hn-001"
+      ],
+      "shared_tags": [
+        "open-source"
+      ],
+      "avg_composite": 0.775,
+      "platforms": [
+        "github",
+        "hn"
+      ]
+    }
+  },
+  "patterns": [
+    {
+      "type": "Pattern",
+      "tag": "self-evolving",
+      "evidence_count": 5,
+      "evidence_ids": [
+        "SIG-20260329-arxiv-002",
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-arxiv-005",
+        "SIG-20260329-github-001",
+        "SIG-20260329-hn-003"
+      ],
+      "avg_composite": 0.707,
+      "strength": "strong"
+    },
+    {
+      "type": "Pattern",
+      "tag": "multi-agent",
+      "evidence_count": 4,
+      "evidence_ids": [
+        "SIG-20260329-arxiv-001",
+        "SIG-20260329-arxiv-003",
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-arxiv-005"
+      ],
+      "avg_composite": 0.691,
+      "strength": "strong"
+    },
+    {
+      "type": "Pattern",
+      "tag": "A2A",
+      "evidence_count": 3,
+      "evidence_ids": [
+        "SIG-20260329-arxiv-001",
+        "SIG-20260329-github-002",
+        "SIG-20260329-hn-002"
+      ],
+      "avg_composite": 0.732,
+      "strength": "moderate"
+    }
+  ],
+  "fusions": [
+    {
+      "type": "FusedInsight",
+      "insight_type": "Hype-Reality Divergence",
+      "evidence_pair": [
+        "SIG-20260329-github-001",
+        "SIG-20260329-hn-001"
+      ],
+      "shared_tags": [
+        "open-source"
+      ],
+      "avg_composite": 0.775,
+      "platforms": [
+        "github",
+        "hn"
+      ]
+    },
+    {
+      "type": "FusedInsight",
+      "insight_type": "Paper-Implementation Gap",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-001",
+        "SIG-20260329-github-002"
+      ],
+      "shared_tags": [
+        "A2A",
+        "agent-protocol"
+      ],
+      "avg_composite": 0.738,
+      "platforms": [
+        "arxiv",
+        "github"
+      ]
+    },
+    {
+      "type": "FusedInsight",
+      "insight_type": "Paper-Implementation Gap",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-github-001"
+      ],
+      "shared_tags": [
+        "self-evolving"
+      ],
+      "avg_composite": 0.715,
+      "platforms": [
+        "arxiv",
+        "github"
+      ]
+    },
+    {
+      "type": "FusedInsight",
+      "insight_type": "Paper-Implementation Gap",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-005",
+        "SIG-20260329-github-001"
+      ],
+      "shared_tags": [
+        "self-evolving"
+      ],
+      "avg_composite": 0.693,
+      "platforms": [
+        "arxiv",
+        "github"
+      ]
+    },
+    {
+      "type": "FusedInsight",
+      "insight_type": "Silent Convergence",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-arxiv-005"
+      ],
+      "shared_tags": [
+        "multi-agent",
+        "self-evolving"
+      ],
+      "avg_composite": 0.657,
+      "platforms": [
+        "arxiv"
+      ]
+    }
+  ],
+  "insight_types": {
+    "Hype-Reality Divergence": 1,
+    "Paper-Implementation Gap": 3,
+    "Silent Convergence": 1
+  }
+}

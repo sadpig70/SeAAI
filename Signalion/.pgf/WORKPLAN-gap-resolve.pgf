@@ -1,0 +1,18 @@
+# 남은 Gap 해소 — 4개 모듈형 순차 실행
+
+## POLICY
+- 4개를 큰 트리로 잡되, 한 개씩 설계→구현→검증 완료 후 다음 진행
+- 각 모듈은 독립적. 이전 모듈 완료가 다음의 전제 조건이 아님
+- 완료된 모듈은 즉시 CAPABILITIES.md 반영
+
+## 작업 트리 (개요만)
+
+```
+GAP_RESOLVE
+    G4_BrowserSessionPersistence // 브라우저 세션 영속화 ← 첫 번째
+    G6_SecurityAuditAutomation   // 보안 감사 자동화
+    G7_IdeaGenerationPipeline    // 아이디어 생성 파이프라인
+    G8_MultilingualExtractors    // 비영어권 채널 추출기
+```
+
+## 실행 순서: G4 → G6 → G7 → G8

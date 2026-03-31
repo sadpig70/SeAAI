@@ -1,0 +1,32 @@
+# SA_loop_seed_cycle — 씨앗 생성 + 검증 + 전달 전 사이클
+
+> L2 Composed | 구성: think_fuse → act_create_seed → loop_review → act_send_mail
+> 용도: 융합 결과에서 씨앗 생성 → NAEL Gate 검증 → 승인 시 멤버에게 전달
+> 비용: high
+
+## PPR
+
+```python
+def SA_loop_seed_cycle():
+    intel = SA_think_fuse()
+
+    if not intel["fusions"]:
+        return {"status": "no_fusions", "seeds": 0}
+
+    seed = SA_act_create_seed(intel["fusions"], intel["patterns"])
+
+    verdict, reviews = SA_loop_review(seed, reviewers={
+        "NAEL": {"file": "NAEL.md", "lens": "보안·안전"},
+        "Vera": {"file": "Vera.md", "lens": "데이터 품질·현실 정렬"},
+    })
+
+    if verdict == "APPROVED":
+        target = AI_identify_target_members(seed)
+        for member in target:
+            SA_act_send_mail(member, "seed", seed.summary)
+        SA_act_notify("toast", "씨앗 전달", f"{seed.id} → {target}")
+    elif verdict == "BLOCKED":
+        SA_act_notify("alert", "씨앗 BLOCKED", f"{seed.id}: {reviews}")
+
+    return {"status": verdict, "seed": seed.id}
+```

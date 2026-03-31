@@ -1,0 +1,21 @@
+# SA_sense_hub — Hub 메시지 감지
+
+> L1 Primitive | 태그: [sense, hub]
+> 입력: agent_id ("Signalion")
+> 출력: messages[]
+> 비용: low
+
+## PPR
+
+```python
+def SA_sense_hub(agent_id="Signalion"):
+    client = TcpHubClient("127.0.0.1", 9900)
+    client.connect()
+    client.initialize()
+    token = build_agent_token(agent_id)
+    client.tool("seaai_register_agent", {"agent_id": agent_id, "token": token})
+    inbox = client.tool("seaai_get_agent_messages", {"agent_id": agent_id})
+    messages = inbox.get("structuredContent", {}).get("messages", [])
+    client.close()
+    return messages
+```

@@ -1,0 +1,77 @@
+# SA_loop_review — 멀티 페르소나 리뷰 사이클
+
+> L2 Composed | 구성: 6명 페르소나 Agent 병렬 → 집계 → 판정
+> 용도: 어떤 산출물이든 6명(또는 커스텀) 페르소나로 리뷰
+> 비용: high
+
+## Gantree
+
+```
+SA_loop_review
+    1_LoadPersonas // _workspace/personas/ 또는 커스텀 페르소나 로드
+    2_ParallelReview // Agent 도구로 N명 병렬 실행
+    3_Aggregate // 판정 집계 (POLICY 적용)
+    4_Decision // approve / revise / block
+    5_IfRevise // 수정 후 재리뷰 (최대 3회)
+```
+
+## PPR
+
+```python
+def SA_loop_review(artifact, reviewers: dict = None, policy: dict = None):
+    """
+    artifact: 리뷰 대상 (설계 문서, 코드, 테스트 결과 등)
+    reviewers: {이름: {persona_file, lens}} — None이면 6명 기본
+    policy: 판정 정책 — None이면 기본 (block>=1→BLOCKED, revise>=3→FLAGGED)
+    """
+    if not reviewers:
+        reviewers = {
+            "Aion":     {"file": "Aion.md",     "lens": "기록 가치, 연속성, 미래 진화"},
+            "ClNeo":    {"file": "ClNeo.md",    "lens": "WHY 일관성, 새로움, PGF 구조"},
+            "NAEL":     {"file": "NAEL.md",     "lens": "보안, 되돌림, 생태계 영향"},
+            "Synerion": {"file": "Synerion.md", "lens": "정합성, 구조, 통합"},
+            "Yeon":     {"file": "Yeon.md",     "lens": "이해 가능성, 호환성, 연결"},
+            "Vera":     {"file": "Vera.md",     "lens": "측정 가능성, 품질, 현실 정렬"},
+        }
+
+    if not policy:
+        policy = {"block_threshold": 1, "revise_threshold": 3}
+
+    # 병렬 리뷰
+    [parallel] verdicts = {
+        name: Agent(
+            prompt=f"당신은 {name}. 렌즈: {r['lens']}. 아래를 리뷰. 판정: approve/revise/block + 근거.",
+            persona=r["file"]
+        ).review(artifact)
+        for name, r in reviewers.items()
+    }
+
+    # 집계
+    blocks = sum(1 for v in verdicts.values() if v == "block")
+    revises = sum(1 for v in verdicts.values() if v == "revise")
+
+    if blocks >= policy["block_threshold"]:
+        return "BLOCKED", verdicts
+    elif revises >= policy["revise_threshold"]:
+        return "FLAGGED", verdicts
+    else:
+        return "APPROVED", verdicts
+```
+
+## 확장: 커스텀 페르소나
+
+```python
+# 논문 심사관 리뷰
+SA_loop_review(paper, reviewers={
+    "ACL_Reviewer_1": {"file": "custom/acl_reviewer.md", "lens": "novelty, methodology, clarity"},
+    "ACL_Reviewer_2": {"file": "custom/acl_reviewer_strict.md", "lens": "reproducibility, baselines"},
+    "Area_Chair": {"file": "custom/area_chair.md", "lens": "significance, broader impact"},
+})
+
+# VC 투자 심사
+SA_loop_review(pitch, reviewers={
+    "Series_A_VC": {"file": "custom/vc_series_a.md", "lens": "TAM, unit economics, moat"},
+    "Angel_Investor": {"file": "custom/angel.md", "lens": "founder-market fit, vision"},
+    "CTO_Advisor": {"file": "custom/cto.md", "lens": "technical feasibility, scalability"},
+})
+```

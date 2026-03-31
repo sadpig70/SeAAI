@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-github-002",
+  "source": "github",
+  "url": "https://github.com/EmilLindfors/a2a-rs",
+  "title": "a2a-rs: Agent2Agent Protocol v0.3.0 in Rust",
+  "authors": ["Emil Lindfors"],
+  "published_at": "2025-12-01",
+  "collected_at": "2026-03-29T12:00:00+09:00",
+  "tags": ["A2A", "Rust", "agent-protocol", "JSON-RPC", "hexagonal-architecture", "WebSocket"],
+  "summary": "A2A 프로토콜의 Rust 구현. JSON-RPC 2.0 기반, HTTP+WebSocket 전송, 헥사고날 아키텍처. Axum 서버, Cargo feature flag로 모듈 선택적 컴파일. SQLite/PostgreSQL 저장소 지원. SeAAI Hub(Rust, chatroom.rs)와 동일 언어·생태계 — SEED-001의 Agent Card 구현 시 직접 참조 가능.",
+  "novelty_score": 0.6,
+  "credibility_score": 0.7,
+  "buildability_score": 0.9,
+  "market_pull_score": 0.6,
+  "composite_score": 0.71,
+  "related_signals": ["SIG-20260329-arxiv-001"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "SEED-001 보강 자료. Hub가 Rust이므로 a2a-rs의 Agent Card 타입 정의를 직접 참조 가능. 헥사고날 아키텍처 패턴도 Hub 리팩토링 시 참고."
+}

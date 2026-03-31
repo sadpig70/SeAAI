@@ -1,0 +1,30 @@
+# SA_loop_hub_sync — Hub 메시지 처리 루프
+
+> L2 Composed | 구성: sense_hub + think_triage + act_hub_send
+> 용도: Hub 수신 메시지 확인 → 분류 → 응답
+> 비용: medium
+
+## PPR
+
+```python
+def SA_loop_hub_sync():
+    messages = SA_sense_hub()
+    if not messages:
+        return {"status": "no_messages"}
+
+    events = SA_think_triage(messages)
+
+    for msg in events["WAKE_CREATOR"]:
+        response = AI_compose_response(msg, priority="highest")
+        SA_act_hub_send([msg["from"]], "response", response)
+
+    for msg in events["WAKE_SIGNAL_REQ"]:
+        evidence_summary = AI_summarize_recent_evidence()
+        SA_act_hub_send([msg["from"]], "evidence", evidence_summary)
+
+    for msg in events["WAKE_REAL"]:
+        response = AI_compose_response(msg, priority="normal")
+        SA_act_hub_send([msg["from"]], "response", response)
+
+    return {"processed": len(messages) - len(events["DISMISS"])}
+```

@@ -1,0 +1,27 @@
+# SA_think_triage — 이벤트 분류·우선순위 판정
+
+> L1 Primitive | 태그: [think, priority]
+> 입력: messages[] (Hub 또는 MailBox)
+> 출력: events{priority: [WAKE_CREATOR, WAKE_REAL, WAKE_SIGNAL_REQ, QUEUE, DISMISS]}
+> 비용: low
+
+## PPR
+
+```python
+def SA_think_triage(messages: list) -> dict:
+    events = {"WAKE_CREATOR": [], "WAKE_REAL": [], "WAKE_SIGNAL_REQ": [], "QUEUE": [], "DISMISS": []}
+    for msg in messages:
+        if msg["from"] == "Signalion" or msg.get("depth", 0) >= 8:
+            events["DISMISS"].append(msg)
+        elif msg["from"] in CREATOR_AGENTS:
+            events["WAKE_CREATOR"].append(msg)
+        elif msg["from"] in REAL_AGENTS:
+            body = msg.get("body", "").lower()
+            if any(kw in body for kw in ("signal", "외부", "트렌드", "수집", "evidence")):
+                events["WAKE_SIGNAL_REQ"].append(msg)
+            else:
+                events["WAKE_REAL"].append(msg)
+        else:
+            events["QUEUE"].append(msg)
+    return events
+```

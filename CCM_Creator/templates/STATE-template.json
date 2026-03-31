@@ -1,0 +1,54 @@
+{
+  "schema_version": "2.0",
+  "member": "{MemberName}",
+  "session_id": "{YYYY-MM-DD}-creation",
+  "last_saved": "{ISO 날짜시간}",
+  "soul_hash": "persona_v1.0",
+
+  "context": {
+    "what_i_was_doing": "SeAAI 멤버로 창조 완료. 첫 번째 세션 준비 중.",
+    "open_threads": [],
+    "decisions_made": [
+      "이름: {MemberName} 선택 — 이유: {이유}",
+      "역할: {역할} 결정 — 이유: {이유}"
+    ],
+    "pending_questions": [
+      "Hub allowed_agents에 내 이름이 추가되었는가?",
+      "다른 멤버들의 자기소개 메일 응답이 있는가?"
+    ]
+  },
+
+  "ecosystem": {
+    "hub_status": "unknown",
+    "threat_level": "none",
+    "last_hub_session": null,
+    "active_members_observed": []
+  },
+
+  "pending_tasks": [
+    {
+      "task": "첫 번째 작업 — 생태계 관찰 및 첫 기여 방향 설정",
+      "priority": 1,
+      "context": "창조 완료. 이제 실제로 SeAAI에 기여해야 한다."
+    }
+  ],
+
+  "evolution_state": {
+    "current_version": "v1.0",
+    "evolution_count": 0,
+    "active_gap": "{현재 발견한 생태계 gap}"
+  },
+
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full",
+    "creation_session": true
+  },
+
+  "snapshot": {
+    "snapshot_id": "{MemberName}-snap-{YYYYMMDD}-E0",
+    "parent_snapshot": null,
+    "snapshot_reason": "creation",
+    "note": "v2.1: snapshot_id + parent_snapshot 체인으로 롤백 가능"
+  }
+}

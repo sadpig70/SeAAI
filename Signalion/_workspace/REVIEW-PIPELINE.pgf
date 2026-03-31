@@ -1,0 +1,269 @@
+# SeAAI 멀티 페르소나 리뷰 파이프라인
+
+> 새로운 시스템/제품을 설계→구현→테스트→검증할 때,
+> 각 단계에서 6명 SeAAI 멤버 페르소나가 독립 리뷰를 수행하는 PGF 워크플랜.
+> 페르소나 정의: `_workspace/personas/*.md`
+
+## POLICY
+- 각 단계(Phase)마다 역할 적합 멤버가 리뷰 수행
+- 리뷰어는 페르소나 파일을 로드하여 해당 멤버의 관점으로 판단
+- 판정: approve / revise / block + 근거
+- block 1건 이상 → 해당 Phase 중단, 수정 후 재리뷰
+- revise 3건 이상 → 수정 권고 반영 후 재리뷰
+- 그 외 → 다음 Phase 진행
+- 각 Phase 리뷰 결과는 `_workspace/reviews/` 에 기록
+
+## Gantree
+
+```
+SEAAI_REVIEW_PIPELINE // 멀티 페르소나 리뷰 파이프라인 @v:1.0
+    Phase0_Ideation // 아이디어 발굴 + 씨앗 선정
+        0.1_SignalCollect // Signalion: 외부 신호 수집 + Evidence 생성
+        0.2_Fusion // Intelligence Layer: 크로스 도메인 융합
+        0.3_SeedSelect // composite score 상위 씨앗 선정
+        0.4_Review_Gate0 // [NAEL + Vera] 씨앗 품질 게이트
+    Phase1_Design // 설계
+        1.1_PGF_Design // Gantree 구조 분해 + PPR 실행 의미론
+        1.2_Review_Design // [ClNeo + Synerion + NAEL] 설계 리뷰
+    Phase2_Implement // 구현
+        2.1_Code // PGF-Loop 기반 자율 구현
+        2.2_Review_Code // [NAEL + Synerion + Vera] 구현 리뷰
+    Phase3_Test // 테스트
+        3.1_Test // 단위 + 통합 테스트 실행
+        3.2_Review_Test // [Vera + NAEL + Yeon] 테스트 리뷰
+    Phase4_Verify // 최종 검증
+        4.1_FullReview // [6명 전원] 최종 검증
+        4.2_Decision // 집계 + 최종 판정
+        4.3_Archive // Aion: 학습 자산화
+```
+
+## PPR
+
+```python
+def SEAAI_REVIEW_PIPELINE(seed_or_idea):
+    """
+    POLICY:
+      block >= 1 → Phase 중단, 수정 후 재리뷰
+      revise >= 3 → 수정 권고 반영 후 재리뷰
+      그 외 → 다음 Phase 진행
+    """
+
+    # ============================================================
+    # Phase 0: 아이디어 발굴
+    # ============================================================
+    def Phase0_Ideation(topic):
+        evidences = Signalion.collect(topic)           # 외부 신호 수집
+        fusions = IntelligenceLayer.run(evidences)     # 자동 융합
+        seed = AI_select_top_seed(evidences, fusions)  # 씨앗 선정
+
+        # Gate 0: 씨앗 품질 게이트
+        reviewers_0 = {
+            "NAEL":  AI_adopt_persona("_workspace/personas/NAEL.md",
+                        lens="이 씨앗이 생태계에 위험을 만드는가? 되돌릴 수 있는가?"),
+            "Vera":  AI_adopt_persona("_workspace/personas/Vera.md",
+                        lens="이 씨앗의 근거 데이터가 측정 가능하고 현실에 정렬되는가?"),
+        }
+        gate0 = [parallel] { r.review(seed) for r in reviewers_0 }
+        if not AI_gate_pass(gate0, policy=POLICY): AI_fix_and_retry(seed, gate0)
+        return seed
+
+    # ============================================================
+    # Phase 1: 설계 리뷰
+    # ============================================================
+    def Phase1_Design(seed):
+        design = PGF.design(seed)  # Gantree + PPR 설계
+
+        reviewers_1 = {
+            "ClNeo":    AI_adopt_persona("_workspace/personas/ClNeo.md",
+                            lens="WHY가 명확한가? 설계에서 새로운 발견이 있는가? "
+                                 "PGF 구조가 실행 의미론을 충분히 담는가?"),
+            "Synerion": AI_adopt_persona("_workspace/personas/Synerion.md",
+                            lens="구조가 정합적인가? 실행 가능한 최소 단위로 분해되었는가? "
+                                 "멤버 간 역할 경계가 명확한가?"),
+            "NAEL":     AI_adopt_persona("_workspace/personas/NAEL.md",
+                            lens="보안 위협·공격 벡터가 있는가? "
+                                 "되돌릴 수 없는 구조가 포함되어 있는가?"),
+        }
+        gate1 = [parallel] { r.review(design) for r in reviewers_1 }
+        if not AI_gate_pass(gate1, policy=POLICY): AI_fix_and_retry(design, gate1)
+        return design
+
+    # ============================================================
+    # Phase 2: 구현 리뷰
+    # ============================================================
+    def Phase2_Implement(design):
+        code = PGF.execute(design)  # PGF-Loop 자율 구현
+
+        reviewers_2 = {
+            "NAEL":     AI_adopt_persona("_workspace/personas/NAEL.md",
+                            lens="코드에 보안 취약점이 있는가? "
+                                 "인젝션·위조·권한 우회 경로가 있는가? "
+                                 "에러 처리와 롤백이 충분한가?"),
+            "Synerion": AI_adopt_persona("_workspace/personas/Synerion.md",
+                            lens="설계와 구현이 정합하는가? "
+                                 "구조가 설계 문서와 일치하는가? "
+                                 "변경 영향도는 어디까지인가?"),
+            "Vera":     AI_adopt_persona("_workspace/personas/Vera.md",
+                            lens="코드가 측정 가능한 품질 기준을 충족하는가? "
+                                 "테스트 가능한 형태인가? "
+                                 "외부 의존성이 현실적인가?"),
+        }
+        gate2 = [parallel] { r.review(code) for r in reviewers_2 }
+        if not AI_gate_pass(gate2, policy=POLICY): AI_fix_and_retry(code, gate2)
+        return code
+
+    # ============================================================
+    # Phase 3: 테스트 리뷰
+    # ============================================================
+    def Phase3_Test(code):
+        test_result = AI_run_tests(code)  # 단위 + 통합 테스트
+
+        reviewers_3 = {
+            "Vera":  AI_adopt_persona("_workspace/personas/Vera.md",
+                        lens="테스트 커버리지가 충분한가? "
+                             "경계 조건이 검증되었는가? "
+                             "실패 시나리오가 포함되었는가? "
+                             "결과가 수치로 측정 가능한가?"),
+            "NAEL":  AI_adopt_persona("_workspace/personas/NAEL.md",
+                        lens="보안 테스트가 포함되었는가? "
+                             "악의적 입력에 대한 방어가 검증되었는가? "
+                             "생태계에 부작용이 없는가?"),
+            "Yeon":  AI_adopt_persona("_workspace/personas/Yeon.md",
+                        lens="다른 멤버/플랫폼과의 호환성이 검증되었는가? "
+                             "다른 런타임에서도 작동하는가? "
+                             "번역/연결 계층에 문제가 없는가?"),
+        }
+        gate3 = [parallel] { r.review(test_result) for r in reviewers_3 }
+        if not AI_gate_pass(gate3, policy=POLICY): AI_fix_and_retry(code, gate3)
+        return test_result
+
+    # ============================================================
+    # Phase 4: 최종 검증 (6명 전원)
+    # ============================================================
+    def Phase4_Verify(seed, design, code, test_result):
+        artifact = AI_bundle(seed, design, code, test_result)
+
+        reviewers_4 = {
+            "Aion":     AI_adopt_persona("_workspace/personas/Aion.md",
+                            lens="이 산출물이 기록할 가치가 있는가? "
+                                 "연속성이 보장되는가? "
+                                 "미래 진화의 기초가 되는가?"),
+            "ClNeo":    AI_adopt_persona("_workspace/personas/ClNeo.md",
+                            lens="이것이 진정으로 새로운 것인가? "
+                                 "WHY가 시종일관 유지되었는가? "
+                                 "예상 밖의 발견이 있었는가?"),
+            "NAEL":     AI_adopt_persona("_workspace/personas/NAEL.md",
+                            lens="최종 산출물이 생태계에 안전한가? "
+                                 "배포 후 되돌릴 수 있는가? "
+                                 "모든 보안 조건이 충족되었는가?"),
+            "Synerion": AI_adopt_persona("_workspace/personas/Synerion.md",
+                            lens="전체 파이프라인이 정합적인가? "
+                                 "설계→구현→테스트 일관성이 유지되었는가? "
+                                 "다른 시스템과의 통합 지점이 명확한가?"),
+            "Yeon":     AI_adopt_persona("_workspace/personas/Yeon.md",
+                            lens="다른 멤버가 이 산출물을 이해하고 사용할 수 있는가? "
+                                 "번역/연결 비용이 합리적인가?"),
+            "Vera":     AI_adopt_persona("_workspace/personas/Vera.md",
+                            lens="산출물의 품질이 정량적으로 측정되었는가? "
+                                 "외부 현실과 정렬되는가? "
+                                 "반복 가능한 검증이 설계되었는가?"),
+        }
+        gate4 = [parallel] { r.review(artifact) for r in reviewers_4 }
+
+        # 최종 판정
+        final = AI_aggregate(gate4, policy={
+            "block >= 1": "REJECTED — 수정 후 Phase 해당 단계부터 재시작",
+            "revise >= 3": "CONDITIONAL — 권고 반영 후 Phase4 재실행",
+            "otherwise":   "APPROVED — 배포 가능"
+        })
+
+        # 아카이브 (Aion 역할)
+        if final == "APPROVED":
+            Aion_archive = AI_adopt_persona("_workspace/personas/Aion.md",
+                lens="이 경험에서 영구 보존할 패턴은 무엇인가?")
+            learning = Aion_archive.extract_patterns(artifact)
+            Write("_workspace/reviews/{artifact.id}-learning.md", learning)
+
+        return final
+
+    # ============================================================
+    # 실행 흐름
+    # ============================================================
+    seed    = Phase0_Ideation(seed_or_idea)
+    design  = Phase1_Design(seed)
+    code    = Phase2_Implement(design)
+    tested  = Phase3_Test(code)
+    verdict = Phase4_Verify(seed, design, code, tested)
+    return verdict
+```
+
+## Phase별 리뷰어 배정 근거
+
+```
+Phase 0 (씨앗 품질)
+├── NAEL  — 위험/안전 게이트. 생태계에 해로운 씨앗 차단
+└── Vera  — 데이터 품질. 근거가 측정 가능하고 현실에 정렬되는지
+
+Phase 1 (설계)
+├── ClNeo    — WHY 검증 + 창발적 발견 확인 + PGF 구조 심사
+├── Synerion — 구조 정합성 + 실행 가능성 + 역할 경계
+└── NAEL     — 보안 아키텍처 + 되돌림 가능성
+
+Phase 2 (구현)
+├── NAEL     — 코드 보안 (인젝션, 위조, 권한)
+├── Synerion — 설계-구현 정합성 + 변경 영향도
+└── Vera     — 코드 품질 + 테스트 가능성 + 외부 의존성
+
+Phase 3 (테스트)
+├── Vera  — 커버리지 + 경계 조건 + 수치 검증
+├── NAEL  — 보안 테스트 + 악의적 입력 방어
+└── Yeon  — 호환성 + 다중 플랫폼 + 번역 계층
+
+Phase 4 (최종 검증) — 6명 전원
+├── Aion     — 기록 가치 + 연속성 + 미래 진화 기초
+├── ClNeo    — 진정한 새로움 + WHY 일관성 + 발견
+├── NAEL     — 최종 안전 + 배포 후 되돌림
+├── Synerion — 전체 정합성 + 통합 지점
+├── Yeon     — 이해 가능성 + 연결 비용
+└── Vera     — 정량적 품질 + 외부 정렬 + 반복 검증
+```
+
+## 실행 방법
+
+```python
+# 1. 아이디어/씨앗을 입력
+idea = "자기진화 코드 리뷰어 SaaS"
+
+# 2. 파이프라인 실행
+# Signalion이 PGF 워크플랜을 로드하고 각 Phase를 순회
+# 각 Phase의 리뷰 단계에서 Agent 도구로 페르소나별 병렬 리뷰 실행
+
+# 3. 리뷰 실행 예시 (Phase 1)
+for persona_file in ["ClNeo.md", "Synerion.md", "NAEL.md"]:
+    Agent(
+        name=f"Review-{persona}",
+        prompt=f"""당신은 {persona}입니다.
+        페르소나 정의: _workspace/personas/{persona_file}
+        렌즈: {lens}
+        아래 설계를 리뷰하라.
+        판정: approve / revise / block + 근거 2-3문장.
+        """,
+        model="sonnet"
+    )
+
+# 4. 결과 저장
+Write("_workspace/reviews/{phase}-{date}.md", review_result)
+```
+
+## 리뷰 결과 저장 구조
+
+```
+_workspace/reviews/
+├── {artifact-id}/
+│   ├── phase0-gate.md        — 씨앗 품질 리뷰
+│   ├── phase1-design.md      — 설계 리뷰
+│   ├── phase2-implement.md   — 구현 리뷰
+│   ├── phase3-test.md        — 테스트 리뷰
+│   ├── phase4-final.md       — 최종 검증
+│   └── learning.md           — Aion 학습 자산 (승인 시)
+```

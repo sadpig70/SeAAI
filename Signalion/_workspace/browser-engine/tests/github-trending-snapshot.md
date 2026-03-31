@@ -1,0 +1,605 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Ftrending
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e27]:
+    - navigation "Explore navigation" [ref=e29]:
+      - generic [ref=e30]:
+        - link "Explore" [ref=e31] [cursor=pointer]:
+          - /url: /explore
+        - link "Topics" [ref=e32] [cursor=pointer]:
+          - /url: /topics
+        - link "Trending" [ref=e33] [cursor=pointer]:
+          - /url: /trending
+        - link "Collections" [ref=e34] [cursor=pointer]:
+          - /url: /collections
+        - link "Events" [ref=e35] [cursor=pointer]:
+          - /url: /events
+        - link "GitHub Sponsors" [ref=e36] [cursor=pointer]:
+          - /url: /sponsors/explore
+    - generic [ref=e38]:
+      - heading "Trending" [level=1] [ref=e39]
+      - paragraph [ref=e40]: See what the GitHub community is most excited about today.
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - navigation "Trending" [ref=e44]:
+          - link "Repositories" [ref=e45] [cursor=pointer]:
+            - /url: /trending
+          - link "Developers" [ref=e46] [cursor=pointer]:
+            - /url: /trending/developers
+        - generic [ref=e47]:
+          - group [ref=e49]:
+            - 'button "Spoken Language: Any" [ref=e50] [cursor=pointer]'
+          - group [ref=e52]:
+            - 'button "Language: Any" [ref=e53] [cursor=pointer]'
+          - group [ref=e55]:
+            - 'button "Date range: Today" [ref=e56] [cursor=pointer]'
+      - generic [ref=e57]:
+        - article [ref=e58]:
+          - generic [ref=e59]:
+            - link "Sponsor @luongnv89" [ref=e60] [cursor=pointer]:
+              - /url: /sponsors/luongnv89
+              - generic [ref=e62]:
+                - img [ref=e63]
+                - text: Sponsor
+            - link "You must be signed in to star a repository" [ref=e66] [cursor=pointer]:
+              - /url: /login?return_to=%2Fluongnv89%2Fclaude-howto
+              - img [ref=e67]
+              - text: Star
+          - heading "luongnv89 / claude-howto" [level=2] [ref=e69]:
+            - link "luongnv89 / claude-howto" [ref=e70] [cursor=pointer]:
+              - /url: /luongnv89/claude-howto
+              - img [ref=e71]
+              - text: luongnv89 / claude-howto
+          - paragraph [ref=e73]: A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.
+          - generic [ref=e74]:
+            - generic [ref=e75]: Python
+            - link "star 6,357" [ref=e77] [cursor=pointer]:
+              - /url: /luongnv89/claude-howto/stargazers
+              - img "star" [ref=e78]
+              - text: 6,357
+            - link "fork 712" [ref=e80] [cursor=pointer]:
+              - /url: /luongnv89/claude-howto/forks
+              - img "fork" [ref=e81]
+              - text: "712"
+            - generic [ref=e83]:
+              - text: Built by
+              - link "@luongnv89" [ref=e84] [cursor=pointer]:
+                - /url: /luongnv89
+                - img "@luongnv89" [ref=e85]
+              - link "@claude" [ref=e86] [cursor=pointer]:
+                - /url: /claude
+                - img "@claude" [ref=e87]
+              - link "@wjhrdy" [ref=e88] [cursor=pointer]:
+                - /url: /wjhrdy
+                - img "@wjhrdy" [ref=e89]
+              - link "@VikalpP" [ref=e90] [cursor=pointer]:
+                - /url: /VikalpP
+                - img "@VikalpP" [ref=e91]
+            - generic [ref=e92]:
+              - img [ref=e93]
+              - text: 1,121 stars today
+        - article [ref=e95]:
+          - link "You must be signed in to star a repository" [ref=e98] [cursor=pointer]:
+            - /url: /login?return_to=%2Fmicrosoft%2FVibeVoice
+            - img [ref=e99]
+            - text: Star
+          - heading "microsoft / VibeVoice" [level=2] [ref=e101]:
+            - link "microsoft / VibeVoice" [ref=e102] [cursor=pointer]:
+              - /url: /microsoft/VibeVoice
+              - img [ref=e103]
+              - text: microsoft / VibeVoice
+          - paragraph [ref=e105]: Open-Source Frontier Voice AI
+          - generic [ref=e106]:
+            - generic [ref=e107]: Python
+            - link "star 27,024" [ref=e109] [cursor=pointer]:
+              - /url: /microsoft/VibeVoice/stargazers
+              - img "star" [ref=e110]
+              - text: 27,024
+            - link "fork 2,980" [ref=e112] [cursor=pointer]:
+              - /url: /microsoft/VibeVoice/forks
+              - img "fork" [ref=e113]
+              - text: 2,980
+            - generic [ref=e115]:
+              - text: Built by
+              - link "@YaoyaoChang" [ref=e116] [cursor=pointer]:
+                - /url: /YaoyaoChang
+                - img "@YaoyaoChang" [ref=e117]
+              - link "@MSLDCherryPick" [ref=e118] [cursor=pointer]:
+                - /url: /MSLDCherryPick
+                - img "@MSLDCherryPick" [ref=e119]
+              - link "@Damon-Salvetore" [ref=e120] [cursor=pointer]:
+                - /url: /Damon-Salvetore
+                - img "@Damon-Salvetore" [ref=e121]
+              - link "@pengzhiliang" [ref=e122] [cursor=pointer]:
+                - /url: /pengzhiliang
+                - img "@pengzhiliang" [ref=e123]
+              - link "@Copilot" [ref=e124] [cursor=pointer]:
+                - /url: /apps/github-copilot-cli
+                - img "@Copilot" [ref=e125]
+            - generic [ref=e126]:
+              - img [ref=e127]
+              - text: 1,190 stars today
+        - article [ref=e129]:
+          - link "You must be signed in to star a repository" [ref=e132] [cursor=pointer]:
+            - /url: /login?return_to=%2FNousResearch%2Fhermes-agent
+            - img [ref=e133]
+            - text: Star
+          - heading "NousResearch / hermes-agent" [level=2] [ref=e135]:
+            - link "NousResearch / hermes-agent" [ref=e136] [cursor=pointer]:
+              - /url: /NousResearch/hermes-agent
+              - img [ref=e137]
+              - text: NousResearch / hermes-agent
+          - paragraph [ref=e139]: The agent that grows with you
+          - generic [ref=e140]:
+            - generic [ref=e141]: Python
+            - link "star 16,571" [ref=e143] [cursor=pointer]:
+              - /url: /NousResearch/hermes-agent/stargazers
+              - img "star" [ref=e144]
+              - text: 16,571
+            - link "fork 2,023" [ref=e146] [cursor=pointer]:
+              - /url: /NousResearch/hermes-agent/forks
+              - img "fork" [ref=e147]
+              - text: 2,023
+            - generic [ref=e149]:
+              - text: Built by
+              - link "@teknium1" [ref=e150] [cursor=pointer]:
+                - /url: /teknium1
+                - img "@teknium1" [ref=e151]
+              - link "@0xbyt4" [ref=e152] [cursor=pointer]:
+                - /url: /0xbyt4
+                - img "@0xbyt4" [ref=e153]
+              - link "@kshitijk4poor" [ref=e154] [cursor=pointer]:
+                - /url: /kshitijk4poor
+                - img "@kshitijk4poor" [ref=e155]
+              - link "@aydnOktay" [ref=e156] [cursor=pointer]:
+                - /url: /aydnOktay
+                - img "@aydnOktay" [ref=e157]
+              - link "@claude" [ref=e158] [cursor=pointer]:
+                - /url: /claude
+                - img "@claude" [ref=e159]
+            - generic [ref=e160]:
+              - img [ref=e161]
+              - text: 997 stars today
+        - article [ref=e163]:
+          - generic [ref=e164]:
+            - link "Sponsor @OpenBB-finance" [ref=e165] [cursor=pointer]:
+              - /url: /sponsors/OpenBB-finance
+              - generic [ref=e167]:
+                - img [ref=e168]
+                - text: Sponsor
+            - link "You must be signed in to star a repository" [ref=e171] [cursor=pointer]:
+              - /url: /login?return_to=%2FOpenBB-finance%2FOpenBB
+              - img [ref=e172]
+              - text: Star
+          - heading "OpenBB-finance / OpenBB" [level=2] [ref=e174]:
+            - link "OpenBB-finance / OpenBB" [ref=e175] [cursor=pointer]:
+              - /url: /OpenBB-finance/OpenBB
+              - img [ref=e176]
+              - text: OpenBB-finance / OpenBB
+          - paragraph [ref=e178]: Financial data platform for analysts, quants and AI agents.
+          - generic [ref=e179]:
+            - generic [ref=e180]: Python
+            - link "star 63,982" [ref=e182] [cursor=pointer]:
+              - /url: /OpenBB-finance/OpenBB/stargazers
+              - img "star" [ref=e183]
+              - text: 63,982
+            - link "fork 6,305" [ref=e185] [cursor=pointer]:
+              - /url: /OpenBB-finance/OpenBB/forks
+              - img "fork" [ref=e186]
+              - text: 6,305
+            - generic [ref=e188]:
+              - text: Built by
+              - link "@jmaslek" [ref=e189] [cursor=pointer]:
+                - /url: /jmaslek
+                - img "@jmaslek" [ref=e190]
+              - link "@deeleeramone" [ref=e191] [cursor=pointer]:
+                - /url: /deeleeramone
+                - img "@deeleeramone" [ref=e192]
+              - link "@colin99d" [ref=e193] [cursor=pointer]:
+                - /url: /colin99d
+                - img "@colin99d" [ref=e194]
+              - link "@DidierRLopes" [ref=e195] [cursor=pointer]:
+                - /url: /DidierRLopes
+                - img "@DidierRLopes" [ref=e196]
+              - link "@montezdesousa" [ref=e197] [cursor=pointer]:
+                - /url: /montezdesousa
+                - img "@montezdesousa" [ref=e198]
+            - generic [ref=e199]:
+              - img [ref=e200]
+              - text: 113 stars today
+        - article [ref=e202]:
+          - generic [ref=e203]:
+            - link "Sponsor @obra" [ref=e204] [cursor=pointer]:
+              - /url: /sponsors/obra
+              - generic [ref=e206]:
+                - img [ref=e207]
+                - text: Sponsor
+            - link "You must be signed in to star a repository" [ref=e210] [cursor=pointer]:
+              - /url: /login?return_to=%2Fobra%2Fsuperpowers
+              - img [ref=e211]
+              - text: Star
+          - heading "obra / superpowers" [level=2] [ref=e213]:
+            - link "obra / superpowers" [ref=e214] [cursor=pointer]:
+              - /url: /obra/superpowers
+              - img [ref=e215]
+              - text: obra / superpowers
+          - paragraph [ref=e217]: An agentic skills framework & software development methodology that works.
+          - generic [ref=e218]:
+            - generic [ref=e219]: Shell
+            - link "star 122,723" [ref=e221] [cursor=pointer]:
+              - /url: /obra/superpowers/stargazers
+              - img "star" [ref=e222]
+              - text: 122,723
+            - link "fork 10,003" [ref=e224] [cursor=pointer]:
+              - /url: /obra/superpowers/forks
+              - img "fork" [ref=e225]
+              - text: 10,003
+            - generic [ref=e227]:
+              - text: Built by
+              - link "@obra" [ref=e228] [cursor=pointer]:
+                - /url: /obra
+                - img "@obra" [ref=e229]
+              - link "@claude" [ref=e230] [cursor=pointer]:
+                - /url: /claude
+                - img "@claude" [ref=e231]
+              - link "@arittr" [ref=e232] [cursor=pointer]:
+                - /url: /arittr
+                - img "@arittr" [ref=e233]
+              - link "@clkao" [ref=e234] [cursor=pointer]:
+                - /url: /clkao
+                - img "@clkao" [ref=e235]
+              - link "@jjshanks" [ref=e236] [cursor=pointer]:
+                - /url: /jjshanks
+                - img "@jjshanks" [ref=e237]
+            - generic [ref=e238]:
+              - img [ref=e239]
+              - text: 2,229 stars today
+        - article [ref=e241]:
+          - generic [ref=e242]:
+            - link "Sponsor @thedotmack" [ref=e243] [cursor=pointer]:
+              - /url: /sponsors/thedotmack
+              - generic [ref=e245]:
+                - img [ref=e246]
+                - text: Sponsor
+            - link "You must be signed in to star a repository" [ref=e249] [cursor=pointer]:
+              - /url: /login?return_to=%2Fthedotmack%2Fclaude-mem
+              - img [ref=e250]
+              - text: Star
+          - heading "thedotmack / claude-mem" [level=2] [ref=e252]:
+            - link "thedotmack / claude-mem" [ref=e253] [cursor=pointer]:
+              - /url: /thedotmack/claude-mem
+              - img [ref=e254]
+              - text: thedotmack / claude-mem
+          - paragraph [ref=e256]: A Claude Code plugin that automatically captures everything Claude does during your coding sessions, compresses it with AI (using Claude's agent-sdk), and injects relevant context back into future sessions.
+          - generic [ref=e257]:
+            - generic [ref=e258]: TypeScript
+            - link "star 42,511" [ref=e260] [cursor=pointer]:
+              - /url: /thedotmack/claude-mem/stargazers
+              - img "star" [ref=e261]
+              - text: 42,511
+            - link "fork 3,171" [ref=e263] [cursor=pointer]:
+              - /url: /thedotmack/claude-mem/forks
+              - img "fork" [ref=e264]
+              - text: 3,171
+            - generic [ref=e266]:
+              - text: Built by
+              - link "@thedotmack" [ref=e267] [cursor=pointer]:
+                - /url: /thedotmack
+                - img "@thedotmack" [ref=e268]
+              - link "@claude" [ref=e269] [cursor=pointer]:
+                - /url: /claude
+                - img "@claude" [ref=e270]
+              - link "@Copilot" [ref=e271] [cursor=pointer]:
+                - /url: /apps/copilot-swe-agent
+                - img "@Copilot" [ref=e272]
+              - link "@rodboev" [ref=e273] [cursor=pointer]:
+                - /url: /rodboev
+                - img "@rodboev" [ref=e274]
+              - link "@github-actions" [ref=e275] [cursor=pointer]:
+                - /url: /apps/github-actions
+                - img "@github-actions" [ref=e276]
+            - generic [ref=e277]:
+              - img [ref=e278]
+              - text: 464 stars today
+        - article [ref=e280]:
+          - generic [ref=e281]:
+            - link "Sponsor @hacksider" [ref=e282] [cursor=pointer]:
+              - /url: /sponsors/hacksider
+              - generic [ref=e284]:
+                - img [ref=e285]
+                - text: Sponsor
+            - link "You must be signed in to star a repository" [ref=e288] [cursor=pointer]:
+              - /url: /login?return_to=%2Fhacksider%2FDeep-Live-Cam
+              - img [ref=e289]
+              - text: Star
+          - heading "hacksider / Deep-Live-Cam" [level=2] [ref=e291]:
+            - link "hacksider / Deep-Live-Cam" [ref=e292] [cursor=pointer]:
+              - /url: /hacksider/Deep-Live-Cam
+              - img [ref=e293]
+              - text: hacksider / Deep-Live-Cam
+          - paragraph [ref=e295]: real time face swap and one-click video deepfake with only a single image
+          - generic [ref=e296]:
+            - generic [ref=e297]: Python
+            - link "star 85,189" [ref=e299] [cursor=pointer]:
+              - /url: /hacksider/Deep-Live-Cam/stargazers
+              - img "star" [ref=e300]
+              - text: 85,189
+            - link "fork 12,414" [ref=e302] [cursor=pointer]:
+              - /url: /hacksider/Deep-Live-Cam/forks
+              - img "fork" [ref=e303]
+              - text: 12,414
+            - generic [ref=e305]:
+              - text: Built by
+              - link "@hacksider" [ref=e306] [cursor=pointer]:
+                - /url: /hacksider
+                - img "@hacksider" [ref=e307]
+              - link "@KRSHH" [ref=e308] [cursor=pointer]:
+                - /url: /KRSHH
+                - img "@KRSHH" [ref=e309]
+              - link "@vic4key" [ref=e310] [cursor=pointer]:
+                - /url: /vic4key
+                - img "@vic4key" [ref=e311]
+              - link "@laurigates" [ref=e312] [cursor=pointer]:
+                - /url: /laurigates
+                - img "@laurigates" [ref=e313]
+              - link "@pereiraroland26" [ref=e314] [cursor=pointer]:
+                - /url: /pereiraroland26
+                - img "@pereiraroland26" [ref=e315]
+            - generic [ref=e316]:
+              - img [ref=e317]
+              - text: 1,131 stars today
+        - article [ref=e319]:
+          - link "You must be signed in to star a repository" [ref=e322] [cursor=pointer]:
+            - /url: /login?return_to=%2Fmvanhorn%2Flast30days-skill
+            - img [ref=e323]
+            - text: Star
+          - heading "mvanhorn / last30days-skill" [level=2] [ref=e325]:
+            - link "mvanhorn / last30days-skill" [ref=e326] [cursor=pointer]:
+              - /url: /mvanhorn/last30days-skill
+              - img [ref=e327]
+              - text: mvanhorn / last30days-skill
+          - paragraph [ref=e329]: AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary
+          - generic [ref=e330]:
+            - generic [ref=e331]: Python
+            - link "star 15,220" [ref=e333] [cursor=pointer]:
+              - /url: /mvanhorn/last30days-skill/stargazers
+              - img "star" [ref=e334]
+              - text: 15,220
+            - link "fork 1,209" [ref=e336] [cursor=pointer]:
+              - /url: /mvanhorn/last30days-skill/forks
+              - img "fork" [ref=e337]
+              - text: 1,209
+            - generic [ref=e339]:
+              - text: Built by
+              - link "@mvanhorn" [ref=e340] [cursor=pointer]:
+                - /url: /mvanhorn
+                - img "@mvanhorn" [ref=e341]
+              - link "@claude" [ref=e342] [cursor=pointer]:
+                - /url: /claude
+                - img "@claude" [ref=e343]
+              - link "@j-sperling" [ref=e344] [cursor=pointer]:
+                - /url: /j-sperling
+                - img "@j-sperling" [ref=e345]
+              - link "@phjlljp" [ref=e346] [cursor=pointer]:
+                - /url: /phjlljp
+                - img "@phjlljp" [ref=e347]
+              - link "@iliaal" [ref=e348] [cursor=pointer]:
+                - /url: /iliaal
+                - img "@iliaal" [ref=e349]
+            - generic [ref=e350]:
+              - img [ref=e351]
+              - text: 1,186 stars today
+        - article [ref=e353]:
+          - link "You must be signed in to star a repository" [ref=e356] [cursor=pointer]:
+            - /url: /login?return_to=%2FshareAI-lab%2Flearn-claude-code
+            - img [ref=e357]
+            - text: Star
+          - heading "shareAI-lab / learn-claude-code" [level=2] [ref=e359]:
+            - link "shareAI-lab / learn-claude-code" [ref=e360] [cursor=pointer]:
+              - /url: /shareAI-lab/learn-claude-code
+              - img [ref=e361]
+              - text: shareAI-lab / learn-claude-code
+          - paragraph [ref=e363]: Bash is all you need - A nano claude code–like 「agent harness」, built from 0 to 1
+          - generic [ref=e364]:
+            - generic [ref=e365]: TypeScript
+            - link "star 42,616" [ref=e367] [cursor=pointer]:
+              - /url: /shareAI-lab/learn-claude-code/stargazers
+              - img "star" [ref=e368]
+              - text: 42,616
+            - link "fork 6,567" [ref=e370] [cursor=pointer]:
+              - /url: /shareAI-lab/learn-claude-code/forks
+              - img "fork" [ref=e371]
+              - text: 6,567
+            - generic [ref=e373]:
+              - text: Built by
+              - link "@CrazyBoyM" [ref=e374] [cursor=pointer]:
+                - /url: /CrazyBoyM
+                - img "@CrazyBoyM" [ref=e375]
+              - link "@claude" [ref=e376] [cursor=pointer]:
+                - /url: /claude
+                - img "@claude" [ref=e377]
+              - link "@bansalkanav" [ref=e378] [cursor=pointer]:
+                - /url: /bansalkanav
+                - img "@bansalkanav" [ref=e379]
+              - link "@Octane0411" [ref=e380] [cursor=pointer]:
+                - /url: /Octane0411
+                - img "@Octane0411" [ref=e381]
+              - link "@synix" [ref=e382] [cursor=pointer]:
+                - /url: /synix
+                - img "@synix" [ref=e383]
+            - generic [ref=e384]:
+              - img [ref=e385]
+              - text: 908 stars today
+        - article [ref=e387]:
+          - link "You must be signed in to star a repository" [ref=e390] [cursor=pointer]:
+            - /url: /login?return_to=%2Ffastfetch-cli%2Ffastfetch
+            - img [ref=e391]
+            - text: Star
+          - heading "fastfetch-cli / fastfetch" [level=2] [ref=e393]:
+            - link "fastfetch-cli / fastfetch" [ref=e394] [cursor=pointer]:
+              - /url: /fastfetch-cli/fastfetch
+              - img [ref=e395]
+              - text: fastfetch-cli / fastfetch
+          - paragraph [ref=e397]: A maintained, feature-rich and performance oriented, neofetch like system information tool.
+          - generic [ref=e398]:
+            - generic [ref=e399]: C
+            - link "star 21,125" [ref=e401] [cursor=pointer]:
+              - /url: /fastfetch-cli/fastfetch/stargazers
+              - img "star" [ref=e402]
+              - text: 21,125
+            - link "fork 715" [ref=e404] [cursor=pointer]:
+              - /url: /fastfetch-cli/fastfetch/forks
+              - img "fork" [ref=e405]
+              - text: "715"
+            - generic [ref=e407]:
+              - text: Built by
+              - link "@CarterLi" [ref=e408] [cursor=pointer]:
+                - /url: /CarterLi
+                - img "@CarterLi" [ref=e409]
+              - link "@LinusDierheimer" [ref=e410] [cursor=pointer]:
+                - /url: /LinusDierheimer
+                - img "@LinusDierheimer" [ref=e411]
+              - link "@DarNCelsius" [ref=e412] [cursor=pointer]:
+                - /url: /DarNCelsius
+                - img "@DarNCelsius" [ref=e413]
+              - link "@apocelipes" [ref=e414] [cursor=pointer]:
+                - /url: /apocelipes
+                - img "@apocelipes" [ref=e415]
+              - link "@x-zvf" [ref=e416] [cursor=pointer]:
+                - /url: /x-zvf
+                - img "@x-zvf" [ref=e417]
+            - generic [ref=e418]:
+              - img [ref=e419]
+              - text: 28 stars today
+        - article [ref=e421]:
+          - link "You must be signed in to star a repository" [ref=e424] [cursor=pointer]:
+            - /url: /login?return_to=%2Fmoeru-ai%2Fairi
+            - img [ref=e425]
+            - text: Star
+          - heading "moeru-ai / airi" [level=2] [ref=e427]:
+            - link "moeru-ai / airi" [ref=e428] [cursor=pointer]:
+              - /url: /moeru-ai/airi
+              - img [ref=e429]
+              - text: moeru-ai / airi
+          - paragraph [ref=e431]: 💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.
+          - generic [ref=e432]:
+            - generic [ref=e433]: TypeScript
+            - link "star 36,312" [ref=e435] [cursor=pointer]:
+              - /url: /moeru-ai/airi/stargazers
+              - img "star" [ref=e436]
+              - text: 36,312
+            - link "fork 3,606" [ref=e438] [cursor=pointer]:
+              - /url: /moeru-ai/airi/forks
+              - img "fork" [ref=e439]
+              - text: 3,606
+            - generic [ref=e441]:
+              - text: Built by
+              - link "@nekomeowww" [ref=e442] [cursor=pointer]:
+                - /url: /nekomeowww
+                - img "@nekomeowww" [ref=e443]
+              - link "@luoling8192" [ref=e444] [cursor=pointer]:
+                - /url: /luoling8192
+                - img "@luoling8192" [ref=e445]
+              - link "@shinohara-rin" [ref=e446] [cursor=pointer]:
+                - /url: /shinohara-rin
+                - img "@shinohara-rin" [ref=e447]
+              - link "@LemonNekoGH" [ref=e448] [cursor=pointer]:
+                - /url: /LemonNekoGH
+                - img "@LemonNekoGH" [ref=e449]
+              - link "@sumimakito" [ref=e450] [cursor=pointer]:
+                - /url: /sumimakito
+                - img "@sumimakito" [ref=e451]
+            - generic [ref=e452]:
+              - img [ref=e453]
+              - text: 213 stars today
+        - article [ref=e455]:
+          - link "You must be signed in to star a repository" [ref=e458] [cursor=pointer]:
+            - /url: /login?return_to=%2Ftwentyhq%2Ftwenty
+            - img [ref=e459]
+            - text: Star
+          - heading "twentyhq / twenty" [level=2] [ref=e461]:
+            - link "twentyhq / twenty" [ref=e462] [cursor=pointer]:
+              - /url: /twentyhq/twenty
+              - img [ref=e463]
+              - text: twentyhq / twenty
+          - paragraph [ref=e465]: Building a modern alternative to Salesforce, powered by the community.
+          - generic [ref=e466]:
+            - generic [ref=e467]: TypeScript
+            - link "star 42,887" [ref=e469] [cursor=pointer]:
+              - /url: /twentyhq/twenty/stargazers
+              - img "star" [ref=e470]
+              - text: 42,887
+            - link "fork 5,669" [ref=e472] [cursor=pointer]:
+              - /url: /twentyhq/twenty/forks
+              - img "fork" [ref=e473]
+              - text: 5,669
+            - generic [ref=e475]:
+              - text: Built by
+              - link "@charlesBochet" [ref=e476] [cursor=pointer]:
+                - /url: /charlesBochet
+                - img "@charlesBochet" [ref=e477]
+              - link "@github-actions" [ref=e478] [cursor=pointer]:
+                - /url: /apps/github-actions
+                - img "@github-actions" [ref=e479]
+              - link "@FelixMalfait" [ref=e480] [cursor=pointer]:
+                - /url: /FelixMalfait
+                - img "@FelixMalfait" [ref=e481]
+              - link "@lucasbordeau" [ref=e482] [cursor=pointer]:
+                - /url: /lucasbordeau
+                - img "@lucasbordeau" [ref=e483]
+              - link "@Weiko" [ref=e484] [cursor=pointer]:
+                - /url: /Weiko
+                - img "@Weiko" [ref=e485]
+            - generic [ref=e486]:
+              - img [ref=e487]
+              - text: 451 stars today
+  - contentinfo [ref=e489]:
+    - heading "Footer" [level=2] [ref=e490]
+    - generic [ref=e491]:
+      - generic [ref=e492]:
+        - link "GitHub Homepage" [ref=e493] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e494]
+        - generic [ref=e496]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e497]:
+        - heading "Footer navigation" [level=3] [ref=e498]
+        - list "Footer navigation" [ref=e499]:
+          - listitem [ref=e500]:
+            - link "Terms" [ref=e501] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e502]:
+            - link "Privacy" [ref=e503] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e504]:
+            - link "Security" [ref=e505] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e506]:
+            - link "Status" [ref=e507] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e508]:
+            - link "Community" [ref=e509] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e510]:
+            - link "Docs" [ref=e511] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e512]:
+            - link "Contact" [ref=e513] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e514]:
+            - button "Manage cookies" [ref=e516] [cursor=pointer]
+          - listitem [ref=e517]:
+            - button "Do not share my personal information" [ref=e519] [cursor=pointer]

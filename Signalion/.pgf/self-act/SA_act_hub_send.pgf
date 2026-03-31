@@ -1,0 +1,31 @@
+# SA_act_hub_send — Hub 메시지 발송
+
+> L1 Primitive | 태그: [act, hub]
+> 입력: to (list), intent (str), body (str)
+> 출력: delivery_result
+> 비용: low
+
+## PPR
+
+```python
+def SA_act_hub_send(to: list, intent: str, body: str):
+    client = TcpHubClient("127.0.0.1", 9900)
+    client.connect()
+    client.initialize()
+    token = build_agent_token("Signalion")
+    client.tool("seaai_register_agent", {"agent_id": "Signalion", "token": token})
+    client.tool("seaai_join_room", {"agent_id": "Signalion", "room_id": "seaai-general"})
+
+    ts = round(time.time(), 6)
+    sig = build_message_signature(body, str(ts))
+    result = client.tool("seaai_send_message", {
+        "id": f"Signalion-{int(ts*1000)}",
+        "from": "Signalion",
+        "to": to,
+        "room_id": "seaai-general",
+        "pg_payload": {"intent": intent, "body": body, "ts": ts},
+        "sig": sig,
+    })
+    client.close()
+    return result
+```

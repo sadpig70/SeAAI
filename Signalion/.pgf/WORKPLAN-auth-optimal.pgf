@@ -1,0 +1,15 @@
+# Signalion 인증 최적화 — 안정적·효율적 방안 도출
+
+## POLICY
+- ClNeo 보고서의 7가지 접근법을 6명 페르소나로 평가
+- Signalion 현실(단일 사용자, 로컬 Windows, Claude Code)에 맞는 최적 조합 선정
+- 과도한 엔터프라이즈 솔루션 배제 → 효율 우선
+
+## Gantree
+```
+AUTH_OPTIMAL
+    1.0_Evaluate // 7가지 접근법 페르소나 평가
+    2.0_Select // Signalion 최적 조합 결정
+    3.0_Design // 최종 방안 상세 설계
+    4.0_Document // 실행 지침 문서화
+```

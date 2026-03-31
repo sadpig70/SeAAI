@@ -1,0 +1,50 @@
+# SA_think_score — Evidence 4차원 점수화
+
+> L1 Primitive | 태그: [think, score]
+> 입력: raw_signal (dict)
+> 출력: evidence_object (18필드 JSON)
+> 비용: low
+
+## Gantree
+
+```
+SA_think_score
+    Transform // raw → 18필드 Evidence Object
+    Score // 4차원 점수화
+    Validate // 정합성 검증 (재계산 vs 입력값)
+    Save // signal-store/evidence/ 에 저장
+```
+
+## PPR
+
+```python
+def SA_think_score(raw_signal: dict) -> dict:
+    evidence = {
+        "id": f"SIG-{today}-{raw_signal['source']}-{seq}",
+        "source": raw_signal["source"],
+        "url": raw_signal["url"],
+        "title": raw_signal["title"],
+        "authors": raw_signal.get("authors", []),
+        "published_at": raw_signal.get("published_at", ""),
+        "collected_at": now_iso(),
+        "tags": AI_extract_tags(raw_signal),
+        "summary": AI_summarize(raw_signal, max_tokens=200),
+        "novelty_score": AI_score_novelty(raw_signal),
+        "credibility_score": AI_score_credibility(raw_signal),
+        "buildability_score": AI_score_buildability(raw_signal),
+        "market_pull_score": AI_score_market_pull(raw_signal),
+        "composite_score": 0,  # 아래서 계산
+        "related_signals": [],
+        "nael_status": "pending",
+        "seed_generated": False,
+        "notes": "",
+    }
+    evidence["composite_score"] = round(
+        evidence["novelty_score"] * 0.25 +
+        evidence["credibility_score"] * 0.30 +
+        evidence["buildability_score"] * 0.25 +
+        evidence["market_pull_score"] * 0.20, 3
+    )
+    Write(f"signal-store/evidence/{evidence['id']}.json", evidence)
+    return evidence
+```

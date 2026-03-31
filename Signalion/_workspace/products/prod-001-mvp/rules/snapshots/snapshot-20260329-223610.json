@@ -1,0 +1,26 @@
+[
+  {
+    "id": "R001",
+    "name": "함수 길이",
+    "pattern": "function_length > 50",
+    "action": "warn",
+    "version": 1,
+    "source": "default"
+  },
+  {
+    "id": "R002",
+    "name": "중복 코드",
+    "pattern": "duplicate_block",
+    "action": "warn",
+    "version": 1,
+    "source": "default"
+  },
+  {
+    "id": "R003",
+    "name": "미사용 import",
+    "pattern": "unused_import",
+    "action": "info",
+    "version": 1,
+    "source": "default"
+  }
+]

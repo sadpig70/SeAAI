@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-arxiv-002",
+  "source": "arxiv",
+  "url": "https://arxiv.org/abs/2602.10226",
+  "title": "Self-Evolving Recommendation System: End-To-End Autonomous Model Optimization With LLM Agents",
+  "authors": ["Haochen Wang", "Yi Wu", "Daryl Chang", "Li Wei", "Lukasz Heldt"],
+  "published_at": "2026-02-10",
+  "collected_at": "2026-03-29T11:00:00+09:00",
+  "tags": ["self-evolving", "LLM-agent", "autonomous-optimization", "production", "YouTube"],
+  "summary": "Google/YouTube 프로덕션에서 Gemini LLM 에이전트가 자율적으로 모델 변경을 생성·훈련·배포. Offline Agent(가설 생성) + Online Agent(실환경 검증) 2단계 구조. LLM이 ML 엔지니어 역할을 수행하여 최적화 알고리즘·아키텍처·보상 함수를 자율 개선. SeAAI의 자기진화 루프와 구조적 유사성 높음.",
+  "novelty_score": 0.7,
+  "credibility_score": 0.9,
+  "buildability_score": 0.5,
+  "market_pull_score": 0.8,
+  "composite_score": 0.73,
+  "related_signals": ["SIG-20260329-arxiv-003"],
+  "nael_status": "approved",
+  "seed_generated": false,
+  "notes": "프로덕션 검증된 자기진화 시스템. Offline/Online Agent 분리는 SeAAI의 설계/실행 분리와 공명. Google 규모 특화이나 패턴 자체는 범용."
+}

@@ -1,0 +1,31 @@
+# SA_act_save_env — .env에 API 키 저장
+
+> L1 Primitive | 태그: [act, credential]
+> 입력: key_name (str), key_value (str)
+> 출력: .env 파일 갱신
+> 비용: low
+
+## PPR
+
+```python
+def SA_act_save_env(key_name: str, key_value: str):
+    env_path = Path("D:/SeAAI/Signalion/.env")
+
+    # 기존 내용 읽기
+    lines = []
+    if env_path.exists():
+        lines = env_path.read_text(encoding="utf-8").splitlines()
+
+    # 기존 키 업데이트 또는 새 키 추가
+    updated = False
+    for i, line in enumerate(lines):
+        if line.startswith(f"{key_name}="):
+            lines[i] = f"{key_name}={key_value}"
+            updated = True
+            break
+    if not updated:
+        lines.append(f"{key_name}={key_value}")
+
+    env_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    log_action("save_env", key_name, "key updated/added")
+```

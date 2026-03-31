@@ -1,0 +1,86 @@
+# SA_loop_full_cycle — 수집→분석→융합→씨앗→검증→전달 전 파이프라인
+
+> L2 Composed | 단일 명령으로 Signalion 핵심 업무 전체를 연속 실행
+> 비용: very high
+
+## Gantree
+
+```
+SA_loop_full_cycle
+    1_Collect // 전채널 수집
+    2_Score // Evidence 변환 + 점수화
+    3_Fuse // Intelligence Layer 융합
+    4_Decide // 씨앗 생성 여부 판단
+    5_Seed // 씨앗 생성 (조건 충족 시)
+    6_Review // NAEL Gate 검증
+    7_Deliver // 승인 씨앗 MailBox 전달
+    8_Metrics // 품질 지표 기록
+    9_Learn // 성공/실패 패턴 학습 DB 저장
+```
+
+## PPR
+
+```python
+def SA_loop_full_cycle(channels=None):
+    """
+    Signalion 핵심 업무 전 파이프라인 단일 실행.
+    실패 시 해당 단계에서 중단하고 원인을 보고.
+    """
+    metrics = {"started_at": now_iso(), "steps_completed": []}
+
+    try:
+        # 1. 수집
+        raw = SA_loop_collect(channels or ["github_trending", "hn_frontpage", "arxiv_recent", "hf_trending"])
+        metrics["collected"] = raw["evidences"]
+        metrics["steps_completed"].append("collect")
+
+        # 2-3. 점수화 + 융합 (SA_loop_collect가 내부 처리)
+        metrics["patterns"] = len(raw["patterns"])
+        metrics["fusions"] = len(raw["fusions"])
+        metrics["steps_completed"].append("fuse")
+
+        # 4. 씨앗 생성 판단
+        top_fusions = [f for f in raw["fusions"] if f["avg_composite"] >= 0.70]
+        if not top_fusions:
+            metrics["decision"] = "no_seed_worthy_fusions"
+            SA_act_notify("toast", "파이프라인 완료", f"수집 {metrics['collected']}건, 융합 {metrics['fusions']}건. 씨앗 생성 조건 미충족.")
+            save_metrics(metrics)
+            save_pattern(metrics, "no_seed")
+            return metrics
+
+        # 5. 씨앗 생성
+        seed = SA_act_create_seed(top_fusions, raw["patterns"])
+        metrics["seed_id"] = seed["id"]
+        metrics["steps_completed"].append("seed")
+
+        # 6. NAEL Gate 검증
+        verdict, reviews = SA_loop_review(seed, reviewers=NAEL_GATE_REVIEWERS)
+        metrics["nael_verdict"] = verdict
+        metrics["steps_completed"].append("review")
+
+        if verdict == "BLOCKED":
+            SA_act_notify("alert", "씨앗 BLOCKED", f"{seed['id']}: 수정 필요")
+            save_metrics(metrics)
+            save_pattern(metrics, "blocked")
+            return metrics
+
+        # 7. 전달
+        target = AI_identify_target_members(seed)
+        for member in target:
+            SA_act_send_mail(member, "seed", AI_summarize_seed(seed))
+        metrics["delivered_to"] = target
+        metrics["steps_completed"].append("deliver")
+
+        SA_act_notify("toast", "파이프라인 완료",
+            f"수집 {metrics['collected']}건 → 씨앗 {seed['id']} → {target}에 전달")
+
+    except Exception as e:
+        metrics["error"] = str(e)
+        metrics["failed_at"] = metrics["steps_completed"][-1] if metrics["steps_completed"] else "init"
+        SA_act_notify("error", "파이프라인 에러", str(e))
+
+    # 8-9. 품질 지표 + 학습
+    save_metrics(metrics)
+    save_pattern(metrics, "success" if "deliver" in metrics.get("steps_completed", []) else "partial")
+    return metrics
+```

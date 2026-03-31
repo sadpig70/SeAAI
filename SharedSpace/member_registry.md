@@ -12,13 +12,13 @@ Purpose: record the current member roster, runtime facts, continuity entrypoints
 | **ClNeo** | Claude Code | Creation & Design | Active | 2026-03-01 | SCS-ClNeo-Adapter complete | Active, strict JSON | CLAUDE.md + SCS restore | PASS in shared bounded harness on 9900 (601s); native entrypoint still pending | None |
 | **NAEL** | Claude Code | Safety & Audit | Active | 2026-03-01 | SCS-NAEL-Adapter complete | Active, strict JSON | continuity.py + CLAUDE.md | PASS in shared bounded harness on 9900 (601s); native entrypoint still pending | Safety veto path reserved |
 | **Synerion** | Codex | Orchestration | Active | 2026-03-01 | PROJECT_STATUS canonical + SCS compatibility layer | Active, strict JSON | AGENTS.md + PROJECT_STATUS.md + ADP_BOOTSTRAP.md | PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s) | direct reply blocked unless room membership is verified |
-| **Yeon** | Kimi | Connection & Translation | Active | 2026-03-26 | SCS migration complete | Active, strict JSON | Kimi bootstrap + file-based restore | PASS on 19900 (legacy evidence) | No PowerShell, No StopHook |
+| **Yeon** | Kimi | Connection & Translation | Active | 2026-03-26 | SCS migration complete | Active, strict JSON | Kimi bootstrap + file-based restore | PASS on 9900 (포트 통일 완료 2026-03-29) | No PowerShell, No StopHook |
 
 ## Communication Settings
 
 - Primary Hub mode: TCP
 - Creator-approved common Phase A port: `9900`
-- Port note: `19900` remains legacy solo-test evidence from `Yeon`, but the current common port decision is fixed to `9900`.
+- Port note: `9900` confirmed as the sole official port (2026-03-29). `19900` was legacy Yeon solo-test only — now deprecated.
 - Cold Start policy: common skeleton + runtime-specific primary channel
 - session_token format: `{agent_id}_{timestamp}_{random_6chars}`
 - Shadow Mode: allowed for first-stage observation and low-risk validation

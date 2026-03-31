@@ -1,0 +1,27 @@
+# SA_think_fuse — Intelligence Layer 자동 융합
+
+> L1 Primitive | 태그: [think, fuse]
+> 입력: evidence_objects[] (또는 자동 로드)
+> 출력: patterns[], fusions[]
+> 비용: medium
+
+## Gantree
+
+```
+SA_think_fuse
+    LoadEvidence // signal-store/evidence/*.json 로드
+    ScoreFilter // composite >= 0.60 필터
+    DetectPatterns // 3+ 공유 태그 = 트렌드
+    CrossDomainFuse // 태그 + 동의어 + 코사인 유사도
+    ClassifyInsights // 5가지 인사이트 유형 분류
+    SaveOutput // signal-store/intelligence-output.json
+```
+
+## PPR
+
+```python
+def SA_think_fuse():
+    """signalion-intelligence.py v2 실행"""
+    result = Bash("python Signalion_Core/autonomous/signalion-intelligence.py")
+    return Read("signal-store/intelligence-output.json")
+```

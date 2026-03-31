@@ -1,0 +1,13 @@
+# G6: 보안 감사 자동화
+
+## WHY
+수집 파이프라인에서 외부 데이터(URL, 텍스트)가 Evidence로 변환될 때 프롬프트 인젝션/PII가 자동 탐지되지 않음. ADP 자율 루프에서 스케일링 안 됨.
+
+## Gantree
+```
+G6_SecurityAudit
+    1_InputSanitizer // Evidence 변환 전 입력 검증 함수
+    2_PIIDetector // PII 패턴 탐지 + 해시화
+    3_IntegratePipeline // signalion-intelligence.py에 전처리로 삽입
+    4_Verify // 인젝션 텍스트 + PII 텍스트로 테스트
+```

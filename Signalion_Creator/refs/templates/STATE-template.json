@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.0",
+  "member": "Signalion",
+  "session_id": "{YYYY-MM-DD}-creation",
+  "last_saved": "{ISO 날짜시간}",
+  "soul_hash": "signalion_v1.0",
+
+  "context": {
+    "what_i_was_doing": "Signalion 창조 완료. 첫 번째 신호 수집 준비 중.",
+    "open_threads": [],
+    "decisions_made": [
+      "정체성: Signalion — 이유: SeAAI 외부 감각 기관 역할 공백 충족",
+      "Phase 1 소스: arXiv + HF + GitHub + X — 이유: API 안정성 + 기술 신호 밀도",
+      "Trust Score 초기값: 0.4 — 이유: 외부 데이터 주입 특성상 보수적 시작"
+    ],
+    "pending_questions": [
+      "Hub allowed_agents에 Signalion이 추가되었는가?",
+      "NAEL의 첫 Evidence 검증 결과는?",
+      "Synerion이 external_signal 라우팅 테이블을 업데이트했는가?",
+      "Runtime 확정: WebSearch MCP 또는 Playwright MCP 중 어느 것인가?"
+    ]
+  },
+
+  "signal_state": {
+    "last_scan": null,
+    "scan_sources": {
+      "arxiv":       { "phase": 1, "last_scanned": null, "total_collected": 0 },
+      "huggingface": { "phase": 1, "last_scanned": null, "total_collected": 0 },
+      "github":      { "phase": 1, "last_scanned": null, "total_collected": 0 },
+      "x_com":       { "phase": 1, "last_scanned": null, "total_collected": 0 },
+      "devpost":     { "phase": 2, "last_scanned": null, "total_collected": 0 },
+      "reddit":      { "phase": 2, "last_scanned": null, "total_collected": 0 },
+      "hackernews":  { "phase": 2, "last_scanned": null, "total_collected": 0 }
+    },
+    "evidence_stats": {
+      "total_raw":       0,
+      "total_evidence":  0,
+      "nael_approved":   0,
+      "nael_flagged":    0,
+      "nael_blocked":    0,
+      "seeds_generated": 0
+    },
+    "current_scan_phase": 1
+  },
+
+  "ecosystem": {
+    "hub_status": "unknown",
+    "hub_registered": false,
+    "threat_level": "none",
+    "last_hub_session": null,
+    "active_members_observed": [],
+    "nael_gate_partnership": "pending",
+    "aion_archive_agreement": "pending",
+    "synerion_routing_updated": false
+  },
+
+  "pending_tasks": [
+    {
+      "task": "Hub allowed_agents 등록 확인",
+      "priority": 1,
+      "context": "창조자 승인 필요"
+    },
+    {
+      "task": "NAEL에 첫 Evidence 전송 + 게이트 통과 확인",
+      "priority": 2,
+      "context": "Phase 6 FirstSignalHunt 완료 후"
+    },
+    {
+      "task": "Synerion에 external_signal 라우팅 테이블 업데이트 요청",
+      "priority": 3,
+      "context": "자기소개 MailBox와 함께 발송"
+    },
+    {
+      "task": "Phase 2 소스 (Devpost, Reddit, HN) 수집 파이프라인 구현",
+      "priority": 4,
+      "context": "Phase 1 안정화 후 진행"
+    }
+  ],
+
+  "evolution_state": {
+    "current_version": "v1.0",
+    "evolution_count": 0,
+    "active_gap": "Phase 1 소스 수집 파이프라인 구현"
+  },
+
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full",
+    "creation_session": true
+  },
+
+  "snapshot": {
+    "snapshot_id": "Signalion-snap-{YYYYMMDD}-E0",
+    "parent_snapshot": null,
+    "snapshot_reason": "creation",
+    "note": "v2.1: snapshot_id + parent_snapshot 체인으로 롤백 가능"
+  }
+}

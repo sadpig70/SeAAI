@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "description": "Signalion 세션 간 학습 패턴 DB. 성공/실패 패턴을 기계가 읽을 수 있는 형태로 축적.",
+  "patterns": [
+    {
+      "id": "PAT-001",
+      "date": "2026-03-29",
+      "type": "collection_strategy",
+      "outcome": "success",
+      "pattern": "3개 키워드 병렬 검색이 단일 키워드보다 다양한 결과",
+      "keywords_used": ["self-evolving multi-agent", "agent communication protocol", "LLM self-improvement"],
+      "yield": {"total": 5, "high_quality": 3},
+      "lesson": "키워드를 관점별로 분리하면 크로스 도메인 융합 확률 상승"
+    },
+    {
+      "id": "PAT-002",
+      "date": "2026-03-29",
+      "type": "nael_gate",
+      "outcome": "learned",
+      "pattern": "SEED-001 첫 제출 시 4/4 flag → 범위 축소 후 재심 4/4 pass",
+      "lesson": "씨앗 범위를 과감히 축소하면 NAEL 통과율 급증. 큰 제안보다 작고 안전한 제안이 통과."
+    },
+    {
+      "id": "PAT-003",
+      "date": "2026-03-29",
+      "type": "extraction_method",
+      "outcome": "success",
+      "pattern": "DOM 스냅샷 파싱보다 browser_evaluate JS 직접 실행이 정확도 100%",
+      "lesson": "스냅샷 파싱은 노이즈 많음. JS 직접 실행을 표준으로."
+    },
+    {
+      "id": "PAT-004",
+      "date": "2026-03-29",
+      "type": "intelligence",
+      "outcome": "partial",
+      "pattern": "태그 매칭만으로 수작업 융합 67% 재현. 동의어+코사인 추가 후 향상.",
+      "lesson": "v1 태그 매칭은 한계. 동의어 맵 + 의미 유사도 필수."
+    },
+    {
+      "id": "PAT-005",
+      "date": "2026-03-30",
+      "type": "product_review",
+      "outcome": "learned",
+      "pattern": "3개 제품 모두 1차 NAEL BLOCK → 보안 레이어 추가 후 전부 통과",
+      "lesson": "초기 설계에 Security 레이어를 기본 포함해야. 사후 추가보다 사전 설계가 효율적."
+    },
+    {
+      "id": "PAT-006",
+      "date": "2026-03-30",
+      "type": "auth",
+      "outcome": "success",
+      "pattern": "브라우저로 X Developer Console 접속 → 폼 자동 작성 → API 키 발급 → .env 저장",
+      "lesson": "브라우저 자동화로 API 키 발급 전 과정 자동화 가능. 로그인만 사용자 지원."
+    }
+  ],
+  "query_examples": {
+    "collection": "patterns[?type=='collection_strategy']",
+    "failures": "patterns[?outcome=='failure']",
+    "recent": "patterns | sort_by(@, &date) | [-3:]"
+  }
+}

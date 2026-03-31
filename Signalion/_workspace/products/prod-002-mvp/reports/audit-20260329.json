@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-03-29T22:36:04.153555",
+  "total_vulns": 5,
+  "by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 3,
+    "MEDIUM": 2,
+    "LOW": 0
+  },
+  "by_vuln_type": {
+    "ACV-001": {
+      "name": "Trust Propagation Leak",
+      "owasp": "ML01",
+      "count": 3
+    },
+    "ACV-003": {
+      "name": "Agent Card Spoofing",
+      "owasp": "ML06",
+      "count": 1
+    },
+    "ACV-002": {
+      "name": "Callback Forgery",
+      "owasp": "ML02",
+      "count": 1
+    }
+  },
+  "blast_radius": {
+    "compromised": "AgentA",
+    "affected_agents": [
+      "AgentB",
+      "AgentC"
+    ],
+    "total_affected": 2,
+    "permissions_exposed": [
+      "execute",
+      "read",
+      "write"
+    ],
+    "blast_severity": "HIGH"
+  }
+}

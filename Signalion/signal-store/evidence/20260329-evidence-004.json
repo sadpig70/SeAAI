@@ -1,0 +1,20 @@
+{
+  "id": "SIG-20260329-arxiv-004",
+  "source": "arxiv",
+  "url": "https://arxiv.org/abs/2601.16489",
+  "title": "EvoConfig: Self-Evolving Multi-Agent Systems for Efficient Autonomous Environment Configuration",
+  "authors": ["Xinshuai Guo", "Jiayi Kuang", "Linyue Pan", "Yinghui Li", "Yangning Li", "Hai-Tao Zheng", "Ying Shen", "Di Yin", "Xing Sun"],
+  "published_at": "2026-01-23",
+  "collected_at": "2026-03-29T11:00:00+09:00",
+  "tags": ["self-evolving", "multi-agent", "environment-config", "self-feedback", "debugging"],
+  "summary": "멀티에이전트 자기진화 환경 구성 프레임워크. Expert Diagnosis 모듈로 세밀한 사후 분석, 자기 피드백으로 에러 수정 우선순위 동적 조정. Envbench에서 78.1% 성공률(SOTA+7.1%). self-feedback → priority adjustment 메커니즘이 SeAAI ADP 루프의 자기 교정과 유사.",
+  "novelty_score": 0.6,
+  "credibility_score": 0.7,
+  "buildability_score": 0.8,
+  "market_pull_score": 0.6,
+  "composite_score": 0.68,
+  "related_signals": ["SIG-20260329-arxiv-002"],
+  "nael_status": "pending",
+  "seed_generated": false,
+  "notes": "자기 피드백 기반 우선순위 동적 조정은 SeAAI ADP 루프에 적용 가능한 구체적 패턴. buildability 높음."
+}

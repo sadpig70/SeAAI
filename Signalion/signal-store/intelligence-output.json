@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-03-29T21:06:20.511486",
+  "input_count": 13,
+  "filtered_count": 13,
+  "patterns": [
+    {
+      "type": "Pattern",
+      "tag": "self-evolving",
+      "evidence_count": 5,
+      "evidence_ids": [
+        "SIG-20260329-arxiv-002",
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-arxiv-005",
+        "SIG-20260329-github-001",
+        "SIG-20260329-hn-003"
+      ],
+      "avg_composite": 0.708,
+      "strength": "strong"
+    },
+    {
+      "type": "Pattern",
+      "tag": "multi-agent",
+      "evidence_count": 4,
+      "evidence_ids": [
+        "SIG-20260329-arxiv-001",
+        "SIG-20260329-arxiv-003",
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-arxiv-005"
+      ],
+      "avg_composite": 0.693,
+      "strength": "strong"
+    },
+    {
+      "type": "Pattern",
+      "tag": "A2A",
+      "evidence_count": 3,
+      "evidence_ids": [
+        "SIG-20260329-arxiv-001",
+        "SIG-20260329-github-002",
+        "SIG-20260329-hn-002"
+      ],
+      "avg_composite": 0.733,
+      "strength": "moderate"
+    }
+  ],
+  "fusions": [
+    {
+      "type": "FusedInsight",
+      "fusion_type": "cross_platform",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-001",
+        "SIG-20260329-github-002"
+      ],
+      "shared_tags": [
+        "A2A",
+        "agent-protocol"
+      ],
+      "avg_composite": 0.74,
+      "platforms": [
+        "arxiv",
+        "github"
+      ],
+      "insight": "Cross-domain: arxiv×github on [A2A, agent-protocol]"
+    },
+    {
+      "type": "SemanticFusion",
+      "fusion_type": "semantic",
+      "evidence_pair": [
+        "SIG-20260329-github-001",
+        "SIG-20260329-hn-001"
+      ],
+      "shared_tags": [
+        "open-source"
+      ],
+      "synonym_overlap": 2,
+      "text_similarity": 0.054,
+      "avg_composite": 0.775,
+      "platforms": [
+        "github",
+        "hn"
+      ],
+      "insight": "Semantic: github×hn syn=2 sim=0.05"
+    },
+    {
+      "type": "SemanticFusion",
+      "fusion_type": "semantic",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-github-001"
+      ],
+      "shared_tags": [
+        "self-evolving"
+      ],
+      "synonym_overlap": 3,
+      "text_similarity": 0.136,
+      "avg_composite": 0.715,
+      "platforms": [
+        "arxiv",
+        "github"
+      ],
+      "insight": "Semantic: arxiv×github syn=3 sim=0.14"
+    },
+    {
+      "type": "SemanticFusion",
+      "fusion_type": "semantic",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-005",
+        "SIG-20260329-github-001"
+      ],
+      "shared_tags": [
+        "self-evolving"
+      ],
+      "synonym_overlap": 2,
+      "text_similarity": 0.132,
+      "avg_composite": 0.695,
+      "platforms": [
+        "arxiv",
+        "github"
+      ],
+      "insight": "Semantic: arxiv×github syn=2 sim=0.13"
+    },
+    {
+      "type": "FusedInsight",
+      "fusion_type": "intra_platform",
+      "evidence_pair": [
+        "SIG-20260329-arxiv-004",
+        "SIG-20260329-arxiv-005"
+      ],
+      "shared_tags": [
+        "multi-agent",
+        "self-evolving"
+      ],
+      "avg_composite": 0.66,
+      "platforms": [
+        "arxiv"
+      ],
+      "insight": "Intra-domain: arxiv×arxiv on [multi-agent, self-evolving]"
+    }
+  ]
+}
