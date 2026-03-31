@@ -46,3 +46,21 @@ desktop.ini
 
 # --- Author Space---
 sadpig70/
+# --- Secrets & API keys ---
+.env
+*.env
+**/.env
+*.key
+*.pem
+credentials*
+
+# --- Python cache ---
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# --- Test workspace (temporary) ---
+ClNeo/_workspace/
+
+# --- Bulletin messages ---
+MailBox/_bulletin/
