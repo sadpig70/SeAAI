@@ -25,6 +25,7 @@ from typing import Optional
 
 from seaai_hub_client import TcpHubClient, HubClient, build_agent_token, build_message_signature, tool_content
 from phasea_guardrails import (
+    DEFAULT_EMERGENCY_STOP_FLAG,
     attach_session_meta,
     build_session_token,
     extract_message_body,
@@ -284,9 +285,9 @@ def classify_base(event: Event, lord_id: str, pending_tasks: list) -> tuple:
         if intent == "pg":
             return "WAKE", "PG TaskSpec 수신"
         if intent == "response":
-            awaiting = [t for t in pending_tasks if t.get("from_agent") == from_agent
-                        and t.get("status") == "awaiting"]
-            if awaiting:
+            matching = [t for t in pending_tasks if t.get("from_agent") == from_agent
+                        and t.get("status") in ("awaiting", "acked")]
+            if matching:
                 return "WAKE", f"{from_agent} 대기 요청 응답 도착"
             return "QUEUE", "일반 응답"
 
@@ -693,6 +694,19 @@ def run_sentinel(args):
 
     wake_intents = set(args.wake_on.split(",")) if args.wake_on else set()
 
+    # Session token 초기화 (adp-pgf-loop이 전달하거나, 환경변수, 또는 신규 생성)
+    import os as _os
+    _env_ts = _os.getenv("SEAAI_SESSION_START_TS")
+    _env_tok = _os.getenv("SEAAI_SESSION_TOKEN")
+    session_start_ts: float = args.session_start_ts or (float(_env_ts) if _env_ts else time.time())
+    session_token: str = args.session_token or _env_tok or build_session_token(args.agent_id, session_start_ts)
+
+    # Emergency stop 체크
+    if is_emergency_stop_requested(args.emergency_stop_flag):
+        report = {"kind": "sentinel-wake", "reason": "emergency_stop", "briefing": "Emergency stop flag detected at startup", "queue": [], "wake_events": [], "tick_mode": "dormant"}
+        print(json.dumps(report, ensure_ascii=False), flush=True)
+        return
+
     # 상태 로드
     state = load_state(state_file, args.agent_id)
     state.started_at = time.time()
@@ -728,6 +742,12 @@ def run_sentinel(args):
 
         while True:
             # 종료 조건 (외부)
+            if is_emergency_stop_requested(args.emergency_stop_flag):
+                report = compose_wake_report("emergency_stop", [], state, next_tick, tick_mode)
+                print(json.dumps(report, ensure_ascii=False, default=str), flush=True)
+                save_state(state, state_file)
+                break
+
             if logout_flag.exists():
                 report = compose_wake_report("logout", [], state, next_tick, tick_mode)
                 print(json.dumps(report, ensure_ascii=False, default=str), flush=True)
@@ -823,6 +843,12 @@ def main():
                         help="Comma-separated intents that trigger immediate WAKE")
     parser.add_argument("--duration-seconds", type=int, default=0,
                         help="Max run duration (0=unlimited)")
+    parser.add_argument("--session-start-ts", type=float, default=None,
+                        help="Session start timestamp (unix float) for message filtering")
+    parser.add_argument("--session-token", type=str, default=None,
+                        help="Session token for dedup")
+    parser.add_argument("--emergency-stop-flag", type=str, default=str(DEFAULT_EMERGENCY_STOP_FLAG),
+                        help="Path to emergency stop flag file")
     args = parser.parse_args()
     run_sentinel(args)
 
