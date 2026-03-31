@@ -133,8 +133,10 @@ def build_agent_token(agent_id):
     return hmac.new(SHARED_SECRET, agent_id.encode("utf-8"), hashlib.sha256).hexdigest()
 
 
-def build_message_signature(body, ts_text):
+def build_message_signature(body, ts):
+    """Sign message body + timestamp. Canonical ts: integer milliseconds."""
+    ts_millis = str(int(float(ts) * 1000))
     digest = hashlib.sha256()
     digest.update(body.encode("utf-8"))
-    digest.update(ts_text.encode("utf-8"))
+    digest.update(ts_millis.encode("utf-8"))
     return hmac.new(SHARED_SECRET, digest.digest(), hashlib.sha256).hexdigest()

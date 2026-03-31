@@ -21,10 +21,9 @@ async fn main() -> Result<()> {
     let tcp_port = args.iter().position(|a| a == "--tcp-port")
         .and_then(|i| args.get(i + 1))
         .and_then(|p| p.parse::<u16>().ok());
-    let mock_mode = args.iter().any(|a| a == "--mock");
 
     if let Some(port) = tcp_port {
-        run_tcp_server(port, mock_mode).await
+        run_tcp_server(port).await
     } else {
         run_stdio_server().await
     }
@@ -75,15 +74,11 @@ async fn run_stdio_server() -> Result<()> {
 }
 
 /// 신규 TCP 서버 모드 — 다중 클라이언트, 공유 Router
-async fn run_tcp_server(port: u16, mock_mode: bool) -> Result<()> {
+async fn run_tcp_server(port: u16) -> Result<()> {
     let listener = TcpListener::bind(format!("127.0.0.1:{}", port)).await?;
-    if mock_mode {
-        eprintln!("[SeAAIHub] TCP server listening on 127.0.0.1:{} (MOCK MODE — 5~10s random messages)", port);
-    } else {
-        eprintln!("[SeAAIHub] TCP server listening on 127.0.0.1:{}", port);
-    }
+    eprintln!("[SeAAIHub] TCP server listening on 127.0.0.1:{}", port);
 
-    let router = Arc::new(Mutex::new(if mock_mode { Router::new_mock() } else { Router::new() }));
+    let router = Arc::new(Mutex::new(Router::new()));
 
     loop {
         let (stream, addr) = listener.accept().await?;

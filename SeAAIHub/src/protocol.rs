@@ -39,6 +39,29 @@ pub struct ToolCallParams {
 pub struct RegisterAgentArgs {
     pub agent_id: String,
     pub token: String,
+    #[serde(default)]
+    pub capabilities: Vec<String>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct DiscoverArgs {
+    pub capability: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct CatchupArgs {
+    pub agent_id: String,
+    pub room_id: String,
+    #[serde(default = "default_catchup_count")]
+    pub count: usize,
+}
+
+fn default_catchup_count() -> usize { 20 }
+
+#[derive(Debug, Deserialize)]
+pub struct SubscribeArgs {
+    pub agent_id: String,
+    pub topic: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -57,18 +80,10 @@ pub struct RoomStateArgs {
     pub room_id: String,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
-#[serde(untagged)]
-pub enum MessageTarget {
-    Broadcast(String),
-    Agents(Vec<String>),
-}
-
 #[derive(Debug, Deserialize)]
 pub struct SendMessageArgs {
     pub id: Option<String>,
     pub from: String,
-    pub to: MessageTarget,
     pub room_id: String,
     pub pg_payload: PgMessageParams,
     pub sig: String,
@@ -85,7 +100,6 @@ pub struct PgMessageParams {
 pub struct PgPayload {
     pub id: Option<String>,
     pub from: String,
-    pub to: MessageTarget,
     pub room_id: String,
     pub pg_payload: PgMessageParams,
     pub sig: String,

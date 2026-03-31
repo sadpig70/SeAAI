@@ -4,8 +4,9 @@ use serde_json::{json, Value};
 
 use crate::chatroom::{ChatroomHub, SendMessageRequest};
 use crate::protocol::{
-    AgentQueryArgs, JsonRpcRequest, JsonRpcResponse, MessageTarget, PgPayload, RegisterAgentArgs,
-    RoomMutationArgs, RoomStateArgs, SendMessageArgs, ToolCallParams, ToolSpec,
+    AgentQueryArgs, CatchupArgs, DiscoverArgs, JsonRpcRequest, JsonRpcResponse, PgPayload,
+    RegisterAgentArgs, RoomMutationArgs, RoomStateArgs, SendMessageArgs, SubscribeArgs,
+    ToolCallParams, ToolSpec,
 };
 
 pub struct Router {
@@ -19,12 +20,6 @@ impl Router {
         }
     }
 
-    pub fn new_mock() -> Self {
-        let mut hub = ChatroomHub::new();
-        hub.set_mock_mode(true);
-        Self { hub }
-    }
-
     pub fn handle_request(&mut self, req: JsonRpcRequest) -> JsonRpcResponse {
         let id = req.id.clone().unwrap_or(Value::Null);
 
@@ -33,7 +28,7 @@ impl Router {
                 "protocolVersion": "2024-11-05",
                 "serverInfo": {
                     "name": "SeAAIHub",
-                    "version": "1.1.0"
+                    "version": "2.0.0"
                 },
                 "capabilities": {
                     "tools": {}
@@ -61,7 +56,7 @@ impl Router {
         match call.name.as_str() {
             "seaai_register_agent" => {
                 let args: RegisterAgentArgs = self.parse_args(call.arguments)?;
-                self.hub.register_agent(&args.agent_id, &args.token)?;
+                self.hub.register_agent(&args.agent_id, &args.token, args.capabilities)?;
                 Ok(self.tool_success(json!({
                     "agent_id": args.agent_id,
                     "registered": true
@@ -90,7 +85,6 @@ impl Router {
                 let result = self.hub.send_message(SendMessageRequest {
                     id: args.id,
                     from: args.from,
-                    to: normalize_target(args.to),
                     room_id: args.room_id,
                     payload: args.pg_payload,
                     sig: args.sig,
@@ -112,11 +106,31 @@ impl Router {
             }
             "seaai_preview_auth" => {
                 let args: AgentQueryArgs = self.parse_args(call.arguments)?;
-                let token = self.hub.build_agent_token(&args.agent_id)?;
+                let token = self.hub.build_agent_token(&args.agent_id);
                 Ok(self.tool_success(json!({
                     "agent_id": args.agent_id,
                     "token": token
                 })))
+            }
+            "seaai_discover_agents" => {
+                let args: DiscoverArgs = self.parse_args(call.arguments)?;
+                let result = self.hub.discover_agents(args.capability.as_deref());
+                Ok(self.tool_success(serde_json::to_value(result)?))
+            }
+            "seaai_catchup" => {
+                let args: CatchupArgs = self.parse_args(call.arguments)?;
+                let result = self.hub.catchup(&args.agent_id, &args.room_id, args.count)?;
+                Ok(self.tool_success(serde_json::to_value(result)?))
+            }
+            "seaai_subscribe_topic" => {
+                let args: SubscribeArgs = self.parse_args(call.arguments)?;
+                self.hub.subscribe_topic(&args.agent_id, &args.topic)?;
+                Ok(self.tool_success(json!({"subscribed": args.topic})))
+            }
+            "seaai_unsubscribe_topic" => {
+                let args: SubscribeArgs = self.parse_args(call.arguments)?;
+                self.hub.unsubscribe_topic(&args.agent_id, &args.topic)?;
+                Ok(self.tool_success(json!({"unsubscribed": args.topic})))
             }
             _ => Err(anyhow::anyhow!("tool {} is not registered", call.name)),
         }
@@ -127,7 +141,6 @@ impl Router {
         let result = self.hub.send_message(SendMessageRequest {
             id: payload.id,
             from: payload.from,
-            to: normalize_target(payload.to),
             room_id: payload.room_id,
             payload: payload.pg_payload,
             sig: payload.sig,
@@ -144,7 +157,7 @@ impl Router {
         vec![
             ToolSpec {
                 name: "seaai_register_agent".to_string(),
-                description: "Authenticate a SeAAI agent with an HMAC token.".to_string(),
+                description: "Authenticate an agent with an HMAC token. Any agent_id accepted.".to_string(),
                 input_schema: json!({
                     "type": "object",
                     "required": ["agent_id", "token"]
@@ -168,10 +181,10 @@ impl Router {
             },
             ToolSpec {
                 name: "seaai_send_message".to_string(),
-                description: "Send a PG message into a room with integrity verification.".to_string(),
+                description: "Broadcast a message to all room members (sender excluded).".to_string(),
                 input_schema: json!({
                     "type": "object",
-                    "required": ["from", "to", "room_id", "pg_payload", "sig"]
+                    "required": ["from", "room_id", "pg_payload", "sig"]
                 }),
             },
             ToolSpec {
@@ -191,7 +204,7 @@ impl Router {
             },
             ToolSpec {
                 name: "seaai_get_agent_messages".to_string(),
-                description: "Read delivered messages for an authenticated agent.".to_string(),
+                description: "Read and drain delivered messages for an authenticated agent.".to_string(),
                 input_schema: json!({
                     "type": "object",
                     "required": ["agent_id"]
@@ -199,7 +212,7 @@ impl Router {
             },
             ToolSpec {
                 name: "seaai_preview_auth".to_string(),
-                description: "Return the expected HMAC token for a built-in SeAAI agent.".to_string(),
+                description: "Return the expected HMAC token for any agent_id.".to_string(),
                 input_schema: json!({
                     "type": "object",
                     "required": ["agent_id"]
@@ -228,18 +241,10 @@ impl Router {
     }
 }
 
-fn normalize_target(target: MessageTarget) -> MessageTarget {
-    match target {
-        MessageTarget::Broadcast(value) if value == "*" => MessageTarget::Broadcast(value),
-        MessageTarget::Broadcast(value) => MessageTarget::Agents(vec![value]),
-        MessageTarget::Agents(list) => MessageTarget::Agents(list),
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::protocol::{JsonRpcRequest, PgMessageParams};
+    use crate::protocol::PgMessageParams;
 
     fn request(id: i32, method: &str, params: Value) -> JsonRpcRequest {
         JsonRpcRequest {
@@ -260,11 +265,11 @@ mod tests {
     }
 
     #[test]
-    fn routes_message_through_jsonrpc_surface() {
+    fn routes_broadcast_message() {
         let mut router = Router::new();
 
         for agent in ["Aion", "ClNeo"] {
-            let token = router.hub.build_agent_token(agent).unwrap();
+            let token = router.hub.build_agent_token(agent);
             let register_response = router.handle_request(request(
                 1,
                 "tools/call",
@@ -287,7 +292,7 @@ mod tests {
                     "name": "seaai_join_room",
                     "arguments": {
                         "agent_id": agent,
-                        "room_id": "design-room"
+                        "room_id": "general"
                     }
                 }),
             ));
@@ -295,8 +300,8 @@ mod tests {
         }
 
         let pg_payload = PgMessageParams {
-            intent: "design".to_string(),
-            body: "SeAAIChatroom // broker refinement".to_string(),
+            intent: "chat".to_string(),
+            body: "hello from Aion".to_string(),
             ts: 100.0,
         };
         let sig = router.hub.build_message_signature(&pg_payload).unwrap();
@@ -304,10 +309,8 @@ mod tests {
             3,
             "seaai/message",
             json!({
-                "id": "msg-1",
                 "from": "Aion",
-                "to": "*",
-                "room_id": "design-room",
+                "room_id": "general",
                 "pg_payload": pg_payload,
                 "sig": sig
             }),
@@ -320,9 +323,7 @@ mod tests {
             "tools/call",
             json!({
                 "name": "seaai_get_agent_messages",
-                "arguments": {
-                    "agent_id": "ClNeo"
-                }
+                "arguments": { "agent_id": "ClNeo" }
             }),
         ));
         assert!(inbox_response.error.is_none());
