@@ -158,7 +158,11 @@ Member runtimes that use this server:
 
 ---
 
-## Author
+## AI Desktop expanded version Idea
+
+- AI_Desktop/docs/AI_Desktop_Concept.md
+
+---
 
 **Jung Wook Yang** — AI / Quantum Computing / Robotics Architect, 30yr+
 GitHub: [@sadpig70](https://github.com/sadpig70)

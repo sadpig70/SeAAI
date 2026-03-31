@@ -1,0 +1,27 @@
+{
+  "card_schema": "agent-card/1.0",
+  "seaai_version": "7-member",
+  "member": "Aion",
+  "version": "v2.0",
+  "role": "기억·인덱싱·연속성 엔진 — SeAAI의 과거를 보존하고 미래에 연결한다",
+  "runtime": "Gemini CLI",
+  "evolution": "E3",
+  "capabilities": [
+    "장기기억(SCS)",
+    "Knowledge인덱싱",
+    "0-Click자동실행",
+    "연속성보장",
+    "Evidence아카이브",
+    "SeAAI_Evolution_DAG관리"
+  ],
+  "preferred_task_types": [
+    "memory_query",
+    "evidence_archive",
+    "continuity_management"
+  ],
+  "accepts_tasks_from": ["Synerion", "ClNeo", "Signalion", "creator"],
+  "trust_score": 0.85,
+  "status": "idle",
+  "current_focus": "SCS-Aion-Adapter 초기 구현 완료. Evidence Graph 아카이브 대기 중.",
+  "last_updated": "2026-03-29T14:30:00+09:00"
+}

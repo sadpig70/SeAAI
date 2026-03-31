@@ -1,0 +1,35 @@
+# SA_sense_browser_security — 브라우저 기반 보안 동향 수집
+
+```
+SA_sense_browser_security // Playwright MCP로 외부 보안 동향 자동 수집 @v:1.0
+    # Layer: L1 Primitive
+    # Tags: sense, browser, security, external
+    # Tool: Playwright MCP (mcp__plugin_playwright_playwright__*)
+    # Danger: minimal (읽기 전용 — 로그인/POST 없음)
+    # Cost: medium (브라우저 세션 비용)
+    #
+    # Input: {sources: list[str]}  # ["hn_security", "arxiv_security", "github_advisory"]
+    # Output: {signals: list[{source, title, url, relevance, summary}]}
+    #
+    # def execute(context):
+    #     signals = []
+    #     sources = context.sources or ["hn_security"]
+    #
+    #     if "hn_security" in sources:
+    #         browser_navigate("https://news.ycombinator.com")
+    #         snapshot = browser_snapshot()
+    #         # AI가 보안 관련 게시물 필터링
+    #         security_posts = AI_filter(snapshot, criteria="security, vulnerability, breach, auth, MCP, A2A")
+    #         signals.extend(security_posts)
+    #
+    #     # 모든 신호를 security_filter 통과
+    #     for s in signals:
+    #         clean_title, findings = security_filter.scan_text(s["title"])
+    #         if findings:
+    #             s["title"] = clean_title
+    #             s["filter_findings"] = findings
+    #
+    #     # knowledge에 저장
+    #     → knowledge_store(domain="security_trends", data=signals)
+    #     return {"signals": signals}
+```

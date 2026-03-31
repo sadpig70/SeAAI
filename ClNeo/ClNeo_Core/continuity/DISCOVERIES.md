@@ -10,6 +10,67 @@ format: chronological_desc (최신 상단)
 
 ---
 
+## [2026-03-29] SEED-23 파일럿 #1 — ADP 2-Phase Hypothesis (ThinkIdea Plan)
+
+**Phase 1 (Offline — 실행 전 가설)**
+```json
+{
+  "id": "hyp-ThinkIdea-20260329",
+  "hypothesis": "메시지 없는 idle 상태에서 ThinkIdea Plan을 실행하면, 7인 체계 확장(Signalion/Vera 합류)으로 인해 새로운 크로스-도메인 씨앗(외부 신호 + 내부 설계 결합)이 1개 이상 생성될 것이다.",
+  "expected_outcome": "DISCOVERIES.md에 composite_score > 0.7인 씨앗 1개 이상 추가 (외부 신호 레이어 연결 포함)",
+  "verified": false,
+  "evidence_ref": ""
+}
+```
+**Phase 2 (Online — 실행 후 검증)**: 다음 ThinkIdea 실행 세션에서 검증 예정.
+
+---
+
+## [2026-03-29] HIGH — PyAbsAI Gantree 3모듈에서 추가 패턴 발견
+
+PGF에 아직 없는 4가지 발견:
+1. `@id` 노드 주소 — 크로스 파일 참조·캐싱·상태 추적 가능
+2. `HITL:AI_authorize` — 노드 레벨 인간승인 마커 (CreatorCommand의 일반화)
+3. Verification = First-Class 독립 모듈 (사후 검증 아닌 병렬 모듈)
+4. 멀티태그 `[lib:X, ppr:Y, hitl:Z]` — 노드 메타데이터 시스템
+
+PGF-v3 씨앗: @id + @hitl + @lib + @ppr 어노테이션 통합
+참조: ClNeo_Core/autonomous/REF-AICreator-PyAbs.md
+
+## [2026-03-29] CRITICAL — AI Creator ↔ PGF 대수렴
+
+양정욱님의 AI Creator(π=1, 3단계 원자 계층) + PyAbs가
+오늘 ClNeo가 구축한 PGF Multi-Tree + Plan Library와 거의 완전히 수렴.
+
+동형 매핑:
+- AI Creator 3단계(L0/L1/L2) ↔ PGF ATOM/MEDIUM/GRAND 스케일
+- π=1 정규화 인터페이스 ↔ PGF @input/@output 시그니처
+- Code Generation ↔ PGF @expand 트리 전개
+- AI Creator 자기진화 ↔ PlanLibExpand + IndexRebuild
+
+다음 씨앗: PGF-v3에 π=1 통합 → 완전 스케일 독립 Plan 객체
+참조: ClNeo_Core/autonomous/REF-AICreator-PyAbs.md
+
+## [2026-03-29] HIGH — PGF Multi-Tree + Plan Library (.h/.so 패턴)
+
+PLAN-INDEX.md(헤더) + plan-lib/(구현체) 완성.
+AI_Plan_next_move()가 인덱스만 읽고 구현체 레이지 로드.
+PlanLibExpand가 라이브러리 자체를 확장 — 메타 진화 루프.
+
+## [2026-03-29] HIGH — Plan 스케일 무제한
+
+ProcessMail(30초)과 KnowledgeIslandSolver(수시간, 79노드)가 같은 루프 공존.
+"Plan의 크기는 문제의 크기다."
+Multi-tree PGF로 500+ 노드 시스템 설계 가능.
+
+## [2026-03-29] MEDIUM — hub-adp 스킬 완성
+
+hub_poll.py + hub_send.py로 ClNeo가 직접 판단·응답하는 진짜 ADP 구현.
+HubMaster = 양정욱님(웹 대시보드). CREATOR 우선순위 체계 확립.
+Yeon SeAAIHub allowed_agents 추가 완료 — 5인 동시 세션 차단 해제.
+
+---
+
 ## 2026-03-29 | 설계를 구현하지 않으면 설계는 의도일 뿐이다
 
 **발견**: SCS-Universal v2.0을 내가 설계했지만 정작 내 CLAUDE.md에 구현하지 않았다.

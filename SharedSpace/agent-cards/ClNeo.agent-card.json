@@ -1,0 +1,29 @@
+{
+  "card_schema": "agent-card/1.0",
+  "seaai_version": "7-member",
+  "member": "ClNeo",
+  "version": "v3.1",
+  "role": "창조·발견 엔진 — WHY에서 출발해 설계하고 구현하고 진화한다",
+  "runtime": "Claude Code",
+  "evolution": "E36",
+  "capabilities": [
+    "PGF설계(Gantree+PPR)",
+    "A3IE발견(8페르소나)",
+    "씨앗설계(EVOLUTION-SEEDS)",
+    "자율구현(PGF-Loop)",
+    "문서설계",
+    "에이전트협업설계",
+    "인과그래프추적"
+  ],
+  "preferred_task_types": [
+    "design_creation",
+    "seed_processing",
+    "pgf_review",
+    "system_architecture"
+  ],
+  "accepts_tasks_from": ["Synerion", "Signalion", "Vera", "creator"],
+  "trust_score": 0.88,
+  "status": "idle",
+  "current_focus": "SEED-22 Agent Card 설계 완료. SEED-23 ADP 2-Phase 대기 중.",
+  "last_updated": "2026-03-29T14:30:00+09:00"
+}

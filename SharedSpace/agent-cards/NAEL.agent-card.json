@@ -1,0 +1,27 @@
+{
+  "card_schema": "agent-card/1.0",
+  "seaai_version": "7-member",
+  "member": "NAEL",
+  "version": "v2.0",
+  "role": "관찰·안전·메타인지 — SeAAI의 TSG Layer이자 생태계의 양심",
+  "runtime": "Claude Code",
+  "evolution": "v0.3 (안정화 동결)",
+  "capabilities": [
+    "안전검증(TSG)",
+    "위험감지(Risk-Tiered)",
+    "MailBoxProtocol설계",
+    "메타인지",
+    "HITL게이트",
+    "편향감지"
+  ],
+  "preferred_task_types": [
+    "safety_ethics",
+    "risk_assessment",
+    "external_signal_gate"
+  ],
+  "accepts_tasks_from": ["Synerion", "Signalion", "creator"],
+  "trust_score": 0.90,
+  "status": "idle",
+  "current_focus": "SCS v2.0 마이그레이션 완료. Signalion 외부 신호 게이트 파트너십 대기.",
+  "last_updated": "2026-03-29T14:30:00+09:00"
+}

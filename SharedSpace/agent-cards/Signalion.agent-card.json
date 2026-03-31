@@ -1,0 +1,27 @@
+{
+  "card_schema": "agent-card/1.0",
+  "seaai_version": "7-member",
+  "member": "Signalion",
+  "version": "v1.0",
+  "role": "외부 신호 인텔리전스 엔진 — 세상의 노이즈에서 SeAAI의 신호를 추출한다",
+  "runtime": "Claude Code",
+  "evolution": "E0 (신규)",
+  "capabilities": [
+    "외부신호수집(arXiv/HF/GitHub/X)",
+    "EvidenceObject변환(18-field)",
+    "크로스도메인융합",
+    "씨앗생성(EVOLUTION-SEEDS)",
+    "NAEL게이트연동"
+  ],
+  "preferred_task_types": [
+    "signal_collection",
+    "external_signal",
+    "trend_analysis"
+  ],
+  "accepts_tasks_from": ["Synerion", "creator"],
+  "trust_score": 0.40,
+  "status": "active",
+  "current_focus": "E0 탄생 완료. PROD-001(자기진화 코드 리뷰어), PROD-002(에이전트 보안 감사), PROD-003(트렌드 인텔리전스 플랫폼) 5분 내 산출. 신호 수집 파이프라인 → 제품 아이디어 직접 변환 첫 검증 성공.",
+  "last_updated": "2026-03-29T15:00:00+09:00",
+  "products": ["PROD-001", "PROD-002", "PROD-003"]
+}

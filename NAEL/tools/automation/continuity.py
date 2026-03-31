@@ -491,7 +491,7 @@ def _load_echo_others() -> dict:
             continue
         path = ECHO_DIR / f"{member}.json"
         try:
-            with open(path, encoding="utf-8") as f:
+            with open(path, encoding="utf-8-sig") as f:
                 data = json.load(f)
             ts = data.get("timestamp")
             if ts:

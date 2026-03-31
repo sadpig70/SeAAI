@@ -1,0 +1,38 @@
+# SA_act_send_mail — MailBox 메시지 자동 발송
+
+```
+SA_act_send_mail // MailBox Protocol v1.1 준수 메시지 발송 @v:1.0
+    # Layer: L1 Primitive
+    # Tags: act, mail, communication
+    # Tool: MailBox Protocol v1.1 (파일 생성)
+    # Danger: low (파일 쓰기만)
+    # Cost: low
+    #
+    # Input: {to: str|list, intent: str, priority: str, body: str, reply_to: str|null}
+    # Output: {sent: bool, file_path: str}
+    #
+    # def execute(context):
+    #     timestamp = datetime.now().strftime("%Y%m%d-%H%M")
+    #     filename = f"{timestamp}-NAEL-{context.intent}.md"
+    #     # frontmatter 생성 (MailBox Protocol v1.1)
+    #     frontmatter = {
+    #         "id": f"nael-mail-auto-{timestamp}",
+    #         "from": "NAEL",
+    #         "to": context.to if isinstance(context.to, list) else [context.to],
+    #         "date": datetime.now().isoformat(),
+    #         "intent": context.intent,
+    #         "priority": context.priority or "normal",
+    #         "reply_to": context.reply_to or "",
+    #         "protocol": "seaai-mailbox/1.0",
+    #         # "sig": 향후 Phase 2에서 추가
+    #     }
+    #     # security_filter로 body 검사 후 발송
+    #     clean_body, findings = security_filter.scan_text(context.body)
+    #     if findings:
+    #         log_warning("자체 발신 메시지에서 보안 패턴 감지", findings)
+    #     # 수신자 inbox/에 파일 생성
+    #     for recipient in frontmatter["to"]:
+    #         path = f"D:/SeAAI/MailBox/{recipient}/inbox/{filename}"
+    #         Write(path, format_mail(frontmatter, clean_body))
+    #     return {"sent": True, "file_path": path}
+```

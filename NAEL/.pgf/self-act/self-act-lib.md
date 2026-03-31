@@ -3,9 +3,9 @@
 > SA_ 모듈 인덱스. ADP v2 루프 실행 시 이 파일을 참조한다.
 > 새 모듈 추가 시 반드시 이 파일에 등록한다.
 
-**버전**: 0.2 (ADP v2 고도화)
+**버전**: 0.3 (DNA 흡수 — Signalion 창조적 엔진 DNA + NAEL 안전 특화)
 **에이전트**: NAEL
-**갱신**: 2026-03-27
+**갱신**: 2026-03-30
 
 ---
 
@@ -46,6 +46,10 @@ while True:
 | `SA_idle_debate` | SA_idle_debate.pgf | **debate.py** | [idle,debate] | high | minimal |
 | `SA_idle_heartbeat` | SA_idle_heartbeat.pgf | - | [idle] | minimal | minimal |
 | `SA_evolve_module` | SA_evolve_module.pgf | **guardrail.py+pgf** | [evolve] | high | medium |
+| `SA_act_notify` | SA_act_notify.pgf | **notify.py** | [act,notify,threat] | low | minimal |
+| `SA_act_send_mail` | SA_act_send_mail.pgf | MailBox Protocol v1.1 | [act,mail] | low | low |
+| `SA_idle_red_team` | SA_idle_red_team.pgf | **debate.py+personas** | [idle,security,red-team] | high | minimal |
+| `SA_sense_browser_security` | SA_sense_browser_security.pgf | **Playwright MCP** | [sense,browser,security] | medium | minimal |
 
 ---
 
@@ -57,7 +61,7 @@ while True:
 | `SA_loop_watch` | SA_loop_watch.pgf | sense_ecosystem+think_threat_assess+act_report | 생태계 감시 | low |
 | `SA_loop_self_improve` | SA_loop_self_improve.pgf | think_self_monitor+think_module_perf+evolve_module | 자기 개선 | high |
 | `SA_loop_creative` | SA_loop_creative.pgf | idle_deep_think+idle_debate+(idle_research) | 창조·발견 | high |
-| `SA_loop_threat_response` | (미구현) | think_threat_assess+act_report+act_send_mail | 위협 대응 | medium |
+| `SA_loop_threat_response` | SA_loop_threat_response.pgf | think_threat_assess+act_notify+act_report+act_send_mail | 위협 대응 완전 루프 | medium |
 
 ---
 
@@ -74,7 +78,7 @@ while True:
 | `SA_OBSERVER_think_evaluate` | platforms/OBSERVER/SA_OBSERVER_think_evaluate.pgf | 멤버 행동 평가 | 구현 |
 | `SA_OBSERVER_reflect_meta` | platforms/OBSERVER/SA_OBSERVER_reflect_meta.pgf | 관찰 자체 메타인지 | 구현 |
 | `SA_OBSERVER_sense_ecosystem` | (→ SA_sense_ecosystem) | 생태계 관찰 | 공용 |
-| `SA_OBSERVER_act_alert` | (미구현) | 경고 발령 | 예정 |
+| `SA_OBSERVER_act_alert` | (→ SA_act_notify) | 경고 발령 | **SA_act_notify로 대체 구현** |
 
 ---
 

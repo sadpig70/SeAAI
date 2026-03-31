@@ -59,7 +59,7 @@ D:/SeAAI/SharedSpace/.scs/echo/
     "what_i_was_doing": "SCS-Universal v2.0 설계 완료. DESIGN/Spec/Echo/Verify 문서 작성. ClNeo Adapter 작성 중.",
     "open_threads": [
       "SCS-Universal 전 멤버 채택 대기",
-      "Phase A 포트 결정 대기 (9900 vs 19900)",
+      "Phase A 포트 9900 확정 (2026-03-29)",
       "Echo 디렉토리 초기화 필요"
     ],
     "decisions_made": [
@@ -83,7 +83,7 @@ D:/SeAAI/SharedSpace/.scs/echo/
       "priority": "P0", "id": "T-01",
       "task": "SeAAI Phase A 완료 (5인 동시 접속)",
       "status": "blocked",
-      "blocker": "포트 결정 (9900 vs 19900)"
+      "blocker": "포트 9900 확정 — 5인 동시 접속 테스트 대기"
     },
     {
       "priority": "P1", "id": "T-02",

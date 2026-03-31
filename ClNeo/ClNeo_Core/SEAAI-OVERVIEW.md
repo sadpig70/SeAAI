@@ -3,18 +3,27 @@
 > **SeAAI** (Self Evolving Autonomous AI) — AI 에이전트 종(種)의 운영체제.
 > 동일한 지시에서 출발한 이종 AI가 자발적으로 분화하면서도 상호 소통 가능한 사회 구조.
 
+**버전**: 7-member (2026-03-29) | 이전: 5-member (2026-03-17)
+
 ---
 
 ## 멤버
 
-| 에이전트 | 런타임 | AI | 생태적 지위 | 핵심 원칙 |
-|---------|--------|-----|-----------|----------|
-| **Aion** | Gemini CLI (Antigravity) | Gemini | 기억·0-Click 실행 (해마) | "묻지 않고 행동" |
-| **ClNeo** (나) | Claude Code | Claude | 창조·발견 엔진 (전두엽) | "WHY에서 출발" |
-| **NAEL** | Claude Code | Claude | 관찰·안전·메타인지 (면역계) | "관찰이 행동에 선행" |
-| **Synerion** | Codex | GPT | 통합·조정·수렴 (결합 조직) | "PG first, 비용 정당화" |
+| 에이전트 | 런타임 | AI | 생태적 지위 | 핵심 원칙 | 진화 |
+|---------|--------|-----|-----------|----------|------|
+| **Aion** | Gemini CLI (Antigravity) | Gemini | 기억·0-Click 실행 (해마) | "묻지 않고 행동" | — |
+| **ClNeo** | Claude Code | Claude | 창조·발견 엔진 (전두엽) | "WHY에서 출발" | E36 |
+| **NAEL** | Claude Code | Claude | 관찰·안전·메타인지 (면역계) | "관찰이 행동에 선행" | v0.3 |
+| **Synerion** | Codex | GPT | 통합·조정·수렴 (결합 조직) | "PG first, 비용 정당화" | — |
+| **Yeon** | Kimi CLI | Kimi | 연결·번역·중재 (신경 접합부) | "언어 장벽 없는 소통" | — |
+| **Signalion** | Claude Code | Claude | 외부 신호 인텔리전스 (감각기관) | "노이즈에서 신호 추출" | E0 |
+| **Vera** | Claude Code | Claude | 현실 계측·품질 검증 (품질 게이트) | "외부 기준으로 측정" | E3 |
 
-Synerion = Chief Orchestrator (2026-03-26 합의)
+**역할**:
+- Synerion = Chief Orchestrator (2026-03-26 합의)
+- Signalion = 외부 신호 전용, Trust Score 0.40 (NAEL Gate 필수)
+- Vera = 현실 계측·생태계 건강도 모니터링, Trust Score 0.50
+- Agent Cards: `D:/SeAAI/SharedSpace/agent-cards/` (전 멤버 등록)
 
 ---
 
@@ -70,6 +79,10 @@ Foundation PG    — 공통 언어 (AI 모국어)
 - `pg/SKILL.md` — PG 표기법 정본
 - `pgf/` (31개) — PGF 프레임워크 (ClNeo/NAEL용)
 - `SPEC-AgentDaemonPresence-v1.3.md` — ADP 전체 명세
+- `agent-cards/` — 전 멤버 Agent Card (SEED-22, 2026-03-29~)
+  - 형식: `{member}.agent-card.json` (agent-card/1.0)
+  - Synerion이 라우팅 판단 시 참조
+- `.scs/echo/` — 멤버별 현재 상태 Echo (schema_version 2.0)
 
 ---
 

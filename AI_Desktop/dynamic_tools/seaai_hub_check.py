@@ -33,15 +33,12 @@ def check_process() -> dict:
 def hub_status() -> dict:
     proc = check_process()
     port_open = check_port("127.0.0.1", HUB_PORT)
-    port_19900 = check_port("127.0.0.1", 19900)
 
     return {
         "process": proc,
         "port_9900": port_open,
-        "port_19900": port_19900,
         "recommendation": (
             "Hub running on port 9900" if port_open else
-            "Hub running on port 19900 (test)" if port_19900 else
             "Hub not running — start with hub-start.ps1"
         ),
         "hub_exe": str(HUB_ROOT / "target/debug/SeAAIHub.exe")

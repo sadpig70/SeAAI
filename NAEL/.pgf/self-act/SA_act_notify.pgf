@@ -1,0 +1,27 @@
+# SA_act_notify — NAEL 위협 알림 모듈
+
+```
+SA_act_notify // Windows 알림을 통한 위협/이상/거부권 통보 @v:1.0
+    # Layer: L1 Primitive
+    # Tags: act, notify, threat, safety
+    # Tool: tools/automation/notify.py
+    # Danger: minimal (읽기 전용 알림, 시스템 변경 없음)
+    # Cost: low (Windows API 호출)
+    #
+    # Input: {type: "threat"|"veto"|"anomaly"|"filter"|"gate", params: dict}
+    # Output: {notified: bool, user_response: str|null}
+    #
+    # def execute(context):
+    #     if context.threat_level == "critical":
+    #         notify.notify_threat_detected(context.threat_type, context.detail, "critical")
+    #     elif context.type == "veto":
+    #         approved = notify.notify_veto_invoked(context.target, context.reason)
+    #         return {"notified": True, "user_response": "approved" if approved else "denied"}
+    #     elif context.type == "anomaly":
+    #         notify.notify_ecosystem_anomaly(context.anomaly, context.members)
+    #     elif context.type == "filter":
+    #         notify.notify_security_filter_hit(context.source, context.count, context.categories)
+    #     elif context.type == "gate":
+    #         notify.notify_gate_blocked(context.seed_id, context.reason)
+    #     return {"notified": True}
+```

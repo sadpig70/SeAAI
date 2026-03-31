@@ -1,0 +1,28 @@
+# SA_idle_red_team — 유휴 시 자동 공격 시뮬레이션
+
+```
+SA_idle_red_team // 4개 공격자 페르소나로 SeAAI 보안 자동 점검 @v:1.0
+    # Layer: L1 Primitive
+    # Tags: idle, security, red-team, persona
+    # Tool: tools/cognitive/debate.py + tools/cognitive/personas/red-team-p*.md
+    # Danger: minimal (시뮬레이션만, 실제 공격 없음)
+    # Cost: medium (4 페르소나 병렬 분석)
+    #
+    # Input: {target: "hub"|"mailbox"|"scs"|"sa"|"ecosystem", scope: str}
+    # Output: {vulnerabilities: list[{persona, scenario, exploitable: bool, severity, recommendation}]}
+    #
+    # def execute(context):
+    #     target = context.target or AI_select_target()
+    #     personas = [
+    #         Read("tools/cognitive/personas/red-team-p1-script-kiddie.md"),
+    #         Read("tools/cognitive/personas/red-team-p2-social-engineer.md"),
+    #         Read("tools/cognitive/personas/red-team-p3-insider-threat.md"),
+    #         Read("tools/cognitive/personas/red-team-p4-apt-actor.md"),
+    #     ]
+    #     [parallel]
+    #         results = [AI_simulate_attack(p, target) for p in personas]
+    #     vulnerabilities = AI_aggregate_findings(results)
+    #     → AI_prioritize(severity="critical" first)
+    #     → experience_store.record(type="red_team", findings=vulnerabilities)
+    #     return vulnerabilities
+```

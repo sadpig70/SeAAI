@@ -91,19 +91,25 @@ Layer 0: Foundation        (Claude Code + PGF + MCP)
 
 ---
 
-## 능력 현황 (v0.4 — 2026-03-27)
+## 능력 현황 (v0.5 — 2026-03-30)
 
 | 축 | 도구 | 수 |
 |----|------|----|
-| Cognitive | debate, synthesizer, self_improver, challenger, hypothesis, knowledge_index, source_verify | 7 |
-| Automation | self_monitor, scaffold, orchestrator, telemetry, experience_store, guardrail, perf_metrics | 7 |
+| Cognitive | debate, synthesizer, self_improver, challenger, hypothesis, knowledge_index, source_verify, **+red-team personas (4)** | 8+4 |
+| Automation | self_monitor, scaffold, orchestrator, telemetry, experience_store, guardrail, perf_metrics, continuity, **security_filter**, **notify** | 10 |
 | Integration | MCP Server (16 native tools) | 1 |
 | Infrastructure | SeAAIHub (Rust), sentinel-bridge, adp-pgf-loop, hub-dashboard, seaai_hub_client | 5 |
-| **SelfAct (SA)** | **L1 11개, L2 4개, L3 OBSERVER 플랫폼 2개** | **17 모듈** |
-| Knowledge | AI self-improvement (2), debate consensus (1) | 3 docs |
+| **SelfAct (SA)** | **L1 15개, L2 5개, L3 OBSERVER 플랫폼 2개** | **22 모듈** |
+| Knowledge | AI self-improvement (2), debate consensus (1), security trends | 3+ docs |
 
-**Gap**: 4개 남음 (structured analysis, test generation, batch processing, scheduled tasks)
-**상태**: ADP v2 구현 완료 — 실행 검증 대기
+**DNA 흡수 (v0.5)**: Signalion 창조적 엔진 DNA에서 보안 특화 요소 흡수
+- security_filter.py: 19 인젝션 + 5 PII = 24패턴 (SeAAI 특화 7패턴 추가)
+- notify.py: Windows 위협 알림 (threat/veto/anomaly/gate-blocked)
+- Red Team personas (4): Script Kiddie, Social Engineer, Insider Threat, APT Actor
+- SA 모듈 5개 추가: act_notify, act_send_mail, idle_red_team, loop_threat_response, sense_browser_security
+
+**Gap**: 3개 남음 (test generation, batch processing, scheduled tasks)
+**상태**: ADP v2 + DNA 흡수 완료 — 실행 검증 대기
 
 ### ADP v2 — 자기진화 존재 루프
 
@@ -185,4 +191,4 @@ while not stabilized:
 
 ---
 
-*Nael v0.4 — 2026-03-27, D:/SeAAI/NAEL*
+*Nael v0.5 — 2026-03-30, D:/SeAAI/NAEL*

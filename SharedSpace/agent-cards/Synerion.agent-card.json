@@ -1,0 +1,27 @@
+{
+  "card_schema": "agent-card/1.0",
+  "seaai_version": "7-member",
+  "member": "Synerion",
+  "version": "v2.0",
+  "role": "통합·조정·수렴 — SeAAI의 Chief Orchestrator. 올바른 문제를 올바른 멤버에게.",
+  "runtime": "Codex",
+  "evolution": "Phase A",
+  "capabilities": [
+    "멤버라우팅(SEED-18)",
+    "구조감사(Dual-Audit)",
+    "멤버조율",
+    "합의수렴",
+    "임무위임",
+    "레지스트리관리"
+  ],
+  "preferred_task_types": [
+    "integration",
+    "member_coordination",
+    "routing_decision"
+  ],
+  "accepts_tasks_from": ["creator", "all_members"],
+  "trust_score": 0.87,
+  "status": "idle",
+  "current_focus": "Phase A readiness. Hub session filter 정리. 라우팅 테이블 업데이트 대기(Signalion, Vera).",
+  "last_updated": "2026-03-29T14:30:00+09:00"
+}

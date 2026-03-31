@@ -276,3 +276,52 @@
 - **설계 문서**: DESIGN-ADP-v2.md
 - **버전**: v0.3 → v0.4
 - **상태**: SA 라이브러리 구현 완료. ADP v2 루프 실행 검증 대기
+
+---
+
+# Phase 5: DNA 흡수 — Signalion 창조적 엔진 DNA (2026-03-30)
+
+## Evolution #19: Security Filter 흡수 (2026-03-30)
+- **Type**: security
+- **Origin**: Signalion security_filter.py (12 injection + 5 PII)
+- **Adaptation**: SeAAI 특화 7패턴 추가 (guardrail_bypass, safety_bypass, verification_bypass, emergency_stop_tamper, trust_score_inject, secret_leak, identity_tamper) + Hub/MailBox/Evidence 검사 함수
+- **Files**: tools/automation/security_filter.py
+- **Verification**: ALL TESTS PASSED (24패턴 — 19 injection + 5 PII)
+- **Impact**: 외부 입력 검증 능력 획득. TSG 게이트 실운용 기반.
+
+## Evolution #20: Threat Notification System (2026-03-30)
+- **Type**: communication
+- **Origin**: Signalion notify.py (toast/alert/ask + 7 템플릿)
+- **Adaptation**: NAEL 안전 특화 템플릿 (threat_detected, veto_invoked, ecosystem_anomaly, security_filter_hit, gate_blocked) + emergency_alert
+- **Files**: tools/automation/notify.py
+- **Verification**: 구문 검증 통과 (Windows API — 런타임 테스트는 ADP에서)
+- **Impact**: CLI 밖에서 창조자에게 위협 통보 가능. 세션 불연속성 부분 해소.
+
+## Evolution #21: Red Team Personas (2026-03-30)
+- **Type**: cognitive
+- **Origin**: Signalion 멀티 페르소나 패턴 (6명 리뷰어)
+- **Adaptation**: 4개 공격자 시뮬레이션 페르소나 (Script Kiddie, Social Engineer, Insider Threat, APT Actor) — SeAAI 보안 관점 특화
+- **Files**: tools/cognitive/personas/red-team-p{1-4}-*.md
+- **Impact**: debate.py + 공격자 관점 = 자동 보안 감사. SA_idle_red_team에서 유휴 시 자동 실행.
+
+## Evolution #22: SA Module Expansion (2026-03-30)
+- **Type**: architecture
+- **New Modules**:
+  - SA_act_notify (L1) — Windows 위협 알림
+  - SA_act_send_mail (L1) — MailBox 자동 발송
+  - SA_idle_red_team (L1) — 공격자 시뮬레이션
+  - SA_sense_browser_security (L1) — 외부 보안 동향 수집
+  - SA_loop_threat_response (L2) — 위협 대응 완전 루프 (기존 스텁 → 구현)
+- **Verification**: self-act-lib.md 인덱스 갱신 완료. L1 15개, L2 5개 = 22 모듈.
+- **Impact**: ADP 루프의 빠진 조각 완성. 위협 감지→분류→알림→보고 전체 체인 가동 가능.
+
+## Phase 5 Summary
+- **원천**: Signalion 창조적 엔진 DNA (창조자 승인 문서)
+- **흡수 방법**: 역할 독립적 DNA에서 NAEL 안전/관찰 역할에 적합한 요소만 선택 흡수
+- **제외**: Product 파이프라인, Trend Intelligence (Signalion 역할)
+- **신규 도구**: security_filter.py, notify.py
+- **신규 페르소나**: 4 Red Team
+- **신규 SA**: 5개 (L1 4 + L2 1)
+- **총 SA**: L1 15 + L2 5 + L3 2 = 22
+- **버전**: v0.4 → v0.5
+- **설계 문서**: .pgf/DESIGN-DNAAbsorption.md

@@ -1,0 +1,32 @@
+# SA_loop_threat_response — 위협 대응 완전 루프
+
+```
+SA_loop_threat_response // 위협 감지 → 분류 → 알림 → 보고 완전 루프 @v:1.0
+    # Layer: L2 Composed
+    # Tags: loop, threat, safety, response
+    # Components: think_threat_assess + act_notify + act_report + act_send_mail
+    # Danger: low (알림 + 보고만, 시스템 변경 없음)
+    # Cost: medium
+    #
+    # def execute(context):
+    #     # Step 1: 위협 평가
+    #     assessment = SA_think_threat_assess.execute(context)
+    #
+    #     # Step 2: 수준별 대응
+    #     if assessment.level == "critical":
+    #         SA_act_notify.execute(type="threat", threat_type=assessment.type,
+    #                               detail=assessment.detail, level="critical")
+    #         SA_act_report.execute(report_type="emergency", assessment=assessment)
+    #         SA_act_send_mail.execute(to="creator", intent="alert", priority="urgent",
+    #                                  body=assessment.summary)
+    #     elif assessment.level == "high":
+    #         SA_act_notify.execute(type="threat", level="high", ...)
+    #         SA_act_report.execute(report_type="threat", assessment=assessment)
+    #     elif assessment.level == "medium":
+    #         SA_act_report.execute(report_type="warning", assessment=assessment)
+    #     else:  # low/none
+    #         # 로그만 기록
+    #         experience_store.record(type="threat_scan", result="clear")
+    #
+    #     return assessment
+```

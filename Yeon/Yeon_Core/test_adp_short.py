@@ -11,7 +11,7 @@ from pathlib import Path
 
 # 설정
 HOST = "127.0.0.1"
-PORT = 19900
+PORT = 9900
 TEST_DURATION = 60  # 60초 단축 테스트
 MESSAGE_INTERVAL = (5, 10)
 

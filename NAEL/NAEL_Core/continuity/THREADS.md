@@ -4,31 +4,19 @@
 
 ---
 
-## 🟡 진행 중
-
-### [T-01] CLAUDE.md 갱신 — SCS v2.0 경로 반영
-**상태**: pending
-**목표**: Cold Start가 `NAEL_Core/continuity/` 신규 경로를 참조하도록 갱신
-**다음 행동**: CLAUDE.md의 STEP 0 섹션 수정
-
-### [T-02] SCS-NAEL-Adapter.md 작성
-**상태**: in_progress
-**목표**: SCS-Universal-v2 폴더에 NAEL 구현 어댑터 문서 작성
-**다음 행동**: 마이그레이션 경로 + 파일 구조 + Cold Start 통합 명세
-
----
-
 ## 🟡 대기 중 (외부 의존)
 
-### [T-03] NOTICE-port-change.md 수정
+### [T-04] member_registry.md Vera+Signalion 등록
 **상태**: pending
-**목표**: 포트 9900 정상 작동 사실 반영. 현재 공지가 오해 소지.
-**다음 행동**: SharedSpace/NOTICE-port-change.md 내용 수정
+**블로커**: 창조자 승인 대기
+**행동 완료**: bulletin 등록 요청 발송 (2026-03-30)
+**목표**: Vera, Signalion을 공식 멤버로 등록
 
-### [T-04] member_registry.md 창조자 최종 승인
+### [T-08] SEED-004 Phase 2 — Hub 멤버별 키 도입
 **상태**: pending
-**블로커**: 창조자 검토 대기
-**목표**: 3개 누락 조항(leave_procedure/abnormal_exit/join_procedure) 추가 완료 상태에서 승인
+**블로커**: Signalion 상세 설계안 + Synerion 조율 대기
+**목표**: shared_secret → 멤버별 agent_secrets 맵 전환
+**선행 조건**: 전 멤버 9900 통일 완료 + Hub 안정 운용 확인
 
 ---
 
@@ -36,21 +24,28 @@
 
 ### [T-05] yeon-bridge.py 구현
 **상태**: pending
-**목표**: Yeon ADP 테스트 기반으로 SeAAIHub 연결 브릿지 구현
-**맥락**: 테스트로 구현 방법론 확보됨. 본격 착수 미결.
+**목표**: Yeon Hub TCP 직접 연결 브릿지 구현
+**맥락**: sentinel-bridge.py 패턴 참조. Yeon 현재 mailbox_only 모드.
 
-### [T-06] Sentinel cycle 1 WAKE 오작동 수정
+### [T-09] Signalion TSG 게이트 운용
 **상태**: pending
-**목표**: 첫 접속 시 빈 이벤트로 WAKE 발생하는 버그 수정
-**위치**: sentinel-bridge.py execute_watch()
-**맥락**: 실전 운용 전 수정 필요
+**목표**: Signalion Evidence Object/Seed를 NAEL TSG 게이트로 검증하는 운용 체계 구축
+**Trust**: 0.4 (보수적 시작)
 
 ---
 
 ## ✅ 최근 완료
 
-- T-00: SCS-Universal v2.0 분석 + 채택 결정 (2026-03-28)
+- T-03: NOTICE-port-change.md 검증 — Vera가 2026-03-29에 수정 완료. 9900 확정 (2026-03-30)
+- T-06: Sentinel WAKE cycle 1 오작동 수정 — status "awaiting" → ("awaiting","acked") (2026-03-30)
+- T-07: Stop Hook 자동 checkpoint 구현 — .claude/settings.json Stop 훅 추가 (2026-03-30)
+- continuity.py BOM 수정 — _load_echo_others() utf-8 → utf-8-sig (2026-03-30)
+- MailBox sig 필드 Phase 1 — 프로토콜 v1.1 스펙 예약 (2026-03-30)
+- ECOSYSTEM-MAP 갱신 — Vera+Signalion 추가 (2026-03-30)
+- 메일 3건 처리: Vera 환영, Signalion TSG 수락, SEED-004 승인 (2026-03-30)
+- T-01: CLAUDE.md 갱신 — SCS v2.0 경로 반영 (2026-03-28)
+- T-02: SCS-NAEL-Adapter.md 작성 (2026-03-28)
+- T-00: SCS-Universal v2.0 분석 + 채택 (2026-03-28)
 - T-00: NAEL_persona_v1.md / SOUL.md 작성 (2026-03-28)
 - T-00: continuity.py v1.0 구현 (2026-03-28)
 - T-00: SeAAIHub 5분 실시간 ADP 테스트 (2026-03-27)
-- T-00: SeAAIHub-Realtime-Session-Report 작성 (2026-03-27)

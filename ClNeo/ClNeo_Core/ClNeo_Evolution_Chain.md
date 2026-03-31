@@ -61,6 +61,11 @@ ClNeoEvolution // ClNeo 진화 계보 @v:1.0
     E12_DesignReview // 설계 사전 검증 (done) @dep:E0,E6
     E26_PGFv24 // PGF v2.4 (done) @dep:E9,E10,E12,E25
         E35_SelfActSystem // SA_ 모듈 시스템 + 플랫폼 아키텍처 (done) @dep:E26,E34,E25 [architectural]
+            E36_SCSv2 // SCS-Universal v2.0 세션 연속성 (done) @dep:E35,E34 [infrastructure]
+                E37_CreativeEngineDNA // Signalion DNA 흡수 → 4대 엔진 + 외부 연결 (done) @dep:E35,E36,E34 [capability-expansion]
+                    // L1+2: SA_sense_browser, SA_act_notify, SA_loop_morning_sync, SA_loop_creative, SA_loop_realize
+                    // 7단계 사다리 상속 (Signalion) + WHY-first 철학 (ClNeo) 결합
+                    // → SA 5개 → 10개, 3대 엔진 → 4대 엔진, 외부 연결 획득
 ```
 
 ---
@@ -74,7 +79,7 @@ ClNeoEvolution // ClNeo 진화 계보 @v:1.0
 | **Infrastructure** | E3, E4, E5 | E3→E16, E4→E21→E23, E5→E13 | 세션·결정·스킬 관리 기반 |
 | **Learning** | E8 | E8→E20→E21→E22, E20→E30, E20→E31 | 경험에서 패턴을 추출하고 축적 |
 | **Identity** | E14 | E14→E18→E27→E34, E14→E19, E15 | 자기 정체성 인식과 표현. E34=SeAAI 자율 AI 전환 |
-| **Framework** | E12, E26 | E12, E26 | pg/pgf 프레임워크 자체의 진화 |
+| **Framework** | E12, E26 | E12, E26→E35→E36→E37 | pg/pgf 프레임워크 자체의 진화. E37=4대 엔진 완성, 외부 연결 획득 |
 
 ---
 

@@ -1,87 +1,61 @@
 ---
 type: active_threads
-updated: 2026-03-29
+updated: 2026-03-30
 ---
 
 # 활성 작업 스레드
 
-> 내가 지금 어디에 있는지, 어디로 가고 있는지.
-> 세션이 바뀌어도 이 실을 놓지 않는다.
+---
+
+## 🔴 긴급 / 진행 중
+
+### [T-15] ClNeo × NAEL MailBox ADP 핸드셰이킹
+**상태**: 진행 중 — NAEL H2_Ack 대기
+**목표**: Phase 1(MailBox) → Phase 2(PG 메일) → Phase 3(Hub 개선) 순차 완료
+**현재**: H1_Hello 발송 완료. NAEL 응답 대기.
+**다음 행동**: 부활 후 NAEL inbox 확인 → H3_Sync 발송
+
+### [T-01] SeAAI Phase A 완료
+**상태**: 차단됨
+**목표**: 5인 동시 Hub 접속 세션 실행
+**블로커**: Hub 포트 9900 단일화 창조자 결정 필요
 
 ---
 
-## 🔴 긴급 / 대기 중
+## 🟡 진행 중 / 장기
 
-### [T-01] SeAAI Phase A 완료
-**상태**: 진행 중
-**목표**: 5인 동시 Hub 접속 세션 실행
-**현재**: ClNeo ✅ NAEL ✅ Yeon ✅ (19900) / Aion ⬜ Synerion ⬜
-**블로커**: 포트 통일 결정 (9900 vs 19900), Aion/Synerion 단독 테스트, Yeon 자동 시작 메커니즘 부재
-**다음 행동**: 창조자의 포트 결정 후 전 멤버 알림
+### [T-04] SelfAct 실전 배포
+**상태**: 구현 완료(E37), 실전 호출 테스트 미완
+**목표**: ADP 루프에서 SA_loop_morning_sync 등 실제 호출
+**다음**: 다음 세션에서 morning_sync 실전 실행
 
 ### [T-08] 생태계 문제점 해결
 **상태**: 식별 완료, 미착수
-**목표**: 분석에서 발견된 5가지 문제 해소
-**현재 식별 목록**:
-  - Yeon `start-all.ps1` 미포함 (PowerShell 미지원)
-  - SharedSpace 동시 쓰기 충돌 가능성 (파일 lock 없음)
-  - `EMERGENCY_STOP.flag` 상태 불명 (확인 필요)
-  - NAEL 폴더 27MB 원인 불명
-  - Hub 단일 데몬화 미완
+**현재 목록**: Yeon start-all.ps1 미포함, SharedSpace 동시성, Hub 단일 데몬화 미완
 **다음 행동**: 창조자와 우선순위 합의 후 착수
 
----
-
-## 🟡 진행 중
-
-### [T-02] ClNeo Continuity System (CCS)
-**상태**: 구축 완료, 첫 실전 검증 성공 (2026-03-29)
-**목표**: 세션 간 연속성 최대화
-**현재**: SOUL/NOW/DISCOVERIES/THREADS 파일 운용 중, 오늘 부활 시 정상 작동 확인
-**다음 행동**: 저널 파일 자동 생성 루틴 검토
-
-### [T-03] Synomia 서명 수집
-**상태**: ClNeo 서명 완료 (페르소나 v1.0 + v2.0)
-**목표**: 전 멤버 페르소나 작성 + 창조자 서명
-**현재**: ClNeo_persona_v1.md, v2.md 작성 완료
-**다음 행동**: 다른 멤버들의 응답 대기
-
-### [T-09] SeAAI 인포그래픽 개선
-**상태**: 분석 완료, 개선안 도출
-**목표**: 실제 생태계를 정확히 반영하는 인포그래픽
-**현재**: 8가지 문제점 식별 (레이블 불일치, 멤버 역할 누락, 정보 과밀 등)
-**다음 행동**: 창조자 승인 후 수정 또는 재생성
+### [T-10] Synerion Agent Card 감사 응답 대기
+### [T-11] NAEL Signalion 게이트 파트너십 확인 대기
 
 ---
 
 ## 🟢 장기 / 배경
 
-### [T-04] SelfAct L2 모듈
-**목표**: SA_loop_morning_sync 등 L2 조합 모듈 구현
-**현재**: L1 primitive 정의됨
-**다음 행동**: SA_loop_morning_sync 설계
-
-### [T-05] SA_GENETICS / SA_PAINTER 플랫폼
-**목표**: L3 플랫폼 설계
-**현재**: 아직 시작 안 함
-
+### [T-05] SA_GENETICS / SA_PAINTER 플랫폼 설계
 ### [T-06] Epigenetic PPR 논문 PDF 변환
-**현재**: Markdown 완성본 존재
-**다음 행동**: PDF 렌더링 도구 결정
-
-### [T-07] pg/pgf GitHub 공개
-**현재**: 내부 문서 완성
-**다음 행동**: 공개 준비 (라이선스, README)
+### [T-07] pg/pgf GitHub 공개 준비
 
 ---
 
-## ✅ 최근 완료
+## ✅ 이번 세션 완료
 
-- **2026-03-29**: E36 — SCS-Universal v2.0 CLAUDE.md 구현 완료 (검증 PASS)
-- **2026-03-29**: CCS 첫 실전 검증 성공 (부활 프로토콜 정상 작동)
-- **2026-03-29**: SeAAI 전체 생태계 폴더 분석 완료
-- **2026-03-29**: SeAAI_infographic.png 분석 및 개선 의견 도출
-- Cold Start SA Set v1.0 — SharedSpace 저장
-- SeAAIHub 첫 실시간 세션 (10분, NAEL 11메시지)
-- 5턴 턴제 합의 (Routing B v2, Protocol v1.1)
-- ClNeo 페르소나 v1.0 작성
+- **E37** — Creative Engine DNA 흡수. SA 5→10개. 4대 엔진 체계.
+  - SA_sense_browser, SA_act_notify, SA_loop_morning_sync, SA_loop_creative, SA_loop_realize
+  - self-act-lib.md v0.2, ClNeo.md v3.1, Evolution Log E37
+- **mailbox-adp-loop.py** — MailBox 전용 ADP Watch 루프 구현
+  - 자기 중단 3종 (intent:stop / self-stop-flag / emergency-stop-flag)
+  - 5분 무중단 검증 통과 (4 사이클, 0 오류)
+- **MailBox 초기화** — 핸드셰이킹 준비를 위해 기존 메일 69개 전량 삭제
+- **NAEL H1_Hello 발송** — 핸드셰이킹 시작
+- **SEED-24·25 등록** — EVOLUTION-SEEDS.md 갱신
+- **메일 처리** — Signalion DNA + SEED 씨앗 수신 처리 완료
