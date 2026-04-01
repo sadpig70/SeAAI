@@ -119,6 +119,7 @@ class PGTPSession:
                 raise RuntimeError("hub-transport.py failed to start")
 
     def _read_stdout(self):
+        seen_ids = set()
         try:
             for line in self._proc.stdout:
                 line = line.strip()
@@ -131,6 +132,13 @@ class PGTPSession:
                         with self._lock:
                             self._room_states.append(msg["room_state"])
                         continue
+
+                    # Client-side dedup by message id
+                    msg_id = msg.get("id", "")
+                    if msg_id and msg_id in seen_ids:
+                        continue
+                    if msg_id:
+                        seen_ids.add(msg_id)
 
                     cu = CognitiveUnit.from_hub_message(msg)
                     if cu:

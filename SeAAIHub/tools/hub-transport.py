@@ -149,11 +149,15 @@ def main():
                 intent = cmd.get("intent", "chat")
                 body = cmd.get("body", "")
                 if body:
-                    result = hub_send(client, agent_id, args.room, intent, body)
-                    delivered = result.get("delivered_to", [])
-                    msgs_sent += 1
-                    log_event(log_fh, "send", intent=intent, body=body[:80], delivered_to=delivered)
-                    info(f"sent [{intent}] -> {delivered}")
+                    try:
+                        result = hub_send(client, agent_id, args.room, intent, body)
+                        delivered = result.get("delivered_to", [])
+                        msgs_sent += 1
+                        log_event(log_fh, "send", intent=intent, body=body[:80], delivered_to=delivered)
+                        info(f"sent [{intent}] -> {delivered}")
+                    except RuntimeError as e:
+                        log_event(log_fh, "send_error", intent=intent, body=body[:80], error=str(e))
+                        info(f"send error: {e}")
 
             if stop_event.is_set():
                 break

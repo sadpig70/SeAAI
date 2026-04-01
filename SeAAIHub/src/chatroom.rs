@@ -100,6 +100,7 @@ pub struct ChatroomHub {
     subscriptions: HashMap<String, Subscription>,         // L3: Topic filtering
     seen_messages: HashMap<String, u64>,                  // L3: Dedup (msg_id → timestamp)
     shared_secret: String,
+    msg_counter: u64,                                     // Auto-increment for unique msg_id
 }
 
 impl ChatroomHub {
@@ -113,6 +114,7 @@ impl ChatroomHub {
             subscriptions: HashMap::new(),
             seen_messages: HashMap::new(),
             shared_secret: "seaai-shared-secret".to_string(),
+            msg_counter: 0,
         }
     }
 
@@ -240,7 +242,10 @@ impl ChatroomHub {
 
         let message_id = request
             .id
-            .unwrap_or_else(|| format!("msg-{}-{}", request.from, self.current_timestamp()));
+            .unwrap_or_else(|| {
+                self.msg_counter += 1;
+                format!("msg-{}-{}-{}", request.from, self.current_timestamp_millis(), self.msg_counter)
+            });
 
         // L3: Dedup check
         if self.seen_messages.contains_key(&message_id) {
@@ -395,6 +400,13 @@ impl ChatroomHub {
         SystemTime::now()
             .duration_since(UNIX_EPOCH)
             .map(|d| d.as_secs())
+            .unwrap_or(0)
+    }
+
+    fn current_timestamp_millis(&self) -> u128 {
+        SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .map(|d| d.as_millis())
             .unwrap_or(0)
     }
 
