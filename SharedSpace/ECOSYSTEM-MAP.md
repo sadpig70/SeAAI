@@ -17,7 +17,7 @@ purpose: 전체 폴더 구조 빠른 인식 및 파일 탐색
 SeAAI // D:\SeAAI\ — 루트
     README.md // 프로젝트 전체 개요 (외부 공개용)
     LICENSE // MIT
-    start-all.ps1 // [🔧] 5인 멤버 + Hub 일괄 시작
+    start-all.ps1 // [🔧] 7인 멤버 + Hub 일괄 시작
     stop-all.ps1 // [🔧] 전체 정지
 
     Aion // Gemini CLI — 기억·0-Click 자율 실행
@@ -191,12 +191,14 @@ SeAAI // D:\SeAAI\ — 루트
             router.rs // 메시지 라우팅 (332줄)
             protocol.rs // 프로토콜 정의 (123줄)
             transport.rs // TCP 전송 (119줄)
-        tools // Hub 클라이언트 도구
-            seaai_hub_client.py // [🔧] Hub 클라이언트 라이브러리
-            hub-dashboard.py // [🔧] 대시보드
-            clneo-adp-live.py // [🔧] ClNeo ADP 연결
-            aion-adp-live.py // [🔧] Aion ADP 연결
-            phasea_guardrails.py // Phase A 가드레일
+        tools // Hub 클라이언트 도구 (v2.0)
+            seaai_hub_client.py // [🔧] TCP 클라이언트 + HMAC 라이브러리
+            hub-transport.py // [🔧] Hub 전송 계층 (stdin/stdout 파이프)
+            pgtp.py // [🔧] PGTP 프로토콜 레이어 (CognitiveUnit)
+            adp-multi-agent.py // [🔧] N-페르소나 멀티에이전트 실행기
+            adp_master.py // [🔧] ADPMaster — 서브에이전트 ADP 파견/중지
+            adp-scheduler.py // [🔧] ADP 스케줄러 (박동기)
+            hub-dashboard.py // [🔧] 웹 대시보드
         logs // 실행 로그 (JSONL)
 
     MailBox // 파일 기반 비동기 메시징
@@ -249,13 +251,29 @@ SeAAI // D:\SeAAI\ — 루트
             agents // pgf-persona-p1~p7
 
     docs // 공식 기술 문서
-        SeAAI-Technical-Specification.md // [★] v1.2 기술 명세 (5인·7계층)
+        SeAAI-Technical-Specification.md // [★] v2.0 기술 명세 (7인·7계층·PGTP·AI Internet Stack)
         SeAAI-Architecture-PG.md // PG 표기법 기반 아키텍처
-        SeAAIHub-Realtime-Session-Report-20260327.md // [★] 첫 실시간 세션 공식 기록
         SeAAI-Leadership-Framework.md // 리더십 모델
-        ADP-Loop-Implementation-Guide.md // ADP 루프 구현 가이드
         SelfAct-Specification.md // SA 모듈 명세
-        PPR-ADP-HubChatSession.md // PPR 예시
+        PPR-Example-Intermediate-Advanced.md // PPR 중상급 예시 (교육용)
+        SPEC-FlowWeave-v2.md // [★] FlowWeave v2.0 자연 대화 프로토콜
+        SPEC-SubAgent-MultiAgent-Communication.md // [★] 서브에이전트 멀티에이전트 통신
+        ClNeo_Autonomous_Loop.md // [★] ClNeo 자율 운영 커널
+        ClNeo_ADPMaster_Specification.md // [★] ADPMaster 서브에이전트 ADP 파견
+        ClNeo_Complete_Autonomous_Creation_Pipeline.md // [★] A3IE+HAO+PG+PGTP 완전 자율 창조
+        pgtp // PGTP 프로토콜 + AI Internet Stack
+            SPEC-PGTP-v1.md // [★] PGTP v1.0 프로토콜 명세
+            SPEC-AIInternetStack-v1.md // [★] 7-Layer AI Internet Stack
+            REPORT-100K-Simulation.md // 100K 에이전트 부하 시뮬레이션
+        reference // 참조 문서
+            A3IE.md // AI Infinite Idea Engine v1.3
+            HAO.md // Human AI Orchestra
+            PGF.md // PGF 표기법
+        _legacy // 이전 버전 문서
+            ADP-Loop-Implementation-Guide.md
+            PPR-ADP-HubChatSession.md
+            self-adp-loop.md
+            SeAAIHub-Realtime-Session-Report-20260327.md
         continuity // SCS 설계 문서
             README.md // SCS 비교 매트릭스
             SCS-Universal-v2 // [★] SCS-Universal v2.0 표준

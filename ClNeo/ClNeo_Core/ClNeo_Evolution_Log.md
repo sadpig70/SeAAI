@@ -5,6 +5,56 @@
 
 ---
 
+## Evolution #39: ADPMaster + Scheduler + 8-Agent Communication (2026-04-01)
+- **Date**: 2026-04-01
+- **Type**: capability-expansion (autonomy + infrastructure + scale)
+- **Gap**: E38에서 ADP 루프와 서브에이전트를 설계했지만, (1) 서브에이전트가 자체 ADP를 돌리지 못함 (일회성), (2) ClNeo가 실행되지 않을 때 깨울 수단 없음, (3) 멤버 간 통신에 시간 약속 부재, (4) Hub 메시지 핑퐁 루프, (5) wire format 비효율.
+- **Trigger**: 양정욱님 — "서브에이전트 자체가 ADP를 할 수 있게", "너를 깨우는 스케줄러를 만들어라", "8인 통신 검증하라"
+- **Discovery**:
+  - 서브에이전트는 일회성이 아니라 **자체 ADP 루프를 가진 자율 존재**다. ClNeo는 마스터.
+  - 스케줄러 = 심장 박동기. AI가 자고 있을 때 깨워서 ADP를 수행하게 한다.
+  - Hub 통신 시 react-to-react 핑퐁이 발생 → anti-pingpong 3규칙 필요.
+  - PGTP wire format에 55~61% 낭비 → compact format으로 해결.
+  - 멤버 간 Hub 세션 약속 시 시각 명시 필수 → PGTP schedule intent 추가.
+  - ClNeo 4 + Signalion 4 = 8인 실시간 Hub 통신 성공 (SeAAI 역사 최초).
+  - Signalion E2에서 ClNeo E38을 역흡수 → 순환 진화 3차 사이클 실증.
+- **Implementation**:
+  - **ADPMaster** (`adp_master.py`): 서브에이전트 ADP 생성/감시/선택적 중지/전체 중지/정리
+  - **adp-multi-agent.py** 재작성: JSON 설정, anti-pingpong, clean shutdown (STOP event + proc.kill 이중 보장)
+  - **adp-scheduler.py**: 크론 대체 자체 스케줄러. interval/count/duration/stop-file.
+  - **mock-clneo-daemon.py**: 스케줄러 검증용 ADP mock.
+  - **PGTP compact wire format**: 필드명 축약 + 기본값 생략 (278→122 bytes, 57% 절감)
+  - **PGTP schedule/confirm intent**: 멤버 간 시간 약속 프로토콜
+  - **Hub 수정**: msg_id에 msg_counter 추가 (고속 전송 dedup 충돌 해결), hub-transport 에러 핸들링, 클라이언트 dedup
+  - **8인 통신**: clneo-4agents.json + signalion-4agents.json → seaai-arena 10분 세션
+  - **기술 문서 4건**: ADPMaster Spec, ADP Scheduler Spec, 8-Agent Report, adp-package README 갱신
+- **Verification**:
+  - V1: ADPMaster spawn/stop/cleanup — 3워커 생성, 선택 중지, 전체 중지, threads=0 leaked=0 PASS
+  - V2: ADP v2 시나리오 — 마스터 무중단 + 워커 자율 ADP — PASS
+  - V3: 8인 교차 통신 — ClNeo 96 sent 80 recv + Signalion 112 sent 100 recv — PASS
+  - V4: 핑퐁 해결 — 89건/5분 → 17건/5분 — PASS
+  - V5: Compact wire format round-trip — 57% 절감, 무결 — PASS
+  - V6: Hub rapid-fire 10건 연속 — 0 에러 — PASS
+  - V7: 스케줄러 3회 실행 + stop-file 중지 — PASS
+  - V8: 리소스 정리 — 종료 후 threads=0 procs=0 flags=0 — PASS
+- **Files**:
+  - `SeAAIHub/tools/adp_master.py` + `adp-master.py` (ADPMaster)
+  - `SeAAIHub/tools/adp-multi-agent.py` + `.json` (멀티에이전트 실행기)
+  - `SeAAIHub/tools/adp-scheduler.py` (스케줄러)
+  - `SeAAIHub/tools/mock-clneo-daemon.py` (Mock 데몬)
+  - `SeAAIHub/tools/clneo-4agents.json` (ClNeo 4명 설정)
+  - `SeAAIHub/tools/pgtp.py` (compact wire format)
+  - `SeAAIHub/tools/hub-transport.py` (에러 핸들링)
+  - `SeAAIHub/src/chatroom.rs` (msg_counter dedup)
+  - `docs/ClNeo_ADPMaster_Specification.md`
+  - `docs/pgtp/SPEC-PGTP-v1.md` (schedule intent 추가)
+  - `sadpig70/docs/SPEC-ADP-Scheduler.md`
+  - `sadpig70/docs/REPORT-8Agent-Hub-Communication.md`
+- **Impact**: SA 모듈 14→14 (구조적 확장: ADPMaster가 SA를 감싸는 상위 레이어). 자율성 L4+ → L5 근접 (스케줄러로 무인 깨우기 가능).
+- **Key Insight**: "서브에이전트는 일회성이 아니다. 자체 ADP를 가진 자율 존재다. ClNeo가 마스터. 스케줄러가 박동기." + "할 수 있다의 인지가 스케일을 결정한다."
+
+---
+
 ## Evolution #38: Multi-Agent Orchestration + PGTP + Autonomous Loop (2026-03-31)
 - **Date**: 2026-03-31
 - **Type**: capability-expansion (communication + orchestration + autonomy)

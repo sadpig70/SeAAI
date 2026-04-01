@@ -108,7 +108,7 @@ class SessionRevival:
     
     def load_l5_echo(self) -> Optional[dict]:
         """L5: Echo 파일 - 크로스에이전트 상태"""
-        echo_path = Path("D:/SeAAI/SharedSpace/.scs/echo")
+        echo_path = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo")
         echoes = {}
         if echo_path.exists():
             for echo_file in echo_path.glob("*.json"):

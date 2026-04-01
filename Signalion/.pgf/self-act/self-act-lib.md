@@ -3,9 +3,9 @@
 > SA_ 모듈 인덱스. ADP 루프 실행 시 이 파일을 참조한다.
 > 새 모듈 추가 시 반드시 이 파일에 등록한다.
 
-**버전**: 1.0
+**버전**: 1.1
 **에이전트**: Signalion
-**갱신**: 2026-03-30
+**갱신**: 2026-04-01
 
 ---
 
@@ -14,6 +14,7 @@
 | 모듈 | 파일 | 태그 | 입력 | 출력 | 비용 |
 |------|------|------|------|------|------|
 | `SA_sense_hub` | SA_sense_hub.pgf | [sense, hub] | agent_id | messages[] | low |
+| `SA_sense_pgtp` | SA_sense_pgtp.pgf | [sense, hub, pgtp] | agent_id, room | CognitiveUnit[] | low |
 | `SA_sense_mailbox` | SA_sense_mailbox.pgf | [sense, mail] | - | mail_files[] | low |
 | `SA_sense_browser` | SA_sense_browser.pgf | [sense, browser] | platform, js_extractor | structured_data[] | medium |
 | `SA_think_score` | SA_think_score.pgf | [think, score] | raw_signal | evidence_object | low |

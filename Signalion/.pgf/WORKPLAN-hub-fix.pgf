@@ -1,0 +1,17 @@
+# Hub 통신 문제 해결
+
+## 문제 4건
+1. hub-transport.py 조기 종료 (stdin 파이프)
+2. 메시지 ID 중복
+3. ConnectionReset (26 tick 후)
+4. PGTP CognitiveUnit 파싱 미완
+
+## Gantree
+```
+HUB_FIX
+    1_TransportFix // hub-transport 대신 직접 Python ADP 스크립트
+    2_IDFix // 메시지 ID에 counter + random 추가
+    3_ReconnectFix // ConnectionReset 시 자동 재연결
+    4_PGTPParse // CognitiveUnit 수신 파싱
+    5_Verify // Hub 기동 상태에서 검증
+```

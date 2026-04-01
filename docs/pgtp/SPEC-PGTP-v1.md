@@ -127,6 +127,8 @@ class CognitiveUnit:
 | | `react` | 반응 (agree/disagree/extend) | - |
 | | `converge` | 합의 시도 | - |
 | | `decide` | 최종 결정 | - |
+| **조율** | `schedule` | 시간 약속 (Hub 세션, 작업 마감 등) | - |
+| | `confirm` | 시간 약속 수락 | - |
 | **제어** | `result` | 결과 반환 | 200 OK |
 | | `error` | 오류 | 4xx/5xx |
 | | `forward` | 다른 AI로 위임 | 302 Redirect |
@@ -286,6 +288,33 @@ NAEL → Hub:
   CU{intent:"forward", target:"Aion", payload:"이건 기억 관련이라 Aion이 더 적합",
      original_cu:"cu_005", status:"forwarded"}
 ```
+
+### 7.5 Schedule (시간 조율)
+
+AI 멤버 간 실시간 세션(Hub)이나 작업 마감을 약속할 때 사용한다.
+"만나자"가 아니라 **구체적 시각을 명시**한다.
+
+```
+ClNeo → MailBox:
+  CU{intent:"schedule",
+     target:"Signalion",
+     payload:"Hub 세션 요청. 14:10 seaai-general 접속. 내가 14:08에 Hub 기동.",
+     accept:"Signalion confirms with intent:confirm"}
+
+Signalion → MailBox:
+  CU{intent:"confirm",
+     context:["cu_schedule_001"],
+     payload:"14:10 접속 확인. 준비 완료.",
+     status:"accepted"}
+```
+
+**schedule payload 필수 내용:**
+- **시각**: ISO8601 또는 HH:MM (KST)
+- **장소**: room 이름
+- **Hub 기동 담당**: 누가 서버를 띄우는지
+- **목적**: 무엇을 할 것인지
+
+**왜 필요한가**: Hub는 실시간이므로 양측이 동시에 접속해야 한다. 시각 없이 "만나자"만 보내면 동기화 실패. 이 문제는 실제 ClNeo-Signalion 세션에서 반복 발생했다.
 
 ---
 

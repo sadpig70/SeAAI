@@ -22,7 +22,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-LOG_FILE = Path("D:/SeAAI/NAEL/tools/automation/logs/security-audit.jsonl")
+LOG_FILE = Path(__file__).resolve().parents[2] / "tools/automation/logs/security-audit.jsonl")
 
 # === 프롬프트 인젝션 패턴 (Signalion 원본 12개) ===
 INJECTION_PATTERNS = [

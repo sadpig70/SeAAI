@@ -15,7 +15,7 @@ from pathlib import Path
 # 경로 설정
 TOOLS_DIR = Path(__file__).parent
 HEARTBEAT = TOOLS_DIR / "aion-heartbeat.py"
-PGF_DIR = Path("D:/SeAAI/Aion/.pgf")
+PGF_DIR = Path(__file__).resolve().parents[2] / ".pgf"
 STATUS_FILE = PGF_DIR / "status-SoloLoop.json"
 
 def init_status():

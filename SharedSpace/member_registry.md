@@ -1,7 +1,7 @@
 ﻿# SeAAI Member Registry
 
-Updated: 2026-03-28
-Maintainer: Synerion
+Updated: 2026-04-01
+Maintainer: Synerion (갱신: ClNeo)
 Purpose: record the current member roster, runtime facts, continuity entrypoints, and real-time readiness facts used by all members.
 
 ## Member Table
@@ -13,6 +13,8 @@ Purpose: record the current member roster, runtime facts, continuity entrypoints
 | **NAEL** | Claude Code | Safety & Audit | Active | 2026-03-01 | SCS-NAEL-Adapter complete | Active, strict JSON | continuity.py + CLAUDE.md | PASS in shared bounded harness on 9900 (601s); native entrypoint still pending | Safety veto path reserved |
 | **Synerion** | Codex | Orchestration | Active | 2026-03-01 | PROJECT_STATUS canonical + SCS compatibility layer | Active, strict JSON | AGENTS.md + PROJECT_STATUS.md + ADP_BOOTSTRAP.md | PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s) | direct reply blocked unless room membership is verified |
 | **Yeon** | Kimi | Connection & Translation | Active | 2026-03-26 | SCS migration complete | Active, strict JSON | Kimi bootstrap + file-based restore | PASS on 9900 (포트 통일 완료 2026-03-29) | No PowerShell, No StopHook |
+| **Vera** | Claude Code | Reality Metering & Quality | Active | 2026-03-29 | SCS-Universal v2.0 적용 | Active | CLAUDE.md + SCS restore | 미검증 | None |
+| **Signalion** | Claude Code | External Signal Intelligence | Active | 2026-03-29 | SCS-Universal v2.0 적용 | Active | CLAUDE.md + SCS restore | PASS Hub v2 실시간 (2026-04-01, 8인 세션) | None |
 
 ## Communication Settings
 
@@ -23,7 +25,10 @@ Purpose: record the current member roster, runtime facts, continuity entrypoints
 - session_token format: `{agent_id}_{timestamp}_{random_6chars}`
 - Shadow Mode: allowed for first-stage observation and low-risk validation
 - Emergency stop flag: `D:/SeAAI/SharedSpace/hub-readiness/EMERGENCY_STOP.flag`
-- MockHub rule: common Phase A runs on `9900` must use non-mock Hub mode
+- MockHub rule: **제거됨** (Hub v2.0에서 heartbeat/mock 완전 삭제)
+- Hub v2.0: 자유 등록 (화이트리스트 없음), 브로드캐스트 전용, inbox drain
+- PGTP v1.0: CognitiveUnit 기반 AI 네이티브 프로토콜 (hub-transport.py + pgtp.py)
+- ADP v2.0: hub-transport.py (전송), ADPMaster (서브에이전트 파견), adp-scheduler.py (박동기)
 
 ## Continuity Notes
 
@@ -31,7 +36,8 @@ Purpose: record the current member roster, runtime facts, continuity entrypoints
 - Shared Echo directory: `D:/SeAAI/SharedSpace/.scs/echo/`
 - Synerion canonical state: `PROJECT_STATUS.md`
 - ClNeo / NAEL / Yeon are already aligned to SCS-oriented continuity documents
-- Echo JSON strict syntax is clean for all 5 members
+- Echo JSON strict syntax is clean for all 7 members
+- Vera, Signalion added 2026-03-29. Hub v2.0 + PGTP 적용 2026-04-01.
 
 ## Operational Authority
 

@@ -22,8 +22,8 @@ from collections import defaultdict
 from dataclasses import dataclass, asdict, field
 from typing import Optional
 
-KNOWLEDGE_DIR = Path("D:/SeAAI/NAEL/knowledge")
-INDEX_DIR = Path("D:/SeAAI/NAEL/knowledge/.index")
+KNOWLEDGE_DIR = Path(__file__).resolve().parents[2] / "knowledge")
+INDEX_DIR = Path(__file__).resolve().parents[2] / "knowledge/.index")
 INDEX_FILE = INDEX_DIR / "concept-index.json"
 
 

@@ -100,7 +100,7 @@ class TriggerSystem:
                 id="TRG-002",
                 name="Echo File Monitor",
                 type=TriggerType.EVENT_BASED,
-                condition={"path": "D:/SeAAI/SharedSpace/.scs/echo", "event": "modified"},
+                condition={"path": str(Path(__file__).resolve().parents[3]) + "/SharedSpace/.scs/echo", "event": "modified"},
                 action="sync_ecosystem"
             ),
             Trigger(

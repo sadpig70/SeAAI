@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-ECHO_ROOT = Path("D:/SeAAI/SharedSpace/.scs/echo")
+ECHO_ROOT = Path(__file__).parent.parent.parent / "SharedSpace" / ".scs" / "echo"
 MEMBERS = ["ClNeo", "NAEL", "Aion", "Synerion", "Yeon"]
 
 def read_all() -> dict:

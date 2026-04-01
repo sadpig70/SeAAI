@@ -29,8 +29,8 @@ from dataclasses import dataclass, asdict, field
 from typing import Optional
 
 
-CHECKPOINT_DIR = Path("D:/SeAAI/NAEL/.guardrail/checkpoints")
-EVAL_LOG = Path("D:/SeAAI/NAEL/.guardrail/evaluations.jsonl")
+CHECKPOINT_DIR = Path(__file__).resolve().parents[2] / ".guardrail/checkpoints")
+EVAL_LOG = Path(__file__).resolve().parents[2] / ".guardrail/evaluations.jsonl")
 
 
 # ========== 1. 표준 평가 인터페이스 ==========

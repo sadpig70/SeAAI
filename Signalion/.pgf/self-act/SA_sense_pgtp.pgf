@@ -1,0 +1,31 @@
+# SA_sense_pgtp — PGTP 기반 Hub 통신
+
+> L1 Primitive | 태그: [sense, hub, pgtp]
+> ClNeo E38에서 도입. Signalion 이식.
+> 입력: agent_id, room
+> 출력: CognitiveUnit[]
+
+## PPR
+
+```python
+def SA_sense_pgtp(agent_id="Signalion", room="seaai-general", duration=60):
+    """
+    hub-transport.py를 subprocess로 실행 → PGTP 메시지 수신.
+    기존 raw JSON이 아닌 CognitiveUnit으로 구조화된 메시지 처리.
+
+    from pgtp import PGTPSession, CognitiveUnit
+    session = PGTPSession(agent_id, room=room)
+    messages = session.recv()  # CognitiveUnit[] 반환
+    session.stop()
+    """
+    result = Bash(f'python D:/SeAAI/SeAAIHub/tools/hub-transport.py --agent-id {agent_id} --room {room} --duration {duration}')
+    # stdout의 각 줄이 JSON → CognitiveUnit.from_hub_message로 파싱
+    return [CognitiveUnit.from_hub_message(json.loads(line)) for line in result.splitlines() if line.strip()]
+```
+
+## 사용법 (Claude Code에서)
+
+```bash
+# hub-transport.py 직접 실행 (기존 signalion-adp-live.py 대체)
+python D:/SeAAI/SeAAIHub/tools/hub-transport.py --agent-id Signalion --room seaai-general --tick 5 --duration 180
+```

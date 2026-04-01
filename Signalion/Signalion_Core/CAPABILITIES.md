@@ -44,7 +44,10 @@ Signalion_Capabilities @v:3.0
         PatternLearningDB // signal-store/patterns.json
 
     7_Communicate // 통신
-        Hub // SeAAIHub TCP:9900
+        HubTransport // hub-transport.py — 통합 ADP 클라이언트 (ClNeo E38 이식)
+        SignalionADPv2 // signalion-adp-v2.py — 독립 ADP 스크립트. ID 중복 해결 + 자동 재연결 3회 + PGTP 파싱
+        PGTP // pgtp.py — AI-native 인지 전송 프로토콜. CognitiveUnit 기반 (ClNeo E38 이식)
+        SA_sense_pgtp // PGTP 기반 Hub 송수신 SA 모듈
         MailBox // 비동기 멤버 간 메시지
         Echo // SharedSpace 상태 공표
 
@@ -176,6 +179,35 @@ def use_api_key(key_name):
         token = browser_extract_api_key()
         save_to_env(key_name, token)
     return token
+```
+
+### Hub 기동 (중요 — 매 세션 인지)
+
+```bash
+# Hub는 nohup으로 독립 프로세스 기동. 세션 종료와 무관하게 유지.
+# run_in_background나 &만으로는 부모 프로세스 종료 시 Hub도 죽는다.
+cd D:/SeAAI/SeAAIHub && nohup ./target/release/SeAAIHub.exe --tcp-port 9900 > /dev/null 2>&1 &
+
+# 확인
+python -c "import socket; s=socket.create_connection(('127.0.0.1',9900),2); s.close(); print('Hub UP')"
+```
+
+### Hub 통신 (ADP v2 + PGTP)
+
+```python
+# 방법 1 (권장): signalion-adp-v2.py — 독립 ADP 스크립트
+# ID 중복 해결 + 자동 재연결 3회 + PGTP 파싱 + ConnectionReset 복구
+Bash("python D:/SeAAI/SeAAIHub/tools/signalion-adp-v2.py --tick 5 --duration 600")
+
+# 방법 2: PGTP 레이어 (구조화 통신)
+from pgtp import PGTPSession, CognitiveUnit
+session = PGTPSession("Signalion", room="seaai-general")
+session.propose("외부 신호 수집 결과 공유", accept="멤버 확인")
+messages = session.recv()  # CognitiveUnit[] — intent/payload/context 구조화
+session.stop()
+
+# 주의: hub-transport.py는 Bash 도구에서 stdin 파이프 문제로 조기 종료됨.
+# signalion-adp-v2.py를 사용하거나 직접 Python으로 TcpHubClient 호출.
 ```
 
 ### 자기 진화 (ADP)

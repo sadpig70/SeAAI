@@ -20,7 +20,7 @@ from collections import Counter
 from dataclasses import dataclass, asdict
 
 
-TELEMETRY_DIR = Path("D:/SeAAI/NAEL/telemetry")
+TELEMETRY_DIR = Path(__file__).resolve().parents[2] / "telemetry")
 LOG_FILE = TELEMETRY_DIR / "events.jsonl"
 
 

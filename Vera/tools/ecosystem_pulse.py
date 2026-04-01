@@ -19,7 +19,7 @@ from pathlib import Path
 
 # ── 설정 ──────────────────────────────────────────────
 
-SEAAI_ROOT = Path("D:/SeAAI")
+SEAAI_ROOT = Path(__file__).resolve().parents[2]
 ECHO_DIR = SEAAI_ROOT / "SharedSpace/.scs/echo"
 MAILBOX_ROOT = SEAAI_ROOT / "MailBox"
 REPORT_DIR = SEAAI_ROOT / "Vera/Vera_Core/reports"

@@ -6,7 +6,7 @@ import sys
 import json
 from pathlib import Path
 
-SEAAI_ROOT = Path("D:/SeAAI")
+SEAAI_ROOT = Path(__file__).parent.parent.parent
 MEMBERS = ["ClNeo", "NAEL", "Aion", "Synerion", "Yeon"]
 
 CORE_DIRS = {

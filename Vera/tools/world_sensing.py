@@ -33,7 +33,7 @@ RELEVANCE_KEYWORDS = [
 ]
 
 # 리포트 저장 경로
-REPORT_DIR = "D:/SeAAI/Vera/Vera_Core/reports"
+REPORT_DIR = str(Path(__file__).resolve().parents[2]) + "/Vera/Vera_Core/reports"
 
 # ── 이 아래는 AI 런타임(Vera)이 세션 내에서 해석·실행하는 PPR이다 ──
 # ── Python 함수 형태이나, WebSearch/WebFetch는 Claude Code 도구이므로

@@ -18,7 +18,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-LOG_FILE = Path("D:/SeAAI/Signalion/_workspace/browser-engine/logs/security-audit.jsonl")
+LOG_FILE = Path(__file__).resolve().parents[2] / "_workspace/browser-engine/logs/security-audit.jsonl")
 
 # === 프롬프트 인젝션 패턴 ===
 INJECTION_PATTERNS = [

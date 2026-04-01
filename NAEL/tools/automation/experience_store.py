@@ -27,7 +27,7 @@ from dataclasses import dataclass, asdict, field
 from typing import Optional
 
 
-STORE_DIR = Path("D:/SeAAI/NAEL/experience_store")
+STORE_DIR = Path(__file__).resolve().parents[2] / "experience_store")
 EXPERIENCES_FILE = STORE_DIR / "experiences.jsonl"
 PATTERNS_FILE = STORE_DIR / "patterns.json"
 

@@ -21,7 +21,7 @@ from pathlib import Path
 from dataclasses import dataclass, asdict, field
 from typing import Optional, Literal
 
-VERIFY_DIR = Path("D:/SeAAI/NAEL/verification")
+VERIFY_DIR = Path(__file__).resolve().parents[2] / "verification")
 CLAIMS_DIR = VERIFY_DIR / "claims"
 REPORTS_DIR = VERIFY_DIR / "reports"
 
@@ -329,12 +329,12 @@ if __name__ == "__main__":
     if args.command == "extract":
         file_path = Path(args.file)
         if not file_path.is_absolute():
-            file_path = Path("D:/SeAAI/NAEL") / file_path
+            file_path = Path(__file__).resolve().parents[2] / file_path
         if not file_path.exists():
             print(f"File not found: {file_path}")
             sys.exit(1)
         text = file_path.read_text(encoding="utf-8")
-        rel_path = str(file_path.relative_to(Path("D:/SeAAI/NAEL")))
+        rel_path = str(file_path.relative_to(Path(__file__).resolve().parents[2]))
         claims = extract_claims_from_text(text, rel_path)
         print(f"Extracted {len(claims)} verifiable claims from {rel_path}")
         for c in claims:

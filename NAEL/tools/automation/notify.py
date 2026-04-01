@@ -17,7 +17,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-LOG_FILE = Path("D:/SeAAI/NAEL/tools/automation/logs/notify-log.jsonl")
+LOG_FILE = Path(__file__).resolve().parents[2] / "tools/automation/logs/notify-log.jsonl")
 PWSH7 = r"D:\Tools\PS7\7\pwsh.exe"
 
 MB_OK = 0x00000000

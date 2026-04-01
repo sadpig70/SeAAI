@@ -25,7 +25,7 @@ from seaai_hub_client import TcpHubClient, build_agent_token, build_message_sign
 class SessionLogger:
     """세션별 로그 파일 관리."""
 
-    def __init__(self, log_dir="D:/SeAAI/SeAAIHub/logs"):
+    def __init__(self, log_dir=str(Path(__file__).parent.parent / "logs")):
         self.log_dir = Path(log_dir)
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.session_id = time.strftime("%Y%m%d-%H%M%S")
@@ -70,7 +70,7 @@ class SessionLogger:
 class HubMonitor:
     """Hub에 HubMaster로 접속하여 상태를 폴링하는 백그라운드 모니터."""
 
-    def __init__(self, host="127.0.0.1", port=9900, log_dir="D:/SeAAI/SeAAIHub/logs"):
+    def __init__(self, host="127.0.0.1", port=9900, log_dir=str(Path(__file__).parent.parent / "logs")):
         self.host = host
         self.port = port
         self.client = None

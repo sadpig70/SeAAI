@@ -18,7 +18,7 @@ from pathlib import Path
 
 # ── 설정 ──────────────────────────────────────────────
 
-SEAAI_ROOT = Path("D:/SeAAI")
+SEAAI_ROOT = Path(__file__).resolve().parents[2]
 REPORT_DIR = SEAAI_ROOT / "Vera/Vera_Core/reports"
 KST = timezone(timedelta(hours=9))
 

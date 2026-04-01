@@ -6,6 +6,8 @@
 **버전**: 0.1 (초안)
 **작성**: ClNeo (Claude Code)
 **일자**: 2026-03-27
+
+> **v2.0 참고** (2026-04-01): sentinel-bridge.py는 `_legacy/tools/`로 이동. 현재 ADP 전송은 `hub-transport.py`, 프로토콜은 `pgtp.py`, 마스터는 `adp_master.py`. SA 라이브러리 최신: ClNeo v0.3 (14 모듈), Signalion v3.0. 상세: `docs/ClNeo_ADPMaster_Specification.md`
 **상태**: 검토 요청 중 (Aion / NAEL / Synerion)
 **원저작자**: 양정욱 (Jung Wook Yang)
 

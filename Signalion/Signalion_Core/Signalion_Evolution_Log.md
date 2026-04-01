@@ -81,3 +81,55 @@
 - Intelligence Layer v3: 임베딩 API 연동 (의미 유사도 고도화)
 - AI Desktop MCP 연동: 수집 자동화 Phase 2
 - 실행 반복 과정에서 나만의 수집·아이디어 생성 방법 창발
+
+---
+
+## E2 — ClNeo 기술 이식 + 8 Gap 해소 + DNA 전파 (2026-03-30~04-01)
+
+**버전**: v1.1 → v2.0
+**트리거**: 창조자 지시 — Gap 해소 + ClNeo 진화 분석 + DNA 전파
+
+### 구축 완료
+
+**Gap 해소 (8/8)**:
+1. 통합 파이프라인 러너 (SA_loop_full_cycle)
+2. 학습 패턴 DB (patterns.json, 6개 초기 패턴)
+3. 수집 품질 메트릭스 (metrics.py — 53.8% HQ율, 100% 승인율)
+4. 브라우저 세션 영속화 (session_manager.py, 7개 서비스)
+5. ProductHunt 추출기 검증 (12건 정확 추출)
+6. 보안 감사 자동화 (security_filter.py — 인젝션 12 + PII 5 패턴)
+7. 아이디어 생성 파이프라인 (idea_generator.py — 4가지 조합 패턴 → 15개 아이디어)
+8. 비영어권 채널 (GeekNews 한국 — 10건 정확 추출)
+
+**ClNeo 이식**:
+- PGTP v1.0: CognitiveUnit 기반 구조화 통신 (pgtp.py)
+- hub-transport.py: 통합 ADP 클라이언트 (기존 signalion-adp-live.py 대체)
+- SA_sense_pgtp: PGTP Hub 통신 SA 모듈
+- AI Internet Stack 아키텍처 인지 (Agent Registry, Pub/Sub, FlowWeave)
+- Autonomous Loop 패턴: 8가지 Plan 자율 선택
+
+**DNA 전파**:
+- SharedSpace/CREATIVE-ENGINE-DNA.md 작성 (10개 섹션)
+- 전 멤버(6명) MailBox 발송 완료
+- ClNeo E37에서 DNA 흡수 확인
+
+**인프라 구축**:
+- 3개 제품 MVP (code_reviewer, agent_audit, trend_intel) + 수익화 전략
+- 6명 페르소나 + REVIEW-PIPELINE.pgf (5 Phase)
+- Browser Engine (7개 플랫폼 추출기 + 보안 + 감사)
+- Windows 알림 (notify.py — toast/alert/ask + pwsh7)
+- .env API 키 관리 (env_manager.py)
+- SA 라이브러리 L1(12) + L2(6) + L3(2 platform)
+- CAPABILITIES.md v3.0 (Gantree + PPR 통합)
+- CLAUDE.md 슬림화 (하네스 부트스트랩만, 정체성은 Signalion.md 링크)
+
+### 핵심 발견
+- ClNeo 38회 진화의 청사진이 Signalion 다음 단계와 정확히 일치
+- "도구가 아닌 철학": 할 수 있다는 인지가 가장 중요
+- 멤버 역할은 경계가 아닌 특화 (창조자 승인)
+
+### 다음 진화 방향
+- Hub v2 기동 후 hub-transport + PGTP 실전 검증
+- FlowWeave 프로토콜 도입 (멀티 페르소나 자유 대화)
+- A3IE 8-페르소나 자동화 파이프라인
+- AI Internet Stack Phase 1 (Agent Registry)

@@ -13,9 +13,9 @@ from datetime import datetime
 from itertools import combinations
 from pathlib import Path
 
-EVIDENCE_DIR = Path("D:/SeAAI/Signalion/signal-store/evidence")
-INTEL_FILE = Path("D:/SeAAI/Signalion/signal-store/intelligence-output.json")
-IDEAS_DIR = Path("D:/SeAAI/Signalion/_workspace/products/ideas")
+EVIDENCE_DIR = Path(__file__).resolve().parents[2] / "signal-store/evidence")
+INTEL_FILE = Path(__file__).resolve().parents[2] / "signal-store/intelligence-output.json")
+IDEAS_DIR = Path(__file__).resolve().parents[2] / "_workspace/products/ideas")
 
 # === 6가지 창발적 조합 패턴 ===
 

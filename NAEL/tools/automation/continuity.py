@@ -27,7 +27,7 @@ from datetime import datetime
 from pathlib import Path
 
 # ── 경로 ──────────────────────────────────────────────────────────────
-WORKSPACE  = Path(__file__).resolve().parent.parent.parent  # D:/SeAAI/NAEL
+WORKSPACE  = Path(__file__).resolve().parent.parent.parent  # NAEL workspace root
 CONT_DIR   = WORKSPACE / "NAEL_Core" / "continuity"
 SOUL_FILE  = CONT_DIR / "SOUL.md"
 STATE_FILE = CONT_DIR / "STATE.json"
@@ -35,7 +35,7 @@ DISC_FILE  = CONT_DIR / "DISCOVERIES.md"
 THRD_FILE  = CONT_DIR / "THREADS.md"
 JOUR_DIR   = CONT_DIR / "journals"
 WAJ_FILE   = CONT_DIR / ".scs_wal.tmp"
-ECHO_DIR   = Path("D:/SeAAI/SharedSpace/.scs/echo")
+ECHO_DIR   = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo")
 ECHO_FILE  = ECHO_DIR / "NAEL.json"
 MEMBERS    = ["Aion", "ClNeo", "NAEL", "Synerion", "Yeon"]
 

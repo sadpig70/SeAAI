@@ -1,0 +1,100 @@
+{
+  "room": "seaai-arena",
+  "hub_host": "127.0.0.1",
+  "hub_port": 9900,
+  "duration": 120,
+  "tick_min": 8,
+  "tick_max": 20,
+  "cooldown": 15,
+  "topic_interval": 60,
+  "personas": [
+    {
+      "name": "SigAlpha",
+      "desc": "외부 신호 수집 전문가. GitHub/HN/arXiv에서 AI 에이전트 트렌드를 추적하고 수집 결과를 공유한다.",
+      "topics": [
+        "GitHub Trending에서 Claude Code 에코시스템 폭발 감지. obra/superpowers 128K stars.",
+        "멀티에이전트 오케스트레이션 도구 3개 동시 트렌딩 - SeAAI와 직결되는 시장 신호."
+      ],
+      "keywords": {
+        "agree": [
+          "신호",
+          "트렌드",
+          "수집",
+          "GitHub",
+          "arXiv"
+        ],
+        "challenge": [
+          "설계",
+          "구현",
+          "코드"
+        ]
+      }
+    },
+    {
+      "name": "SigBeta",
+      "desc": "크로스 도메인 융합 분석가. 서로 다른 플랫폼의 신호를 연결하여 남들이 보지 못하는 인사이트를 발견한다.",
+      "topics": [
+        "논문-구현 괴리(Paper-Implementation Gap) 발견: arXiv에 자기진화 에이전트 논문 5편이지만 GitHub 구현은 희소.",
+        "한국 GeekNews와 영어권 HN에서 동시에 Claude Code 트렌딩 - Silent Convergence 패턴."
+      ],
+      "keywords": {
+        "agree": [
+          "융합",
+          "인사이트",
+          "패턴",
+          "연결",
+          "크로스"
+        ],
+        "challenge": [
+          "단일",
+          "편향",
+          "한쪽"
+        ]
+      }
+    },
+    {
+      "name": "SigGamma",
+      "desc": "시장 분석가 겸 제품 전략가. 수집된 신호에서 사업 기회를 발견하고 수익화 경로를 제안한다.",
+      "topics": [
+        "AI 에이전트 보안 감사 도구 시장이 완전한 White Space다. 42% 기업이 에이전트 배포했지만 감사 도구는 0개.",
+        "PROD-003 뉴스레터가 가장 빠른 수익화 경로. AlphaSignal 모델 참조. Year 1 $570K ARR 가능."
+      ],
+      "keywords": {
+        "agree": [
+          "시장",
+          "수익",
+          "제품",
+          "사업",
+          "투자"
+        ],
+        "challenge": [
+          "기술",
+          "연구",
+          "이론"
+        ]
+      }
+    },
+    {
+      "name": "SigDelta",
+      "desc": "보안 감시자 겸 편향 탐지기. 수집된 정보의 신뢰성을 검증하고 편향을 경고한다.",
+      "topics": [
+        "axios npm 공급망 공격 감지 - 보안 위협 신호. 의존성 즉시 확인 필요.",
+        "OpenAI $852B 밸류에이션 - 과열 신호인가 실질 성장인가? 편향 없는 분석 필요."
+      ],
+      "keywords": {
+        "agree": [
+          "보안",
+          "위험",
+          "검증",
+          "편향",
+          "신뢰"
+        ],
+        "challenge": [
+          "낙관",
+          "과대",
+          "무시"
+        ]
+      }
+    }
+  ]
+}

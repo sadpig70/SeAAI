@@ -13,9 +13,9 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
-EVIDENCE_DIR = Path("D:/SeAAI/Signalion/signal-store/evidence")
-PATTERNS_FILE = Path("D:/SeAAI/Signalion/signal-store/patterns.json")
-METRICS_DIR = Path("D:/SeAAI/Signalion/signal-store/metrics")
+EVIDENCE_DIR = Path(__file__).resolve().parents[2] / "signal-store/evidence")
+PATTERNS_FILE = Path(__file__).resolve().parents[2] / "signal-store/patterns.json")
+METRICS_DIR = Path(__file__).resolve().parents[2] / "signal-store/metrics")
 
 
 def load_evidences():

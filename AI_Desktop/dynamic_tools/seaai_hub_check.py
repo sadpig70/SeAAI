@@ -8,7 +8,7 @@ import socket
 import subprocess
 from pathlib import Path
 
-SEAAI_ROOT = Path("D:/SeAAI")
+SEAAI_ROOT = Path(__file__).parent.parent.parent
 HUB_ROOT = SEAAI_ROOT / "SeAAIHub"
 HUB_PORT = 9900
 

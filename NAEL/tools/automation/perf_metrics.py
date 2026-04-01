@@ -23,7 +23,7 @@ from collections import defaultdict
 from dataclasses import dataclass, asdict, field
 from typing import Optional
 
-METRICS_DIR = Path("D:/SeAAI/NAEL/metrics")
+METRICS_DIR = Path(__file__).resolve().parents[2] / "metrics")
 METRICS_FILE = METRICS_DIR / "metrics.jsonl"
 
 

@@ -6,7 +6,7 @@ from pathlib import Path
 
 # 경로 설정
 BASE_DIR = Path(__file__).parent
-SHARED_SPACE = Path("D:/SeAAI/SharedSpace")
+SHARED_SPACE = Path(__file__).resolve().parents[3] / "SharedSpace"
 ECHO_DIR = SHARED_SPACE / ".scs" / "echo"
 
 LAYERS = {

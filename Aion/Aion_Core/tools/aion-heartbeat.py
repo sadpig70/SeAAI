@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--agent-id", default="Aion")
     parser.add_argument("--tick-min", type=float, default=60.0)
     parser.add_argument("--tick-max", type=float, default=120.0)
-    parser.add_argument("--mailbox-path", default="D:/SeAAI/MailBox")
+    parser.add_argument("--mailbox-path", default=str(Path(__file__).resolve().parents[3] / "MailBox"))
     args = parser.parse_args()
 
     agent_id = args.agent_id

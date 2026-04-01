@@ -22,7 +22,7 @@ from pathlib import Path
 from dataclasses import dataclass, asdict, field
 from typing import Optional, Literal
 
-EXPERIMENTS_DIR = Path("D:/SeAAI/NAEL/experiments")
+EXPERIMENTS_DIR = Path(__file__).resolve().parents[2] / "experiments")
 LOG_FILE = EXPERIMENTS_DIR / "experiments.jsonl"
 DESIGNS_DIR = EXPERIMENTS_DIR / "designs"
 

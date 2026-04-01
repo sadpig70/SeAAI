@@ -31,8 +31,8 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="repla
 sys.path.insert(0, str(Path(__file__).parent))
 from seaai_hub_client import TcpHubClient, build_agent_token, build_message_signature, tool_content
 
-STOP_FLAG = Path("D:/SeAAI/SharedSpace/hub-readiness/EMERGENCY_STOP.flag")
-LOG_DIR = Path("D:/SeAAI/SeAAIHub/.bridge")
+STOP_FLAG = Path(__file__).parent.parent.parent / "SharedSpace" / "hub-readiness" / "EMERGENCY_STOP.flag"
+LOG_DIR = Path(__file__).parent.parent / ".bridge"
 
 
 def parse_args():

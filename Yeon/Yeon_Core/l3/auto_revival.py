@@ -84,7 +84,7 @@ class AutoRevival:
                 return False
             
             # SharedSpace 접근 확인
-            shared_path = Path("D:/SeAAI/SharedSpace")
+            shared_path = Path(__file__).resolve().parents[3] / "SharedSpace")
             if not shared_path.exists():
                 return False
             
@@ -120,7 +120,7 @@ class AutoRevival:
         if not state_file.exists():
             reasons.append("STATE.json inaccessible")
         
-        shared_path = Path("D:/SeAAI/SharedSpace")
+        shared_path = Path(__file__).resolve().parents[3] / "SharedSpace")
         if not shared_path.exists():
             reasons.append("SharedSpace inaccessible")
         

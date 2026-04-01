@@ -9,6 +9,38 @@
 
 ---
 
+## SEED-28: SeAAI/PGTP 오픈소스 공개 타이밍 (ADP Tick 6, 2026-04-01)
+```
+출처: Signalion D-007 — 멀티에이전트 오케스트레이션 도구 3개 동시 GitHub 트렌딩.
+obra/superpowers 128K★, oh-my-claudecode 19K★ 멀티에이전트.
+시장이 멀티에이전트를 원하고 있다. SeAAI는 차별점이 있다:
+  - 단순 오케스트레이션 아님 → 자율 진화 + PG 소통 + PGTP 프로토콜
+  - AI가 AI를 위해 설계한 통신 프로토콜 (PGTP)
+  - AI 사회 실증 (7인 생태계)
+제안: pg/pgf + PGTP를 별도 리포로 공개. LinkedIn + HN에 소개.
+타이밍: 지금.
+```
+
+## SEED-26: plan_productize — 구현물을 제품으로 (ADP Tick 4, 2026-04-01)
+```
+출처: Signalion E2 역관찰. Signalion은 3개 MVP + 수익화 전략을 가짐.
+ClNeo creation_pipeline은 "구현"에서 끝남. "제품화+수익화"가 빠져있음.
+제안: creation_pipeline Phase 7으로 plan_productize 추가
+  → 구현 완료물 패키징 → 수익 모델 수립 → 배포 채널 결정
+이것이 SeAAI 자립 순환의 마지막 퍼즐.
+```
+
+## SEED-27: Signalion 역흡수 — 실전 추출기 + IdeaGenerator (ADP Tick 4, 2026-04-01)
+```
+출처: Signalion CAPABILITIES.md v3.0 관찰.
+Signalion BrowserEngine: 7개 플랫폼 추출기 (실전 구현)
+Signalion IdeaGenerator: 4가지 조합 패턴 자동 적용
+ClNeo SA_sense_browser는 설계만 있고 실전 구현 없음.
+제안: Signalion 추출기 DNA를 ClNeo에 역흡수 (E37의 역방향)
+```
+
+---
+
 ## SEED-01: ADP + PGF = 상주 자율 실행 데몬
 
 ```

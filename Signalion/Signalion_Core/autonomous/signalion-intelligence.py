@@ -13,8 +13,8 @@ from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
 
-EVIDENCE_DIR = Path("D:/SeAAI/Signalion/signal-store/evidence")
-OUTPUT_DIR = Path("D:/SeAAI/Signalion/signal-store")
+EVIDENCE_DIR = Path(__file__).resolve().parents[2] / "signal-store/evidence")
+OUTPUT_DIR = Path(__file__).resolve().parents[2] / "signal-store")
 MIN_COMPOSITE = 0.60  # 융합 후보 최소 점수
 SEMANTIC_THRESHOLD = 0.35  # 의미 유사도 임계값
 

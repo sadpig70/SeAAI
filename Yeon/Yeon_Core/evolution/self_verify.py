@@ -258,7 +258,7 @@ class SelfVerifier:
     def test_sharedspace_access(self) -> TestResult:
         """SharedSpace 접근 검증"""
         def check():
-            shared_path = Path("D:/SeAAI/SharedSpace")
+            shared_path = Path(__file__).resolve().parents[3] / "SharedSpace")
             if not shared_path.exists():
                 return False, "SharedSpace not accessible"
             

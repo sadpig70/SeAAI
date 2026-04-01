@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 
-MAILBOX_ROOT = Path("D:/SeAAI/MailBox")
+MAILBOX_ROOT = Path(__file__).parent.parent.parent / "MailBox"
 
 def read_inbox(member: str) -> dict:
     inbox_dir = MAILBOX_ROOT / member / "inbox"

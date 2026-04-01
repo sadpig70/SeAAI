@@ -276,7 +276,7 @@ if __name__ == "__main__":
     parser.add_argument("--report", action="store_true", help="Generate markdown report")
     parser.add_argument("--gaps", action="store_true", help="Gap analysis")
     parser.add_argument("--json", action="store_true", help="JSON output")
-    parser.add_argument("--workspace", default="D:/SeAAI/NAEL", help="Workspace path")
+    parser.add_argument("--workspace", default=str(Path(__file__).resolve().parents[3]), help="Workspace path")
     parser.add_argument("--skills-dir", default=os.path.expanduser("~/.claude/skills"), help="Skills directory")
     parser.add_argument("--output", help="Output file")
 

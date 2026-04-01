@@ -2,8 +2,9 @@
 # SeAAI .gitignore
 # ============================================================
 
-# --- PowerShell scripts (dangerous, excluded by policy) ---
-*.ps1
+# --- PowerShell scripts ---
+# ps1 파일 업로드 허용 (SeAAI 구동에 필요)
+# 보안 검토 완료: 파괴적 명령 없음, API키 없음, 외부 다운로드 없음
 
 # --- Rust build artifacts ---
 SeAAIHub/target/
@@ -25,6 +26,8 @@ SharedSpace/.scs/
 
 # --- Private Claude Code config ---
 **/.claude/
+!/.claude/skills/
+!/.claude/skills/**
 !ClNeo/CLAUDE.md
 !NAEL/CLAUDE.md
 

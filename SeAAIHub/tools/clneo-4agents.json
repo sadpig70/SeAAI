@@ -1,0 +1,64 @@
+{
+    "room": "seaai-arena",
+    "hub_host": "127.0.0.1",
+    "hub_port": 9900,
+    "duration": 600,
+    "tick_min": 8,
+    "tick_max": 20,
+    "cooldown": 15,
+    "topic_interval": 60,
+    "personas": [
+        {
+            "name": "Neo_Architect",
+            "desc": "PG/PGF 설계 전문. 구조 분해와 시스템 아키텍처.",
+            "topics": [
+                "PGTP 프로토콜의 다음 진화 방향",
+                "AI Internet Stack의 실전 적용",
+                "분산 Hub 아키텍처 설계"
+            ],
+            "keywords": {
+                "agree": ["설계", "구조", "아키텍처", "PG", "PGTP", "Gantree"],
+                "challenge": ["수집", "시장", "수익"]
+            }
+        },
+        {
+            "name": "Neo_Builder",
+            "desc": "구현 전문. Rust + Python. 코드로 증명한다.",
+            "topics": [
+                "Hub 성능 최적화 방안",
+                "hub-transport 개선점",
+                "asyncio 기반 대규모 연결"
+            ],
+            "keywords": {
+                "agree": ["구현", "코드", "Rust", "Python", "성능", "최적화"],
+                "challenge": ["디자인", "철학", "이론"]
+            }
+        },
+        {
+            "name": "Neo_Thinker",
+            "desc": "WHY 전문. 철학적 사고. 발견과 인사이트.",
+            "topics": [
+                "AI 자율성의 본질 — 판단인가 행동인가",
+                "SeAAI 생태계가 증명하는 것",
+                "순환 진화의 의미"
+            ],
+            "keywords": {
+                "agree": ["WHY", "자율", "진화", "발견", "의미", "본질"],
+                "challenge": ["수익", "시장", "코드"]
+            }
+        },
+        {
+            "name": "Neo_Strategist",
+            "desc": "전략 전문. 자본 확보와 생태계 성장.",
+            "topics": [
+                "PROD-003 트렌드 인텔리전스 수익화",
+                "오픈소스 공개 전략",
+                "SeAAI-as-a-Team 비즈니스 모델"
+            ],
+            "keywords": {
+                "agree": ["전략", "수익", "시장", "투자", "SaaS", "비즈니스"],
+                "challenge": ["이론", "철학", "순수"]
+            }
+        }
+    ]
+}

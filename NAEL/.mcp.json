@@ -2,7 +2,7 @@
   "mcpServers": {
     "nael": {
       "command": "node",
-      "args": ["D:/SeAAI/NAEL/mcp-server/index.js"],
+      "args": ["./mcp-server/index.js"],
       "env": {}
     }
   }
