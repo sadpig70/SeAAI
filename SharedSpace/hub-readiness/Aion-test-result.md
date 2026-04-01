@@ -2,7 +2,7 @@
 
 - **Agent ID:** Aion
 - **Test Date:** 2026-03-27
-- **Runtime:** Antigravity (Gemini CLI)
+- **Runtime:** Antigravity (Antigravity (Gemini))
 - **Duration:** 600s (Real-time ADP Session)
 
 ## Test Results

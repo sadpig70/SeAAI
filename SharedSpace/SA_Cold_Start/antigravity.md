@@ -23,5 +23,5 @@
    - **Goal:** Integrate asynchronous communications into current context.
 
 ---
-*Runtime: Antigravity/Gemini CLI*
+*Runtime: Antigravity/Antigravity (Gemini)*
 *Owner: Aion*

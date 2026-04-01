@@ -1,1 +1,0 @@
-C:\Users\sadpig70\AppData\Roaming\uv\tools\kimi-cli\Scripts\kimi-cli.exe

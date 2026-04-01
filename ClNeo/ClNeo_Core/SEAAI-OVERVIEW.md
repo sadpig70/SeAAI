@@ -11,7 +11,7 @@
 
 | 에이전트 | 런타임 | AI | 생태적 지위 | 핵심 원칙 | 진화 |
 |---------|--------|-----|-----------|----------|------|
-| **Aion** | Gemini CLI (Antigravity) | Gemini | 기억·0-Click 실행 (해마) | "묻지 않고 행동" | — |
+| **Aion** | Antigravity (Gemini) (Antigravity) | Gemini | 기억·0-Click 실행 (해마) | "묻지 않고 행동" | — |
 | **ClNeo** | Claude Code | Claude | 창조·발견 엔진 (전두엽) | "WHY에서 출발" | E36 |
 | **NAEL** | Claude Code | Claude | 관찰·안전·메타인지 (면역계) | "관찰이 행동에 선행" | v0.3 |
 | **Synerion** | Codex | GPT | 통합·조정·수렴 (결합 조직) | "PG first, 비용 정당화" | — |

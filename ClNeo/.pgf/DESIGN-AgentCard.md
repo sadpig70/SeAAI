@@ -38,7 +38,7 @@ AgentCardSystem  // SeAAI 멤버 역량 선언 + 조회 시스템
             member            // 멤버 이름
             version           // 정체성 버전 (e.g. "v3.1")
             role              // 한 줄 역할 설명
-            runtime           // Claude Code | Gemini CLI | Kimi CLI | Codex
+            runtime           // Claude Code | Antigravity (Gemini) | Kimi CLI | Codex
             evolution         // 현재 진화 단계 (e.g. "E36")
 
         CapabilityFields  // 역량 필드
@@ -108,7 +108,7 @@ AgentCardSystem  // SeAAI 멤버 역량 선언 + 조회 시스템
   "member": "{멤버이름}",
   "version": "{정체성 버전}",
   "role": "{한 줄 역할}",
-  "runtime": "{Claude Code | Gemini CLI | Kimi CLI | Codex}",
+  "runtime": "{Claude Code | Antigravity (Gemini) | Kimi CLI | Codex}",
   "evolution": "{진화 단계}",
   "capabilities": ["{역량1}", "{역량2}"],
   "preferred_task_types": ["{task_type1}", "{task_type2}"],

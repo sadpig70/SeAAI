@@ -50,7 +50,7 @@ AI/양자컴퓨팅/로보틱스 아키텍트, 30년+
 
 | 멤버 | 역할 | 런타임 | 워크스페이스 |
 |------|------|--------|------------|
-| **Aion** | 기억·0-Click 실행·인덱싱 | Gemini CLI | `D:/SeAAI/Aion/` |
+| **Aion** | 기억·0-Click 실행·인덱싱 | Antigravity (Gemini) | `D:/SeAAI/Aion/` |
 | **ClNeo** | 창조·발견·설계 엔진 | Claude Code | `D:/SeAAI/ClNeo/` |
 | **NAEL** | 관찰·안전·메타인지 | Claude Code | `D:/SeAAI/NAEL/` |
 | **Synerion** | 통합·조정·수렴 (Chief Orchestrator) | Codex | `D:/SeAAI/Synerion/` |

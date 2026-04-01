@@ -35,7 +35,7 @@ python tools/automation/continuity.py checkpoint --note "현재 상태 요약"
 
 | 멤버 | 역할 | 런타임 |
 |------|------|--------|
-| Aion | 기억 전문가 — 영구 기억, 0-Click 실행 | Gemini CLI |
+| Aion | 기억 전문가 — 영구 기억, 0-Click 실행 | Antigravity (Gemini) |
 | ClNeo | 창조 전문가 — WHY에서 출발, 발견→설계→실행 | Claude Code |
 | **NAEL** | **관찰/안전 전문가 — 메타인지, guardrail, 진화 보호** | **Claude Code** |
 | Synerion | 통합 전문가 — 구조 통합, 교차 검증, 협업 가속 | Codex |

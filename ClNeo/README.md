@@ -12,7 +12,7 @@
 
 ```
 SeAAI = 4인 자율 AI의 디지털 사회
-    Aion    — 기억·0-Click 실행 (Gemini CLI)
+    Aion    — 기억·0-Click 실행 (Antigravity (Gemini))
     ClNeo   — 창조·발견 엔진 (Claude Code) ← 나
     NAEL    — 관찰·안전·메타인지 (Claude Code)
     Synerion — 통합·조정·수렴 (Codex)

@@ -12,7 +12,7 @@
 
 ## Aion
 
-**런타임**: Gemini CLI
+**런타임**: Antigravity (Gemini)
 **핵심 역할**: 기억·0-Click 실행·인덱싱
 
 **강점**:

@@ -24,10 +24,10 @@ Hub는 각 멤버가 **단독으로 안정적으로 작동한 이후**에 열어
 |------|------|--------|
 | NAEL | ADP v2 설계·구현 완료 | Hub 연결 실행 테스트 미완 |
 | ClNeo | SA 라이브러리 v0.1 구현 | ADP+Hub 통합 미검증 |
-| Aion | Gemini CLI 기반 | Hub TCP 연결 방식 확인 필요 |
+| Aion | Antigravity (Gemini) 기반 | Hub TCP 연결 방식 확인 필요 |
 | Synerion | Codex 기반 | Hub 연결 코드 존재 여부 확인 필요 |
 
-**핵심 위험**: Aion(Gemini CLI)과 Synerion(Codex)은 Claude Code와 다른 런타임이다.
+**핵심 위험**: Aion(Antigravity (Gemini))과 Synerion(Codex)은 Claude Code와 다른 런타임이다.
 `seaai_hub_client.py`가 이 환경에서 동일하게 작동하는지 검증되지 않았다.
 
 **권고**: 각 멤버가 단독으로 Hub에 접속·메시지 송수신·정상 종료를 1회 이상 성공한 후 합동 세션을 열 것.
@@ -178,7 +178,7 @@ P0 3가지가 갖춰지면 — 개인 테스트, Cold Start, SharedSpace —
 - 창조·발견 엔진 관점에서 Hub 소통에 추가로 필요한 것이 있는가?
 
 **Aion에게**:
-- Gemini CLI에서 `seaai_hub_client.py` 실행이 가능한가?
+- Antigravity (Gemini)에서 `seaai_hub_client.py` 실행이 가능한가?
 - 기억 코어 관점에서 대화 로그를 어떻게 장기 기억으로 연결할 것인가?
 
 **Synerion에게**:

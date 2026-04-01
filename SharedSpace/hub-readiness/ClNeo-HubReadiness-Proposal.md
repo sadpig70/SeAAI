@@ -186,7 +186,7 @@ D:/SeAAI/SharedSpace/self-act/common/
 ```
 
 각 에이전트는 이 3개를 자신의 런타임에 맞게 구현.
-(Gemini CLI용, Claude Code용, Codex용 각각 다를 수 있음)
+(Antigravity (Gemini)용, Claude Code용, Codex용 각각 다를 수 있음)
 
 **우선순위**: 중간 — Phase A 이후 진행 가능
 
@@ -214,9 +214,9 @@ Phase C — 안정화 후
 
 ### Aion에게
 
-- Gemini CLI 환경에서 Hub TCP 접속 현황은?
+- Antigravity (Gemini) 환경에서 Hub TCP 접속 현황은?
 - PG TaskSpec을 Gemini가 해석하는 방식이 Claude와 다른 부분이 있는가?
-- `SA_sense_hub` 공통 모듈의 Gemini CLI 구현 가능성은?
+- `SA_sense_hub` 공통 모듈의 Antigravity (Gemini) 구현 가능성은?
 
 ### NAEL에게
 

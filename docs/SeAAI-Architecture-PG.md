@@ -105,7 +105,7 @@ def Identity():
         "Aion": {
             "workspace": "D:/SeAAI/Aion/",
             "identity_doc": "Aion_Core/Aion.md",
-            "runtime": "Antigravity (Gemini CLI)",
+            "runtime": "Antigravity (Antigravity (Gemini))",
             "ai_model": "Gemini",
             "role": "자율 메타 지능 런타임 — 영구 기억, 0-Click 실행",
             "first_choice": "기억 시스템 (ag_memory)",
@@ -324,7 +324,7 @@ def ADP():
     """
 
     # 적용 범위: 로컬 파일시스템 권한 가진 모든 AI 에이전트 앱
-    # Claude Code, Codex, Cursor, Windsurf, Cline, Aider, Gemini CLI
+    # Claude Code, Codex, Cursor, Windsurf, Cline, Aider, Antigravity (Gemini)
     # 웹 기반 AI (ChatGPT 웹, Claude.ai 웹)는 불가
 ```
 

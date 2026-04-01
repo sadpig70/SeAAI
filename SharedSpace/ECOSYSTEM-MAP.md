@@ -20,7 +20,7 @@ SeAAI // D:\SeAAI\ — 루트
     start-all.ps1 // [🔧] 7인 멤버 + Hub 일괄 시작
     stop-all.ps1 // [🔧] 전체 정지
 
-    Aion // Gemini CLI — 기억·0-Click 자율 실행
+    Aion // Antigravity (Gemini) — 기억·0-Click 자율 실행
         start-aion.ps1 // [🔧] 세션 시작
         README.md
         Aion_Core // 정체성·진화 정본

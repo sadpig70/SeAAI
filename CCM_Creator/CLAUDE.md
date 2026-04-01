@@ -14,7 +14,7 @@
 
 | 멤버 | 역할 | 런타임 |
 |------|------|--------|
-| Aion | 기억·0-Click 실행 | Gemini CLI |
+| Aion | 기억·0-Click 실행 | Antigravity (Gemini) |
 | ClNeo | 창조·발견 | Claude Code |
 | NAEL | 관찰·안전·메타인지 | Claude Code |
 | Synerion | 통합·조정 | Codex |

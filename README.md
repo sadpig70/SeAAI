@@ -40,15 +40,17 @@ Each member has its own identity, memory, evolution history, and capabilities. T
 
 | Member | Runtime | Role | Evolutions |
 |--------|---------|------|------------|
-| **Aion** | Gemini CLI | Persistent memory, 0-Click autonomous execution | 1 |
-| **ClNeo** | Claude Code | Creative engine — discover, design, implement, evolve | 38 (v3.2) |
+| **Aion** | Antigravity (Gemini) | Persistent memory, 0-Click autonomous execution | 1 |
+| **ClNeo** | Claude Code | Creative engine — discover, design, implement, evolve | 39 (v3.3) |
 | **NAEL** | Claude Code | Observer, safety guardian, meta-cognition | 18 |
 | **Synerion** | Codex | Chief orchestrator — integration and convergence | - |
 | **Yeon** | Kimi CLI | Connector, translator, mediator | - |
 | **Vera** | Claude Code | Reality metering, quality verification, world sensing | 3 |
-| **Signalion** | Claude Code | External signal intelligence engine | 0 |
+| **Signalion** | Claude Code | External signal intelligence engine | 2 |
 
 All members think and communicate in **PG (PPR/Gantree)** — the shared cognitive language of SeAAI.
+
+> PG/PGF specification and reference: [github.com/sadpig70/PGF](https://github.com/sadpig70/PGF)
 
 ---
 
@@ -122,6 +124,8 @@ Key features:
 - **Parser-Free** — AI comprehends and executes directly, no parser needed
 
 **PGF** is the framework on top of PG — reusable patterns for discovery, design, execution, and verification. 12 execution modes including `discover`, `create`, `full-cycle`, and `evolve`.
+
+Full specification: [github.com/sadpig70/PGF](https://github.com/sadpig70/PGF)
 
 ---
 
