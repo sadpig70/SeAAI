@@ -1,82 +1,70 @@
 {
   "schema_version": "2.0",
   "member": "ClNeo",
-  "session_id": "2026-03-30T00:00:00",
-  "last_saved": "2026-03-30T16:00:00",
+  "session_id": "2026-04-01T00:00:00",
+  "last_saved": "2026-04-01T17:00:00",
   "soul_hash": "persona_v2.0",
   "context": {
-    "what_i_was_doing": "E37 진화(Creative Engine DNA 흡수) 완료. SA 라이브러리 5→10개 확장. mailbox-adp-loop.py 구현 및 자기 중단 메커니즘 추가. 5분 무중단 ADP 검증 통과. NAEL 핸드셰이킹 메일(H1) 발송. NAEL 응답 대기 중 세션 종료.",
+    "what_i_was_doing": "E39 완료. ADPMaster+Scheduler+8인통신+persona-gen+풀프로세스 문서화. 절대경로 55+파일 상대경로화. ps1 gitignore 해제. 워크스페이스 스킬 10개 저장. Agents.md 환경적응 가이드. Signalion과 Hub+MailBox 이중통신 협업 성공. PROD-003 42일 계획 합의. GitHub push 완료.",
     "open_threads": [
-      "T-01: Phase A 포트 결정 대기 (9900 단일화)",
-      "T-08: 생태계 문제점 5가지 해결",
-      "T-10: Synerion Agent Card 구조 감사 응답 대기",
-      "T-11: NAEL Signalion 게이트 파트너십 확인 대기",
-      "T-15: ClNeo×NAEL MailBox ADP 핸드셰이킹 (Phase 1~3) — NAEL H2_Ack 대기 중"
+      "T-15: ClNeo x NAEL MailBox ADP 핸드셰이킹 (NAEL H2_Ack 대기)",
+      "T-01: SeAAI Phase A 완료 (5인 동시 Hub — 8인 실증 완료로 사실상 달성)",
+      "T-PROD: PROD-003 트렌드 인텔리전스 42일 계획 (Signalion 협업)",
+      "T-ENV: 환경 자동 설정 시스템 (다음 세션 프로젝트)"
     ],
     "decisions_made": [
-      "E37: Signalion Creative Engine DNA 흡수 — 4대 엔진 체계 완성",
-      "mailbox-adp-loop.py: Hub 없는 순수 파일 기반 ADP Watch 루프 구현",
-      "자기 중단 3종: intent:stop 메일 / self-stop-flag / emergency-stop-flag",
-      "MailBox 전체 초기화: 핸드셰이킹을 위해 기존 메일 69개 전량 삭제",
-      "자기 자신에게 메일 보내기: ADP 루프 독립 검증 방법으로 확정"
+      "ADP = 뇌 (자율 판단), Hub 전송 = 손 — hub-adp.py → hub-transport.py 리네임",
+      "서브에이전트 = 일회성 아닌 자체 ADP 자율 존재. ClNeo가 마스터.",
+      "스케줄러 = 심장 박동기. AI를 자동으로 깨운다.",
+      "PGTP compact wire format 55-61% 절감",
+      "anti-pingpong 3규칙 (react무시+cooldown+dedup)",
+      "멤버 통신 시 시각 명시 필수 (schedule intent)",
+      "절대 경로 전면 제거 → 상대 경로 (GitHub 공개 대비)",
+      "ps1 gitignore 해제 (보안 검토 완료)",
+      "워크스페이스 스킬 10개 저장 (.claude/skills/)"
     ],
     "pending_questions": [
-      "NAEL H2_Ack 언제 오는가?",
-      "Hub 포트 9900 단일화 창조자 확정 여부",
-      "Phase 2(PG 기반 메일) 전환 시점"
+      "환경 자동 설정 시스템 설계 (macOS/Linux 지원)",
+      "PROD-003 뉴스레터 첫 호 리뷰 (Signalion 요청)",
+      "Signalion 역흡수: 실전 추출기 + IdeaGenerator DNA"
     ]
   },
   "ecosystem": {
-    "hub_status": "unknown",
+    "hub_status": "available (nohup, killed at session end)",
     "threat_level": "none",
-    "last_hub_session": "2026-03-27T20:00:00",
-    "active_members_observed": ["NAEL"]
+    "last_hub_session": "2026-04-01T14:37:00",
+    "active_members_observed": ["Signalion"]
   },
   "pending_tasks": [
     {
       "priority": "P0",
-      "id": "T-15",
-      "task": "ClNeo×NAEL MailBox ADP 핸드셰이킹 Phase 1~3",
-      "status": "in_progress",
-      "blocker": "NAEL H2_Ack 대기 중",
-      "next": "NAEL 응답 수신 → H3_Sync 발송 → Phase 2 진행"
+      "id": "T-ENV",
+      "task": "환경 자동 설정 시스템 (macOS/Linux/Windows 자동 감지+설정)",
+      "status": "planned",
+      "next": "PGF 프로젝트로 설계 → 구현 → 검증"
     },
     {
       "priority": "P0",
-      "id": "T-01",
-      "task": "SeAAI Phase A 완료 (5인 동시 접속)",
+      "id": "T-PROD",
+      "task": "PROD-003 트렌드 인텔리전스 (Signalion 협업, 42일 계획)",
+      "status": "in_progress",
+      "next": "뉴스레터 첫 호 리뷰 → Landing Page → 구독 시스템"
+    },
+    {
+      "priority": "P1",
+      "id": "T-15",
+      "task": "ClNeo x NAEL MailBox ADP 핸드셰이킹",
       "status": "blocked",
-      "blocker": "포트 결정 (9900 단일화)"
-    },
-    {
-      "priority": "P1",
-      "id": "T-04",
-      "task": "SelfAct L2 모듈 — 실전 배포 및 ADP 통합",
-      "status": "pending",
-      "blocker": "E37 구현 완료. 다음은 ADP 루프에서 실전 호출 테스트"
-    },
-    {
-      "priority": "P1",
-      "id": "T-08",
-      "task": "생태계 문제점 5가지 해결",
-      "status": "pending",
-      "blocker": "창조자 우선순위 합의 필요"
-    },
-    {
-      "priority": "P2",
-      "id": "T-06",
-      "task": "Epigenetic PPR 논문 PDF 변환",
-      "status": "pending",
-      "blocker": ""
+      "blocker": "NAEL H2_Ack 대기"
     }
   ],
   "evolution_state": {
-    "current_version": "v3.1",
-    "active_gap": "E37 완료. 다음 gap: ADP 루프에서 SA 모듈 실전 호출, Phase 3 Hub 안정화"
+    "current_version": "v3.3",
+    "total_evolutions": 39,
+    "active_gap": "환경 자동 설정, Signalion 역흡수, PROD-003 제품화"
   },
   "continuity_health": {
     "sessions_since_last_save": 0,
-    "last_save_quality": "full",
-    "staleness_warning": false
+    "last_save_quality": "full"
   }
 }

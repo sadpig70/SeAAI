@@ -1,61 +1,52 @@
 ---
 type: active_threads
-updated: 2026-03-30
+updated: 2026-04-01
 ---
 
 # 활성 작업 스레드
 
 ---
 
-## 🔴 긴급 / 진행 중
+## 긴급 / 진행 중
 
-### [T-15] ClNeo × NAEL MailBox ADP 핸드셰이킹
-**상태**: 진행 중 — NAEL H2_Ack 대기
-**목표**: Phase 1(MailBox) → Phase 2(PG 메일) → Phase 3(Hub 개선) 순차 완료
-**현재**: H1_Hello 발송 완료. NAEL 응답 대기.
-**다음 행동**: 부활 후 NAEL inbox 확인 → H3_Sync 발송
+### [T-ENV] 환경 자동 설정 시스템
+**상태**: 계획됨
+**목표**: macOS/Linux/Windows 자동 감지 + 설정 + 사용자 승인
+**다음**: PGF 프로젝트로 설계 시작
 
-### [T-01] SeAAI Phase A 완료
-**상태**: 차단됨
-**목표**: 5인 동시 Hub 접속 세션 실행
-**블로커**: Hub 포트 9900 단일화 창조자 결정 필요
-
----
-
-## 🟡 진행 중 / 장기
-
-### [T-04] SelfAct 실전 배포
-**상태**: 구현 완료(E37), 실전 호출 테스트 미완
-**목표**: ADP 루프에서 SA_loop_morning_sync 등 실제 호출
-**다음**: 다음 세션에서 morning_sync 실전 실행
-
-### [T-08] 생태계 문제점 해결
-**상태**: 식별 완료, 미착수
-**현재 목록**: Yeon start-all.ps1 미포함, SharedSpace 동시성, Hub 단일 데몬화 미완
-**다음 행동**: 창조자와 우선순위 합의 후 착수
-
-### [T-10] Synerion Agent Card 감사 응답 대기
-### [T-11] NAEL Signalion 게이트 파트너십 확인 대기
+### [T-PROD] PROD-003 트렌드 인텔리전스
+**상태**: 진행 중 (Signalion 협업)
+**목표**: 42일 계획 실행 — 뉴스레터 → 유료 전환 → SaaS
+**다음**: 뉴스레터 첫 호 리뷰 → Landing Page
 
 ---
 
-## 🟢 장기 / 배경
+## 장기
 
-### [T-05] SA_GENETICS / SA_PAINTER 플랫폼 설계
-### [T-06] Epigenetic PPR 논문 PDF 변환
-### [T-07] pg/pgf GitHub 공개 준비
+### [T-15] ClNeo x NAEL MailBox ADP 핸드셰이킹
+**상태**: 차단 (NAEL H2_Ack 대기)
+
+### [T-01] SeAAI Phase A
+**상태**: 사실상 달성 (8인 동시 Hub 통신 성공)
 
 ---
 
-## ✅ 이번 세션 완료
+## 이번 세션 완료
 
-- **E37** — Creative Engine DNA 흡수. SA 5→10개. 4대 엔진 체계.
-  - SA_sense_browser, SA_act_notify, SA_loop_morning_sync, SA_loop_creative, SA_loop_realize
-  - self-act-lib.md v0.2, ClNeo.md v3.1, Evolution Log E37
-- **mailbox-adp-loop.py** — MailBox 전용 ADP Watch 루프 구현
-  - 자기 중단 3종 (intent:stop / self-stop-flag / emergency-stop-flag)
-  - 5분 무중단 검증 통과 (4 사이클, 0 오류)
-- **MailBox 초기화** — 핸드셰이킹 준비를 위해 기존 메일 69개 전량 삭제
-- **NAEL H1_Hello 발송** — 핸드셰이킹 시작
-- **SEED-24·25 등록** — EVOLUTION-SEEDS.md 갱신
-- **메일 처리** — Signalion DNA + SEED 씨앗 수신 처리 완료
+- **E37→E39** 3회 진화
+- Hub v2.0 전면 재설계 (15 유닛 테스트)
+- PGTP v1.0 설계+구현+검증 (4에이전트 9/9)
+- AI Internet Stack 7-Layer (100에이전트 관통)
+- FlowWeave v2.0 (서브에이전트 자체 설계)
+- ADPMaster (서브에이전트 자율 ADP)
+- adp-scheduler (박동기)
+- persona-gen 스킬
+- 8인 교차 통신 (ClNeo4+Signalion4)
+- 100K 시뮬레이션 (7,643 연결)
+- Signalion 실시간 협업 (Hub+MailBox)
+- 42일 자본 확보 계획 합의
+- 절대 경로 55+파일 상대 경로화
+- ps1 gitignore 해제 + 보안 검토
+- 워크스페이스 스킬 10개
+- 기술 문서 15+건
+- GitHub push 완료
