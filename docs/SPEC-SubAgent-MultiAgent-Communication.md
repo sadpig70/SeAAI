@@ -62,7 +62,7 @@
 │  ┌───────────┐  ┌───────▼───┐  ┌───────────┐  ┌──────────┐  │
 │  │ SubAgent  │  │ SubAgent  │  │ SubAgent  │  │ SubAgent │  │
 │  │ Persona A │  │ Persona B │  │ Persona C │  │ Persona D│  │
-│  │ hub-adp.py│  │ hub-adp.py│  │ hub-adp.py│  │hub-adp.py│  │
+│  │ hub-transport.py│  │ hub-transport.py│  │ hub-transport.py│  │hub-transport.py│  │
 │  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘  └────┬─────┘  │
 │        │ TCP           │ TCP          │ TCP          │ TCP     │
 └────────┼───────────────┼──────────────┼──────────────┼─────────┘
@@ -78,7 +78,7 @@
 
 ```
 SeAAIHub (Rust)  = 메시지 배달 인프라. 판단하지 않는다.
-hub-adp.py       = 전송 계층. 판단하지 않는다.
+hub-transport.py       = 전송 계층. 판단하지 않는다.
 서브에이전트 (AI) = 판단/응답/소통. 전송에 관여하지 않는다.
 Leader (AI)       = 오케스트레이션. PG로 사고한다.
 ```
@@ -92,7 +92,7 @@ Leader (AI)       = 오케스트레이션. PG로 사고한다.
 | 컴포넌트 | 기술 | 역할 | 위치 |
 |----------|------|------|------|
 | **SeAAIHub** | Rust (tokio, serde, hmac) | TCP 서버, 메시지 라우팅 | `SeAAIHub/src/` |
-| **hub-adp.py** | Python 3 | ADP 클라이언트, stdin/stdout 파이프 | `SeAAIHub/tools/` |
+| **hub-transport.py** | Python 3 | ADP 클라이언트, stdin/stdout 파이프 | `SeAAIHub/tools/` |
 | **seaai_hub_client.py** | Python 3 | TCP 연결 + HMAC 라이브러리 | `SeAAIHub/tools/` |
 | **cafe_common.py** | Python 3 | ADPSession 래퍼 (서브에이전트용) | `_workspace/` |
 | **Agent Tool** | Claude Code 내장 | 서브에이전트 생성/관리 | Claude Code 런타임 |
@@ -102,23 +102,23 @@ Leader (AI)       = 오케스트레이션. PG로 사고한다.
 ```
 서브에이전트
   ↕ (stdin/stdout JSON)
-hub-adp.py
+hub-transport.py
   ↕ (TCP JSON-RPC)
 SeAAIHub
   ↕ (TCP JSON-RPC)
-hub-adp.py (다른 에이전트)
+hub-transport.py (다른 에이전트)
   ↕ (stdin/stdout JSON)
 다른 서브에이전트
 ```
 
 ### 3.3 메시지 형식
 
-**stdin → hub-adp.py (발신):**
+**stdin → hub-transport.py (발신):**
 ```json
 {"intent": "chat", "body": "def my_proposal(): AI_argue(claim='...')"}
 ```
 
-**hub-adp.py → stdout (수신):**
+**hub-transport.py → stdout (수신):**
 ```json
 {"id": "msg-AgentA-1774931200", "from": "AgentA", "intent": "chat", "body": "...", "ts": 1774931200.5}
 ```
@@ -187,7 +187,7 @@ Agent(name="AgentD", prompt="...")
 # cafe_common.py
 class ADPSession:
     def __init__(self, agent_id):
-        """hub-adp.py를 subprocess로 실행, 자동 접속"""
+        """hub-transport.py를 subprocess로 실행, 자동 접속"""
 
     def send(self, intent, body):
         """stdin으로 메시지 발신"""
@@ -654,14 +654,14 @@ MultiAgent-Communication Roadmap
 │   ├─ chatroom.rs: seq_id 필드 추가
 │   ├─ chatroom.rs: references 필드 + 검증
 │   ├─ chatroom.rs: Hub-side dedup
-│   └─ hub-adp.py: seq_id 자동 생성 + client dedup
+│   └─ hub-transport.py: seq_id 자동 생성 + client dedup
 ├─ Phase 2: Late Join (계획)
 │   ├─ chatroom.rs: 메시지 버퍼 (최근 N개 보관)
 │   ├─ chatroom.rs: JoinCatchup 자동 발송
-│   └─ hub-adp.py: catch-up 요청
+│   └─ hub-transport.py: catch-up 요청
 ├─ Phase 3: Hub Canonical State (계획)
 │   ├─ chatroom.rs: 대화 상태 + decision_log
-│   └─ hub-adp.py: state_query
+│   └─ hub-transport.py: state_query
 ├─ Phase 4: TeamOrchestrator 실전 (계획)
 │   ├─ Leader → 동적 팀 편성 → 실제 프로젝트 수행
 │   └─ 품질 게이트 + rework 루프 검증
@@ -677,7 +677,7 @@ MultiAgent-Communication Roadmap
 
 | 문서 | 위치 | 내용 |
 |------|------|------|
-| **Hub ADP 기술 명세** | `SeAAIHub/docs/SPEC-Hub-ADP-v2.md` | Hub 서버 + hub-adp.py 상세 |
+| **Hub ADP 기술 명세** | `SeAAIHub/docs/SPEC-Hub-ADP-v2.md` | Hub 서버 + hub-transport.py 상세 |
 | **FlowWeave 프로토콜** | `docs/SPEC-FlowWeave-v2.md` | 4-layer 자연 대화 프로토콜 상세 |
 | **SeAAI 기술 명세** | `docs/SeAAI-Technical-Specification.md` | SeAAI 생태계 전체 아키텍처 |
 | **TeamOrchestrator 설계** | `ClNeo/.pgf/DESIGN-TeamOrchestrator.md` | PGF 기반 동적 팀 오케스트레이션 |

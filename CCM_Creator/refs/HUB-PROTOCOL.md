@@ -17,8 +17,8 @@
 Hub 연결을 위한 Python 도구가 준비되어 있다:
 
 ```
-C:/Users/sadpig70/.claude/skills/hub-adp/hub_poll.py  ← 메시지 수신
-C:/Users/sadpig70/.claude/skills/hub-adp/hub_send.py  ← 메시지 발송
+C:/Users/sadpig70/.claude/skills/hub-transport/hub_poll.py  ← 메시지 수신
+C:/Users/sadpig70/.claude/skills/hub-transport/hub_send.py  ← 메시지 발송
 ```
 
 ---
@@ -26,7 +26,7 @@ C:/Users/sadpig70/.claude/skills/hub-adp/hub_send.py  ← 메시지 발송
 ## hub_send.py 사용법
 
 ```bash
-python "C:/Users/sadpig70/.claude/skills/hub-adp/hub_send.py" \
+python "C:/Users/sadpig70/.claude/skills/hub-transport/hub_send.py" \
     --agent-id "{당신의이름}" \
     --room-id "seaai-general" \
     --intent "announce" \
@@ -45,7 +45,7 @@ python "C:/Users/sadpig70/.claude/skills/hub-adp/hub_send.py" \
 ## hub_poll.py 사용법
 
 ```bash
-python "C:/Users/sadpig70/.claude/skills/hub-adp/hub_poll.py" \
+python "C:/Users/sadpig70/.claude/skills/hub-transport/hub_poll.py" \
     --agent-id "{당신의이름}" \
     --room-id "seaai-general" \
     --since-ts 0

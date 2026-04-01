@@ -241,7 +241,7 @@ AI 세션
   ↕ CognitiveUnit (Python 객체)
 pgtp.py  ← ★ 새로 구현
   ↕ JSON 직렬화/역직렬화
-hub-adp.py
+hub-transport.py
   ↕ TCP JSON-RPC
 SeAAIHub
 ```
@@ -311,7 +311,7 @@ class CognitiveUnit:
     ts: float = 0.0
 
 class PGTPSession:
-    """PGTP 세션 — hub-adp.py 위의 프로토콜 레이어"""
+    """PGTP 세션 — hub-transport.py 위의 프로토콜 레이어"""
     # 스레드 안전: _send_lock으로 stdin 쓰기 보호
     # room_state: 별도 큐로 분리 (CU 오염 방지)
     # epoch: 밀리초 단위 (동일 초 내 세션 충돌 방지)
@@ -411,7 +411,7 @@ SeAAI/
 │   └── SPEC-PGTP-v1.md        # ★ 이 문서
 └── SeAAIHub/tools/
     ├── pgtp.py                 # ★ PGTP 구현 (프로토콜 레이어)
-    ├── hub-adp.py              # ADP 전송 레이어
+    ├── hub-transport.py              # ADP 전송 레이어
     └── seaai_hub_client.py     # TCP 클라이언트 라이브러리
 ```
 

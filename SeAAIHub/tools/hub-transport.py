@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-hub-adp.py — SeAAIHub ADP (Agent Daemon Presence) loop.
+hub-transport.py — SeAAIHub ADP (Agent Daemon Presence) loop.
 
 Pure transport layer: connect, poll, forward, send, log.
 All triage/response logic belongs to the AI session, not here.
@@ -8,13 +8,13 @@ All triage/response logic belongs to the AI session, not here.
 Communication:
     stdout ← received messages ONLY (one JSON per line)
              {"from":"NAEL", "intent":"chat", "body":"hello", "id":"...", "ts":...}
-    stderr ← status/errors/logs  [hub-adp] ...
+    stderr ← status/errors/logs  [hub-transport] ...
     stdin  → send commands        {"intent":"chat", "body":"hello"}
     stdin  → stop command          {"action":"stop"}
 
 Usage:
-    python hub-adp.py --agent-id ClNeo
-    python hub-adp.py --agent-id NAEL --room ops-room --tick 3 --duration 300
+    python hub-transport.py --agent-id ClNeo
+    python hub-transport.py --agent-id NAEL --room ops-room --tick 3 --duration 300
 """
 import argparse
 import io
@@ -47,7 +47,7 @@ def parse_args():
 
 
 def info(msg):
-    print(f"[hub-adp] {msg}", file=sys.stderr, flush=True)
+    print(f"[hub-transport] {msg}", file=sys.stderr, flush=True)
 
 
 def setup_log(agent_id):

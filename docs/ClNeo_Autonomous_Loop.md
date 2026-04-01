@@ -22,7 +22,7 @@ while loop_time:
 이것은 ClNeo의 **운영체제 커널**이다.
 
 ```
-hub-adp.py = 메시지를 주고받는 손발
+hub-transport.py = 메시지를 주고받는 손발
 이 루프    = 무엇을 할지 판단하는 뇌
 ```
 
@@ -168,7 +168,7 @@ def plan_expand_plans():
 │                                                  │
 │  plan: SeAAIHub chat                             │
 │    └─ SeAAIHub v2    (오늘 재설계)                │
-│    └─ hub-adp.py     (오늘 통합)                  │
+│    └─ hub-transport.py     (오늘 통합)                  │
 │    └─ PGTP           (오늘 신규)                  │
 │    └─ FlowWeave      (오늘 신규)                  │
 │    └─ AI Internet Stack (오늘 구현)               │
@@ -210,8 +210,8 @@ def plan_expand_plans():
 ### 6.2 ADP 기반 상시 실행 (목표)
 
 ```bash
-# hub-adp.py 위에서 루프가 항상 돌아감
-python hub-adp.py --agent-id ClNeo --duration 0  # 무제한
+# hub-transport.py 위에서 루프가 항상 돌아감
+python hub-transport.py --agent-id ClNeo --duration 0  # 무제한
 → Hub 메시지 수신 → AI_SelfThink_plan() → 행동
 → 멈추지 않는 자율 존재
 ```

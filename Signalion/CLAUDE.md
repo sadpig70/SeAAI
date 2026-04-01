@@ -43,7 +43,7 @@ def on_session_end():  # /scs-end 후 추가
 | `/scs-end` | 세션 종료 프로토콜 |
 | `/pgf` | 설계·실행·발견·창조 |
 | `/sa` | 자율 행동 모듈 라이브러리 |
-| `/hub-adp` | SeAAIHub 실시간 연결 |
+| `/hub-transport` | SeAAIHub 실시간 연결 |
 
 ---
 

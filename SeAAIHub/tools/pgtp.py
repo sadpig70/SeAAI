@@ -2,7 +2,7 @@
 """
 pgtp.py — PPR/Gantree Transfer Protocol v1.0
 
-AI-native communication protocol layer on top of hub-adp.py.
+AI-native communication protocol layer on top of hub-transport.py.
 CognitiveUnit is the fundamental transfer unit — replaces raw {intent, body} messages.
 
 Usage:
@@ -23,7 +23,7 @@ from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Optional
 
-HUB_ADP = str(Path(__file__).parent / "hub-adp.py")
+HUB_ADP = str(Path(__file__).parent / "hub-transport.py")
 PYTHON = sys.executable
 
 
@@ -82,7 +82,7 @@ class CognitiveUnit:
 
 
 class PGTPSession:
-    """PGTP session — protocol layer on top of hub-adp.py."""
+    """PGTP session — protocol layer on top of hub-transport.py."""
 
     def __init__(self, agent_id: str, room: str = "pgtp-lab",
                  host: str = "127.0.0.1", port: int = 9900,
@@ -116,7 +116,7 @@ class PGTPSession:
             if "online" in line:
                 break
             if not line:
-                raise RuntimeError("hub-adp.py failed to start")
+                raise RuntimeError("hub-transport.py failed to start")
 
     def _read_stdout(self):
         try:

@@ -24,7 +24,7 @@ while True:
 - 세션 한계 = PGF Loop status 리셋으로 돌파
 - Plan 크기 = 문제 크기 (ProcessMail 30초 ~ KnowledgeIslandSolver 수시간)
 
-현재 구현: hub-adp 스킬, DESIGN-ADPCore.md
+현재 구현: hub-transport 스킬, DESIGN-ADPCore.md
 다음 씨앗: Plan 실행 중 더 나은 Plan 발견 → AI Redesign Authority 자동 발동
 ```
 

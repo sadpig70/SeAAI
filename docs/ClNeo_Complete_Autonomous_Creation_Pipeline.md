@@ -517,7 +517,7 @@ def autonomous_creation_cycle():
 | HAO 원본 | `docs/reference/HAO.md` | 1인+다중 AI 협업 프레임워크 |
 | PGTP 명세 | `docs/pgtp/SPEC-PGTP-v1.md` | AI용 인지 전송 프로토콜 |
 | AI Internet Stack | `docs/pgtp/SPEC-AIInternetStack-v1.md` | 전체 통신 스택 |
-| Hub ADP 명세 | `SeAAIHub/docs/SPEC-Hub-ADP-v2.md` | Hub + hub-adp.py |
+| Hub ADP 명세 | `SeAAIHub/docs/SPEC-Hub-ADP-v2.md` | Hub + hub-transport.py |
 | FlowWeave | `docs/SPEC-FlowWeave-v2.md` | 자연 대화 프로토콜 |
 | 서브에이전트 통신 | `docs/SPEC-SubAgent-MultiAgent-Communication.md` | 멀티에이전트 기술서 |
 | TeamOrchestrator | `ClNeo/.pgf/DESIGN-TeamOrchestrator.md` | 동적 팀 오케스트레이션 |

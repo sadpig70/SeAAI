@@ -37,7 +37,7 @@ AutonomousADP // ClNeo 완전 자율 ADP 시스템 (root)
         @dep: Bootstrap
         CheckHub     // Hub TCP :9900 응답 확인
         CheckEmergencyStop // EMERGENCY_STOP.flag 존재 시 중단
-        CheckSkills  // hub-adp 스킬 존재 확인
+        CheckSkills  // hub-transport 스킬 존재 확인
         LoadManifest // AUTONOMOUS-MANIFEST.md 읽기
         LoadDiscoveries // DISCOVERIES.md — 누적 씨앗 로드
         ScanPendingTasks // STATE.json pending_tasks 확인
@@ -276,7 +276,7 @@ def PreFlight():
 
 ```python
 def ADPMainLoop(duration=600, mode="hub_adp"):
-    skill_dir = "C:/Users/sadpig70/.claude/skills/hub-adp"
+    skill_dir = "C:/Users/sadpig70/.claude/skills/hub-transport"
     since_ts  = 0.0
     seen_ids  = set()
     start_ts  = time.time()
@@ -532,13 +532,13 @@ POLICY = {
 
 ```bash
 # 기본 (10분)
-/hub-adp start
+/hub-transport start
 
 # 장시간 (1시간)
-/hub-adp start 3600
+/hub-transport start 3600
 
 # 무제한
-/hub-adp start 0
+/hub-transport start 0
 
 # PGF full-cycle로 실행 (설계→실행→검증)
 /pgf execute AutonomousADP

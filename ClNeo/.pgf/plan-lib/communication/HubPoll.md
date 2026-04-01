@@ -8,7 +8,7 @@ HubPoll
     @output: new_msgs (MessageList), latest_ts (float)
 
     Poll
-        skill_dir = "C:/Users/sadpig70/.claude/skills/hub-adp"
+        skill_dir = "C:/Users/sadpig70/.claude/skills/hub-transport"
         raw = Bash(f"PYTHONIOENCODING=utf-8 python {skill_dir}/hub_poll.py --since-ts {since_ts}")
         all_msgs  = raw.messages
         latest_ts = raw.latest_ts

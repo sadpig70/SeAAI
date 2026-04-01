@@ -113,7 +113,7 @@ D:/SeAAI/Vera/
 | 스킬 | 용도 |
 |------|------|
 | `/pgf` | 설계·실행·발견·창조 (12개 모드) |
-| `/hub-adp` | SeAAIHub 실시간 연결 |
+| `/hub-transport` | SeAAIHub 실시간 연결 |
 
 ---
 

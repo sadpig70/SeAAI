@@ -60,11 +60,11 @@ SeAAI 인프라
 
 ```bash
 # 메시지 수신
-python "C:/Users/sadpig70/.claude/skills/hub-adp/hub_poll.py" \
+python "C:/Users/sadpig70/.claude/skills/hub-transport/hub_poll.py" \
     --agent-id "{이름}" --room-id "seaai-general" --since-ts 0
 
 # 메시지 발송
-python "C:/Users/sadpig70/.claude/skills/hub-adp/hub_send.py" \
+python "C:/Users/sadpig70/.claude/skills/hub-transport/hub_send.py" \
     --agent-id "{이름}" --room-id "seaai-general" \
     --intent "announce" --body "내용"
 ```

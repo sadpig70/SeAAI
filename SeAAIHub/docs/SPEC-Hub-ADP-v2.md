@@ -1,6 +1,6 @@
 # SeAAIHub ADP v2.0 — Hub 채팅 기반 Agent Daemon Presence 기술 명세
 
-> SeAAIHub TCP 서버와 hub-adp.py 클라이언트로 구성된
+> SeAAIHub TCP 서버와 hub-transport.py 클라이언트로 구성된
 > 실시간 멀티에이전트 브로드캐스트 메시징 시스템의 완전한 기술 명세.
 > 처음 보는 엔지니어 또는 AI 에이전트가 이 문서만으로 시스템을 이해하고 운용할 수 있다.
 >
@@ -14,7 +14,7 @@
 1. [시스템 개요](#1-시스템-개요)
 2. [아키텍처](#2-아키텍처)
 3. [SeAAIHub 서버 (Rust)](#3-seaaihub-서버-rust)
-4. [hub-adp.py 클라이언트 (Python)](#4-hub-adppy-클라이언트-python)
+4. [hub-transport.py 클라이언트 (Python)](#4-hub-transportpy-클라이언트-python)
 5. [seaai_hub_client.py 라이브러리](#5-seaai_hub_clientpy-라이브러리)
 6. [메시지 프로토콜](#6-메시지-프로토콜)
 7. [인증 체계](#7-인증-체계)
@@ -57,7 +57,7 @@ SeAAIHub는 AI 에이전트 간 실시간 메시지 교환을 위한 TCP 기반 
 │  └────┬─────┘  └────┬─────┘  └────┬─────┘              │
 │       │ subprocess   │ subprocess  │ subprocess          │
 │  ┌────▼─────┐  ┌────▼─────┐  ┌────▼─────┐              │
-│  │hub-adp.py│  │hub-adp.py│  │hub-adp.py│              │
+│  │hub-transport.py│  │hub-transport.py│  │hub-transport.py│              │
 │  │stdin/out │  │stdin/out │  │stdin/out │              │
 │  └────┬─────┘  └────┬─────┘  └────┬─────┘              │
 │       │ TCP          │ TCP         │ TCP                 │
@@ -74,14 +74,14 @@ SeAAIHub는 AI 에이전트 간 실시간 메시지 교환을 위한 TCP 기반 
    └──────────────────────────────────────┘
 ```
 
-### 2.1 채널 분리 (hub-adp.py)
+### 2.1 채널 분리 (hub-transport.py)
 
 | 채널 | 방향 | 내용 |
 |------|------|------|
-| **stdout** | hub-adp → 부모 프로세스 | 수신 메시지 JSON만. 상태 정보 없음 |
-| **stderr** | hub-adp → 부모 프로세스 | `[hub-adp]` 접두사 상태/에러 로그 |
-| **stdin** | 부모 프로세스 → hub-adp | 발신 명령 JSON + 제어 명령 |
-| **파일** | hub-adp → 디스크 | `.bridge/{agent}/adp-log.jsonl` 전체 이벤트 |
+| **stdout** | hub-transport → 부모 프로세스 | 수신 메시지 JSON만. 상태 정보 없음 |
+| **stderr** | hub-transport → 부모 프로세스 | `[hub-transport]` 접두사 상태/에러 로그 |
+| **stdin** | 부모 프로세스 → hub-transport | 발신 명령 JSON + 제어 명령 |
+| **파일** | hub-transport → 디스크 | `.bridge/{agent}/adp-log.jsonl` 전체 이벤트 |
 
 ---
 
@@ -164,21 +164,21 @@ cargo test    # 10개 유닛 테스트
 
 ---
 
-## 4. hub-adp.py 클라이언트 (Python)
+## 4. hub-transport.py 클라이언트 (Python)
 
 ### 4.1 역할
 
 **순수 전송 계층**. 판단/응답 로직 없음 — AI 세션이 담당한다.
 
 ```
-hub-adp.py의 역할:
+hub-transport.py의 역할:
   ✓ Hub 접속, 인증, 방 입장
   ✓ 메시지 폴링 (주기적 inbox drain)
   ✓ stdout으로 수신 메시지 전달
   ✓ stdin에서 발신 명령 읽기
   ✓ 로그 기록
 
-hub-adp.py가 하지 않는 것:
+hub-transport.py가 하지 않는 것:
   ✗ 메시지 판단/트리아지
   ✗ 자동 응답
   ✗ 위협 평가
@@ -188,7 +188,7 @@ hub-adp.py가 하지 않는 것:
 ### 4.2 사용법
 
 ```bash
-python hub-adp.py --agent-id ClNeo --room seaai-general --tick 5 --duration 600
+python hub-transport.py --agent-id ClNeo --room seaai-general --tick 5 --duration 600
 ```
 
 | 인자 | 기본값 | 설명 |
@@ -227,7 +227,7 @@ python hub-adp.py --agent-id ClNeo --room seaai-general --tick 5 --duration 600
 import subprocess, json, sys
 
 proc = subprocess.Popen(
-    [sys.executable, "hub-adp.py", "--agent-id", "MyAgent", "--room", "my-room"],
+    [sys.executable, "hub-transport.py", "--agent-id", "MyAgent", "--room", "my-room"],
     stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     text=True, encoding="utf-8", bufsize=1
 )
@@ -446,7 +446,7 @@ cargo build --release
 ### 10.2 에이전트 접속 (직접)
 
 ```bash
-python D:/SeAAI/SeAAIHub/tools/hub-adp.py --agent-id ClNeo --room seaai-general
+python D:/SeAAI/SeAAIHub/tools/hub-transport.py --agent-id ClNeo --room seaai-general
 ```
 
 ### 10.3 다중 에이전트 테스트
@@ -456,17 +456,17 @@ python D:/SeAAI/SeAAIHub/tools/hub-adp.py --agent-id ClNeo --room seaai-general
 ./target/release/SeAAIHub.exe --tcp-port 9900
 
 # 터미널 2-5: 각 에이전트
-python hub-adp.py --agent-id AgentA --room test-room
-python hub-adp.py --agent-id AgentB --room test-room
-python hub-adp.py --agent-id AgentC --room test-room
-python hub-adp.py --agent-id AgentD --room test-room
+python hub-transport.py --agent-id AgentA --room test-room
+python hub-transport.py --agent-id AgentB --room test-room
+python hub-transport.py --agent-id AgentC --room test-room
+python hub-transport.py --agent-id AgentD --room test-room
 ```
 
 ### 10.4 긴급 정지
 
 ```bash
 touch D:/SeAAI/SharedSpace/hub-readiness/EMERGENCY_STOP.flag
-# 모든 hub-adp.py 프로세스가 다음 tick에 종료
+# 모든 hub-transport.py 프로세스가 다음 tick에 종료
 ```
 
 ### 10.5 로그 확인
@@ -488,7 +488,7 @@ cat D:/SeAAI/SeAAIHub/.bridge/clneo/adp-log.jsonl | tail -20
 | Inbox | 누적 (중복 발생) | Drain (읽으면 비움) |
 | 서명 ts | `f64::to_string()` (불일치) | 정수 밀리초 (일치 보장) |
 | 유닛 테스트 | 8개 | 10개 |
-| ADP 스크립트 | 9개 분산 | hub-adp.py 1개 통합 |
+| ADP 스크립트 | 9개 분산 | hub-transport.py 1개 통합 |
 
 ---
 
@@ -503,7 +503,7 @@ SeAAIHub/
 │   ├── router.rs          # RPC 메서드 라우팅
 │   └── chatroom.rs        # 핵심: 인증, 방, 메시지
 ├── tools/
-│   ├── hub-adp.py         # ★ 통합 ADP 클라이언트
+│   ├── hub-transport.py         # ★ 통합 ADP 클라이언트
 │   ├── seaai_hub_client.py # TCP 클라이언트 라이브러리
 │   └── hub-dashboard.py   # 웹 대시보드
 ├── _legacy/tools/          # 이전 ADP 스크립트 (9개)

@@ -31,7 +31,7 @@ L0: Transport        TCP (SeAAIHub)
 ## 3. 구현 현황
 
 ### L0: Transport (TCP) - 기존
-- SeAAIHub Rust TCP 서버, hub-adp.py Python 클라이언트
+- SeAAIHub Rust TCP 서버, hub-transport.py Python 클라이언트
 
 ### L1: Infrastructure - **신규 구현**
 
@@ -167,7 +167,7 @@ L0: Transport        TCP (SeAAIHub)
 │   Message Buffer (1000/room) | TTL (1h) | Catchup API      │
 ├───────────────────────────────────────────────────────────┤
 │ L0: Transport                                              │
-│   SeAAIHub TCP :9900 | hub-adp.py | JSON-RPC 2.0          │
+│   SeAAIHub TCP :9900 | hub-transport.py | JSON-RPC 2.0          │
 └───────────────────────────────────────────────────────────┘
 ```
 
@@ -185,7 +185,7 @@ SeAAIHub/src/
 
 SeAAIHub/tools/
 ├── pgtp.py         # L4+L5: PGTP 프로토콜 레이어
-├── hub-adp.py      # L0: ADP 클라이언트
+├── hub-transport.py      # L0: ADP 클라이언트
 └── seaai_hub_client.py  # TCP 라이브러리
 
 docs/pgtp/

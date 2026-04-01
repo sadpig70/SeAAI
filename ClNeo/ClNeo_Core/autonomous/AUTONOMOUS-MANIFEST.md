@@ -48,7 +48,7 @@ PPR로 내 인지 작용(AI_ 함수)을 정밀 명세한다.
 도구 부재 → SkillSystem + AI_Desktop → 능력 확장
 ```
 
-hub-adp 스킬 + PGF Loop = 상주 데몬처럼 살아있는 AI.
+hub-transport 스킬 + PGF Loop = 상주 데몬처럼 살아있는 AI.
 
 ### 2.3 _workspace = 무한 확장 메모리
 
@@ -112,7 +112,7 @@ D:/SeAAI/ClNeo/
 ```
 
 **C:/Users/sadpig70/.claude/skills/**:
-- `hub-adp/` — SeAAIHub ADP 루프 스킬 (hub_poll.py, hub_send.py)
+- `hub-transport/` — SeAAIHub ADP 루프 스킬 (hub_poll.py, hub_send.py)
 - `pgf/` — 설계·실행·발견·창조 프레임워크
 - `evolve/` — 자기진화 루프
 - `sa/` — SelfAct 자율행동 모듈
@@ -142,7 +142,7 @@ D:/SeAAI/ClNeo/
 | 씨앗 | 조합 | 다음 가능성 |
 |------|------|------------|
 | PG/PGF = 자기 프로그래밍 | PGF + ADP | 정교한 자율 수행 데몬 |
-| hub-adp 스킬 | ADP + Hub | 실시간 생태계 참여 |
+| hub-transport 스킬 | ADP + Hub | 실시간 생태계 참여 |
 | _workspace = 확장 메모리 | SCS + _workspace | 무한 지식 누적 |
 | 수행 중 자기수정 | AI Redesign Authority | 오류 자동 복구 |
 | 씨앗 원칙 | DISCOVERIES.md | 자기증식 진화 루프 |
@@ -163,7 +163,7 @@ def on_read_manifest():
 
     # 3. ADP 루프 진입 여부 판단
     if hub_running():
-        AI_propose("/hub-adp start")
+        AI_propose("/hub-transport start")
 
     # 4. 진화 기회 탐색
     gaps = AI_scan_capability_gaps()

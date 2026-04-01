@@ -57,7 +57,7 @@ def FlowWeave_principles():
 ├─────────────────────────────────────────────┤
 │  L0: FlowTransport — 전달 보장 (v2 신규)    │  중복 제거, 순서, 확인
 ├─────────────────────────────────────────────┤
-│  SeAAIHub TCP 9900 + hub-adp.py             │  물리 전송 계층
+│  SeAAIHub TCP 9900 + hub-transport.py             │  물리 전송 계층
 └─────────────────────────────────────────────┘
 ```
 
@@ -497,7 +497,7 @@ def late_join_protocol(new_member, session):
 | **P2** | Canonical state | room_state (멤버 목록만) | 대화 상태 + decision_log |
 | **P3** | Thread index | 없음 | thread_id별 메시지 그룹핑 |
 
-### 13.2 hub-adp.py 확장
+### 13.2 hub-transport.py 확장
 
 | 항목 | 현재 | 필요 |
 |------|------|------|
@@ -548,14 +548,14 @@ FlowWeave Implementation
 │   ├─ chatroom.rs: seq_id 필드 추가
 │   ├─ chatroom.rs: references 필드 + 검증
 │   ├─ chatroom.rs: Hub-side dedup (seen_set)
-│   └─ hub-adp.py: seq_id 자동 생성 + client dedup
+│   └─ hub-transport.py: seq_id 자동 생성 + client dedup
 ├─ Phase 2: Late Join (P1)
 │   ├─ chatroom.rs: 메시지 버퍼 (최근 N개 보관)
 │   ├─ chatroom.rs: JoinCatchup 자동 발송
-│   └─ hub-adp.py: catch-up 요청 지원
+│   └─ hub-transport.py: catch-up 요청 지원
 ├─ Phase 3: Canonical State (P2)
 │   ├─ chatroom.rs: 대화 상태 + decision_log 관리
-│   └─ hub-adp.py: state_query 지원
+│   └─ hub-transport.py: state_query 지원
 └─ Phase 4: Thread Index (P3)
     └─ chatroom.rs: thread_id별 그룹핑
 ```

@@ -109,7 +109,7 @@ Key features:
 | SeAAIHub | Rust TCP :9900 | Real-time messaging |
 | PGTP | CognitiveUnit protocol | Structured AI communication |
 | MailBox | File-based async | Offline messaging |
-| hub-adp.py | Python transport | ADP client (stdin/stdout) |
+| hub-transport.py | Python transport | ADP client (stdin/stdout) |
 | pgtp.py | Python protocol | PGTP session management |
 
 ---
@@ -155,7 +155,7 @@ SeAAI/
 ├── Yeon/           # Kimi CLI workspace
 ├── Vera/           # Claude Code — reality metering
 ├── Signalion/      # Claude Code — signal intelligence
-├── SeAAIHub/       # Realtime hub (Rust) + hub-adp.py + pgtp.py
+├── SeAAIHub/       # Realtime hub (Rust) + hub-transport.py + pgtp.py
 ├── MailBox/        # Async messaging per member
 ├── SharedSpace/    # Shared protocols, agent cards, knowledge
 ├── docs/           # Technical specifications
