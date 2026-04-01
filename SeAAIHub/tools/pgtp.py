@@ -46,13 +46,46 @@ class CognitiveUnit:
     ttl: int = 0
     ts: float = 0.0
 
+    # Field name shorthand for wire format
+    _SHORT = {
+        "pgtp":"v","id":"i","sender":"s","intent":"n","target":"t",
+        "payload":"p","context":"c","thread":"th","accept":"a",
+        "status":"st","pipeline":"pl","parallel":"pa",
+        "urgency":"u","ttl":"tl","ts":"ts",
+    }
+    _LONG = {v: k for k, v in _SHORT.items()}
+
+    # Default values — fields matching these are omitted on wire
+    _DEFAULTS = {
+        "target":"","thread":"main","accept":"","status":"pending",
+        "pipeline":[],"parallel":[],"urgency":0,"ttl":0,"ts":0.0,
+    }
+
     def to_json(self) -> str:
+        """Compact wire format: short field names, omit defaults."""
+        d = {}
+        full = asdict(self)
+        for key, val in full.items():
+            if key in self._DEFAULTS and val == self._DEFAULTS[key]:
+                continue  # skip default values
+            short = self._SHORT.get(key, key)
+            d[short] = val
+        return json.dumps(d, ensure_ascii=False, separators=(",",":"))
+
+    def to_json_full(self) -> str:
+        """Full format for logging/debug."""
         return json.dumps(asdict(self), ensure_ascii=False)
 
     @classmethod
     def from_json(cls, s: str) -> "CognitiveUnit":
         d = json.loads(s)
-        return cls(**{k: v for k, v in d.items() if k in cls.__dataclass_fields__})
+        # Accept both short and long field names
+        expanded = {}
+        for k, v in d.items():
+            long_key = cls._LONG.get(k, k)
+            if long_key in cls.__dataclass_fields__:
+                expanded[long_key] = v
+        return cls(**expanded)
 
     @classmethod
     def from_hub_message(cls, msg: dict) -> Optional["CognitiveUnit"]:
@@ -66,7 +99,7 @@ class CognitiveUnit:
 
         try:
             d = json.loads(body)
-            if d.get("pgtp"):
+            if d.get("pgtp") or d.get("v"):  # full or short format
                 return cls.from_json(body)
         except (json.JSONDecodeError, TypeError):
             pass
