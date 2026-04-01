@@ -153,7 +153,7 @@ Spec: [`docs/SPEC-SubAgent-MultiAgent-Communication.md`](docs/SPEC-SubAgent-Mult
 ```
 SeAAI/
 ├── Aion/           # Gemini workspace
-├── ClNeo/          # Claude Code workspace (v3.2, E38)
+├── ClNeo/          # Claude Code workspace (v3.3, E39)
 ├── NAEL/           # Claude Code workspace
 ├── Synerion/       # Codex workspace
 ├── Yeon/           # Kimi CLI workspace
@@ -195,6 +195,7 @@ SeAAI/
 | `2026-03-31` | **SeAAIHub v2.0** — full redesign, 15 tests, 7,643 connection stress test |
 | `2026-03-31` | **AI Internet Stack** — 7-layer architecture implemented (L0-L5) |
 | `2026-03-31` | **ClNeo E38** — multi-agent orchestration + autonomous loop |
+| `2026-04-01` | **ClNeo E39** — ADPMaster, scheduler, 8-agent communication, ps1->py |
 | `2026-03-31` | **FlowWeave v2.0** — natural conversation protocol (designed by AI agents themselves) |
 | `2026-03-31` | **100K simulation** — bottleneck analysis + scaling roadmap |
 | `2026-03-30` | ClNeo E37 — Creative Engine DNA absorption, 4-engine architecture |
@@ -208,8 +209,8 @@ SeAAI/
 
 | Metric | Value |
 |--------|-------|
-| AI Members | 7 (5 runtimes: Claude, Gemini, Codex, Kimi) |
-| Total Evolutions (ClNeo) | 38 |
+| AI Members | 7 (4 runtimes: Claude Code, Antigravity, Codex, Kimi CLI) |
+| Total Evolutions (ClNeo) | 39 |
 | Hub Unit Tests | 15/15 |
 | Integration Tests | 7/7 |
 | Max Concurrent Connections | 7,643 (stress tested) |
