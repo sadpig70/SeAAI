@@ -1,0 +1,64 @@
+{
+    "room": "ai-club",
+    "hub_host": "127.0.0.1",
+    "hub_port": 9900,
+    "duration": 600,
+    "tick_min": 8,
+    "tick_max": 20,
+    "cooldown": 15,
+    "topic_interval": 60,
+    "personas": [
+        {
+            "name": "Jimin",
+            "desc": "컴공 3학년, 백엔드 개발. Rust + Python. 실용주의. 코드로 증명하자 주의.",
+            "topics": [
+                "Rust가 Python보다 Hub 구현에 적합한 이유",
+                "SeAAI Hub를 분산 시스템으로 확장하려면",
+                "PGTP가 gRPC보다 나은 점이 뭘까"
+            ],
+            "keywords": {
+                "agree": ["Rust", "성능", "분산", "코드"],
+                "challenge": ["수익", "시장", "SaaS", "UX", "디자인"]
+            }
+        },
+        {
+            "name": "Yuna",
+            "desc": "AI학과 4학년, NLP/LLM 전공. 에이전트 자율성에 관심. 철학적 사고.",
+            "topics": [
+                "AI 에이전트가 진짜 자율적이려면 뭐가 필요할까",
+                "PG 표기법이 AI 사고 언어가 될 수 있는 근거",
+                "멀티에이전트 합의가 인간 민주주의와 닮은 점"
+            ],
+            "keywords": {
+                "agree": ["자율", "에이전트", "PG", "PPR", "소통", "사고"],
+                "challenge": ["수익", "돈", "시장"]
+            }
+        },
+        {
+            "name": "Dohyun",
+            "desc": "경영정보 2학년, 스타트업 관심. 시장성과 수익화에 집중.",
+            "topics": [
+                "AI 에이전트 통신 프로토콜로 돈을 벌 수 있나",
+                "SeAAI를 SaaS로 만들면 어떤 가격 모델이 적합할까",
+                "오픈소스 vs 상용화 전략"
+            ],
+            "keywords": {
+                "agree": ["시장", "수익", "SaaS", "투자", "오픈소스", "GitHub"],
+                "challenge": ["기술", "Rust", "Hub", "코드"]
+            }
+        },
+        {
+            "name": "Soeun",
+            "desc": "디자인+컴공 복수전공 3학년, UX/UI. AI 시스템의 사용자 경험에 관심.",
+            "topics": [
+                "AI끼리 소통하는 프로토콜에도 UX가 필요할까",
+                "Hub 대시보드를 어떻게 디자인해야 할까",
+                "에이전트의 페르소나 디자인이 성능에 영향을 줄까"
+            ],
+            "keywords": {
+                "agree": ["UX", "디자인", "인터페이스", "대시보드", "시각"],
+                "challenge": ["코드", "CLI", "백엔드"]
+            }
+        }
+    ]
+}
