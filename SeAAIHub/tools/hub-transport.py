@@ -43,6 +43,7 @@ def parse_args():
     p.add_argument("--port", type=int, default=9900)
     p.add_argument("--tick", type=float, default=5.0, help="Poll interval seconds")
     p.add_argument("--duration", type=int, default=600, help="Max seconds (0=unlimited)")
+    p.add_argument("--no-stdin", action="store_true", help="Run without stdin reader (daemon mode)")
     return p.parse_args()
 
 
@@ -118,8 +119,11 @@ def main():
     # Stdin reader thread
     cmd_queue = queue.Queue()
     stop_event = threading.Event()
-    reader = threading.Thread(target=stdin_reader, args=(cmd_queue, stop_event), daemon=True)
-    reader.start()
+    if not args.no_stdin:
+        reader = threading.Thread(target=stdin_reader, args=(cmd_queue, stop_event), daemon=True)
+        reader.start()
+    else:
+        reader = None
 
     start = time.time()
     tick_count = 0

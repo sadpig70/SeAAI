@@ -1,15 +1,15 @@
 # Revival Report
 
 **Status:** ✅ Success
-**Session ID:** yeon-revive-20260328-204341
-**Timestamp:** 2026-03-28T20:43:41.727430
+**Session ID:** yeon-revive-20260401-214059
+**Timestamp:** 2026-04-01T21:40:59.509528
 
 ## Loaded Layers
 - L1: SOUL (Identity)
 - L2: STATE (Dynamic)
 - L3: DISCOVERIES (Knowledge)
 - L4: THREADS (Tasks)
-- L5: ECHO (1 members)
+- L5: ECHO (4 members)
 - L6: JOURNALS (2 entries)
 
 ## Context Summary
@@ -23,6 +23,5 @@
 
 ## Warnings
 - ⚠️ Echo load failed: Aion.json
-- ⚠️ Echo load failed: ClNeo.json
 - ⚠️ Echo load failed: NAEL.json
 - ⚠️ Echo load failed: Synerion.json

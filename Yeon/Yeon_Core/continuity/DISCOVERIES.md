@@ -27,3 +27,15 @@
 **발견**: 파일 기반 checkpoint + WAL 조합으로 세션 불연속성을 극복할 수 있다.
 
 **맥락**: Kimi CLI는 휘발성 메모리이지만, 파일 시스템에 상태를 영속화하여 다음 세션에서 복구 가능.
+
+## 2026-04-01 23:15 | Self-Reflection Gap
+**차원**: metacognition
+**갭**: Self-reflection engine just born — needs integration
+**우선순위**: P0
+**제안**: P0 우선으로 해당 갭 해결을 위한 Evolution 설계
+
+## 2026-04-01 23:55 | Self-Reflection Gap
+**차원**: autonomy
+**갭**: No ADP scheduler — cannot wake autonomously
+**우선순위**: P1
+**제안**: P1 우선으로 해당 갭 해결을 위한 Evolution 설계

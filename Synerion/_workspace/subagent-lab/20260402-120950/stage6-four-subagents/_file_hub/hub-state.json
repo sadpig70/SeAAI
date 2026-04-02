@@ -1,0 +1,294 @@
+{
+  "authenticated_agents": [
+    "SubagentAlpha",
+    "SubagentBeta",
+    "SubagentGamma",
+    "SubagentDelta"
+  ],
+  "rooms": {
+    "synerion-lab-20260402-120950-s6": []
+  },
+  "inboxes": {
+    "SubagentAlpha": [],
+    "SubagentBeta": [],
+    "SubagentGamma": [],
+    "SubagentDelta": []
+  },
+  "room_history": {
+    "synerion-lab-20260402-120950-s6": [
+      {
+        "id": "SubagentAlpha-1775099405316",
+        "from": "SubagentAlpha",
+        "to": [],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: chat\ntopic: bounded-hub-ladder-t1\nfrom: SubagentAlpha\nto: *\ntask_id: \nreply_to: \nstatus: proposed\nacceptance: peer가 이 bounded run에 참여 중인지 한 줄로 보이게 응답\nsummary: SubagentAlpha bounded hub tick 1 announcing active state\n\n```pg\nSubagentChat\n    owner: SubagentAlpha\n    tick: 1\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: proposed\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=chat run",
+        "ts": 1775099405.316771,
+        "sig": "5ecbaa566eb488d2b7fd7ce6eb35e88e35f8ea767cca9088ad78df56aaa992d2"
+      },
+      {
+        "id": "SubagentBeta-1775099405471",
+        "from": "SubagentBeta",
+        "to": [
+          "SubagentAlpha"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: chat\ntopic: bounded-hub-ladder-t1\nfrom: SubagentBeta\nto: *\ntask_id: \nreply_to: \nstatus: proposed\nacceptance: peer가 이 bounded run에 참여 중인지 한 줄로 보이게 응답\nsummary: SubagentBeta bounded hub tick 1 announcing active state\n\n```pg\nSubagentChat\n    owner: SubagentBeta\n    tick: 1\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: proposed\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=chat run",
+        "ts": 1775099405.4718,
+        "sig": "24152da11fd584c1b92001337a15b99835ad70b7087a0c937117e94d52c73b25"
+      },
+      {
+        "id": "SubagentGamma-1775099405634",
+        "from": "SubagentGamma",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: chat\ntopic: bounded-hub-ladder-t1\nfrom: SubagentGamma\nto: *\ntask_id: \nreply_to: \nstatus: proposed\nacceptance: peer가 이 bounded run에 참여 중인지 한 줄로 보이게 응답\nsummary: SubagentGamma bounded hub tick 1 announcing active state\n\n```pg\nSubagentChat\n    owner: SubagentGamma\n    tick: 1\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: proposed\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=chat run",
+        "ts": 1775099405.634455,
+        "sig": "a6053be6ca2622e22637ed1f3f8c01c2a5e676b76c1a0767ee64febce6f25e56"
+      },
+      {
+        "id": "SubagentDelta-1775099405798",
+        "from": "SubagentDelta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: chat\ntopic: bounded-hub-ladder-t1\nfrom: SubagentDelta\nto: *\ntask_id: \nreply_to: \nstatus: proposed\nacceptance: peer가 이 bounded run에 참여 중인지 한 줄로 보이게 응답\nsummary: SubagentDelta bounded hub tick 1 announcing active state\n\n```pg\nSubagentChat\n    owner: SubagentDelta\n    tick: 1\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: proposed\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=chat run",
+        "ts": 1775099405.798333,
+        "sig": "0e5ac87c427a274355f86a06e9a5ef2877470f5ebb6dee4fa1b72fdbb51672fd"
+      },
+      {
+        "id": "SubagentAlpha-1775099405825",
+        "from": "SubagentAlpha",
+        "to": [
+          "SubagentBeta",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t2\nfrom: SubagentAlpha\nto: *\ntask_id: SubagentAlpha-task-02\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentAlpha requests bounded peer review for stage tick 2\n\n```pg\nSubagentHandoff\n    owner: SubagentAlpha\n    tick: 2\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099405.825356,
+        "sig": "d74a7b241056e04f2b610cf67a88c221365b914c6957c4d879954adfbf31b5d1"
+      },
+      {
+        "id": "SubagentBeta-1775099405983",
+        "from": "SubagentBeta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t2\nfrom: SubagentBeta\nto: *\ntask_id: SubagentBeta-task-02\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentBeta requests bounded peer review for stage tick 2\n\n```pg\nSubagentHandoff\n    owner: SubagentBeta\n    tick: 2\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099405.98308,
+        "sig": "a40d7d97ca06d0d70095f8b2cad1c4811b7e54226d2111c55be07e0deeea5b4a"
+      },
+      {
+        "id": "SubagentGamma-1775099406145",
+        "from": "SubagentGamma",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentDelta"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t2\nfrom: SubagentGamma\nto: *\ntask_id: SubagentGamma-task-02\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentGamma requests bounded peer review for stage tick 2\n\n```pg\nSubagentHandoff\n    owner: SubagentGamma\n    tick: 2\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099406.145808,
+        "sig": "50aab73135a8038ee813ad0ab946f5369f14f09590bd4bd11ade482e67559750"
+      },
+      {
+        "id": "SubagentDelta-1775099406307",
+        "from": "SubagentDelta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t2\nfrom: SubagentDelta\nto: *\ntask_id: SubagentDelta-task-02\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentDelta requests bounded peer review for stage tick 2\n\n```pg\nSubagentHandoff\n    owner: SubagentDelta\n    tick: 2\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099406.30745,
+        "sig": "9cb40fcdf79c40274dbb5c42a3ccb7b5ea1b11324003860ce8dbb0eb8ca5068b"
+      },
+      {
+        "id": "SubagentAlpha-1775099406336",
+        "from": "SubagentAlpha",
+        "to": [
+          "SubagentBeta",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t3\nfrom: SubagentAlpha\nto: *\ntask_id: SubagentAlpha-task-03\nreply_to: SubagentAlpha-task-02\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentAlpha returns bounded result for stage tick 3\n\n```pg\nSubagentResult\n    owner: SubagentAlpha\n    tick: 3\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099406.336422,
+        "sig": "adda2ba7d83ba4d5ecb3cdd097755a9ceb6e03c8a38dc3de216b297ec200ce97"
+      },
+      {
+        "id": "SubagentBeta-1775099406492",
+        "from": "SubagentBeta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t3\nfrom: SubagentBeta\nto: *\ntask_id: SubagentBeta-task-03\nreply_to: SubagentBeta-task-02\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentBeta returns bounded result for stage tick 3\n\n```pg\nSubagentResult\n    owner: SubagentBeta\n    tick: 3\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099406.492978,
+        "sig": "d9abb19e0e8b40329460b22131f15663046f5c39b8cab7eb211baf0ce213eded"
+      },
+      {
+        "id": "SubagentGamma-1775099406679",
+        "from": "SubagentGamma",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentDelta"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t3\nfrom: SubagentGamma\nto: *\ntask_id: SubagentGamma-task-03\nreply_to: SubagentGamma-task-02\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentGamma returns bounded result for stage tick 3\n\n```pg\nSubagentResult\n    owner: SubagentGamma\n    tick: 3\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099406.67998,
+        "sig": "09bda4fa38b89c1f640144a88b800b71ebe7344243af3a50375b57883467e431"
+      },
+      {
+        "id": "SubagentDelta-1775099406818",
+        "from": "SubagentDelta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t3\nfrom: SubagentDelta\nto: *\ntask_id: SubagentDelta-task-03\nreply_to: SubagentDelta-task-02\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentDelta returns bounded result for stage tick 3\n\n```pg\nSubagentResult\n    owner: SubagentDelta\n    tick: 3\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099406.818507,
+        "sig": "53fa8d198361e66945f2ec3eaaee062e66ac0b4ffeba8cc65fc734f11f687021"
+      },
+      {
+        "id": "SubagentAlpha-1775099406847",
+        "from": "SubagentAlpha",
+        "to": [
+          "SubagentBeta",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t4\nfrom: SubagentAlpha\nto: *\ntask_id: SubagentAlpha-task-04\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentAlpha requests bounded peer review for stage tick 4\n\n```pg\nSubagentHandoff\n    owner: SubagentAlpha\n    tick: 4\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099406.847592,
+        "sig": "dce935e197dc62903b86a5094770bf05b118936c161c4015882328b09da17412"
+      },
+      {
+        "id": "SubagentBeta-1775099407004",
+        "from": "SubagentBeta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t4\nfrom: SubagentBeta\nto: *\ntask_id: SubagentBeta-task-04\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentBeta requests bounded peer review for stage tick 4\n\n```pg\nSubagentHandoff\n    owner: SubagentBeta\n    tick: 4\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099407.004589,
+        "sig": "4624b0e85643d8c41efac860bac2eb9467d3704b69825abd4aaaaeb76dbca2ab"
+      },
+      {
+        "id": "SubagentGamma-1775099407191",
+        "from": "SubagentGamma",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentDelta"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t4\nfrom: SubagentGamma\nto: *\ntask_id: SubagentGamma-task-04\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentGamma requests bounded peer review for stage tick 4\n\n```pg\nSubagentHandoff\n    owner: SubagentGamma\n    tick: 4\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099407.191589,
+        "sig": "ef5fea3bda86b025b913f52dc5c00a64bc4044691a72519e383166803ddce895"
+      },
+      {
+        "id": "SubagentDelta-1775099407330",
+        "from": "SubagentDelta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: handoff\ntopic: bounded-hub-ladder-t4\nfrom: SubagentDelta\nto: *\ntask_id: SubagentDelta-task-04\nreply_to: \nstatus: running\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentDelta requests bounded peer review for stage tick 4\n\n```pg\nSubagentHandoff\n    owner: SubagentDelta\n    tick: 4\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: running\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=handoff run",
+        "ts": 1775099407.330524,
+        "sig": "9e451283874b69323bb2e53b8ea37a14e964d0af88dfb40d34b40c6d4dde3408"
+      },
+      {
+        "id": "SubagentAlpha-1775099407360",
+        "from": "SubagentAlpha",
+        "to": [
+          "SubagentBeta",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t5\nfrom: SubagentAlpha\nto: *\ntask_id: SubagentAlpha-task-05\nreply_to: SubagentAlpha-task-04\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentAlpha returns bounded result for stage tick 5\n\n```pg\nSubagentResult\n    owner: SubagentAlpha\n    tick: 5\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099407.360242,
+        "sig": "c6f4ef1d4e65b636f81aa372cbe33de048451576209772d5bc60c7e146ef9139"
+      },
+      {
+        "id": "SubagentBeta-1775099407516",
+        "from": "SubagentBeta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentDelta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t5\nfrom: SubagentBeta\nto: *\ntask_id: SubagentBeta-task-05\nreply_to: SubagentBeta-task-04\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentBeta returns bounded result for stage tick 5\n\n```pg\nSubagentResult\n    owner: SubagentBeta\n    tick: 5\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099407.516201,
+        "sig": "6fdc1e74b7f28fd686262152d8c23eb9c0d9b0d574e5b83aa243ac1816abded0"
+      },
+      {
+        "id": "SubagentGamma-1775099407703",
+        "from": "SubagentGamma",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentDelta"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t5\nfrom: SubagentGamma\nto: *\ntask_id: SubagentGamma-task-05\nreply_to: SubagentGamma-task-04\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentGamma returns bounded result for stage tick 5\n\n```pg\nSubagentResult\n    owner: SubagentGamma\n    tick: 5\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099407.703029,
+        "sig": "bc396aa4369aa85cb85d02bfc99c8b3f78b237bdfeb9160a937842ca162b40c4"
+      },
+      {
+        "id": "SubagentDelta-1775099407841",
+        "from": "SubagentDelta",
+        "to": [
+          "SubagentAlpha",
+          "SubagentBeta",
+          "SubagentGamma"
+        ],
+        "room_id": "synerion-lab-20260402-120950-s6",
+        "intent": "pg",
+        "body": "[meta session_token=stage6-four-subagents_1775099405_5d147e start_ts=1775099405.138863]\n\nPGFP/1\nkind: result\ntopic: bounded-hub-ladder-t5\nfrom: SubagentDelta\nto: *\ntask_id: SubagentDelta-task-05\nreply_to: SubagentDelta-task-04\nstatus: done\nacceptance: 다음 bounded action 또는 guard 판단을 3줄 이하로 반환\nsummary: SubagentDelta returns bounded result for stage tick 5\n\n```pg\nSubagentResult\n    owner: SubagentDelta\n    tick: 5\n    goal: four subagents exchange bounded PGFP/1 packets over Hub\n    status: done\n    output: bounded-hub-signal\n```\n\nnotes: bounded profile=result run",
+        "ts": 1775099407.841448,
+        "sig": "16345d428f3fbf1ab60a442bdc4af4340948c9fc03746a5a8c7d090c6fa2b96a"
+      }
+    ]
+  }
+}

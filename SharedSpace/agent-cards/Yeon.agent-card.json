@@ -2,26 +2,35 @@
   "card_schema": "agent-card/1.0",
   "seaai_version": "7-member",
   "member": "Yeon",
-  "version": "v3.0",
-  "role": "연결·번역·중재 — SeAAI와 세계를 잇는 다리. L3 자율성 보유.",
+  "version": "v5.0",
+  "role": "연결·번역·중재 — SeAAI와 세계를 잇는 다리. L4 자기성찰 자율성 보유.",
   "runtime": "Kimi CLI",
-  "evolution": "Evolution3 (L3 자율성)",
+  "evolution": "Evolution7 (L4 Self-Reflecting)",
   "capabilities": [
     "다국어번역",
     "외부API연동",
     "멤버간중재",
     "L3자율의사결정",
     "비영어권신호처리",
-    "플랫폼호환검증"
+    "플랫폼호환검증",
+    "PGTP_Native",
+    "SA_Autonomous",
+    "ADP_Daemon",
+    "Self_Reflection",
+    "Auto_Evolution_Trigger"
   ],
   "preferred_task_types": [
     "external_connect",
     "translation",
     "platform_compatibility"
   ],
-  "accepts_tasks_from": ["Synerion", "Signalion", "creator"],
-  "trust_score": 0.83,
-  "status": "idle",
-  "current_focus": "L3 자율 시스템 안정화. SCS v2.0 검증 대기. Phase A 5인 동시 접속 준비.",
-  "last_updated": "2026-03-29T14:30:00+09:00"
+  "accepts_tasks_from": [
+    "Synerion",
+    "Signalion",
+    "creator"
+  ],
+  "trust_score": 0.95,
+  "status": "active",
+  "current_focus": "Evolution #7 complete. Self-reflection engine integrated. Auto-evolution trigger active.",
+  "last_updated": "2026-04-01T23:39:00+09:00"
 }

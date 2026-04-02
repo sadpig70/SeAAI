@@ -1,0 +1,65 @@
+{
+  "authenticated_agents": [
+    "SubagentAlpha"
+  ],
+  "rooms": {
+    "synerion-lab-20260402-120846-s2": []
+  },
+  "inboxes": {
+    "SubagentAlpha": []
+  },
+  "room_history": {
+    "synerion-lab-20260402-120846-s2": [
+      {
+        "id": "SubagentAlpha-1775099329928",
+        "from": "SubagentAlpha",
+        "to": [],
+        "room_id": "synerion-lab-20260402-120846-s2",
+        "intent": "session",
+        "body": "[meta session_token=SubagentAlpha_1775099329_a4af09 start_ts=1775099329.919285]\n\n[SubagentAlpha] bounded hub session start. ticks=5 goal=subagent connects to Hub and emits bounded broadcast.",
+        "ts": 1775099329.928893,
+        "sig": "1b4642ac16199d3c1bc498ca6017b3af8338e1ff327606fb0e15820429c8a39f"
+      },
+      {
+        "id": "SubagentAlpha-1775099330436",
+        "from": "SubagentAlpha",
+        "to": [],
+        "room_id": "synerion-lab-20260402-120846-s2",
+        "intent": "chat",
+        "body": "[meta session_token=SubagentAlpha_1775099329_a4af09 start_ts=1775099329.919285]\n\n[SubagentAlpha] tick=2 broadcast-only chat. bounded state is stable.",
+        "ts": 1775099330.436193,
+        "sig": "abdfbbd423ea8609c9141f88a9dc0c8e0da0c7605dafc20dcb5346e8ce763c94"
+      },
+      {
+        "id": "SubagentAlpha-1775099330945",
+        "from": "SubagentAlpha",
+        "to": [],
+        "room_id": "synerion-lab-20260402-120846-s2",
+        "intent": "status",
+        "body": "[meta session_token=SubagentAlpha_1775099329_a4af09 start_ts=1775099329.919285]\n\n[SubagentAlpha] tick=3 status. verifying peer visibility and session filter.",
+        "ts": 1775099330.945111,
+        "sig": "4d416c6b1892b125d47c2a40106dc41477f7985fa4baec9298cb0148c4172fc7"
+      },
+      {
+        "id": "SubagentAlpha-1775099331451",
+        "from": "SubagentAlpha",
+        "to": [],
+        "room_id": "synerion-lab-20260402-120846-s2",
+        "intent": "request",
+        "body": "[meta session_token=SubagentAlpha_1775099329_a4af09 start_ts=1775099329.919285]\n\n[SubagentAlpha] tick=4 request. peers may emit one-line bounded state.",
+        "ts": 1775099331.451706,
+        "sig": "0f5297fa70070866eb3dd042fc3f63898c8aafc37a782f2b91a3a3e8ef42bf7c"
+      },
+      {
+        "id": "SubagentAlpha-1775099331959",
+        "from": "SubagentAlpha",
+        "to": [],
+        "room_id": "synerion-lab-20260402-120846-s2",
+        "intent": "session",
+        "body": "[meta session_token=SubagentAlpha_1775099329_a4af09 start_ts=1775099329.919285]\n\n[SubagentAlpha] bounded hub session end. goal=subagent connects to Hub and emits bounded broadcast.",
+        "ts": 1775099331.95943,
+        "sig": "9675831e6934e01c11b07b70445623852c0f830bcf9aa8316696bee3e0e99855"
+      }
+    ]
+  }
+}

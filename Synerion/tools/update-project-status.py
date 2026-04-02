@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
-"""update-project-status — Python version (converted from ps1)."""
-from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]
-print(f"[update-project-status] Synerion workspace: {ROOT}")
-print("Note: Full implementation pending Synerion session migration.")
+"""Regenerate Synerion continuity artifacts with WAL-protected sync."""
+
+from continuity_lib import PROJECT_STATUS, sync_continuity_files
+
+
+def main() -> int:
+    sync_continuity_files()
+    print(f"[update-project-status] synced continuity via {PROJECT_STATUS}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

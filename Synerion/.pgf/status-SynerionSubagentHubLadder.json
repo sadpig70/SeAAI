@@ -1,0 +1,40 @@
+{
+  "updated_at": "2026-04-02T12:12:34.999354+09:00",
+  "project": "SynerionSubagentHubLadder",
+  "done": 6,
+  "in_progress": 0,
+  "pending": 0,
+  "blocked": 0,
+  "items": [
+    {
+      "task": "1-agent hubless 5 ticks",
+      "status": "done",
+      "notes": "all hubless ticks completed"
+    },
+    {
+      "task": "1-agent hub connect",
+      "status": "done",
+      "notes": "single agent sent=5 received=0"
+    },
+    {
+      "task": "Synerion + 1 subagent chat",
+      "status": "done",
+      "notes": "peer_messages=Synerion:5, SubagentAlpha:4"
+    },
+    {
+      "task": "Synerion + 1 subagent PGFP",
+      "status": "done",
+      "notes": "peer_messages=Synerion:5, SubagentAlpha:4 | pgfp=Synerion:5/5, SubagentAlpha:5/4"
+    },
+    {
+      "task": "2 subagents over Hub",
+      "status": "done",
+      "notes": "peer_messages=SubagentAlpha:5, SubagentBeta:4 | pgfp=SubagentAlpha:5/5, SubagentBeta:5/4"
+    },
+    {
+      "task": "4 subagents over Hub",
+      "status": "done",
+      "notes": "peer_messages=SubagentAlpha:14, SubagentBeta:14, SubagentGamma:13, SubagentDelta:12 | pgfp=SubagentAlpha:5/14, SubagentBeta:5/14, SubagentGamma:5/13, SubagentDelta:5/12"
+    }
+  ]
+}

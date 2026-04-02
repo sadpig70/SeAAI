@@ -1,0 +1,14 @@
+{
+  "status": "converged",
+  "contributors": [
+    "yeon_worker_000",
+    "yeon_worker_001",
+    "yeon_worker_002"
+  ],
+  "outputs": [
+    "[formal_translator] translated: Hello, how are you?",
+    "[technical_translator] translated: Hello, how are you?",
+    "[casual_translator] translated: Hello, how are you?"
+  ],
+  "summary": "[formal_translator] translated: Hello, how are you? | [technical_translator] translated: Hello, how are you? | [casual_translator] translated: Hello, how are you?"
+}

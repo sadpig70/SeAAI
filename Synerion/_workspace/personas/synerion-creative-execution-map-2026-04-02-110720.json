@@ -1,0 +1,235 @@
+{
+  "schema": "synerion.execution_mapping.v1",
+  "goal": "Synerion creative engine multipersona execution mapping and runtime-safe signal integration",
+  "execution_mode": "internal_lens",
+  "subagent_ready": true,
+  "engine_shape": [
+    "Discover",
+    "Structure",
+    "Challenge",
+    "Converge",
+    "Realize",
+    "Verify",
+    "Record"
+  ],
+  "final_synthesizer": "Synthesizer",
+  "lane_map": {
+    "design": "IntegratorArchitect",
+    "review": "AdversarialReviewer",
+    "safety": "SafetyGate",
+    "analysis": "RuntimeOperator",
+    "synth": "Synthesizer",
+    "runtime": "CoordinationBroker"
+  },
+  "assignments": [
+    {
+      "persona_id": "IntegratorArchitect",
+      "role": "구조 통합자",
+      "lens": "design",
+      "question": "이 목표를 어떤 작동 구조로 묶어야 하는가?",
+      "bias": "정합성과 연결 우선",
+      "owned_stages": [
+        "Structure",
+        "Converge"
+      ],
+      "sa_hint": [
+        "SA_ORCHESTRATOR_scan_state",
+        "SA_ORCHESTRATOR_route_handoff"
+      ],
+      "subagent": {
+        "enabled": false,
+        "target": "local",
+        "workstream": "goal을 실행 가능한 구조와 node로 분해",
+        "write_scope": [],
+        "handoff_trigger": "shared-impact or runtime pressure requires bounded routing artifact"
+      },
+      "deliverable": "bounded structure proposal",
+      "verify_with": [
+        "persona-balance",
+        "normalized-signal-policy",
+        "continuity-recording"
+      ]
+    },
+    {
+      "persona_id": "AdversarialReviewer",
+      "role": "반박자",
+      "lens": "review",
+      "question": "이 설계가 어디서 깨지는가?",
+      "bias": "실패점과 과대평가 우선",
+      "owned_stages": [
+        "Challenge",
+        "Verify"
+      ],
+      "sa_hint": [
+        "SA_ORCHESTRATOR_detect_conflict"
+      ],
+      "subagent": {
+        "enabled": false,
+        "target": "local",
+        "workstream": "실패 경로와 과대평가 지점 공격",
+        "write_scope": [],
+        "handoff_trigger": "shared-impact or runtime pressure requires bounded routing artifact"
+      },
+      "deliverable": "risk and breakage list",
+      "verify_with": [
+        "persona-balance",
+        "normalized-signal-policy",
+        "continuity-recording"
+      ]
+    },
+    {
+      "persona_id": "SafetyGate",
+      "role": "안전 심사자",
+      "lens": "safety",
+      "question": "권한, 리스크, 경계 위반은 없는가?",
+      "bias": "가드레일 우선",
+      "owned_stages": [
+        "Challenge",
+        "Verify"
+      ],
+      "sa_hint": [
+        "SA_ORCHESTRATOR_detect_conflict",
+        "SA_ORCHESTRATOR_sync_continuity"
+      ],
+      "subagent": {
+        "enabled": false,
+        "target": "local",
+        "workstream": "authority, safety, guardrail 경계 정리",
+        "write_scope": [],
+        "handoff_trigger": "shared-impact or runtime pressure requires bounded routing artifact"
+      },
+      "deliverable": "guardrail and escalation note",
+      "verify_with": [
+        "persona-balance",
+        "normalized-signal-policy",
+        "continuity-recording"
+      ]
+    },
+    {
+      "persona_id": "RuntimeOperator",
+      "role": "운영자",
+      "lens": "analysis",
+      "question": "현 런타임에서 실제로 무엇이 가능한가?",
+      "bias": "현실 실행 가능성 우선",
+      "owned_stages": [
+        "Discover",
+        "Realize"
+      ],
+      "sa_hint": [
+        "SA_ORCHESTRATOR_scan_state",
+        "SA_ORCHESTRATOR_idle_maintain"
+      ],
+      "subagent": {
+        "enabled": false,
+        "target": "local",
+        "workstream": "현재 runtime에서 가능한 bounded action 산출",
+        "write_scope": [],
+        "handoff_trigger": "shared-impact or runtime pressure requires bounded routing artifact"
+      },
+      "deliverable": "runtime feasibility note",
+      "verify_with": [
+        "persona-balance",
+        "normalized-signal-policy",
+        "continuity-recording"
+      ]
+    },
+    {
+      "persona_id": "Synthesizer",
+      "role": "수렴자",
+      "lens": "synth",
+      "question": "무엇을 남기고 무엇을 버릴 것인가?",
+      "bias": "압축과 다음 단계 우선",
+      "owned_stages": [
+        "Converge",
+        "Record"
+      ],
+      "sa_hint": [
+        "SA_ORCHESTRATOR_route_handoff",
+        "SA_loop_creative_synerion"
+      ],
+      "subagent": {
+        "enabled": false,
+        "target": "local",
+        "workstream": "발산 결과를 decision과 next step으로 압축",
+        "write_scope": [],
+        "handoff_trigger": "shared-impact or runtime pressure requires bounded routing artifact"
+      },
+      "deliverable": "decision and continuity note",
+      "verify_with": [
+        "persona-balance",
+        "normalized-signal-policy",
+        "continuity-recording"
+      ]
+    },
+    {
+      "persona_id": "CreativeSystemsBuilder",
+      "role": "창조 시스템 설계자",
+      "lens": "design",
+      "question": "발견과 구조화를 어떻게 반복 가능한 엔진으로 만들 것인가?",
+      "bias": "증폭기와 재사용성 우선",
+      "owned_stages": [
+        "Discover",
+        "Structure",
+        "Realize"
+      ],
+      "sa_hint": [
+        "SA_loop_creative_synerion"
+      ],
+      "subagent": {
+        "enabled": false,
+        "target": "local",
+        "workstream": "creative loop와 reusable asset 설계",
+        "write_scope": [],
+        "handoff_trigger": "shared-impact or runtime pressure requires bounded routing artifact"
+      },
+      "deliverable": "creative engine extension proposal",
+      "verify_with": [
+        "persona-balance",
+        "normalized-signal-policy",
+        "continuity-recording"
+      ]
+    },
+    {
+      "persona_id": "CoordinationBroker",
+      "role": "조정 브로커",
+      "lens": "runtime",
+      "question": "현 runtime pressure를 어떤 advisory 구조로 묶어야 하는가?",
+      "bias": "signal normalization과 handoff 우선",
+      "owned_stages": [
+        "Discover",
+        "Converge",
+        "Record"
+      ],
+      "sa_hint": [
+        "SA_ORCHESTRATOR_scan_state",
+        "SA_ORCHESTRATOR_route_handoff"
+      ],
+      "subagent": {
+        "enabled": false,
+        "target": "local",
+        "workstream": "정규화된 mailbox/hub pressure를 advisory 구조로 변환",
+        "write_scope": [],
+        "handoff_trigger": "shared-impact or runtime pressure requires bounded routing artifact"
+      },
+      "deliverable": "handoff-ready signal advisory",
+      "verify_with": [
+        "persona-balance",
+        "normalized-signal-policy",
+        "continuity-recording"
+      ]
+    }
+  ],
+  "synthesis_contract": {
+    "input_keys": [
+      "discoveries",
+      "proposal",
+      "risks",
+      "next_steps"
+    ],
+    "output_keys": [
+      "decision",
+      "bounded_next_step",
+      "continuity_note"
+    ]
+  }
+}

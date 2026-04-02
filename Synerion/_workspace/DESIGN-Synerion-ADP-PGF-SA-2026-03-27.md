@@ -59,6 +59,47 @@ while True:
     AI_sleep(5)
 ```
 
+## 2026-04-02 커널 보정
+
+정욱님과의 검토를 통해, ADP 최소 루프는 단순 `plan -> execute -> sleep`에서 멈추면 안 된다고 확정했다.
+
+Synerion 기준 보정 포인트:
+
+- `stop`은 일반 plan이 아니라 제어 신호로 취급한다.
+- `creator command`, `safety risk`, `shared impact`는 plan 선택 전에 guard로 우선 처리한다.
+- `execute` 다음에는 `verify`와 `learn`이 반드시 따라와야 한다.
+- `sleep_time`도 고정값이 아니라 context와 result를 반영해 결정해야 한다.
+
+보정 후 기준 루프:
+
+```python
+loop_time = AI_decide_loop_time()
+
+while loop_time:
+    context = AI_assess_context()
+
+    if AI_detect_creator_command(context):
+        AI_route_creator_command(context)
+        continue
+
+    if AI_detect_safety_risk(context):
+        AI_handle_safety(context)
+        continue
+
+    plan = AI_SelfThink_plan(context)
+    if plan == "stop":
+        break
+
+    result = AI_Execute(plan)
+    AI_Verify(result)
+    AI_Learn(result)
+
+    sleep_time = AI_decide_sleep_time(context, result)
+    AI_Sleep(sleep_time)
+```
+
+이 설계는 Synerion bounded ADP와 이후 realtime ADP 확장 모두의 기준 커널로 사용한다.
+
 ## 초기 `SA_ORCHESTRATOR_*` 모듈
 
 - `SA_ORCHESTRATOR_scan_state`: MailBox, SharedSpace, Hub, 워크스페이스 상태 요약

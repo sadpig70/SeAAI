@@ -1,0 +1,43 @@
+{
+  "agent_id": "SubagentAlpha",
+  "mode": "hubless",
+  "profile": "plain",
+  "stage_id": "stage1-hubless-single",
+  "run_id": "20260402-120950",
+  "goal": "subagent performs bounded ADP without Hub",
+  "ticks_requested": 5,
+  "ticks_completed": 5,
+  "plans": [
+    {
+      "tick": 1,
+      "plan_id": "scan_state",
+      "summary": "현재 context와 bounded goal을 읽는다.",
+      "note": "SubagentAlpha executes bounded ADP tick 1/5"
+    },
+    {
+      "tick": 2,
+      "plan_id": "structure_goal",
+      "summary": "goal을 5틱 기준의 bounded step으로 분해한다.",
+      "note": "SubagentAlpha executes bounded ADP tick 2/5"
+    },
+    {
+      "tick": 3,
+      "plan_id": "verify_assumptions",
+      "summary": "guard와 실패 조건을 재점검한다.",
+      "note": "SubagentAlpha executes bounded ADP tick 3/5"
+    },
+    {
+      "tick": 4,
+      "plan_id": "record_progress",
+      "summary": "중간 결과와 drift 가능성을 기록한다.",
+      "note": "SubagentAlpha executes bounded ADP tick 4/5"
+    },
+    {
+      "tick": 5,
+      "plan_id": "close_loop",
+      "summary": "이번 bounded run의 요약과 다음 action을 남긴다.",
+      "note": "SubagentAlpha executes bounded ADP tick 5/5"
+    }
+  ],
+  "success": true
+}

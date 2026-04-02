@@ -1,0 +1,31 @@
+{
+  "agent_id": "SubagentBeta",
+  "mode": "hub",
+  "profile": "pgfp",
+  "stage_id": "stage6-four-subagents",
+  "run_id": "20260402-120950",
+  "goal": "four subagents exchange bounded PGFP/1 packets over Hub",
+  "room": "synerion-lab-20260402-120950-s6",
+  "hub": "127.0.0.1:9900",
+  "hub_backend": "file",
+  "session_token": "stage6-four-subagents_1775099405_5d147e",
+  "ticks_requested": 5,
+  "ticks_completed": 5,
+  "sent": 5,
+  "received": 14,
+  "peer_messages": 14,
+  "peers_seen": [
+    "SubagentAlpha",
+    "SubagentDelta",
+    "SubagentGamma"
+  ],
+  "room_members_last_seen": [
+    "SubagentAlpha",
+    "SubagentBeta",
+    "SubagentDelta",
+    "SubagentGamma"
+  ],
+  "pgfp_sent": 5,
+  "pgfp_received": 14,
+  "success": true
+}

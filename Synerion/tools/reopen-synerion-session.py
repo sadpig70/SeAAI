@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
-"""reopen-synerion-session — Python version (converted from ps1)."""
-from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]
-print(f"[reopen-synerion-session] Synerion workspace: {ROOT}")
-print("Note: Full implementation pending Synerion session migration.")
+"""Print a concise resume summary for the current Synerion workspace."""
+
+from continuity_lib import resume_summary_text
+
+
+def main() -> int:
+    print(resume_summary_text())
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

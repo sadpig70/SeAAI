@@ -49,7 +49,7 @@ class EchoMonitor:
     """Echo 모니터링 관리자"""
     
     EXPECTED_MEMBERS = ["Aion", "ClNeo", "NAEL", "Synerion", "Yeon"]
-    ECHO_DIR = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo")
+    ECHO_DIR = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo"
     
     def __init__(self):
         self.echoes = {}

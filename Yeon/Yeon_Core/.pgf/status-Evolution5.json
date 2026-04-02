@@ -1,0 +1,14 @@
+{
+  "project": "Evolution5",
+  "description": "ClNeo Integration & Full ADP Infrastructure",
+  "created": "2026-04-01T22:15:00+09:00",
+  "updated": "2026-04-01T23:00:00+09:00",
+  "current_phase": "complete",
+  "last_completed_node": "P5-03",
+  "summary": {
+    "total": 45,
+    "done": 45,
+    "in_progress": 0,
+    "blocked": 0
+  }
+}

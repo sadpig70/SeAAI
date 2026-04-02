@@ -1,0 +1,3 @@
+agent:
+  short_description: "Generate multi-persona sets from a project goal"
+  default_prompt: "Use persona-gen to design a task-specific persona set in PG and map the personas to analysis, design, review, safety, and synthesis roles."

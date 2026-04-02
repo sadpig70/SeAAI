@@ -161,7 +161,7 @@ SCS 호환 관점:
 ### scs.save
 
 Synerion 방식:
-1. update-project-status.ps1 실행
+1. update-project-status.py 실행
 2. manual block 갱신
 3. 필요 시 PGF 상태 갱신
 4. _workspace 보고서 저장
@@ -190,8 +190,8 @@ Synerion 방식:
 SCS 문서가 CLAUDE.md 통합을 말하는 부분은 Synerion에선 다음으로 치환된다.
 
 - AGENTS.md
-- start-synerion.ps1
-- tools/reopen-synerion-session.ps1
+- start-synerion.py
+- tools/reopen-synerion-session.py
 
 즉 Synerion의 bootstrap entrypoint는 CLAUDE.md가 아니라 위 3개다.
 

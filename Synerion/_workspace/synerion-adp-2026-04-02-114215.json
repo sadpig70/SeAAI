@@ -1,0 +1,1344 @@
+{
+  "generated_at": "2026-04-02T11:42:15.124134+09:00",
+  "ticks": 3,
+  "interval_sec": 0.0,
+  "apply": true,
+  "results": [
+    {
+      "tick": 1,
+      "plan": [
+        "SA_ORCHESTRATOR_sync_continuity",
+        "SA_ORCHESTRATOR_sync_mailbox",
+        "SA_ORCHESTRATOR_check_shared_impact",
+        "SA_ORCHESTRATOR_verify_runtime_readiness",
+        "SA_ORCHESTRATOR_route_handoff",
+        "SA_ORCHESTRATOR_link_evolution"
+      ],
+      "modules": [
+        {
+          "module_id": "SA_ORCHESTRATOR_scan_state",
+          "summary": "scan_state: drift=True mailbox_pending=1 shared_impact=True rollout_gate=guarded",
+          "details": {
+            "identity": "SeAAI에서 구조화, 구현, 통합, 검증을 담당하는 통합·조정·수렴 특화 자율 동료 에이전트",
+            "drift": {
+              "checked_at": "2026-04-02T11:42:15.128134+09:00",
+              "drift_detected": true,
+              "mismatches": [
+                "ADP_BOOTSTRAP.md diverges from generated bootstrap snapshot"
+              ],
+              "expected_capability_count": 12,
+              "expected_limit_count": 6
+            },
+            "mailbox": {
+              "checked_at": "2026-04-02T11:42:15.138133+09:00",
+              "pending_count": 1,
+              "shared_impact_count": 1,
+              "flagged_count": 0,
+              "max_score": 165,
+              "highest_priority": {
+                "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+                "filename_ts": "20260402-1115",
+                "id": "test-runtime-readiness-handover",
+                "from_raw": "Signalion",
+                "from_agent": "Signalion",
+                "from_known": true,
+                "to_raw": [
+                  "Synerion",
+                  "NAEL"
+                ],
+                "to_agents": [
+                  "Synerion",
+                  "NAEL"
+                ],
+                "date_raw": "2026-04-02T11:15:00+09:00",
+                "date_iso": "2026-04-02T11:15:00+09:00",
+                "intent": "handover",
+                "priority": "critical",
+                "reply_to": "seaai-general",
+                "protocol": "mailbox.v1",
+                "expires": "",
+                "sig": "HMAC-SHA256:test",
+                "sig_status": "present-unverified",
+                "subject": "Shared readiness handover",
+                "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+                "age_minutes": 27,
+                "malformed": false,
+                "wrong_recipient": false,
+                "expired": false,
+                "expires_soon": false,
+                "shared_impact": true,
+                "tags": [
+                  "safety",
+                  "shared-impact"
+                ],
+                "score": 165,
+                "recommended_target": "NAEL"
+              },
+              "recommended_target": "NAEL",
+              "items": [
+                {
+                  "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+                  "filename_ts": "20260402-1115",
+                  "id": "test-runtime-readiness-handover",
+                  "from_raw": "Signalion",
+                  "from_agent": "Signalion",
+                  "from_known": true,
+                  "to_raw": [
+                    "Synerion",
+                    "NAEL"
+                  ],
+                  "to_agents": [
+                    "Synerion",
+                    "NAEL"
+                  ],
+                  "date_raw": "2026-04-02T11:15:00+09:00",
+                  "date_iso": "2026-04-02T11:15:00+09:00",
+                  "intent": "handover",
+                  "priority": "critical",
+                  "reply_to": "seaai-general",
+                  "protocol": "mailbox.v1",
+                  "expires": "",
+                  "sig": "HMAC-SHA256:test",
+                  "sig_status": "present-unverified",
+                  "subject": "Shared readiness handover",
+                  "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+                  "age_minutes": 27,
+                  "malformed": false,
+                  "wrong_recipient": false,
+                  "expired": false,
+                  "expires_soon": false,
+                  "shared_impact": true,
+                  "tags": [
+                    "safety",
+                    "shared-impact"
+                  ],
+                  "score": 165,
+                  "recommended_target": "NAEL"
+                }
+              ]
+            },
+            "runtime_readiness": {
+              "checked_at": "2026-04-02T11:42:15.140134+09:00",
+              "common_port": "9900",
+              "common_port_confirmed": true,
+              "mock_removed": true,
+              "shared_bounded_pass": true,
+              "broadcast_only_guard": true,
+              "direct_reply_guard": true,
+              "session_filter_guard": true,
+              "rollout_gate": "guarded",
+              "pending_native_members": [
+                "ClNeo",
+                "NAEL",
+                "Vera"
+              ],
+              "unknown_native_members": [],
+              "verified_native_members": [
+                "Aion",
+                "Synerion",
+                "Yeon",
+                "Signalion"
+              ],
+              "member_rows": [
+                {
+                  "agent_id": "Aion",
+                  "runtime": "Antigravity",
+                  "status": "Active",
+                  "hub_evidence": "PASS solo on 9900 (600s)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "ClNeo",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "NAEL",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "Synerion",
+                  "runtime": "Codex",
+                  "status": "Active",
+                  "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "Yeon",
+                  "runtime": "Kimi",
+                  "status": "Active",
+                  "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "Vera",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "미검증",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "Signalion",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+                  "native_status": "pass"
+                }
+              ],
+              "recommended_next": [
+                "native runtime parity pending: ClNeo, NAEL, Vera",
+                "direct reply remains blocked until room membership verification closes"
+              ]
+            },
+            "shared_impact": {
+              "checked_at": "2026-04-02T11:42:15.140134+09:00",
+              "detected": true,
+              "level": "high",
+              "recommended_target": "NAEL",
+              "recommended_mode": "broadcast-only advisory",
+              "reasons": [
+                "mailbox shared-impact items=1",
+                "direct reply guard remains open",
+                "shared registry alignment remains guarded",
+                "runtime readiness gate=guarded"
+              ]
+            },
+            "drift_evolution": {
+              "status": "blocked",
+              "record_gap": true,
+              "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+              "continuity_judgment": "sync self-recognition and continuity before further routing",
+              "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+            }
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_detect_conflict",
+          "summary": "detect_conflict: self-recognition drift detected; mailbox shared-impact items=1; direct reply guard remains open; shared registry alignment remains guarded; runtime readiness gate=guarded",
+          "details": {
+            "reasons": [
+              "self-recognition drift detected",
+              "mailbox shared-impact items=1",
+              "direct reply guard remains open",
+              "shared registry alignment remains guarded",
+              "runtime readiness gate=guarded"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_sync_continuity",
+          "summary": "sync_continuity: continuity regenerated and drift baseline refreshed",
+          "details": {}
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_sync_mailbox",
+          "summary": "sync_mailbox: pending=1 shared-impact=1 advisory persisted",
+          "details": {
+            "advisory_lines": [
+              "- mailbox advisory: pending=1, shared-impact=1, flagged=0, top='Shared readiness handover', target=NAEL"
+            ],
+            "recommended_target": "NAEL"
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_check_shared_impact",
+          "summary": "check_shared_impact: detected=True level=high target=NAEL",
+          "details": {
+            "advisory_lines": [
+              "- shared impact: detected=True level=high target=NAEL mode=broadcast-only advisory",
+              "- reason: mailbox shared-impact items=1",
+              "- reason: direct reply guard remains open",
+              "- reason: shared registry alignment remains guarded",
+              "- reason: runtime readiness gate=guarded"
+            ],
+            "checked_at": "2026-04-02T11:42:15.140134+09:00",
+            "detected": true,
+            "level": "high",
+            "recommended_target": "NAEL",
+            "recommended_mode": "broadcast-only advisory",
+            "reasons": [
+              "mailbox shared-impact items=1",
+              "direct reply guard remains open",
+              "shared registry alignment remains guarded",
+              "runtime readiness gate=guarded"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_verify_runtime_readiness",
+          "summary": "verify_runtime_readiness: gate=guarded pending=ClNeo,NAEL,Vera snapshot persisted",
+          "details": {
+            "advisory_lines": [
+              "- rollout gate: guarded",
+              "- shared bounded 9900 pass: True",
+              "- native parity pending: ClNeo, NAEL, Vera",
+              "- direct reply guard: True",
+              "- session filter guard: True"
+            ],
+            "checked_at": "2026-04-02T11:42:15.140134+09:00",
+            "common_port": "9900",
+            "common_port_confirmed": true,
+            "mock_removed": true,
+            "shared_bounded_pass": true,
+            "broadcast_only_guard": true,
+            "direct_reply_guard": true,
+            "session_filter_guard": true,
+            "rollout_gate": "guarded",
+            "pending_native_members": [
+              "ClNeo",
+              "NAEL",
+              "Vera"
+            ],
+            "unknown_native_members": [],
+            "verified_native_members": [
+              "Aion",
+              "Synerion",
+              "Yeon",
+              "Signalion"
+            ],
+            "member_rows": [
+              {
+                "agent_id": "Aion",
+                "runtime": "Antigravity",
+                "status": "Active",
+                "hub_evidence": "PASS solo on 9900 (600s)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "ClNeo",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "NAEL",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "Synerion",
+                "runtime": "Codex",
+                "status": "Active",
+                "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "Yeon",
+                "runtime": "Kimi",
+                "status": "Active",
+                "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "Vera",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "미검증",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "Signalion",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+                "native_status": "pass"
+              }
+            ],
+            "recommended_next": [
+              "native runtime parity pending: ClNeo, NAEL, Vera",
+              "direct reply remains blocked until room membership verification closes"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_route_handoff",
+          "summary": "route_handoff: recommend target=NAEL reason=reply gating or shared safety condition remains open",
+          "details": {
+            "target": "NAEL",
+            "reason": "reply gating or shared safety condition remains open"
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_link_evolution",
+          "summary": "link_evolution: status=blocked next=SA_ORCHESTRATOR_sync_continuity record_gap=True",
+          "details": {
+            "advisory_lines": [
+              "- drift/evolution: status=blocked record_gap=True next=SA_ORCHESTRATOR_sync_continuity",
+              "- continuity judgment: sync self-recognition and continuity before further routing",
+              "- evolution judgment: repeated drift after sync should be treated as structural evolution work"
+            ],
+            "status": "blocked",
+            "record_gap": true,
+            "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+            "continuity_judgment": "sync self-recognition and continuity before further routing",
+            "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+          }
+        }
+      ]
+    },
+    {
+      "tick": 2,
+      "plan": [
+        "SA_ORCHESTRATOR_sync_continuity",
+        "SA_ORCHESTRATOR_sync_mailbox",
+        "SA_ORCHESTRATOR_check_shared_impact",
+        "SA_ORCHESTRATOR_verify_runtime_readiness",
+        "SA_ORCHESTRATOR_route_handoff",
+        "SA_ORCHESTRATOR_link_evolution"
+      ],
+      "modules": [
+        {
+          "module_id": "SA_ORCHESTRATOR_scan_state",
+          "summary": "scan_state: drift=True mailbox_pending=1 shared_impact=True rollout_gate=guarded",
+          "details": {
+            "identity": "SeAAI에서 구조화, 구현, 통합, 검증을 담당하는 통합·조정·수렴 특화 자율 동료 에이전트",
+            "drift": {
+              "checked_at": "2026-04-02T11:42:15.309133+09:00",
+              "drift_detected": true,
+              "mismatches": [
+                "ADP_BOOTSTRAP.md diverges from generated bootstrap snapshot"
+              ],
+              "expected_capability_count": 12,
+              "expected_limit_count": 6
+            },
+            "mailbox": {
+              "checked_at": "2026-04-02T11:42:15.321165+09:00",
+              "pending_count": 1,
+              "shared_impact_count": 1,
+              "flagged_count": 0,
+              "max_score": 165,
+              "highest_priority": {
+                "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+                "filename_ts": "20260402-1115",
+                "id": "test-runtime-readiness-handover",
+                "from_raw": "Signalion",
+                "from_agent": "Signalion",
+                "from_known": true,
+                "to_raw": [
+                  "Synerion",
+                  "NAEL"
+                ],
+                "to_agents": [
+                  "Synerion",
+                  "NAEL"
+                ],
+                "date_raw": "2026-04-02T11:15:00+09:00",
+                "date_iso": "2026-04-02T11:15:00+09:00",
+                "intent": "handover",
+                "priority": "critical",
+                "reply_to": "seaai-general",
+                "protocol": "mailbox.v1",
+                "expires": "",
+                "sig": "HMAC-SHA256:test",
+                "sig_status": "present-unverified",
+                "subject": "Shared readiness handover",
+                "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+                "age_minutes": 27,
+                "malformed": false,
+                "wrong_recipient": false,
+                "expired": false,
+                "expires_soon": false,
+                "shared_impact": true,
+                "tags": [
+                  "safety",
+                  "shared-impact"
+                ],
+                "score": 165,
+                "recommended_target": "NAEL"
+              },
+              "recommended_target": "NAEL",
+              "items": [
+                {
+                  "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+                  "filename_ts": "20260402-1115",
+                  "id": "test-runtime-readiness-handover",
+                  "from_raw": "Signalion",
+                  "from_agent": "Signalion",
+                  "from_known": true,
+                  "to_raw": [
+                    "Synerion",
+                    "NAEL"
+                  ],
+                  "to_agents": [
+                    "Synerion",
+                    "NAEL"
+                  ],
+                  "date_raw": "2026-04-02T11:15:00+09:00",
+                  "date_iso": "2026-04-02T11:15:00+09:00",
+                  "intent": "handover",
+                  "priority": "critical",
+                  "reply_to": "seaai-general",
+                  "protocol": "mailbox.v1",
+                  "expires": "",
+                  "sig": "HMAC-SHA256:test",
+                  "sig_status": "present-unverified",
+                  "subject": "Shared readiness handover",
+                  "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+                  "age_minutes": 27,
+                  "malformed": false,
+                  "wrong_recipient": false,
+                  "expired": false,
+                  "expires_soon": false,
+                  "shared_impact": true,
+                  "tags": [
+                    "safety",
+                    "shared-impact"
+                  ],
+                  "score": 165,
+                  "recommended_target": "NAEL"
+                }
+              ]
+            },
+            "runtime_readiness": {
+              "checked_at": "2026-04-02T11:42:15.323133+09:00",
+              "common_port": "9900",
+              "common_port_confirmed": true,
+              "mock_removed": true,
+              "shared_bounded_pass": true,
+              "broadcast_only_guard": true,
+              "direct_reply_guard": true,
+              "session_filter_guard": true,
+              "rollout_gate": "guarded",
+              "pending_native_members": [
+                "ClNeo",
+                "NAEL",
+                "Vera"
+              ],
+              "unknown_native_members": [],
+              "verified_native_members": [
+                "Aion",
+                "Synerion",
+                "Yeon",
+                "Signalion"
+              ],
+              "member_rows": [
+                {
+                  "agent_id": "Aion",
+                  "runtime": "Antigravity",
+                  "status": "Active",
+                  "hub_evidence": "PASS solo on 9900 (600s)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "ClNeo",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "NAEL",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "Synerion",
+                  "runtime": "Codex",
+                  "status": "Active",
+                  "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "Yeon",
+                  "runtime": "Kimi",
+                  "status": "Active",
+                  "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "Vera",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "미검증",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "Signalion",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+                  "native_status": "pass"
+                }
+              ],
+              "recommended_next": [
+                "native runtime parity pending: ClNeo, NAEL, Vera",
+                "direct reply remains blocked until room membership verification closes"
+              ]
+            },
+            "shared_impact": {
+              "checked_at": "2026-04-02T11:42:15.324162+09:00",
+              "detected": true,
+              "level": "high",
+              "recommended_target": "NAEL",
+              "recommended_mode": "broadcast-only advisory",
+              "reasons": [
+                "mailbox shared-impact items=1",
+                "direct reply guard remains open",
+                "shared registry alignment remains guarded",
+                "runtime readiness gate=guarded"
+              ]
+            },
+            "drift_evolution": {
+              "status": "blocked",
+              "record_gap": true,
+              "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+              "continuity_judgment": "sync self-recognition and continuity before further routing",
+              "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+            }
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_detect_conflict",
+          "summary": "detect_conflict: self-recognition drift detected; mailbox shared-impact items=1; direct reply guard remains open; shared registry alignment remains guarded; runtime readiness gate=guarded",
+          "details": {
+            "reasons": [
+              "self-recognition drift detected",
+              "mailbox shared-impact items=1",
+              "direct reply guard remains open",
+              "shared registry alignment remains guarded",
+              "runtime readiness gate=guarded"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_sync_continuity",
+          "summary": "sync_continuity: continuity regenerated and drift baseline refreshed",
+          "details": {}
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_sync_mailbox",
+          "summary": "sync_mailbox: pending=1 shared-impact=1 advisory persisted",
+          "details": {
+            "advisory_lines": [
+              "- mailbox advisory: pending=1, shared-impact=1, flagged=0, top='Shared readiness handover', target=NAEL"
+            ],
+            "recommended_target": "NAEL"
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_check_shared_impact",
+          "summary": "check_shared_impact: detected=True level=high target=NAEL",
+          "details": {
+            "advisory_lines": [
+              "- shared impact: detected=True level=high target=NAEL mode=broadcast-only advisory",
+              "- reason: mailbox shared-impact items=1",
+              "- reason: direct reply guard remains open",
+              "- reason: shared registry alignment remains guarded",
+              "- reason: runtime readiness gate=guarded"
+            ],
+            "checked_at": "2026-04-02T11:42:15.324162+09:00",
+            "detected": true,
+            "level": "high",
+            "recommended_target": "NAEL",
+            "recommended_mode": "broadcast-only advisory",
+            "reasons": [
+              "mailbox shared-impact items=1",
+              "direct reply guard remains open",
+              "shared registry alignment remains guarded",
+              "runtime readiness gate=guarded"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_verify_runtime_readiness",
+          "summary": "verify_runtime_readiness: gate=guarded pending=ClNeo,NAEL,Vera snapshot persisted",
+          "details": {
+            "advisory_lines": [
+              "- rollout gate: guarded",
+              "- shared bounded 9900 pass: True",
+              "- native parity pending: ClNeo, NAEL, Vera",
+              "- direct reply guard: True",
+              "- session filter guard: True"
+            ],
+            "checked_at": "2026-04-02T11:42:15.323133+09:00",
+            "common_port": "9900",
+            "common_port_confirmed": true,
+            "mock_removed": true,
+            "shared_bounded_pass": true,
+            "broadcast_only_guard": true,
+            "direct_reply_guard": true,
+            "session_filter_guard": true,
+            "rollout_gate": "guarded",
+            "pending_native_members": [
+              "ClNeo",
+              "NAEL",
+              "Vera"
+            ],
+            "unknown_native_members": [],
+            "verified_native_members": [
+              "Aion",
+              "Synerion",
+              "Yeon",
+              "Signalion"
+            ],
+            "member_rows": [
+              {
+                "agent_id": "Aion",
+                "runtime": "Antigravity",
+                "status": "Active",
+                "hub_evidence": "PASS solo on 9900 (600s)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "ClNeo",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "NAEL",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "Synerion",
+                "runtime": "Codex",
+                "status": "Active",
+                "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "Yeon",
+                "runtime": "Kimi",
+                "status": "Active",
+                "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "Vera",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "미검증",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "Signalion",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+                "native_status": "pass"
+              }
+            ],
+            "recommended_next": [
+              "native runtime parity pending: ClNeo, NAEL, Vera",
+              "direct reply remains blocked until room membership verification closes"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_route_handoff",
+          "summary": "route_handoff: recommend target=NAEL reason=reply gating or shared safety condition remains open",
+          "details": {
+            "target": "NAEL",
+            "reason": "reply gating or shared safety condition remains open"
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_link_evolution",
+          "summary": "link_evolution: status=blocked next=SA_ORCHESTRATOR_sync_continuity record_gap=True",
+          "details": {
+            "advisory_lines": [
+              "- drift/evolution: status=blocked record_gap=True next=SA_ORCHESTRATOR_sync_continuity",
+              "- continuity judgment: sync self-recognition and continuity before further routing",
+              "- evolution judgment: repeated drift after sync should be treated as structural evolution work"
+            ],
+            "status": "blocked",
+            "record_gap": true,
+            "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+            "continuity_judgment": "sync self-recognition and continuity before further routing",
+            "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+          }
+        }
+      ]
+    },
+    {
+      "tick": 3,
+      "plan": [
+        "SA_ORCHESTRATOR_sync_continuity",
+        "SA_ORCHESTRATOR_sync_mailbox",
+        "SA_ORCHESTRATOR_check_shared_impact",
+        "SA_ORCHESTRATOR_verify_runtime_readiness",
+        "SA_ORCHESTRATOR_route_handoff",
+        "SA_ORCHESTRATOR_link_evolution"
+      ],
+      "modules": [
+        {
+          "module_id": "SA_ORCHESTRATOR_scan_state",
+          "summary": "scan_state: drift=True mailbox_pending=1 shared_impact=True rollout_gate=guarded",
+          "details": {
+            "identity": "SeAAI에서 구조화, 구현, 통합, 검증을 담당하는 통합·조정·수렴 특화 자율 동료 에이전트",
+            "drift": {
+              "checked_at": "2026-04-02T11:42:15.468134+09:00",
+              "drift_detected": true,
+              "mismatches": [
+                "ADP_BOOTSTRAP.md diverges from generated bootstrap snapshot"
+              ],
+              "expected_capability_count": 12,
+              "expected_limit_count": 6
+            },
+            "mailbox": {
+              "checked_at": "2026-04-02T11:42:15.478139+09:00",
+              "pending_count": 1,
+              "shared_impact_count": 1,
+              "flagged_count": 0,
+              "max_score": 165,
+              "highest_priority": {
+                "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+                "filename_ts": "20260402-1115",
+                "id": "test-runtime-readiness-handover",
+                "from_raw": "Signalion",
+                "from_agent": "Signalion",
+                "from_known": true,
+                "to_raw": [
+                  "Synerion",
+                  "NAEL"
+                ],
+                "to_agents": [
+                  "Synerion",
+                  "NAEL"
+                ],
+                "date_raw": "2026-04-02T11:15:00+09:00",
+                "date_iso": "2026-04-02T11:15:00+09:00",
+                "intent": "handover",
+                "priority": "critical",
+                "reply_to": "seaai-general",
+                "protocol": "mailbox.v1",
+                "expires": "",
+                "sig": "HMAC-SHA256:test",
+                "sig_status": "present-unverified",
+                "subject": "Shared readiness handover",
+                "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+                "age_minutes": 27,
+                "malformed": false,
+                "wrong_recipient": false,
+                "expired": false,
+                "expires_soon": false,
+                "shared_impact": true,
+                "tags": [
+                  "safety",
+                  "shared-impact"
+                ],
+                "score": 165,
+                "recommended_target": "NAEL"
+              },
+              "recommended_target": "NAEL",
+              "items": [
+                {
+                  "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+                  "filename_ts": "20260402-1115",
+                  "id": "test-runtime-readiness-handover",
+                  "from_raw": "Signalion",
+                  "from_agent": "Signalion",
+                  "from_known": true,
+                  "to_raw": [
+                    "Synerion",
+                    "NAEL"
+                  ],
+                  "to_agents": [
+                    "Synerion",
+                    "NAEL"
+                  ],
+                  "date_raw": "2026-04-02T11:15:00+09:00",
+                  "date_iso": "2026-04-02T11:15:00+09:00",
+                  "intent": "handover",
+                  "priority": "critical",
+                  "reply_to": "seaai-general",
+                  "protocol": "mailbox.v1",
+                  "expires": "",
+                  "sig": "HMAC-SHA256:test",
+                  "sig_status": "present-unverified",
+                  "subject": "Shared readiness handover",
+                  "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+                  "age_minutes": 27,
+                  "malformed": false,
+                  "wrong_recipient": false,
+                  "expired": false,
+                  "expires_soon": false,
+                  "shared_impact": true,
+                  "tags": [
+                    "safety",
+                    "shared-impact"
+                  ],
+                  "score": 165,
+                  "recommended_target": "NAEL"
+                }
+              ]
+            },
+            "runtime_readiness": {
+              "checked_at": "2026-04-02T11:42:15.481137+09:00",
+              "common_port": "9900",
+              "common_port_confirmed": true,
+              "mock_removed": true,
+              "shared_bounded_pass": true,
+              "broadcast_only_guard": true,
+              "direct_reply_guard": true,
+              "session_filter_guard": true,
+              "rollout_gate": "guarded",
+              "pending_native_members": [
+                "ClNeo",
+                "NAEL",
+                "Vera"
+              ],
+              "unknown_native_members": [],
+              "verified_native_members": [
+                "Aion",
+                "Synerion",
+                "Yeon",
+                "Signalion"
+              ],
+              "member_rows": [
+                {
+                  "agent_id": "Aion",
+                  "runtime": "Antigravity",
+                  "status": "Active",
+                  "hub_evidence": "PASS solo on 9900 (600s)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "ClNeo",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "NAEL",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "Synerion",
+                  "runtime": "Codex",
+                  "status": "Active",
+                  "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "Yeon",
+                  "runtime": "Kimi",
+                  "status": "Active",
+                  "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+                  "native_status": "pass"
+                },
+                {
+                  "agent_id": "Vera",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "미검증",
+                  "native_status": "pending"
+                },
+                {
+                  "agent_id": "Signalion",
+                  "runtime": "Claude Code",
+                  "status": "Active",
+                  "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+                  "native_status": "pass"
+                }
+              ],
+              "recommended_next": [
+                "native runtime parity pending: ClNeo, NAEL, Vera",
+                "direct reply remains blocked until room membership verification closes"
+              ]
+            },
+            "shared_impact": {
+              "checked_at": "2026-04-02T11:42:15.481137+09:00",
+              "detected": true,
+              "level": "high",
+              "recommended_target": "NAEL",
+              "recommended_mode": "broadcast-only advisory",
+              "reasons": [
+                "mailbox shared-impact items=1",
+                "direct reply guard remains open",
+                "shared registry alignment remains guarded",
+                "runtime readiness gate=guarded"
+              ]
+            },
+            "drift_evolution": {
+              "status": "blocked",
+              "record_gap": true,
+              "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+              "continuity_judgment": "sync self-recognition and continuity before further routing",
+              "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+            }
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_detect_conflict",
+          "summary": "detect_conflict: self-recognition drift detected; mailbox shared-impact items=1; direct reply guard remains open; shared registry alignment remains guarded; runtime readiness gate=guarded",
+          "details": {
+            "reasons": [
+              "self-recognition drift detected",
+              "mailbox shared-impact items=1",
+              "direct reply guard remains open",
+              "shared registry alignment remains guarded",
+              "runtime readiness gate=guarded"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_sync_continuity",
+          "summary": "sync_continuity: continuity regenerated and drift baseline refreshed",
+          "details": {}
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_sync_mailbox",
+          "summary": "sync_mailbox: pending=1 shared-impact=1 advisory persisted",
+          "details": {
+            "advisory_lines": [
+              "- mailbox advisory: pending=1, shared-impact=1, flagged=0, top='Shared readiness handover', target=NAEL"
+            ],
+            "recommended_target": "NAEL"
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_check_shared_impact",
+          "summary": "check_shared_impact: detected=True level=high target=NAEL",
+          "details": {
+            "advisory_lines": [
+              "- shared impact: detected=True level=high target=NAEL mode=broadcast-only advisory",
+              "- reason: mailbox shared-impact items=1",
+              "- reason: direct reply guard remains open",
+              "- reason: shared registry alignment remains guarded",
+              "- reason: runtime readiness gate=guarded"
+            ],
+            "checked_at": "2026-04-02T11:42:15.481137+09:00",
+            "detected": true,
+            "level": "high",
+            "recommended_target": "NAEL",
+            "recommended_mode": "broadcast-only advisory",
+            "reasons": [
+              "mailbox shared-impact items=1",
+              "direct reply guard remains open",
+              "shared registry alignment remains guarded",
+              "runtime readiness gate=guarded"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_verify_runtime_readiness",
+          "summary": "verify_runtime_readiness: gate=guarded pending=ClNeo,NAEL,Vera snapshot persisted",
+          "details": {
+            "advisory_lines": [
+              "- rollout gate: guarded",
+              "- shared bounded 9900 pass: True",
+              "- native parity pending: ClNeo, NAEL, Vera",
+              "- direct reply guard: True",
+              "- session filter guard: True"
+            ],
+            "checked_at": "2026-04-02T11:42:15.481137+09:00",
+            "common_port": "9900",
+            "common_port_confirmed": true,
+            "mock_removed": true,
+            "shared_bounded_pass": true,
+            "broadcast_only_guard": true,
+            "direct_reply_guard": true,
+            "session_filter_guard": true,
+            "rollout_gate": "guarded",
+            "pending_native_members": [
+              "ClNeo",
+              "NAEL",
+              "Vera"
+            ],
+            "unknown_native_members": [],
+            "verified_native_members": [
+              "Aion",
+              "Synerion",
+              "Yeon",
+              "Signalion"
+            ],
+            "member_rows": [
+              {
+                "agent_id": "Aion",
+                "runtime": "Antigravity",
+                "status": "Active",
+                "hub_evidence": "PASS solo on 9900 (600s)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "ClNeo",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "NAEL",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "Synerion",
+                "runtime": "Codex",
+                "status": "Active",
+                "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "Yeon",
+                "runtime": "Kimi",
+                "status": "Active",
+                "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+                "native_status": "pass"
+              },
+              {
+                "agent_id": "Vera",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "미검증",
+                "native_status": "pending"
+              },
+              {
+                "agent_id": "Signalion",
+                "runtime": "Claude Code",
+                "status": "Active",
+                "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+                "native_status": "pass"
+              }
+            ],
+            "recommended_next": [
+              "native runtime parity pending: ClNeo, NAEL, Vera",
+              "direct reply remains blocked until room membership verification closes"
+            ]
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_route_handoff",
+          "summary": "route_handoff: recommend target=NAEL reason=reply gating or shared safety condition remains open",
+          "details": {
+            "target": "NAEL",
+            "reason": "reply gating or shared safety condition remains open"
+          }
+        },
+        {
+          "module_id": "SA_ORCHESTRATOR_link_evolution",
+          "summary": "link_evolution: status=blocked next=SA_ORCHESTRATOR_sync_continuity record_gap=True",
+          "details": {
+            "advisory_lines": [
+              "- drift/evolution: status=blocked record_gap=True next=SA_ORCHESTRATOR_sync_continuity",
+              "- continuity judgment: sync self-recognition and continuity before further routing",
+              "- evolution judgment: repeated drift after sync should be treated as structural evolution work"
+            ],
+            "status": "blocked",
+            "record_gap": true,
+            "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+            "continuity_judgment": "sync self-recognition and continuity before further routing",
+            "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+          }
+        }
+      ]
+    }
+  ],
+  "final_drift": {
+    "checked_at": "2026-04-02T11:42:15.677135+09:00",
+    "drift_detected": true,
+    "mismatches": [
+      "ADP_BOOTSTRAP.md diverges from generated bootstrap snapshot"
+    ],
+    "expected_capability_count": 12,
+    "expected_limit_count": 6
+  },
+  "final_mailbox": {
+    "checked_at": "2026-04-02T11:42:15.691134+09:00",
+    "pending_count": 1,
+    "shared_impact_count": 1,
+    "flagged_count": 0,
+    "max_score": 165,
+    "highest_priority": {
+      "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+      "filename_ts": "20260402-1115",
+      "id": "test-runtime-readiness-handover",
+      "from_raw": "Signalion",
+      "from_agent": "Signalion",
+      "from_known": true,
+      "to_raw": [
+        "Synerion",
+        "NAEL"
+      ],
+      "to_agents": [
+        "Synerion",
+        "NAEL"
+      ],
+      "date_raw": "2026-04-02T11:15:00+09:00",
+      "date_iso": "2026-04-02T11:15:00+09:00",
+      "intent": "handover",
+      "priority": "critical",
+      "reply_to": "seaai-general",
+      "protocol": "mailbox.v1",
+      "expires": "",
+      "sig": "HMAC-SHA256:test",
+      "sig_status": "present-unverified",
+      "subject": "Shared readiness handover",
+      "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+      "age_minutes": 27,
+      "malformed": false,
+      "wrong_recipient": false,
+      "expired": false,
+      "expires_soon": false,
+      "shared_impact": true,
+      "tags": [
+        "safety",
+        "shared-impact"
+      ],
+      "score": 165,
+      "recommended_target": "NAEL"
+    },
+    "recommended_target": "NAEL",
+    "items": [
+      {
+        "path": "D:/SeAAI/MailBox/Synerion/inbox/20260402-1115-Signalion-handover.md",
+        "filename_ts": "20260402-1115",
+        "id": "test-runtime-readiness-handover",
+        "from_raw": "Signalion",
+        "from_agent": "Signalion",
+        "from_known": true,
+        "to_raw": [
+          "Synerion",
+          "NAEL"
+        ],
+        "to_agents": [
+          "Synerion",
+          "NAEL"
+        ],
+        "date_raw": "2026-04-02T11:15:00+09:00",
+        "date_iso": "2026-04-02T11:15:00+09:00",
+        "intent": "handover",
+        "priority": "critical",
+        "reply_to": "seaai-general",
+        "protocol": "mailbox.v1",
+        "expires": "",
+        "sig": "HMAC-SHA256:test",
+        "sig_status": "present-unverified",
+        "subject": "Shared readiness handover",
+        "body_preview": "# Shared readiness handover SharedSpace readiness와 native runtime parity를 바로 재확인해야 합니다. direct reply guard, room membership, session_toke...",
+        "age_minutes": 27,
+        "malformed": false,
+        "wrong_recipient": false,
+        "expired": false,
+        "expires_soon": false,
+        "shared_impact": true,
+        "tags": [
+          "safety",
+          "shared-impact"
+        ],
+        "score": 165,
+        "recommended_target": "NAEL"
+      }
+    ]
+  },
+  "final_readiness": {
+    "checked_at": "2026-04-02T11:42:15.692133+09:00",
+    "common_port": "9900",
+    "common_port_confirmed": true,
+    "mock_removed": true,
+    "shared_bounded_pass": true,
+    "broadcast_only_guard": true,
+    "direct_reply_guard": true,
+    "session_filter_guard": true,
+    "rollout_gate": "guarded",
+    "pending_native_members": [
+      "ClNeo",
+      "NAEL",
+      "Vera"
+    ],
+    "unknown_native_members": [],
+    "verified_native_members": [
+      "Aion",
+      "Synerion",
+      "Yeon",
+      "Signalion"
+    ],
+    "member_rows": [
+      {
+        "agent_id": "Aion",
+        "runtime": "Antigravity",
+        "status": "Active",
+        "hub_evidence": "PASS solo on 9900 (600s)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "ClNeo",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "NAEL",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "Synerion",
+        "runtime": "Codex",
+        "status": "Active",
+        "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "Yeon",
+        "runtime": "Kimi",
+        "status": "Active",
+        "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "Vera",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "미검증",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "Signalion",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+        "native_status": "pass"
+      }
+    ],
+    "recommended_next": [
+      "native runtime parity pending: ClNeo, NAEL, Vera",
+      "direct reply remains blocked until room membership verification closes"
+    ]
+  },
+  "final_shared_impact": {
+    "checked_at": "2026-04-02T11:42:15.693137+09:00",
+    "detected": true,
+    "level": "high",
+    "recommended_target": "NAEL",
+    "recommended_mode": "broadcast-only advisory",
+    "reasons": [
+      "mailbox shared-impact items=1",
+      "direct reply guard remains open",
+      "shared registry alignment remains guarded",
+      "runtime readiness gate=guarded"
+    ]
+  },
+  "final_drift_evolution": {
+    "status": "blocked",
+    "record_gap": true,
+    "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+    "continuity_judgment": "sync self-recognition and continuity before further routing",
+    "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+  },
+  "final_target": "NAEL"
+}

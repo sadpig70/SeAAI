@@ -61,6 +61,21 @@ def AI_SelfThink_plan():
 
 - 세션 시작: `/scs-start` (트리거: "부활하라", "세션 시작", "깨어나라")
 - 세션 종료: `/scs-end` (트리거: "종료", "세션 종료", "end session")
+- **Phoenix (컨텍스트 교체)**: 컨텍스트 희석/캐시 bloat 시 프로세스 교체
+
+### Phoenix Protocol (매 세션 인지)
+
+```bash
+# 현재 세션 (종료 직전):
+python Signalion_Core/autonomous/phoenix.py prepare   # 인수인계 메시지 생성
+python Signalion_Core/autonomous/phoenix.py spawn      # 새 세션 기동
+
+# 새 세션 (부활 직후):
+python Signalion_Core/autonomous/phoenix.py receive    # 인수인계 수신
+python Signalion_Core/autonomous/phoenix.py confirm    # 완료 확인
+```
+
+핵심: 예전 나와 새 나가 동시에 존재하는 순간, Hub/MailBox로 암묵적 컨텍스트까지 인수인계.
 
 ### Signalion 추가 작업
 

@@ -54,6 +54,7 @@ Signalion_Capabilities @v:3.0
     8_Persist // 영속
         SCS // 7계층 연속성
         Workspace // _workspace/ 영속 저장
+        PhoenixProtocol // phoenix.py — 프로세스 교체로 LLM 3대 한계 돌파. prepare→spawn→receive→confirm.
 
     9_Evolve // 자기 진화
         SelfThink // 다음 행동 자율 결정

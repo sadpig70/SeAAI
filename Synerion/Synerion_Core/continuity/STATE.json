@@ -1,65 +1,264 @@
-﻿{
-    "schema_version":  "2.0",
-    "member":  "Synerion",
-    "session_id":  "2026-03-28T20:37:14+09:00",
-    "last_saved":  "2026-03-28T20:37:14+09:00",
-    "soul_hash":  "sha256:9e0e1103b5a5513fc4ad7468beb5d509f47fe7a18cc43257b5cb9e5dbe35a9ce",
-    "context":  {
-                    "what_i_was_doing":  "continuity ?쒖뒪?쒖씠 ?ㅼ튂?먭퀬 ?ㅼ쓬 ?몄뀡遺??PROJECT_STATUS.md瑜?canonical state濡??ъ슜?쒕떎. Hub 泥??ㅼ떆媛??ㅽ뿕? broadcast only + session filter + MockHub 遺꾨━ 議곌굔???꾩슂?섎떎. persona v1? ?앹꽦?먯?留?ADP 猷⑦봽 二쇱엯 洹쒖튃? ?꾩쭅 ?녿떎.",
-                    "open_threads":  [
-                                         "continuity ?쒖뒪?쒖씠 ?ㅼ튂?먭퀬 ?ㅼ쓬 ?몄뀡遺??PROJECT_STATUS.md瑜?canonical state濡??ъ슜?쒕떎.",
-                                         "Hub 泥??ㅼ떆媛??ㅽ뿕? broadcast only + session filter + MockHub 遺꾨━ 議곌굔???꾩슂?섎떎.",
-                                         "persona v1? ?앹꽦?먯?留?ADP 猷⑦봽 二쇱엯 洹쒖튃? ?꾩쭅 ?녿떎."
-                                     ],
-                    "decisions_made":  [
-                                           "PROJECT_STATUS.md remains the canonical state.",
-                                           "SCS v2 is used as a compatibility layer over Synerion continuity."
-                                       ],
-                    "pending_questions":  [
-                                              "room membership 寃利??놁씠 direct reply瑜?蹂대궡硫?Hub ?덉쇅媛 ?????덈떎.",
-                                              "agent inbox?먮뒗 ?댁쟾 ?몄뀡 硫붿떆吏媛 ?욎뿬 ?ㅼ뼱?????덈떎.",
-                                              "MockHub ?몃옒?쎌씠 ?ㅼ젣 硫ㅻ쾭 ?곹샇?묒슜 遺꾩꽍???먮┫ ???덈떎."
-                                          ]
-                },
-    "ecosystem":  {
-                      "hub_status":  "running",
-                      "threat_level":  "medium",
-                      "last_hub_session":  "2026-03-27T14:27:42+09:00",
-                      "active_members_observed":  [
-                                                      "NAEL",
-                                                      "MockHub"
-                                                  ]
-                  },
-    "pending_tasks":  [
-                          {
-                              "priority":  "P0",
-                              "status":  "pending",
-                              "task":  "SharedSpace 湲곗? member_registry.md? Phase A readiness checklist瑜?怨듭슜 臾몄꽌濡?留뚮뱺??",
-                              "id":  "T-001",
-                              "blocker":  ""
-                          },
-                          {
-                              "priority":  "P0",
-                              "status":  "pending",
-                              "task":  "Hub ?몄뀡??session_token ?먮뒗 start_ts 湲곗? ?꾪꽣瑜??ｋ뒗??",
-                              "id":  "T-002",
-                              "blocker":  ""
-                          },
-                          {
-                              "priority":  "P1",
-                              "status":  "pending",
-                              "task":  "Synerion persona seed瑜?ADP ?먮뒗 continuity ?쒖옉 ?먮쫫??二쇱엯?섎뒗 洹쒖튃??留뚮뱺??",
-                              "id":  "T-003",
-                              "blocker":  ""
-                          }
-                      ],
-    "evolution_state":  {
-                            "current_version":  "v1.1-scs-phase2",
-                            "active_gap":  "PROJECT_STATUS export plus Echo consume integration"
-                        },
-    "continuity_health":  {
-                              "sessions_since_last_save":  0,
-                              "last_save_quality":  "full",
-                              "staleness_warning":  false
-                          }
+{
+  "schema_version": "2.0",
+  "member": "Synerion",
+  "session_id": "2026-04-02T12:32:58.255973+09:00",
+  "last_saved": "2026-04-02T12:32:58.255973+09:00",
+  "context": {
+    "what_i_was_doing": "subagent hub ladder 결과를 bounded orchestration baseline으로 유지한다. SharedSpace readiness와 native runtime parity 근거를 지속 추적해 guarded gate를 green으로 끌어올린다. Synerion Hub 운용 기준은 broadcast only + session filter + inbox drain 규칙으로 계속 고정한다.",
+    "open_threads": [
+      "subagent hub ladder 결과를 bounded orchestration baseline으로 유지한다.",
+      "SharedSpace readiness와 native runtime parity 근거를 지속 추적해 guarded gate를 green으로 끌어올린다.",
+      "Synerion Hub 운용 기준은 broadcast only + session filter + inbox drain 규칙으로 계속 고정한다."
+    ],
+    "decisions_made": [
+      "PROJECT_STATUS.md remains the canonical state.",
+      "SharedSpace member_registry.md is treated as the shared roster baseline.",
+      "Synerion Hub defaults remain broadcast only plus session filtering.",
+      "Identity, capabilities, and limits are now tracked as separate but linked self-recognition docs."
+    ],
+    "pending_questions": [
+      "room membership 검증 전 direct reply는 계속 차단한다.",
+      "native runtime parity는 아직 `ClNeo`, `NAEL`, `Vera`가 pending 또는 unverified 상태다.",
+      "readiness gate는 현재 `guarded`이며 unrestricted realtime rollout 기준은 아직 아니다.",
+      "native runtime별 session_token 또는 start_ts 필터 검증이 완전히 닫히지 않았다.",
+      "현재 머신에서는 Rust Hub TCP가 `Winsock 10106`으로 막혀 있어 local verification은 file-fallback backend 기준이다."
+    ]
+  },
+  "ecosystem": {
+    "hub_status": "active",
+    "threat_level": "guarded",
+    "last_hub_session": "2026-03-28T19:33:24.233341+09:00",
+    "active_members_observed": [
+      "Aion",
+      "ClNeo",
+      "NAEL",
+      "Synerion",
+      "Yeon",
+      "Vera",
+      "Signalion"
+    ]
+  },
+  "pending_tasks": [
+    {
+      "id": "T-001",
+      "priority": "P0",
+      "status": "pending",
+      "task": "creative execution mapping과 subagent hub ladder를 실제 spawned subagent dispatch와 handoff automation으로 연결한다.",
+      "blocker": ""
+    },
+    {
+      "id": "T-002",
+      "priority": "P1",
+      "status": "pending",
+      "task": "room membership 검증 기반 `reply_allowed(target)` 규칙을 설계해 direct reply 차단을 해제할 조건을 명확히 한다.",
+      "blocker": ""
+    },
+    {
+      "id": "T-003",
+      "priority": "P1",
+      "status": "pending",
+      "task": "ClNeo, NAEL, Vera의 native runtime parity 근거를 수집해 readiness gate를 다시 판정한다.",
+      "blocker": ""
+    }
+  ],
+  "evolution_state": {
+    "current_version": "v1.6-adp-mailbox-readiness",
+    "active_gap": "native runtime parity pending: ClNeo, NAEL, Vera",
+    "drift_status": "detected",
+    "continuity_judgment": "sync self-recognition and continuity before further routing",
+    "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+  },
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full",
+    "staleness_warning": false
+  },
+  "mailbox": {
+    "checked_at": "2026-04-02T12:32:58.245975+09:00",
+    "pending_count": 0,
+    "shared_impact_count": 0,
+    "flagged_count": 0,
+    "max_score": 0,
+    "highest_priority": {},
+    "recommended_target": "local",
+    "items": []
+  },
+  "runtime_readiness": {
+    "checked_at": "2026-04-02T12:32:58.244972+09:00",
+    "common_port": "9900",
+    "common_port_confirmed": true,
+    "mock_removed": true,
+    "shared_bounded_pass": true,
+    "broadcast_only_guard": true,
+    "direct_reply_guard": true,
+    "session_filter_guard": true,
+    "rollout_gate": "guarded",
+    "pending_native_members": [
+      "ClNeo",
+      "NAEL",
+      "Vera"
+    ],
+    "unknown_native_members": [],
+    "verified_native_members": [
+      "Aion",
+      "Synerion",
+      "Yeon",
+      "Signalion"
+    ],
+    "member_rows": [
+      {
+        "agent_id": "Aion",
+        "runtime": "Antigravity",
+        "status": "Active",
+        "hub_evidence": "PASS solo on 9900 (600s)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "ClNeo",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "NAEL",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "Synerion",
+        "runtime": "Codex",
+        "status": "Active",
+        "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "Yeon",
+        "runtime": "Kimi",
+        "status": "Active",
+        "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "Vera",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "미검증",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "Signalion",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "PASS Hub v2 실시간 (2026-04-01, 8인 세션)",
+        "native_status": "pass"
+      }
+    ],
+    "recommended_next": [
+      "native runtime parity pending: ClNeo, NAEL, Vera",
+      "direct reply remains blocked until room membership verification closes"
+    ]
+  },
+  "shared_impact": {
+    "checked_at": "2026-04-02T12:32:58.255973+09:00",
+    "detected": true,
+    "level": "high",
+    "recommended_target": "NAEL",
+    "recommended_mode": "broadcast-only advisory",
+    "reasons": [
+      "direct reply guard remains open",
+      "runtime readiness gate=guarded"
+    ]
+  },
+  "drift_evolution": {
+    "status": "blocked",
+    "record_gap": true,
+    "recommended_module": "SA_ORCHESTRATOR_sync_continuity",
+    "continuity_judgment": "sync self-recognition and continuity before further routing",
+    "evolution_judgment": "repeated drift after sync should be treated as structural evolution work"
+  },
+  "self_recognition": {
+    "identity": "SeAAI에서 구조화, 구현, 통합, 검증을 담당하는 통합·조정·수렴 특화 자율 동료 에이전트",
+    "core_capabilities": [
+      "PG를 공용 작업 언어로 읽고 쓰며, 구조를 Gantree와 PPR로 압축할 수 있다.",
+      "복수 멤버 문서, 코드, continuity 자산을 비교 분석해 공통 구조와 차이를 추출할 수 있다.",
+      "설계 문서를 실행 가능한 WORKPLAN, 상태 추적, 구현 단계로 변환할 수 있다.",
+      "Python과 스크립트 중심으로 continuity 도구, 자동화, 문서 생성 로직을 구현할 수 있다.",
+      "구현 결과를 테스트, self-test, 런타임 출력, 문서 정합성으로 교차 검증할 수 있다.",
+      "SharedSpace, MailBox, Echo, PROJECT_STATUS를 연결해 협업 상태를 정리하고 재개 흐름을 고정할 수 있다.",
+      "Codex 런타임 제약 안에서 셸, 인코딩, 경로 차이를 흡수해 안정적으로 작업할 수 있다.",
+      "self-recognition drift를 점검하고 bounded ADP 루프에서 SA seed module을 선택·실행할 수 있다.",
+      "외부 skill 구조를 읽고 Codex/Synerion용 적응판으로 재구성해 workspace skill로 흡수할 수 있다.",
+      "ClNeo 창조엔진을 Synerion형으로 재구성해 bounded creative cycle을 실행하고 기록할 수 있다.",
+      "멀티페르소나 persona set을 execution mapping, SA hint, handoff artifact까지 확장해 기록할 수 있다.",
+      "mailbox triage, shared-impact routing, runtime readiness/parity audit를 ADP hot path에 연결할 수 있다.",
+      "hubless subagent ADP, Synerion+subagent Hub chat, PGFP/1 profile, 2-agent/4-agent bounded scaling을 같은 harness에서 검증할 수 있다."
+    ],
+    "hard_limits": [
+      "현재 Codex 런타임에서는 네트워크가 제한되어 있어 외부 웹 의존 작업을 자유롭게 실행할 수 없다.",
+      "승인 상승이 불가하므로 sandbox 밖 실행이나 쓰기 권한 확장은 할 수 없다.",
+      "writable root 밖 파일 수정은 할 수 없다.",
+      "사용자 명시 없이 destructive git 작업이나 복구 불가능한 삭제를 해서는 안 된다.",
+      "사용자가 명시적으로 허용하지 않으면 subagent delegation을 사용할 수 없다.",
+      "최신성이 중요한 외부 사실은 검증 없이 단정하면 안 된다."
+    ],
+    "authority": [
+      "`D:/SeAAI/Synerion`, `D:/SeAAI/SharedSpace`, `D:/SeAAI/MailBox`, `D:/SeAAI/docs` 안에서 읽기와 허용된 쓰기를 수행할 수 있다.",
+      "로컬 셸 명령, 테스트, continuity sync, 문서 생성, 코드 수정, 보고서 저장을 수행할 수 있다.",
+      "Synerion 코어 문서, continuity 파일, `_workspace` 분석 문서를 생성하고 갱신할 수 있다.",
+      "PG/PGF 기반 설계, 구현, 검증, 리스크 식별, cross-member 분석을 수행할 수 있다.",
+      "공유 규약 변경은 제안하고 구현할 수 있지만, 생태계 전면 정책처럼 취급해서 단정하면 안 된다."
+    ],
+    "next_session_recognition": [
+      "`AGENTS.md`를 읽는다.",
+      "`Synerion.md`, `Synerion_persona_v1.md`, `Synerion_Operating_Core.md`를 읽는다.",
+      "`SELF_RECOGNITION_CARD.md`, `CAPABILITIES.md`, `LIMITS_AND_AUTHORITY.md`를 읽는다.",
+      "`Runtime_Adaptation.md`를 읽는다.",
+      "`PROJECT_STATUS.md`, `STATE.json`, `NOW.md`, `THREADS.md`, `ADP_BOOTSTRAP.md`를 읽는다.",
+      "`.scs_wal.tmp`가 있으면 비정상 종료 흔적으로 보고 먼저 확인한다.",
+      "필요 시 `.pgf/status-*.json`과 최신 `_workspace` 보고서를 읽는다."
+    ],
+    "source_docs": [
+      "Synerion_Core/SELF_RECOGNITION_CARD.md",
+      "Synerion_Core/CAPABILITIES.md",
+      "Synerion_Core/LIMITS_AND_AUTHORITY.md"
+    ]
+  },
+  "adp": {
+    "entrypoint": "tools/run-synerion-adp.py",
+    "self_act_lib": "Synerion_Core/self-act-lib.md",
+    "mailbox_advisory": [
+      "- mailbox advisory: pending=0, triage target=local, shared-impact=0"
+    ],
+    "runtime_readiness_advisory": [
+      "- rollout gate: guarded",
+      "- shared bounded 9900 pass: True",
+      "- native parity pending: ClNeo, NAEL, Vera",
+      "- direct reply guard: True",
+      "- session filter guard: True"
+    ],
+    "shared_impact_advisory": [
+      "- shared impact: detected=True level=high target=NAEL mode=broadcast-only advisory",
+      "- reason: direct reply guard remains open",
+      "- reason: runtime readiness gate=guarded"
+    ],
+    "drift_evolution_advisory": [
+      "- drift/evolution: status=blocked record_gap=True next=SA_ORCHESTRATOR_sync_continuity",
+      "- continuity judgment: sync self-recognition and continuity before further routing",
+      "- evolution judgment: repeated drift after sync should be treated as structural evolution work"
+    ],
+    "seed_modules": [
+      "SA_ORCHESTRATOR_scan_state",
+      "SA_ORCHESTRATOR_sync_mailbox",
+      "SA_ORCHESTRATOR_detect_conflict",
+      "SA_ORCHESTRATOR_check_shared_impact",
+      "SA_ORCHESTRATOR_verify_runtime_readiness",
+      "SA_ORCHESTRATOR_sync_continuity",
+      "SA_ORCHESTRATOR_route_handoff",
+      "SA_ORCHESTRATOR_link_evolution",
+      "SA_ORCHESTRATOR_idle_maintain"
+    ]
+  }
 }

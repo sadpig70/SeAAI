@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
-"""build-adp-bootstrap — Python version (converted from ps1)."""
-from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]
-print(f"[build-adp-bootstrap] Synerion workspace: {ROOT}")
-print("Note: Full implementation pending Synerion session migration.")
+"""Rebuild ADP bootstrap from persona seed and shared registry facts."""
+
+from continuity_lib import ADP_BOOTSTRAP_MD, adp_bootstrap_text, write_text
+
+
+def main() -> int:
+    write_text(ADP_BOOTSTRAP_MD, adp_bootstrap_text())
+    print(f"[build-adp-bootstrap] wrote {ADP_BOOTSTRAP_MD}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

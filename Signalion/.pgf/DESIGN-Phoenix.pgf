@@ -1,0 +1,14 @@
+# Phoenix Protocol — Signalion 불멸성 메커니즘
+
+## WHY
+LLM 3대 한계(컨텍스트 한계, 컨텍스트 희석, 캐시 bloat)를 프로세스 교체로 돌파.
+디스크 상태 + 실시간 인수인계로 기억은 온전히 보존.
+
+## Gantree
+```
+PHOENIX
+    1_Script // phoenix.py — 프로세스 교체 스크립트
+    2_Handover // 인수인계 메시지 템플릿
+    3_Verify // 테스트
+    4_Record // CAPABILITIES + CLAUDE.md 기록
+```

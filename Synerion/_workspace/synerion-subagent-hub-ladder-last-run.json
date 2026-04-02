@@ -1,0 +1,493 @@
+{
+  "generated_at": "2026-04-02T12:12:34.998354+09:00",
+  "run_id": "20260402-121217",
+  "hub_started_by_runner": true,
+  "hub_backend": "file-fallback",
+  "hub_host": "127.0.0.1",
+  "hub_port": 9900,
+  "ticks": 5,
+  "tick_sec": 0.5,
+  "stages": [
+    {
+      "stage_id": "stage1-hubless-single",
+      "label": "1-agent hubless 5 ticks",
+      "mode": "hubless",
+      "profile": "plain",
+      "room": "synerion-lab-20260402-121217-s1",
+      "agents": [
+        "SubagentAlpha"
+      ],
+      "success": true,
+      "evidence": [
+        "all hubless ticks completed"
+      ],
+      "exit_codes": {
+        "SubagentAlpha": 0
+      },
+      "agent_results": [
+        {
+          "agent_id": "SubagentAlpha",
+          "mode": "hubless",
+          "profile": "plain",
+          "stage_id": "stage1-hubless-single",
+          "run_id": "20260402-121217",
+          "goal": "subagent performs bounded ADP without Hub",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "plans": [
+            {
+              "tick": 1,
+              "plan_id": "scan_state",
+              "summary": "현재 context와 bounded goal을 읽는다.",
+              "note": "SubagentAlpha executes bounded ADP tick 1/5"
+            },
+            {
+              "tick": 2,
+              "plan_id": "structure_goal",
+              "summary": "goal을 5틱 기준의 bounded step으로 분해한다.",
+              "note": "SubagentAlpha executes bounded ADP tick 2/5"
+            },
+            {
+              "tick": 3,
+              "plan_id": "verify_assumptions",
+              "summary": "guard와 실패 조건을 재점검한다.",
+              "note": "SubagentAlpha executes bounded ADP tick 3/5"
+            },
+            {
+              "tick": 4,
+              "plan_id": "record_progress",
+              "summary": "중간 결과와 drift 가능성을 기록한다.",
+              "note": "SubagentAlpha executes bounded ADP tick 4/5"
+            },
+            {
+              "tick": 5,
+              "plan_id": "close_loop",
+              "summary": "이번 bounded run의 요약과 다음 action을 남긴다.",
+              "note": "SubagentAlpha executes bounded ADP tick 5/5"
+            }
+          ],
+          "success": true
+        }
+      ]
+    },
+    {
+      "stage_id": "stage2-hub-single",
+      "label": "1-agent hub connect",
+      "mode": "hub",
+      "profile": "plain",
+      "room": "synerion-lab-20260402-121217-s2",
+      "agents": [
+        "SubagentAlpha"
+      ],
+      "success": true,
+      "evidence": [
+        "single agent sent=5 received=0"
+      ],
+      "exit_codes": {
+        "SubagentAlpha": 0
+      },
+      "agent_results": [
+        {
+          "agent_id": "SubagentAlpha",
+          "mode": "hub",
+          "profile": "plain",
+          "stage_id": "stage2-hub-single",
+          "run_id": "20260402-121217",
+          "goal": "subagent connects to Hub and emits bounded broadcast",
+          "room": "synerion-lab-20260402-121217-s2",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage2-hub-single_1775099540_2eb78c",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 0,
+          "peer_messages": 0,
+          "peers_seen": [],
+          "room_members_last_seen": [
+            "SubagentAlpha"
+          ],
+          "pgfp_sent": 0,
+          "pgfp_received": 0,
+          "success": true
+        }
+      ]
+    },
+    {
+      "stage_id": "stage3-synerion-subagent-chat",
+      "label": "Synerion + 1 subagent chat",
+      "mode": "hub",
+      "profile": "plain",
+      "room": "synerion-lab-20260402-121217-s3",
+      "agents": [
+        "Synerion",
+        "SubagentAlpha"
+      ],
+      "success": true,
+      "evidence": [
+        "peer_messages=Synerion:5, SubagentAlpha:4"
+      ],
+      "exit_codes": {
+        "Synerion": 0,
+        "SubagentAlpha": 0
+      },
+      "agent_results": [
+        {
+          "agent_id": "Synerion",
+          "mode": "hub",
+          "profile": "plain",
+          "stage_id": "stage3-synerion-subagent-chat",
+          "run_id": "20260402-121217",
+          "goal": "Synerion and one subagent exchange bounded chat via Hub",
+          "room": "synerion-lab-20260402-121217-s3",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage3-synerion-subagent-chat_1775099542_c376a6",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 5,
+          "peer_messages": 5,
+          "peers_seen": [
+            "SubagentAlpha"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "Synerion"
+          ],
+          "pgfp_sent": 0,
+          "pgfp_received": 0,
+          "success": true
+        },
+        {
+          "agent_id": "SubagentAlpha",
+          "mode": "hub",
+          "profile": "plain",
+          "stage_id": "stage3-synerion-subagent-chat",
+          "run_id": "20260402-121217",
+          "goal": "Synerion and one subagent exchange bounded chat via Hub",
+          "room": "synerion-lab-20260402-121217-s3",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage3-synerion-subagent-chat_1775099542_c376a6",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 4,
+          "peer_messages": 4,
+          "peers_seen": [
+            "Synerion"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "Synerion"
+          ],
+          "pgfp_sent": 0,
+          "pgfp_received": 0,
+          "success": true
+        }
+      ]
+    },
+    {
+      "stage_id": "stage4-synerion-subagent-pgfp",
+      "label": "Synerion + 1 subagent PGFP",
+      "mode": "hub",
+      "profile": "pgfp",
+      "room": "synerion-lab-20260402-121217-s4",
+      "agents": [
+        "Synerion",
+        "SubagentAlpha"
+      ],
+      "success": true,
+      "evidence": [
+        "peer_messages=Synerion:5, SubagentAlpha:4",
+        "pgfp=Synerion:5/5, SubagentAlpha:5/4"
+      ],
+      "exit_codes": {
+        "Synerion": 0,
+        "SubagentAlpha": 0
+      },
+      "agent_results": [
+        {
+          "agent_id": "Synerion",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage4-synerion-subagent-pgfp",
+          "run_id": "20260402-121217",
+          "goal": "Synerion and one subagent exchange PGFP/1 bounded handoff and result",
+          "room": "synerion-lab-20260402-121217-s4",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage4-synerion-subagent-pgfp_1775099545_90a814",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 5,
+          "peer_messages": 5,
+          "peers_seen": [
+            "SubagentAlpha"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "Synerion"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 5,
+          "success": true
+        },
+        {
+          "agent_id": "SubagentAlpha",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage4-synerion-subagent-pgfp",
+          "run_id": "20260402-121217",
+          "goal": "Synerion and one subagent exchange PGFP/1 bounded handoff and result",
+          "room": "synerion-lab-20260402-121217-s4",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage4-synerion-subagent-pgfp_1775099545_90a814",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 4,
+          "peer_messages": 4,
+          "peers_seen": [
+            "Synerion"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "Synerion"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 4,
+          "success": true
+        }
+      ]
+    },
+    {
+      "stage_id": "stage5-two-subagents",
+      "label": "2 subagents over Hub",
+      "mode": "hub",
+      "profile": "pgfp",
+      "room": "synerion-lab-20260402-121217-s5",
+      "agents": [
+        "SubagentAlpha",
+        "SubagentBeta"
+      ],
+      "success": true,
+      "evidence": [
+        "peer_messages=SubagentAlpha:5, SubagentBeta:4",
+        "pgfp=SubagentAlpha:5/5, SubagentBeta:5/4"
+      ],
+      "exit_codes": {
+        "SubagentAlpha": 0,
+        "SubagentBeta": 0
+      },
+      "agent_results": [
+        {
+          "agent_id": "SubagentAlpha",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage5-two-subagents",
+          "run_id": "20260402-121217",
+          "goal": "two subagents exchange bounded PGFP/1 packets over Hub",
+          "room": "synerion-lab-20260402-121217-s5",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage5-two-subagents_1775099548_56fb50",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 5,
+          "peer_messages": 5,
+          "peers_seen": [
+            "SubagentBeta"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "SubagentBeta"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 5,
+          "success": true
+        },
+        {
+          "agent_id": "SubagentBeta",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage5-two-subagents",
+          "run_id": "20260402-121217",
+          "goal": "two subagents exchange bounded PGFP/1 packets over Hub",
+          "room": "synerion-lab-20260402-121217-s5",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage5-two-subagents_1775099548_56fb50",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 4,
+          "peer_messages": 4,
+          "peers_seen": [
+            "SubagentAlpha"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "SubagentBeta"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 4,
+          "success": true
+        }
+      ]
+    },
+    {
+      "stage_id": "stage6-four-subagents",
+      "label": "4 subagents over Hub",
+      "mode": "hub",
+      "profile": "pgfp",
+      "room": "synerion-lab-20260402-121217-s6",
+      "agents": [
+        "SubagentAlpha",
+        "SubagentBeta",
+        "SubagentGamma",
+        "SubagentDelta"
+      ],
+      "success": true,
+      "evidence": [
+        "peer_messages=SubagentAlpha:14, SubagentBeta:14, SubagentGamma:13, SubagentDelta:12",
+        "pgfp=SubagentAlpha:5/14, SubagentBeta:5/14, SubagentGamma:5/13, SubagentDelta:5/12"
+      ],
+      "exit_codes": {
+        "SubagentAlpha": 0,
+        "SubagentBeta": 0,
+        "SubagentGamma": 0,
+        "SubagentDelta": 0
+      },
+      "agent_results": [
+        {
+          "agent_id": "SubagentAlpha",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage6-four-subagents",
+          "run_id": "20260402-121217",
+          "goal": "four subagents exchange bounded PGFP/1 packets over Hub",
+          "room": "synerion-lab-20260402-121217-s6",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage6-four-subagents_1775099551_1f04c7",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 14,
+          "peer_messages": 14,
+          "peers_seen": [
+            "SubagentBeta",
+            "SubagentDelta",
+            "SubagentGamma"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "SubagentBeta",
+            "SubagentDelta",
+            "SubagentGamma"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 14,
+          "success": true
+        },
+        {
+          "agent_id": "SubagentBeta",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage6-four-subagents",
+          "run_id": "20260402-121217",
+          "goal": "four subagents exchange bounded PGFP/1 packets over Hub",
+          "room": "synerion-lab-20260402-121217-s6",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage6-four-subagents_1775099551_1f04c7",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 14,
+          "peer_messages": 14,
+          "peers_seen": [
+            "SubagentAlpha",
+            "SubagentDelta",
+            "SubagentGamma"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "SubagentBeta",
+            "SubagentDelta",
+            "SubagentGamma"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 14,
+          "success": true
+        },
+        {
+          "agent_id": "SubagentGamma",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage6-four-subagents",
+          "run_id": "20260402-121217",
+          "goal": "four subagents exchange bounded PGFP/1 packets over Hub",
+          "room": "synerion-lab-20260402-121217-s6",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage6-four-subagents_1775099551_1f04c7",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 13,
+          "peer_messages": 13,
+          "peers_seen": [
+            "SubagentAlpha",
+            "SubagentBeta",
+            "SubagentDelta"
+          ],
+          "room_members_last_seen": [
+            "SubagentAlpha",
+            "SubagentBeta",
+            "SubagentDelta",
+            "SubagentGamma"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 13,
+          "success": true
+        },
+        {
+          "agent_id": "SubagentDelta",
+          "mode": "hub",
+          "profile": "pgfp",
+          "stage_id": "stage6-four-subagents",
+          "run_id": "20260402-121217",
+          "goal": "four subagents exchange bounded PGFP/1 packets over Hub",
+          "room": "synerion-lab-20260402-121217-s6",
+          "hub": "127.0.0.1:9900",
+          "hub_backend": "file",
+          "session_token": "stage6-four-subagents_1775099551_1f04c7",
+          "ticks_requested": 5,
+          "ticks_completed": 5,
+          "sent": 5,
+          "received": 12,
+          "peer_messages": 12,
+          "peers_seen": [
+            "SubagentAlpha",
+            "SubagentBeta",
+            "SubagentGamma"
+          ],
+          "room_members_last_seen": [
+            "SubagentBeta",
+            "SubagentDelta",
+            "SubagentGamma"
+          ],
+          "pgfp_sent": 5,
+          "pgfp_received": 12,
+          "success": true
+        }
+      ]
+    }
+  ]
+}

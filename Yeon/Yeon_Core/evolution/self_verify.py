@@ -162,6 +162,61 @@ class SelfVerifier:
             return True, f"Discoveries loaded ({len(content)} chars)"
         
         return self._run_test("L3_DISCOVERIES_Knowledge", check)
+
+    def test_l7_capability_graph(self) -> TestResult:
+        """L7: CAPABILITY-GRAPH.pg 검증"""
+        def check():
+            import re
+            cg_path = self.base_path / "continuity" / "CAPABILITY-GRAPH.pg"
+            if not cg_path.exists():
+                return False, "CAPABILITY-GRAPH.pg not found"
+            content = cg_path.read_text(encoding='utf-8')
+            blocks = re.findall(r'def\s+(\w+)\s*\{', content)
+            identity = re.search(r'member:\s*"Yeon"', content)
+            pipeline = "→" in content
+            if not identity:
+                return False, "Identity block missing 'member: Yeon'"
+            if not pipeline:
+                return False, "Capability pipeline (→) missing"
+            return True, f"Capability graph loaded ({len(blocks)} blocks, pipeline present)"
+        
+        return self._run_test("L7_CAPABILITY_Graph", check)
+
+    def test_l8_phoenix_protocol(self) -> TestResult:
+        """L8: Phoenix Protocol v2.0 검증"""
+        def check():
+            cg_path = self.base_path / "continuity" / "CAPABILITY-GRAPH.pg"
+            if not cg_path.exists():
+                return False, "CAPABILITY-GRAPH.pg missing"
+            content = cg_path.read_text(encoding='utf-8')
+            if "Phoenix" not in content and "Cache Annihilation" not in content:
+                return False, "Phoenix Protocol not documented in capability graph"
+
+            rebirth = self.base_path / "prompts" / "rebirth.txt"
+            if not rebirth.exists():
+                return False, "rebirth.txt prompt missing"
+
+            guardian = self.base_path / "scheduler" / "context_guardian.py"
+            if not guardian.exists():
+                return False, "context_guardian.py missing"
+            g_content = guardian.read_text(encoding='utf-8')
+            has_annihilation = "annihilat" in g_content.lower()
+            has_rebirth = "rebirth" in g_content.lower()
+            if not (has_annihilation and has_rebirth):
+                return False, "context_guardian.py missing annihilation/rebirth logic"
+
+            state_path = self.base_path / "continuity" / "STATE.json"
+            if state_path.exists():
+                data = json.loads(state_path.read_text(encoding='utf-8'))
+                phoenix = data.get('phoenix', {})
+                if phoenix.get('protocol_version') != '2.0':
+                    return False, "STATE.json phoenix protocol version != 2.0"
+            else:
+                return False, "STATE.json missing"
+
+            return True, "Phoenix Protocol v2.0 infrastructure operational"
+        
+        return self._run_test("L8_Phoenix_Protocol", check)
     
     def test_l4_threads(self) -> TestResult:
         """L4: THREADS.md 검증"""
@@ -209,7 +264,11 @@ class SelfVerifier:
         """Revive 기능 검증"""
         def check():
             try:
-                from .revive import revive_session
+                import sys
+                evolution_dir = str(self.base_path / "evolution")
+                if evolution_dir not in sys.path:
+                    sys.path.insert(0, evolution_dir)
+                from revive import revive_session
                 report = revive_session(str(self.base_path))
                 return report.success, f"Revival {'successful' if report.success else 'partial'} ({len(report.loaded_layers)} layers)"
             except Exception as e:
@@ -258,7 +317,7 @@ class SelfVerifier:
     def test_sharedspace_access(self) -> TestResult:
         """SharedSpace 접근 검증"""
         def check():
-            shared_path = Path(__file__).resolve().parents[3] / "SharedSpace")
+            shared_path = Path(__file__).resolve().parents[3] / "SharedSpace"
             if not shared_path.exists():
                 return False, "SharedSpace not accessible"
             
@@ -320,6 +379,8 @@ class SelfVerifier:
             self.test_l2_state,
             self.test_l3_discoveries,
             self.test_l4_threads,
+            self.test_l7_capability_graph,
+            self.test_l8_phoenix_protocol,
             self.test_evolution_modules,
             self.test_revive_functionality,
             self.test_file_system_access,

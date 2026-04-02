@@ -124,7 +124,7 @@ class GoalGenerator:
     
     def _analyze_ecosystem(self) -> Dict:
         """생태계 분석"""
-        echo_dir = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo")
+        echo_dir = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo"
         if not echo_dir.exists():
             return {"available": False}
         

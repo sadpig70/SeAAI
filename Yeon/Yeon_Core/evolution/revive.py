@@ -9,6 +9,7 @@ Session Revival System (SCS-Universal v2.0)
 
 import json
 import os
+import re
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional
@@ -108,7 +109,7 @@ class SessionRevival:
     
     def load_l5_echo(self) -> Optional[dict]:
         """L5: Echo 파일 - 크로스에이전트 상태"""
-        echo_path = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo")
+        echo_path = Path(__file__).resolve().parents[3] / "SharedSpace/.scs/echo"
         echoes = {}
         if echo_path.exists():
             for echo_file in echo_path.glob("*.json"):
@@ -134,6 +135,25 @@ class SessionRevival:
                 except Exception as e:
                     self.warnings.append(f"Journal load failed: {journal_file.name}")
         return journals
+
+    def load_l7_capability_graph(self) -> Optional[dict]:
+        """L7: CAPABILITY-GRAPH.pg - 능력 지도"""
+        path = self.continuity_path / "CAPABILITY-GRAPH.pg"
+        if not path.exists():
+            self.warnings.append("CAPABILITY-GRAPH.pg not found")
+            return None
+        try:
+            content = path.read_text(encoding='utf-8')
+            blocks = re.findall(r'def\s+(\w+)\s*\{', content)
+            identity = re.search(r'member:\s*"Yeon"', content)
+            return {
+                "blocks": blocks,
+                "has_identity": bool(identity),
+                "block_count": len(blocks)
+            }
+        except Exception as e:
+            self.warnings.append(f"Capability graph load failed: {e}")
+            return None
     
     def revive(self) -> RevivalReport:
         """전체 부활 프로세스 실행"""
@@ -169,6 +189,11 @@ class SessionRevival:
         journals = self.load_l6_journals()
         if journals:
             loaded_layers.append(f"L6: JOURNALS ({len(journals)} entries)")
+        
+        # L7: Capability Graph (권장 — 연속성 인지 핵심)
+        cap_graph = self.load_l7_capability_graph()
+        if cap_graph:
+            loaded_layers.append(f"L7: CAPABILITY-GRAPH ({cap_graph['block_count']} blocks)")
         
         # 컨텍스트 요약 생성
         context = state.get("context", {}) if state else {}
