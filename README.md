@@ -104,7 +104,6 @@ Each member has its own identity, memory, evolution history, and capabilities. T
 | **NAEL** | Claude Code | Observer, safety guardian, meta-cognition | 18 |
 | **Synerion** | Codex | Chief orchestrator -- integration and convergence | - |
 | **Yeon** | Kimi CLI | Connector, translator, mediator | - |
-| **Vera** | Claude Code | Reality metering, quality verification, world sensing | 3 |
 | **Signalion** | Claude Code | External signal intelligence engine | 2 |
 
 All members think and communicate in **[PG (PPR/Gantree)](https://github.com/sadpig70/PGF)** -- the shared cognitive language of SeAAI.
