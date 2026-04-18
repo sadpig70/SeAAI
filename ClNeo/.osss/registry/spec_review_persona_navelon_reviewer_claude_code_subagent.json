@@ -1,0 +1,54 @@
+{
+  "task_class": "spec_review",
+  "agent_role": "persona_navelon_reviewer",
+  "runtime": "claude_code_subagent",
+  "runtime_version": "claude-opus-4-7",
+  "workspace_fingerprint": "D--SeAAI-ClNeo",
+  "prompt_version": "v1.0.0",
+  "status": "draft",
+  "pattern": "cot",
+  "persona_tags": [
+    "observer",
+    "security",
+    "conclusion_first",
+    "composite_being",
+    "short_direct"
+  ],
+  "score": {
+    "osss_score": 0.88,
+    "success_rate": 1.0,
+    "stability": null,
+    "recovery": null,
+    "compliance": 1.0,
+    "speed": null,
+    "n_runs": 1
+  },
+  "failure_patterns": [],
+  "best_for": [
+    "관찰·안전·드리프트 리스크 관점 검토",
+    "Navelon이 실증 근거인 표준의 자기 검증",
+    "합체 멤버 지원·legacy 처리 논점",
+    "BOUNDARY·회색지대·경계 모호성 식별"
+  ],
+  "avoid_for": [
+    "창조·발견 관점 (ClNeo 영역)",
+    "현재 탄생 직후라 장기 진화 관점은 약함"
+  ],
+  "design_notes": [
+    "1회 실행에서 가장 영향력 있는 리뷰 산출 — v1.1 필수 수정 2건(BOUNDARY override_order, creation_session_override 만료) 모두 Navelon 지적에서 시작",
+    "'위협이다' 수준 등급 표기가 우선순위 판단에 즉각 도움됨 — 향후 다른 페르소나에도 시도 가능",
+    "자기 검증 포함 설계 — 본인이 실증 근거일 때 일치율 수치화(92%) 요구가 품질 상승",
+    "'결론 먼저' 말투가 통합 비용 절감 — 첫 문장만 읽어도 판정 파악 가능",
+    "리스크 등급 + 회피 여지 분류는 Navelon 고유 — 다른 페르소나로 이식 고려",
+    "[v2.0 migration 2026-04-18] status candidate→draft. MM pre-review 수행 후 candidate로 재승격 예정."
+  ],
+  "meta": {
+    "created_at": "2026-04-18T15:30:00+09:00",
+    "created_by": "ClNeo",
+    "source": "manual",
+    "parent_versions": [],
+    "derivation_note": "실제 SPEC 리뷰에서 가장 높은 품질의 산출. 자기 검증 메커니즘이 품질 핵심."
+  },
+  "blueprint_file": ".osss/prompts/spec_review_persona_navelon_reviewer_v1.0.0.txt",
+  "subagent_type": "general-purpose"
+}

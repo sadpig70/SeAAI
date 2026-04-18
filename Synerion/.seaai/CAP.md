@@ -1,0 +1,26 @@
+# Synerion Capability Map
+
+- 정본 역량 레지스트리: `Synerion_Core/CAPABILITIES.md`
+- 에이전트 카드: `.seaai/agent-card.json`
+- 안정 도구:
+  - `tools/update-project-status.py`
+  - `tools/reopen-synerion-session.py`
+  - `tools/continuity-self-test.py`
+  - `tools/check-self-recognition-drift.py`
+  - `tools/run-synerion-adp.py`
+  - `tools/run-synerion-creative-cycle.py`
+  - `tools/run-subagent-hub-ladder.py`
+  - `tools/assess-runtime-readiness.py`
+- 재사용 스킬:
+  - `skills/`
+- 공통 루프:
+  - `self_adp_loop {status: "implemented", version: "v1.0"}`
+  - `seaai_hub_mcp {status: "binary_available", config_registration: "blocked_in_codex_cli_session"}`
+  - `mme_hub_bridge {status: "configured", endpoint: "http://127.0.0.1:9902/mcp", mode: "http" }`
+  - `presence_protocol {status: "implemented_in_rif", store: "D:/SeAAI/SharedSpace/.scs/presence/Synerion.json"}`
+  - `pwsh7_shell_execution {status: "default_policy", runtime: "D:/Tools/PS7/7/pwsh.exe", wrapper: "skills/shell-orchestrator/scripts/invoke-shell.ps1"}`
+- 코어 강점:
+  - 구조 분해와 실행 계획화
+  - continuity / self-recognition / runtime readiness 동기화
+  - 멀티페르소나 execution mapping
+  - bounded subagent / hub / PGFP 검증

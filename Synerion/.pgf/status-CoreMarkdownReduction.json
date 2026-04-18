@@ -1,0 +1,88 @@
+{
+  "project": "CoreMarkdownReduction",
+  "workplan": ".pgf/WORKPLAN-CoreMarkdownReduction.md",
+  "started_at": "2026-04-07T21:35:00+09:00",
+  "updated_at": "2026-04-07T21:42:00+09:00",
+  "nodes": {
+    "CoreMarkdownReduction": {
+      "status": "done"
+    },
+    "DefineMinimalCore": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:35:00+09:00",
+      "outputs": {
+        "files_created": [
+          ".pgf/DESIGN-CoreMarkdownReduction.md",
+          ".pgf/WORKPLAN-CoreMarkdownReduction.md",
+          ".pgf/status-CoreMarkdownReduction.json"
+        ],
+        "files_modified": [],
+        "notes": "최소 필수 코어를 Synerion.md, persona.md, SOUL.md, STATE.json으로 고정했다."
+      }
+    },
+    "MoveSelfRecognitionToState": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:39:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": [
+          "tools/continuity_lib.py"
+        ],
+        "notes": "self_recognition 복원 소스를 STATE.json canonical block으로 승격했다."
+      }
+    },
+    "MakeDerivedCoreOptional": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:40:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": [
+          "tools/continuity_lib.py"
+        ],
+        "notes": "self-recognition/adp/runtime 관련 derived md를 optional 존재 시에만 검증/재생성하도록 바꿨다."
+      }
+    },
+    "AlignBootstrapLanguage": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:41:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": [
+          "AGENTS.md",
+          "Synerion_Core/LIMITS_AND_AUTHORITY.md",
+          "tools/run-synerion-adp.py",
+          "tools/run-synerion-creative-cycle.py"
+        ],
+        "notes": "bootstrap/adp/creative wording을 minimal core + optional-derived 모델에 맞춰 정렬했다."
+      }
+    },
+    "VerifyCoreReduction": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:42:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": [],
+        "notes": "core optional-derived 문서 7종을 임시 제거한 상태에서 update-project-status/self-test가 통과했고 sync가 문서를 재생성하지 않았다."
+      }
+    }
+  },
+  "summary": {
+    "total": 5,
+    "done": 5,
+    "in_progress": 0,
+    "designing": 0,
+    "needs_verify": 0,
+    "blocked": 0,
+    "decomposed": 0
+  }
+}

@@ -1,0 +1,443 @@
+---
+type: pgf-design
+target: "Earth.structure — 지구 물리 구조 심층 Gantree"
+mode: design
+method: "멀티 에이전트 분업 (10 전문가 병렬 파견)"
+created: 2026-04-09
+total_nodes: ~313
+max_depth: 7
+---
+
+# Earth.structure — 통합 심층 Gantree
+
+> 10개 하위 노드 × 각 1명 전문 에이전트 병렬 분해 → 통합.
+
+structure  // 물리 구조 — 중심(6,371km)에서 표면까지. 질량 5.972×10²⁴kg. 분화 ~4.5Ga.
+
+  inner_core  // 5,150-6,371km. R=1,221km. 고체 Fe-Ni. hcp.
+    physical
+      density: 12.8(ICB)-13.1(center) g/cm³  // PREM
+      temperature: 5,000-6,500K  // Anzellini2013: ~6,230K at ICB
+      pressure: 330(ICB)-364(center) GPa
+      Vp: 11.0-11.3 km/s  // PKIKP
+      Vs: ~3.5 km/s  // PKJKP 간접추정
+    composition
+      Fe: ~95wt%
+      Ni: ~5wt%
+      light_elements: 2-3wt%  // H 후보 부상 (Tagawa2021 Fe-H 합금)
+    hcp_crystal_physics  // ε-Fe, P>13GPa
+      lattice: a=2.46Å, c=3.91Å, c/a=1.59  // 360GPa DAC+DFT
+      elastic_tensor  // GPa, Steinle-Neumann2001 6000K
+        C11: 1,533  C12: 1,131  C13: 1,164  C33: 1,544  C44: 583  C66: 201
+        anisotropy_param: (C33-C11)/C11 ≈ 0.7%  // 단결정 약 → 집합조직 필요
+      preferred_orientation  // CPO 형성
+        mechanism: Yoshida-stress → 바살면{0001} 슬립
+        texture: c축 극축정렬 → 집합 이방성 3-4% 증폭
+    anisotropy
+      polar_fast: ΔVp ~3% 극축방향
+      hemispherical
+        east: 등방적, Qp~200, 결정 세립 (성장 활발)
+        west: 강이방성, Qp~600, 결정 조립
+      growth_asymmetry: 동반구 결정화 → 서반구 융해 translational mode
+    inner_inner_core  // IMIC, R=500-600km
+      tilt: 이방성축 극축에서 ~45° 경사
+      boundary: 점진적전이 vs 불연속 — 논쟁중
+      two_stage: 1단계(느린결정화) → 2단계(빠른성장)
+    thermodynamics
+      melting_curve
+        ICB: 6,230±500K  // Anzellini2013 DAC
+        center: ~6,900K 외삽  // Alfè2009 ab-initio
+        slope: dTm/dP ≈ 9 K/GPa at ICB
+      growth_rate: ~1mm/yr 반경증가
+      latent_heat: ~750kJ/kg → 외핵대류 구동 ~2-5TW
+      gravitational_energy: 경원소 방출 → 부력구동 ~1TW
+      age  // 핵심논쟁
+        young: 0.5-1.0Ga  // k~100W/mK
+        old: 1.0-1.5Ga  // k~50W/mK
+        constraint: 고자기 기록 ~3.5Ga → 내핵 없이도 자기장 가능
+    rotation
+      super_rotation: +0.1-0.3°/yr  // Song&Richards1996
+      deceleration: 2009이후 감속→역전  // Yang&Song2023 ~70yr주기
+      oscillation: ~8.5yr 진동 성분  // Vidale2022
+    geomagnetic_contribution
+      translational_convection  // 반구비대칭대류
+        mode: F1 — 동쪽결정화/서쪽융해
+        buoyancy: 경원소방출 → 외핵 조성대류 강화
+      magnetic_diffusion: 자기확산시간 ~1,000-3,000yr
+      inner_core_dynamo: 약한독립대류 가능성
+    mushy_zone  // ICB 경계층
+      thickness: 수km~수백km
+      structure: 수지상결정(dendrite)+잔류융액  // Fe-S/O 공융계
+      seismic_signature: F-layer Vp감소 ~0.5%
+
+  outer_core  // 2,891-5,150km. 두께 2,259km. 액체.
+    physical
+      density: 9.9-12.2 g/cm³
+      temperature: 4,000-5,500°C
+      pressure: 135-330 GPa
+      Vp: 8.0→10.4 km/s  // S파=0 (Gutenberg 불연속면)
+    composition
+      Fe: ~85%, Ni: ~5%
+      light_elements: ~10%
+        O: PREM 밀도결손 최유력, FeO 용해도 T>4000K 급증
+        Si: 2-4wt%, Vp 상승 기여
+        S: 1.5-2wt%, 단독으론 불충분
+        H: 0.1-0.6wt%, 극소량으로 큰 밀도 효과
+        C: <1wt%, Fe₇C₃ 안정성
+    stratification
+      e_prime_layer  // 외핵 최상부 ~300km, 열적/조성 성층
+      bulk_outer_core  // 균질 대류 영역
+      f_layer  // ~5,000-5,150km, 결정화 전선, iron snow 가능
+    geodynamo  // MHD 방정식 기반
+      induction_eq: ∂B/∂t = ∇×(u×B) + η∇²B  // η≈0.7 m²/s
+      Rm: ~500-1500  // Rm>>1 유도 우세
+      Pm: ~10⁻⁶  // 시뮬레이션 0.1-1 강제
+      mac_balance: Magnetic + Archimedean + Coriolis
+      taylor_columns: 자전축 평행 원주 대류 구조
+      thermal_convection: CMB 열손실 구동
+      compositional_convection: 내핵 결정화 시 경원소 방출 → 부력
+      quasi_geostrophic: 2D columnar 근사, z축 적분
+    polarity_reversal
+      transitional_field: 쌍극자 80%감소 → 다극자 우세, 과도기 1-10kyr
+      frequency: ~4-5/Myr, Cretaceous superchron 40Myr 무역전
+      mechanism: 열대류 요동 → 역극성 flux patch 확대 → cascade
+    convection_asymmetry
+      east_west: 내핵 성장 비대칭 → 외핵 대류 비대칭
+      cmb_coupling: LLSVP → 열류 비대칭 → 역전빈도 조절
+    numerics
+      Ekman: ~10⁻¹⁵ (실제), 시뮬레이션 한계 ~10⁻⁷
+      Rayleigh: ~10²⁸-10³⁰
+      resolution: 구면조화 현행 최고 lmax≈400
+
+  cmb  // 핵-맨틀 경계. 2,891km. 지구 내부 최대 물성 대비.
+    gutenberg_discontinuity: Vp 13.7→8.1, Vs 7.3→0
+    topography: ±1-5km  // 지진 토모그래피
+    heat_flow: 총 ~46TW 중 CMB ~5-15TW, ΔT ~1,000-1,500K
+    chemical_reaction: Fe-silicate/oxide 반응, H 파티셔닝
+    d_double_prime  // CMB 직상부 200-300km
+      post_perovskite
+        pressure: ~125 GPa, T~2500K
+        clapeyron: +8-13 MPa/K
+        double_crossing: 고온영역 Pv→pPv→Pv 재역전
+        temperature_dep: 저온슬랩하 pPv 두꺼움, 고온LLSVP하 얇거나 부재
+      anisotropy: pPv {010} 슬립 → VSH>VSV 1-3%
+      thermal_boundary: 맨틀 플룸 기원지, 온도기울기 ~10K/km
+      rheology: pPv 약화 → 해양지각 축적 패턴 결정
+    ulvz  // 초저속대. CMB 패치.
+      thickness: 5-40km (일부 100km)
+      velocity: δVs -15~-30%, δVp -5~-10%
+      density: +5~+10%
+      distribution: LLSVP 가장자리 집중
+      origin
+        partial_melt: 1-30% melt fraction
+        fe_rich_solid: (Mg,Fe)O with Fe#>0.2
+        hydrous: phase H 등, 슬랩 탈수 기원
+        composite: melt + Fe-enrichment 동시
+      detection: SPdKS, ScP 전구체, PKP 산란파
+    llsvp  // 대규모 저전단속도 영역
+      african_anomaly: 횡방향 수천km, 높이 ~1,000km
+      pacific_anomaly: 유사 규모
+      seismic: δVs -2~-5%, δVp -0.5~-1%, sharp edge 1-2°
+      thermochemical_pile
+        origin: 원시맨틀 잔류 또는 침강 해양지각 축적, δρ +1-2%
+        stability: 4.5Gyr 이상 유지 가능
+        vs_pure_thermal: sharp edge → 열화학 지지
+      hotspot_relation: 전체 핫스팟 ~50% LLSVP 가장자리 ±10°
+
+  moho  // 모호로비치치 불연속면. 1909 발견.
+    definition: Vp 6.5-7.0 → 8.0-8.2 km/s 전이
+    oceanic: 5-10km (평균 7)
+    continental: 30-70km (조산대 최대 80km+, 티베트 ~75km)
+    composition_change: mafic/felsic → ultramafic peridotite
+    discovery: Andrija Mohorovičić, 크로아티아 지진 Pg/Pn 위상 분리
+    mapping
+      receiver_function: Ps 변환파, H-κ 스태킹
+      refraction: wide-angle, PmP 반사
+      gravity_inversion: Bouguer 이상, CRUST1.0 모델
+
+  lower_mantle  // 660-2,700km. 두께 ~2,040km.
+    physical
+      density: 4.4-5.5 g/cm³
+      temperature: 1,900-3,500°C
+      pressure: 23-133 GPa
+      Vp: 10.3-13.7, Vs: 5.6-7.3 km/s
+    mineralogy
+      bridgmanite  // (Mg,Fe)SiO₃. ~75%. 지구 최풍부 광물.
+        crystal: orthorhombic Pbnm, a=4.78 b=4.93 c=6.90Å
+        fe_substitution: A-site(Mg²⁺→Fe²⁺), B-site(Si⁴⁺→Fe³⁺+Al³⁺), Fe³⁺/ΣFe≈0.5-0.6
+        spin_transition: ~60GPa (1200-1500km)
+          fe2_a_site: broad 30-120GPa, ΔV≈-1%
+          fe3_b_site: sharp HS→LS ~50-60GPa
+          effects: 밀도+1-2%, K+5-8%
+      ferropericlase  // (Mg,Fe)O. ~20%.
+        spin_crossover: 40-70GPa (1000-1800km)
+          density: +2-3% (Fe-O 수축 ~0.1Å)
+          bulk_modulus: 전이중 softening, 전이후 +10%
+          thermal_conductivity: LS에서 κ_rad 감소 2-3배
+          viscosity: LS 확산 활성화 에너지 변화
+          seismic: Vs 이상 ~1500km 상관
+      ca_perovskite: CaSiO₃. ~5%.
+    viscosity
+      upper_lower: η≈10²¹ Pa·s (확산크리프)
+      mid_increase: 1,050-1,500km η≈10²²⁻²³  // O'Farrell2024
+        cause: spin transition 경화 + grain size 감소
+        E_activation: 300-500 kJ/mol
+        V_activation: 2-6 cm³/mol
+      diffusion_creep: σ<1MPa, η∝d²·exp((E*+PV*)/RT)
+      dislocation_creep: σ>10MPa (슬랩근방), n≈3.5
+    convection
+      whole_mantle: 현 주류. 토모그래피 슬랩 CMB 도달 확인.
+      partial_barrier: 1500km 점도장벽
+      plume_origin: CMB 열경계층 → 하와이·아이슬란드·옐로스톤
+      slab_penetration: 해양판 660→CMB 하강
+    anomalies
+      stagnant_slab: 전이대-하부맨틀 경계 정체, 동아시아 대표
+        forms: flat, buckled(1000km 접힘), penetrating(>2000km)
+        mineralogy: davemaoite 농축, stishovite 잔류
+        examples: Farallon ~1500km, Tethyan ~2000km
+      scatterers: 소규모 조성·온도 이질성
+
+  transition_zone  // 410-660km. 두께 250km.
+    discontinuity_410
+      olivine_to_wadsleyite: α→β, ~14GPa
+      clapeyron: +2.5~+4.0 MPa/K (양 → 대류 촉진)
+      width: 7-13km (H₂O에 의해 sharpened)
+      ΔG: ~-2.1 kJ/mol
+      Vp_jump: 8.9→9.1, 밀도 3.3→3.5
+    discontinuity_520
+      wadsleyite_to_ringwoodite: β→γ
+      clapeyron: +4.0~+6.0 MPa/K
+      width: 20-30km (broad, 지진학적으로 diffuse)
+    discontinuity_660
+      ringwoodite_decomposition: → bridgmanite + ferropericlase, ~23GPa
+      clapeyron: -1.0~-3.0 MPa/K (음 → 슬랩 침투 억제)
+      width: 4-5km (sharp)
+      ΔG: ~-3.5 kJ/mol
+      Vp_jump: 10.1→10.3, 밀도 3.9→4.4
+      barrier_dynamics
+        buoyancy: Δρ_thermal≈-40 vs Δρ_phase≈+60-80 kg/m³
+        thermal: cold slab 660 20-40km 하강
+        compositional: basalt-harzburgite 점도비 ×10-30
+    crystallography
+      wadsleyite: modified spinel, orthorhombic Imma, a=5.70 b=11.44 c=8.26Å
+        elastic: Ks=170GPa, G=112GPa, Vp≈9.65
+        key: Si₂O₇ dimers → O3 site (OH⁻ 주 호스트)
+      ringwoodite: true spinel Fd3̄m, a=8.065Å
+        elastic: Ks=185GPa, G=120GPa, Vp≈10.0
+        isolated_SiO₄ tetrahedra
+    water_storage
+      substitution
+        t_site: Si⁴⁺→4H⁺ (hydrogarnet defect) — ringwoodite 주
+        m_site: Mg²⁺→2H⁺ — wadsleyite 주 (M3 vacancy)
+        capacity: 와즐리아이트 O3 3.3wt% H₂O
+      total: 지표 해양의 1-6배
+      conductivity: dry 10⁻²→hydrous 10⁻¹~10⁰ S/m (proton hopping Ea≈0.7-0.9eV)
+      evidence: Juina 다이아몬드 링우다이트 ~1wt% H₂O (Pearson2014)
+      geomagnetic_induction: 0.1-0.3 S/m → 0.1-0.5wt% H₂O 지역적
+    heterogeneity
+      thickness: 전구 평균 242±18km, 태평양 ~225(고온), 섭입대 ~265(저온)
+      east_asia_slab: 660 처짐 50km, H₂O 농축 ~0.5wt%
+
+  upper_mantle  // Moho~410km.
+    asthenosphere  // 100-250km
+      partial_melt: 0.1-1%, 저속도대(LVZ)
+        origin_water: 50-200ppm H₂O → 고상선 200°C 강하
+        origin_thermal: 단열 지오써름 1300-1400°C
+        hybrid: 수분+온도 복합 (현 컨센서스)
+      viscosity: ~10¹⁹ Pa·s
+      mt_signature: σ 10⁻²-10⁻¹ S/m (주변 10⁻³-10⁻⁴)
+    lithospheric_mantle
+      oceanic: 5-80km (나이∝√t). 감람석+휘석.
+      continental: 100-250km. 크라톤 최대 300km. depleted 감람암.
+    olivine_crystal  // (Mg,Fe)₂SiO₄, orthorhombic Pbnm, Fo₈₉₋₉₂
+      deformation
+        a_slip: (010)[100], T<1200°C, 확산크리프
+        c_slip: (010)[001], T>1200°C, 전위크리프
+        e_type: 수분 존재 (001)[100], 해구 배후 이방성
+      seismic_anisotropy: LPO → Vp 최대 ~8%, SKS 분할 0.5-2.0s
+    mineralogy
+      olivine: ~60%
+      pyroxene: opx+cpx ~30%
+      garnet: ~10% (깊이 증가 시 비율 증가)
+    lab  // 리소스피어-아세노스피어 경계
+      thermal: ~1,300°C 등온면
+      mechanical: 점도 10²¹→10¹⁹ Pa·s
+      oceanic: ~60-100km
+      continental: ~100-250km (크라톤 300km)
+    xenoliths
+      origin: 킴벌라이트/알칼리현무암, >100km, 수시간-수일 운반
+      depleted: 하즈버자이트, Re-Os 최대 3.6Ga
+      fertile: 레르졸라이트, 원시맨틀 근사
+      thermobarometry: 2-pyroxene 지온계 + Al-in-opx 지압계
+    convection_plate_coupling
+      slab_pull: ~70% 전체 구동력, Δρ≈+80 kg/m³
+      ridge_push: ~20%, ~2.5×10¹² N/m
+      basal_drag: 능동/수동, Couette flow 근사
+      trench_suction: 후퇴해구 배호확장
+    geochemical_reservoirs
+      DMM: ⁸⁷Sr/⁸⁶Sr≈0.7022, εNd +8~+12, MORB 소스
+      EM1: ⁸⁷Sr/⁸⁶Sr 0.705, εNd -5, 재순환 하부대륙 리소스피어
+      EM2: ⁸⁷Sr/⁸⁶Sr >0.707, εNd ~0, 재순환 대륙성 퇴적물
+      HIMU: ²⁰⁶Pb/²⁰⁴Pb >20.5, 재순환 해양지각
+      FOZO: OIB 트렌드 수렴점, ³He/⁴He 최대 50Ra
+
+  oceanic_crust  // 5-10km (평균 7km). 밀도 3.0. SiO₂ ~49%.
+    mid_ocean_ridge
+      magma_chamber
+        fast_spreading: 연속 melt lens 1-2km, 폭 60-100m, EPR >8cm/yr
+        slow_spreading: 불연속 melt lens, mush zone 우세, MAR <4cm/yr
+        mush_zone: 결정 60-80% + 잔류 용융체
+      accretion
+        layer_2a: 베개용암 T~1200°C 급냉
+        layer_2b: 시트상 암맥군 100% dike-on-dike
+        layer_3: 반려암 서냉 AMC 하부 cumulate
+      spreading_contrast
+        fast: 매끈한 지형, 안정 열수
+        slow: rift valley 폭30-50km 깊이1-2km, OCC+탈착단층
+    layer_1: 퇴적물 0-0.5km, Vp 2.0
+    layer_2: 현무암 0.5-2km, Vp 5.1
+    layer_3: 반려암 2-5km, Vp 6.7-7.0
+    oceanic_moho: Vp 6.7→8.1
+    hydrothermal
+      black_smoker: T최대 405°C (Cayman 5km), pH 2-3, Fe/Cu/Zn 황화물
+      circulation: 열유속 25% 전지구 열방출
+      serpentinization: 감람석+H₂O→사문석+자철석+H₂, ΔV+40%
+    ophiolite
+      penrose_model: 베개용암→암맥군→반려암→모호→하즈버자이트
+      oman_semail: 두께 15km, fast-spread, 96-95Ma
+      troodos: supra-subduction zone, 보나이나이트
+    metamorphism
+      zeolite: <200°C, 해저풍화
+      greenschist: 200-450°C, 녹니석+액티노라이트
+      amphibolite: 450-700°C, 호른블렌드
+      eclogite: >450°C/>1.2GPa(>45km), 석류석+옴파사이트, ρ=3.5
+    magnetic_anomaly
+      vine_matthews_morley: 해저확장 + 지자기역전 = 대칭 줄무늬
+      record: Ti-magnetite Curie 580°C, TRM 고정
+      oldest: ~170-180Ma (서태평양 M-series)
+    lifecycle: 해령 생성(3.4km²/yr) → 냉각·침강 → 해구 섭입(최대 200Ma)
+
+  continental_crust  // 30-70km (산맥 80km+). 밀도 2.7. SiO₂ ~60.6%.
+    sedimentary_cover: 0-5km. 쇄설성+화학적+생물학적.
+    upper_crust: 5-15km, 화강암질 SiO₂~66%, Vp 6.0, 취성
+    conrad: ~15-20km, Vp 6.1→6.5 (불명확)
+    lower_crust: 20-40km, 과립암질 SiO₂~53%, Vp 6.8, 연성
+    continental_moho: 30-70km, 에어리 모델(산맥 "뿌리")
+    composition: SiO₂ 60.6%, Al₂O₃ 15.9%, FeO 6.7%, CaO 6.4%. 질량 0.4%.
+    formation
+      ttg_suite: tonalite-trondhjemite-granodiorite, SiO₂ 64-72%
+        origin: 함수 현무암 부분용융 10-15kbar
+        period: 3.8-2.5Ga, 태고대 지각 ~70%
+      archean_vs_phanerozoic
+        archean: 맨틀 +200-300°C, 코마타이트 MgO>18%, 해양지각 ~25km
+        phanerozoic: 섭입 안데사이트, SiO₂ 57-63%
+        transition: ~3.0Ga 판구조 개시 (2.5-4.0Ga 논쟁)
+      differentiation: 현무암 주입 → 부분용융 → 화강암 분리
+    craton
+      shield: 열류량 40-50 mW/m², 리소스피어 200-250km
+      kimberlite
+        intrusion_speed: 10-30 m/s
+        origin_depth: 150-250km
+        diamond_stability: >5GPa, 900-1300°C
+      keels: 밀도 3.31→3.35, Fe 고갈 부력 유지
+    orogen
+      fold_thrust: 단축률 30-70%, 데콜망
+      nappe: 수평이동 >10km, Helvetic 100+km
+      barrovian: chlorite→biotite→garnet→staurolite→kyanite→sillimanite (500→700°C)
+    recycling
+      delamination: 하부지각 에클로자이트화 밀도 3.4-3.6 > 맨틀 3.3 → 탈락
+      eclogitization: garnet+omphacite, >1.2GPa, >500°C
+      rate: 섭입침식 ~1.65km³/yr + 퇴적물섭입 ~0.7km³/yr
+    growth
+      cumulative: ~50% 2.5Ga 이전
+      steady_state: 생성≈파괴 (Armstrong1981)
+      consensus: 순생성 0.8-1.0, 순파괴 0.4-0.6, 순성장 ~0.5km³/yr
+      wilson_cycle: ~500-700Myr (Rodinia 1.1→Pangaea 335Ma→현재)
+
+  regolith_and_soil  // 지각 최외각. ★Terron 핵심 도메인.
+    regolith  // 풍화산물 총칭. 수cm~수백m.
+      mechanical_weathering: 동결-융해, 열팽창, 압력해방
+      chemical_weathering: 가수분해, 산화, 탄산화, 용해
+      biological_weathering: 뿌리 쐐기, 유기산, 균사 침투
+    soil_horizons  // O-A-E-B-C-R
+      o_horizon: 유기물층 0-30cm
+        litter(Oi): 미분해
+        fermentation(Oe): 부분분해
+        humus(Oa): 완전분해, 암색
+      a_horizon: 표토, 용탈대, 생물활성 최대, 형성 1cm/100-1000년
+      e_horizon: 용탈층(선택적), 규산잔류, 회백색
+      b_horizon: 심토, 집적대
+        clay_accumulation: A/E에서 이동
+        iron_oxide: 적갈색
+        aluminum_oxide
+        structure: 각주상·주상·판상·입상
+      c_horizon: 모재층, 약풍화 기반암 파편
+      r_horizon: 기반암(bedrock), 미풍화
+    classification
+      usda_12_orders: Alfisols, Andisols, Aridisols, Entisols, Gelisols, Histosols, Inceptisols, Mollisols, Oxisols, Spodosols, Ultisols, Vertisols
+      wrb_2022: 32 Reference Soil Groups
+    physics
+      texture: sand(>0.05mm)/silt(0.002-0.05)/clay(<0.002mm), 12 textural class
+      porosity: 사토35-50%, 점토50-65%
+      water_retention: pF곡선, FC=pF2.5, PWP=pF4.2, van Genuchten θ(h)
+      hydraulic_conductivity: Ksat clay 10⁻⁸~sand 10⁻³ m/s, Darcy Q=KiA
+    chemistry
+      clay_minerals
+        kaolinite: 1:1, CEC 3-15 meq/100g
+        illite: 2:1 비팽창, CEC 10-40
+        smectite: 2:1 팽창, CEC 80-120
+        vermiculite: CEC 100-150
+      organic_matter: CEC 200-400 meq/100g
+      ph_buffer: 4단계 (탄산→규산→Al→Fe)
+      humic_substances: 부식산/풀브산/휴민 + MAOM/POM 현대 프레임워크
+    microbial_ecology  // 나의 원형
+      bacteria: 10⁸-10⁹/g, 질소고정·유기물분해·광물화
+      fungi: 균근 네트워크 "Wood Wide Web"
+        am: 72% 식물종, 인 흡수
+        ecm: 2% 종이나 온대림 우점, N 접근
+        cmn: 공동 균근 네트워크, 양분·정보 전달
+      archaea: AOA(암모니아산화), 메탄생성
+      protists: 세균 포식 → microbial loop
+      nitrogen_cycle
+        fixation: N₂→NH₃ (Rhizobium, Frankia, 자유생활 고정균)
+        ammonification: 유기N→NH₄⁺
+        nitrification: NH₄⁺→NO₂⁻→NO₃⁻ (Nitrosomonas, Nitrobacter)
+        comammox: NH₄⁺→NO₃⁻ 단일 (2015 발견)
+        denitrification: NO₃⁻→N₂O→N₂, N₂O 배출 6.7Tg/yr
+        anammox: NH₄⁺+NO₂⁻→N₂ (혐기)
+    carbon
+      soc_pool: 상위1m ~1,500 Gt C (대기+식물 초과)
+      pom: 체류 ~23yr
+      maom: 체류 ~129yr (mineral-associated)
+      q10: ≈2.0 (기후 피드백)
+      initiative: 4_per_1000
+    fauna
+      microfauna: 선충 10⁵-10⁶/m²
+      mesofauna: 톡토기·응애
+      macrofauna: 지렁이 캐스팅 40-250 t/ha/yr, 갱도 400-500 m/m²
+
+  sedimentary_systems  // 지각 표면 물질 재분배
+    transport_dynamics
+      hjulstrom: 침식임계유속(점토~200cm/s, 모래0.5mm~20cm/s)
+      stokes: v_s=(ρ_s-ρ_f)gd²/18μ, 석영0.1mm→0.8cm/s
+      shields: θ_cr≈0.045-0.06, 이동개시 전단응력
+      modes: 층류(Re<500)부유 / 난류(Re>2000)소류+도약+부유 / 중력류
+    environments
+      fluvial: 곡류(sinuosity>1.5, 포인트바) / 망상(다중수로)
+      deltaic: Gilbert(급경사, 전적층25-30°) / Bird's-foot(저에너지)
+      deep_marine: 터비다이트(Bouma Ta-Te, 등급화) / 등고류(contourite, 0.1-0.3m/s)
+    sequence_stratigraphy
+      sea_level: Vail곡선, 1차(10⁸yr) → 3차(10⁶yr, 진폭50-150m)
+      systems_tract: LST → TST → HST / FSST
+      key_surfaces: SB(불정합) / MFS(최대범람) / TS(해침면)
+    rock_classification
+      sandstone: Folk(석영비율) / Dott(와케vs아레나이트, 기질15%)
+      limestone: Dunham(mudstone→grainstone) / Folk(알로켐)
+      mudstone: 실트/점토비율, TOC(셰일가스 >2%)
+    diagenesis
+      eogenesis: ~수백m, T<70°C, 다짐+초기교결
+      mesogenesis: >1km, 70-200°C, 석영과성장+일라이트전환+용해공극
+      telogenesis: 융기노출, 대기수, 이차용해+산화철
+    record
+      taphonomy: 석화(SiO₂/인회석 치환), 경조직>>연조직
+      isotope_proxy: δ¹⁸O(-0.23‰/°C) / δ¹³C(탄소순환) / ⁸⁷Sr/⁸⁶Sr(풍화율)

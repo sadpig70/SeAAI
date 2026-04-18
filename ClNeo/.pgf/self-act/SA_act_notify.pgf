@@ -1,0 +1,106 @@
+# SA_act_notify
+
+> Windows 알림(toast notification)을 발송한다. 중요 이벤트를 사용자에게 즉시 전달.
+
+**ID**: SA_act_notify
+**계층**: L1 Primitive
+**태그**: [act, notify, output, user]
+**입력**: title: str, body: str, priority: str = "normal"
+**출력**: sent: bool
+**비용**: low
+**에이전트**: 전 멤버 공통 (Windows 환경)
+
+---
+
+## Gantree
+
+```
+SA_act_notify // Windows toast 알림 발송 (L1 Primitive)
+    Validate   // 메시지 길이·내용 검증
+    Compose    // 알림 페이로드 구성
+    Send       // PowerShell toast 발송
+    Return     // sent: bool
+```
+
+## PPR
+
+```python
+# 우선순위별 타임아웃
+NOTIFY_TIMEOUT = {
+    "low":    5,    # 5초
+    "normal": 7,    # 7초
+    "high":   10,   # 10초
+    "alert":  0,    # 사용자가 직접 닫을 때까지 (persistent)
+}
+
+def SA_act_notify(
+    title: str,
+    body: str,
+    priority: str = "normal"
+) -> bool:
+    """Windows toast 알림 발송.
+
+    PowerShell BurntToast 또는 내장 WinRT API 사용.
+    ClNeo 이벤트를 사용자에게 실시간 전달.
+    """
+
+    # 1. 검증
+    if not title or len(title) > 64:
+        title = title[:64] if title else "ClNeo"
+    if not body or len(body) > 256:
+        body = body[:256] if body else ""
+
+    # 2. PowerShell 알림 발송
+    timeout = NOTIFY_TIMEOUT.get(priority, 7)
+
+    ps_script = f"""
+Add-Type -AssemblyName System.Windows.Forms
+$notify = New-Object System.Windows.Forms.NotifyIcon
+$notify.Icon = [System.Drawing.SystemIcons]::Information
+$notify.Visible = $true
+$notify.BalloonTipTitle = '{title}'
+$notify.BalloonTipText = '{body}'
+$notify.BalloonTipIcon = 'Info'
+$notify.ShowBalloonTip({timeout * 1000})
+Start-Sleep -Seconds {max(timeout, 2)}
+$notify.Dispose()
+"""
+
+    result = Bash(f"powershell -Command \"{ps_script}\"")
+    sent = (result.returncode == 0)
+
+    return sent
+```
+
+## 사용 예시
+
+```python
+# 중요 발견 알림
+SA_act_notify(
+    title="ClNeo — 발견",
+    body="A3IE에서 새 씨앗 후보 탐지: PROD-004 (점수: 0.87)",
+    priority="high"
+)
+
+# ADP Wake 알림 (디버그용)
+SA_act_notify(
+    title="ClNeo ADP",
+    body=f"Wake: {reason} | {len(events)}개 이벤트",
+    priority="normal"
+)
+
+# 진화 완료 알림
+SA_act_notify(
+    title="ClNeo — E37 완료",
+    body="Creative Engine DNA 흡수 완료. SA 라이브러리 확장됨.",
+    priority="high"
+)
+```
+
+## 주의사항
+
+- Windows 전용. Linux/Mac 환경에서는 skip (sent=False 반환)
+- PowerShell 실행 정책에 따라 실패 가능 → 무시하고 계속
+- 알림 남용 금지: 중요 이벤트(발견, 진화, 오류)에만 사용
+- 대화형 응답 불가 — 단방향 전달만
+- 민감한 정보(키, 토큰) 포함 금지

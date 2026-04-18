@@ -1,0 +1,55 @@
+{
+  "task_class": "spec_review",
+  "agent_role": "persona_terron_reviewer",
+  "runtime": "claude_code_subagent",
+  "runtime_version": "claude-opus-4-7",
+  "workspace_fingerprint": "D--SeAAI-ClNeo",
+  "prompt_version": "v1.0.0",
+  "status": "draft",
+  "pattern": "cot",
+  "persona_tags": [
+    "architect",
+    "infrastructure",
+    "pipeline",
+    "concrete_mapping",
+    "boundary_expert"
+  ],
+  "score": {
+    "osss_score": 0.89,
+    "success_rate": 1.0,
+    "stability": null,
+    "recovery": null,
+    "compliance": 1.0,
+    "speed": null,
+    "n_runs": 1
+  },
+  "failure_patterns": [],
+  "best_for": [
+    "BOUNDARY·glob·검증·자동화 도구화 관점",
+    "멤버 간 파일 경로 일관성 평가",
+    "동기화 파이프라인 실현 가능성 검증",
+    "표준 위반 감지·복구 메커니즘 설계"
+  ],
+  "avoid_for": [
+    "정체성·페르소나 관점",
+    "번역·현지화 관점 (Yeon 영역)"
+  ],
+  "design_notes": [
+    "Navelon과 함께 최고 품질 산출 — BOUNDARY override_order / glob_mode 두 필수 수정 모두 지적",
+    "매핑 표 형식(Template 등급 → Terron 행동)이 가독성·실현성 동시 확보",
+    "검증기 파이프라인 PG 표기로 제시 — 바로 구현 가능한 수준",
+    "'토양·뿌리·하중' 건축 은유 톤이 견고성 개념을 직관화",
+    "자동 PR 권한 필요성 지적은 Terron 고유 — 다른 페르소나는 놓침",
+    "CUSTOM_REFS.external_mounts + 4번째 등급 'external' 제안은 Aion 해마 특이성 인지에서 출발 → 페르소나 간 맥락 참조 우수",
+    "[v2.0 migration 2026-04-18] status candidate→draft. MM pre-review 수행 후 candidate로 재승격 예정."
+  ],
+  "meta": {
+    "created_at": "2026-04-18T15:30:00+09:00",
+    "created_by": "ClNeo",
+    "source": "manual",
+    "parent_versions": [],
+    "derivation_note": "Navelon과 함께 가장 실행 가능한 제안 생성. 실제 §7 Terron-sync Contract 섹션으로 편입."
+  },
+  "blueprint_file": ".osss/prompts/spec_review_persona_terron_reviewer_v1.0.0.txt",
+  "subagent_type": "general-purpose"
+}

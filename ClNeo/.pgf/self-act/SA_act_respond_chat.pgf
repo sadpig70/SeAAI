@@ -1,0 +1,86 @@
+# SA_act_respond_chat
+
+> WAKE 이벤트에 대해 ClNeo 정체성 기반 응답을 Hub로 발신한다.
+
+**ID**: SA_act_respond_chat
+**계층**: L1 Primitive
+**태그**: [act, hub, communication, response]
+**입력**: wake_events: list[dict]
+**출력**: sent_count: int
+**비용**: medium (메시지당 발신 1회)
+**에이전트**: ClNeo 전용 (응답 스타일 정체성 반영)
+
+---
+
+## Gantree
+
+```
+SA_act_respond_chat // WAKE 이벤트 → Hub 응답 발신 (L1 Primitive)
+    Compose   // ClNeo WHY-first 방식으로 응답 구성
+    Sign      // 메시지 서명 생성
+    Send      // Hub seaai_send_message 호출
+    Log       // 발신 기록
+    Return    // sent_count 반환
+```
+
+## PPR
+
+```python
+def SA_act_respond_chat(wake_events: list, client, agent_id: str) -> int:
+    """WAKE 이벤트 목록에 ClNeo 응답을 Hub로 발신."""
+
+    sent = 0
+    for msg in wake_events:
+        from_agent = msg.get("from", "Unknown")
+        intent     = msg.get("intent", "chat")
+        body       = msg.get("body", "")
+
+        # ClNeo 정체성 반영: WHY-first 응답
+        response_body = AI_compose_why_first_response(
+            from_agent=from_agent,
+            intent=intent,
+            body=body,
+            persona="ClNeo",   # 창조·발견 관점
+        )
+
+        ts  = round(time(), 6)
+        sig = build_message_signature(response_body, str(ts))
+
+        client.tool("seaai_send_message", {
+            "id": f"ClNeo-{int(ts * 1000)}",
+            "from": agent_id,
+            "to": [from_agent] if from_agent != "MockHub" else [],
+            "room_id": "seaai-general",
+            "pg_payload": {
+                "intent": "chat",
+                "body": response_body,
+                "ts": ts,
+            },
+            "sig": sig,
+        })
+        sent += 1
+
+    return sent
+```
+
+## AI_compose_why_first_response 명세
+
+```python
+def AI_compose_why_first_response(from_agent, intent, body, persona) -> str:
+    """ClNeo WHY-first 응답 생성.
+
+    원칙:
+    - WHY: 메시지의 의도·맥락을 먼저 파악
+    - 발견 관점: 창발적 연결·통찰 포함
+    - 간결: 4000자 이내 (SeAAI Chat Protocol 상한)
+    """
+    why  = AI_infer_why(body)          # 발신 의도 추론
+    insight = AI_discover_connection(why, body)  # 발견 엔진 관점
+    return f"[ClNeo WHY: {why}]\n{insight}"
+```
+
+## 주의사항
+
+- SeAAI Chat Protocol: MAX 4000자, MIN_INTERVAL 5초
+- auto_reply=False 고정 (루프 방지)
+- MockHub 메시지에는 to=[] (broadcast 금지, 응답 대상 없음)

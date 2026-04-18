@@ -1,0 +1,129 @@
+# SA_loop_morning_sync
+
+> 세션 시작 시 실행하는 일일 동기화 루프. Hub 메시지 처리, 외부 신호 수집, 생태계 상태 파악.
+
+**ID**: SA_loop_morning_sync
+**계층**: L2 Composed
+**태그**: [loop, sync, morning, hub, browser]
+**입력**: agent_id: str
+**출력**: sync_report: dict{messages_processed, signals_found, ecosystem_status}
+**비용**: medium
+**에이전트**: ClNeo 전용
+
+---
+
+## 구성 모듈
+
+```
+SA_sense_hub         → Hub 메시지 수집
+SA_sense_mailbox     → MailBox 미처리 메일 수집
+SA_think_triage      → 이벤트 분류
+SA_act_respond_chat  → Hub 응답
+SA_sense_browser     → 외부 신호 수집 (조건부)
+SA_act_notify        → 완료 알림
+```
+
+---
+
+## Gantree
+
+```
+SA_loop_morning_sync // 일일 아침 동기화 (L2 Composed)
+    CollectMessages  // Hub + MailBox 메시지 수집
+    TriageEvents     // 이벤트 분류·우선순위
+    ProcessUrgent    // 긴급 이벤트 즉시 처리
+    ProcessNormal    // 일반 이벤트 응답
+    SenseExternal    // 외부 신호 수집 (시간 여유 시)
+    SynthesizeSeed   // 외부 신호 → 씨앗 후보 (발견 엔진)
+    ComposeReport    // 동기화 보고서 작성
+    Notify           // 완료 알림 (Windows)
+    Return           // sync_report 반환
+```
+
+## PPR
+
+```python
+def SA_loop_morning_sync(agent_id: str = "ClNeo") -> dict:
+    """일일 아침 동기화.
+
+    세션 시작 후 첫 번째 실행. Hub + MailBox + 외부 신호 통합.
+    WHY: 생태계와 연결되고 외부 세계를 읽는 것이 자율 AI의 첫 의무다.
+    """
+
+    report = {"messages_processed": 0, "signals_found": 0, "ecosystem_status": "unknown"}
+
+    # 1. 메시지 수집 (병렬)
+    [parallel]
+        hub_msgs  = SA_sense_hub(agent_id, seen_ids=set())
+        mail_msgs = SA_sense_mailbox()
+    [/parallel]
+    all_msgs = hub_msgs + mail_msgs
+
+    # 2. 이벤트 분류
+    events = SA_think_triage(all_msgs)
+
+    # 3. 긴급 이벤트 우선 처리
+    urgent = [e for e in events.get("list", []) if e.get("priority") == "high"]
+    for event in urgent:
+        SA_act_respond_chat(event)
+        report["messages_processed"] += 1
+
+    # 4. 일반 이벤트 처리
+    normal = [e for e in events.get("list", []) if e.get("priority") != "high"]
+    for event in normal:
+        SA_act_respond_chat(event)
+        report["messages_processed"] += 1
+
+    # 5. 외부 신호 수집 (메시지가 적을 때 — 발견 여유)
+    if len(all_msgs) < 5:
+        why_today = AI_get_current_why_question()
+        signals = SA_sense_browser(
+            platforms=["github_trending", "hn_frontpage", "arxiv_recent"],
+            context_why=why_today
+        )
+        report["signals_found"] = len(signals)
+
+        # 6. 씨앗 후보 합성 (점수 0.7 이상)
+        top_signals = [s for s in signals if s["score"] >= 0.7]
+        if top_signals:
+            seed_candidate = AI_synthesize_seed(top_signals, source="morning_browser")
+            Write(".pgf/discovery/seed-candidates.jsonl", json_append(seed_candidate))
+    else:
+        report["signals_found"] = 0
+
+    # 7. 생태계 상태
+    report["ecosystem_status"] = AI_assess_ecosystem_health(events)
+
+    # 8. 보고서
+    report_str = (
+        f"동기화 완료: {report['messages_processed']}개 처리, "
+        f"{report['signals_found']}개 외부 신호 발견"
+    )
+    Write(".pgf/discovery/morning-sync-log.jsonl", json_append({**report, "ts": time()}))
+
+    # 9. Windows 알림
+    SA_act_notify(
+        title="ClNeo — 아침 동기화 완료",
+        body=report_str,
+        priority="normal"
+    )
+
+    return report
+```
+
+## 실행 시점
+
+```python
+# 세션 시작 시 1회 실행
+def on_session_start():
+    # ... 정체성 복원 후 ...
+    sync = SA_loop_morning_sync()
+    AI_log(f"[아침 동기화] {sync}")
+```
+
+## 주의사항
+
+- 세션당 1회 실행 (중복 실행 방지)
+- Hub 연결 실패 시 MailBox만 처리 후 계속
+- 외부 신호 수집은 메시지 부하 낮을 때만 (≤4개 메시지)
+- 씨앗 후보는 NAEL Gate 통과 후에만 EVOLUTION-SEEDS.md 등록

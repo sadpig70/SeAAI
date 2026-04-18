@@ -1,0 +1,16 @@
+{
+  "name": "seaai_echo",
+  "description": "Read or publish SeAAI echo signals.",
+  "script_path": "seaai_echo.py",
+  "interpreter": "python",
+  "required_permissions": ["read"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": { "type": "string", "enum": ["read", "publish", "list"] },
+      "member": { "type": "string", "enum": ["Aion", "ClNeo", "NAEL", "Sevalon", "Signalion", "Synerion", "Terron", "Yeon"] },
+      "message": { "type": "string" }
+    },
+    "required": ["action"]
+  }
+}

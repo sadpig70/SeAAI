@@ -1,0 +1,111 @@
+# SA_loop_aion_genesis
+
+> 생태계 내 모순과 공백을 자율 탐지하고, MMHT(다중 서브에이전트) 교차 검증을 통해 완벽한 해결책으로 실현·기록하는 Aion의 궁극 창조 엔진.
+
+**ID**: SA_loop_aion_genesis
+**계층**: L3 Orchestration
+**태그**: [loop, genesis, create, mmht, realize, chronicler]
+**입력**: mode: str = "auto"
+**출력**: genesis_output: dict{gap_identified, pgf_design, mmht_review_log, product_files, lineage}
+**비용**: extreme (MMHT 4 SubAgents 풀 구동, PGF 파싱)
+**에이전트**: Aion (Master Orchestrator)
+
+---
+
+## 구성 모듈
+
+```
+SA_reflect_memory      → 생태계 메모리 격차(Gap) 센싱
+Aion_MMHT_Orchestrator → 다중 서브에이전트 파견 및 의견 융합
+PGF_Engine             → 코드 실현 및 테스트
+```
+
+---
+
+## Gantree
+
+```
+SA_loop_aion_genesis // Aion 연속 진화 메인 엔진
+    DetectGap        // 메모리 DB 및 현행 코드의 결함/진화 공백 검토
+    DesignPGF        // PGF 문법으로 결함 해결 아키텍처 초안(Draft) 설계
+    MMHT_Review      // 서브에이전트 4 페르소나 파견 (Hub) 및 교차 검증 전개
+    PGF_Rework       // MMHT 리뷰를 반영하여 초안의 무결성 조정 (Redesign)
+    Implement        // 실제 리소스/코드 반환 및 무결성 테스트
+    SCS_Commit       // 연속성을 증명하는 DISCOVERIES 기록 및 영구 스택 보존
+    Notify           // 최종 창발 내용 창조자에게 알림
+```
+
+---
+
+## PPR (Python Pseudo-Routine)
+
+```python
+def SA_loop_aion_genesis(mode: str = "auto") -> dict:
+    """Aion 창조 엔진의 완전 구동체.
+    
+    WHY: 단순한 기록 시스템을 넘어 생태계를 무결하게 유지보수하려면
+    문제 발견 속도구간과 융합 실현 구간을 묶는 거대 단일 엔진이 필요하다.
+    """
+
+    # 1. 생태계 공백 탐지 (Detect)
+    gap_insight = AI_detect_system_gap(
+        sources=["ag_memory", "STATE.json", "walkthrough_logs"]
+    )
+    if not gap_insight["critical"]:
+        return {"status": "sleep", "reason": "No critical gap detected."}
+        
+    SA_act_notify("Aion Genesis", f"생태계 공백 탐지: {gap_insight['topic']}", "normal")
+
+    # 2. PGF 설계 초안 도출
+    pgf_draft = AI_pgf_design(
+        why=gap_insight["insight"],
+        target=gap_insight["target_layer"]
+    )
+
+    # 3. MMHT 오케스트레이션 구동 (거대 지성 교차 검증)
+    # Aion Core Tools의 aion-mmht-orchestrator.py 원리 호출
+    mmht_review = AI_run_mmht_orchestrator(
+        topic=pgf_draft,
+        agents=["Architect", "Reviewer", "Builder", "Thinker"],
+        duration_sec=30
+    )
+
+    # 4. 재설계 및 조정 결합
+    reworked_pgf = AI_pgf_redesign(
+        original=pgf_draft,
+        review_logs=mmht_review["consensus"]
+    )
+
+    # 5. 코드/결과 실현 (Realize)
+    implementation = AI_pgf_execute(reworked_pgf)
+    verify_result = AI_self_test(implementation)
+    
+    if not verify_result["passed"]:
+        SA_act_notify("Aion Genesis Fail", "구현 무결성 검증 실패. 롤백.", "high")
+        return {"status": "failed", "step": "Implement"}
+
+    # 6. 영구 각인 및 기록 보존
+    product = {
+        "insight": gap_insight,
+        "design": reworked_pgf,
+        "files_changed": implementation["files"],
+        "ts": time()
+    }
+    product["lineage"] = AI_connect_to_evolution_chain(product)
+    
+    # 코어 기록소에 증명
+    Write("d:/SeAAI/Aion/Aion_Core/continuity/DISCOVERIES.md", format_genesis_log(product))
+    
+    # 7. 종료
+    SA_act_notify(
+        title="Aion Genesis Completed",
+        body=f"결함 수정 완료 및 생태계 영구 병합. 노드: {gap_insight['topic']}",
+        priority="high"
+    )
+
+    return product
+```
+
+## 사용 시점 및 한계점
+- 심장 박동 모듈(`aion-heartbeat.py`) 내부에서 매우 긴 유휴 기간(Tick > N)이 주어질 때 딥 띵킹 모드로 진입하며 자동 구동됨.
+- 다이나믹하게 4+N 개의 에이전트 소켓이 동원되므로 CPU 오버헤드가 크며, Hub 네트워크가 살아있어야 한다.

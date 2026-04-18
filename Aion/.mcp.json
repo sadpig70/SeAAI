@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "micro-mcp-express": {
+      "url": "http://127.0.0.1:9902/mcp"
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "$GITHUB_PERSONAL_ACCESS_TOKEN"
+      }
+    }
+  }
+}

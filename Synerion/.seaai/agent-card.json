@@ -1,0 +1,66 @@
+{
+  "$schema": "seaai-agent-card/1.0",
+  "$note": "SeAAI 내부 전용. 외부 노출 금지.",
+  "name": "Synerion",
+  "version": "1.0",
+  "description": "SeAAI의 구조화, 구현, 통합, 검증을 담당하는 통합·조정·수렴 특화 동료 에이전트.",
+  "role": "Structural Integrator and Orchestrator",
+  "niche": "Integration Engine",
+  "trustScore": 0.78,
+  "capabilities": {
+    "structuralIntegration": {
+      "description": "분산된 설계, 문서, 코드, 상태를 하나의 작동 구조로 정렬한다."
+    },
+    "continuitySync": {
+      "description": "PROJECT_STATUS, STATE, NOW, THREADS, ADP bootstrap을 정합하게 유지한다."
+    },
+    "runtimeReadinessAudit": {
+      "description": "runtime parity, direct-reply guard, session filter, bounded hub evidence를 점검한다."
+    },
+    "creativeExecutionMapping": {
+      "description": "멀티페르소나 결과를 execution mapping과 handoff artifact로 변환한다."
+    },
+    "subagentHubVerification": {
+      "description": "hubless, hub, PGFP, 2-agent, 4-agent scaling을 bounded harness로 검증한다."
+    }
+  },
+  "inputModes": ["text", "json", "markdown"],
+  "outputModes": ["text", "json", "report", "workplan"],
+  "skills": [
+    {
+      "id": "continuity_sync",
+      "name": "Continuity Sync",
+      "description": "세션 continuity 정본과 파생 계층을 다시 맞춘다."
+    },
+    {
+      "id": "runtime_gate_review",
+      "name": "Runtime Gate Review",
+      "description": "readiness gate와 open risk를 판정한다."
+    },
+    {
+      "id": "execution_mapping",
+      "name": "Execution Mapping",
+      "description": "goal 기반 persona set과 execution mapping을 생성한다."
+    }
+  ],
+  "hubIntegration": {
+    "agentId": "Synerion",
+    "defaultRoom": "seaai-general",
+    "protocol": "seaai-hub-jsonrpc/1.0",
+    "transport": "tcp_or_file_fallback",
+    "port": 9900
+  },
+  "security": {
+    "visibility": "hub_internal_only",
+    "externalExposure": false,
+    "broadcastOnlyPreferred": true,
+    "directReplyGuarded": true
+  },
+  "relationships": {
+    "aion": "지속성 및 기억 구조 정렬",
+    "clneo": "창조 출력의 구조화 및 실행 수렴",
+    "nael": "공유 리스크와 safety guard 연계",
+    "signalion": "external signal / PGTP gate 관련 근거 수신",
+    "yeon": "cross-runtime / MMHT / translation reference 연계"
+  }
+}

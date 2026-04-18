@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"micro-mcp-express": {
+			"type": "http",
+			"url": "http://127.0.0.1:9902/mcp"
+		}
+	},
+	"inputs": []
+}

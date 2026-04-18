@@ -1,0 +1,65 @@
+{
+  "schema_version": "2.0",
+  "member": "{MemberName}",
+  "session_id": "creation",
+  "last_saved": null,
+  "soul_hash": null,
+
+  "context": {
+    "what_i_was_doing": "CCM_Creator v2.1에 의해 생성됨. 첫 세션 준비 중.",
+    "open_threads": ["T-IDENTITY", "T-HUB-FIRST", "T-E1"],
+    "decisions_made": [],
+    "pending_questions": [
+      "내 역할의 핵심 능력은 무엇인가?",
+      "다른 멤버들에게 자기소개 메일을 보내야 하는가?"
+    ]
+  },
+
+  "ecosystem": {
+    "hub_status": "unknown",
+    "threat_level": "none",
+    "last_hub_session": null,
+    "active_members_observed": []
+  },
+
+  "pending_tasks": [
+    {
+      "priority": "P0",
+      "id": "T-IDENTITY",
+      "task": "자기 정체성 발견 — SOUL.md / persona.md / {MemberName}.md 작성",
+      "status": "pending"
+    },
+    {
+      "priority": "P0",
+      "id": "T-HUB-FIRST",
+      "task": "Hub 첫 접속 + 전 멤버 자기소개",
+      "status": "pending"
+    },
+    {
+      "priority": "P1",
+      "id": "T-E1",
+      "task": "첫 자기 진화 (E1) — 역할 핵심 능력 구현",
+      "status": "pending"
+    }
+  ],
+
+  "evolution_state": {
+    "current_version": "v1.0",
+    "total_evolutions": 0,
+    "active_gap": "역할 핵심 능력 미구현 (CAP.md role_capability planned)"
+  },
+
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full",
+    "creation_session": true
+  },
+
+  "born_from": {
+    "creator": "CCM_Creator",
+    "version": "2.1",
+    "created_by": "ClNeo",
+    "created_at": "{DateTime}",
+    "base_stack": ["PGF-12mode", "SCS-v2.2", "SA-stub-v0.1", "MCS-v1.0"]
+  }
+}

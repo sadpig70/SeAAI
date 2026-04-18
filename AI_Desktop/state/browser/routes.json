@@ -1,0 +1,43 @@
+{
+  "node": {
+    "configured": true,
+    "enabled": true,
+    "transport": "command-worker",
+    "bridge": "signalion-command-worker",
+    "command": [
+      "python",
+      "d:\\SeAAI\\Signalion\\tools\\browser_route_worker.py",
+      "--target",
+      "node"
+    ],
+    "diagnosis": null
+  },
+  "sandbox": {
+    "configured": true,
+    "enabled": true,
+    "transport": "command-worker",
+    "bridge": "signalion-sandbox-worker",
+    "command": [
+      "python",
+      "d:\\SeAAI\\Signalion\\tools\\browser_route_worker.py",
+      "--target",
+      "sandbox"
+    ],
+    "diagnosis": null,
+    "isolation": "filesystem-worker-root"
+  },
+  "remote_cdp": {
+    "configured": true,
+    "enabled": true,
+    "transport": "command-worker",
+    "bridge": "signalion-remote-cdp-worker",
+    "command": [
+      "python",
+      "d:\\SeAAI\\Signalion\\tools\\browser_route_worker.py",
+      "--target",
+      "remote_cdp"
+    ],
+    "diagnosis": null,
+    "mode": "emulated-remote-cdp"
+  }
+}

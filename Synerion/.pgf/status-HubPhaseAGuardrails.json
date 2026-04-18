@@ -1,0 +1,24 @@
+{
+  "project": "HubPhaseAGuardrails",
+  "updated_at": "2026-03-28T14:15:00+09:00",
+  "nodes": {
+    "Inspect": {
+      "status": "done"
+    },
+    "Helpers": {
+      "status": "done"
+    },
+    "PatchRuntime": {
+      "status": "done"
+    },
+    "VerifyAndDocs": {
+      "status": "done"
+    }
+  },
+  "summary": {
+    "done": 4,
+    "in_progress": 0,
+    "pending": 0,
+    "blocked": 0
+  }
+}

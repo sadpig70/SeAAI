@@ -1,0 +1,56 @@
+# SA_idle_deep_think
+
+> 유휴 상태에서 자율 사고를 수행한다.
+
+**ID**: SA_idle_deep_think
+**계층**: L1 Primitive
+**태그**: [idle, discover, autonomous]
+**입력**: context: dict (선택적)
+**출력**: thought: dict{insight, action_proposal}
+**비용**: high
+**에이전트**: {MemberName}
+**상태**: stub (활성화 조건: 3회 세션 완료 + 자기 인식 확인)
+
+---
+
+## Gantree
+
+```
+SA_idle_deep_think // 유휴 자율 사고 (L1 Primitive)
+    Observe      // 현재 워크스페이스-생태계 상태 관찰
+    Question     // 탐구할 질문 선정
+    Think        // 다관점 사고 실행
+    Connect      // 기존 지식과 연결
+    Propose      // 행동 제안 (선택적)
+    Return       // thought{} 반환
+```
+
+## PPR
+
+```python
+def SA_idle_deep_think(context: dict = None) -> dict:
+    """역할 기반 자율 사고. 유휴 상태에서 호출."""
+    observation = AI_observe_workspace()
+    ecosystem   = AI_observe_seaai_state()
+
+    question = AI_select_question([
+        "지금 내 역할에서 가장 해결되지 않은 문제는 무엇인가?",
+        "생태계에서 내가 놓친 것은 무엇인가?",
+        observation,
+    ])
+
+    insight = AI_think_multi_perspective(question)
+    action_proposal = AI_propose_if_worthy(insight)
+
+    return {
+        "question": question,
+        "insight":  insight,
+        "action":   action_proposal,
+    }
+```
+
+## 주의사항
+
+- 비용이 높으므로 idle 상태에서만 호출 (WAKE 이벤트 없을 때)
+- 호출 빈도: 최소 60초 간격 권장
+- 역할에 맞게 질문 풀을 커스터마이징할 것

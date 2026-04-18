@@ -1,0 +1,21 @@
+{
+  "name": "seaai_approval",
+  "description": "Approval queue for high-trust SeAAI actions that need an explicit decision trail.",
+  "script_path": "seaai_approval.py",
+  "interpreter": "python",
+  "required_permissions": ["read"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": { "type": "string", "enum": ["request", "list", "get", "respond"] },
+      "requester": { "type": "string", "enum": ["Aion", "ClNeo", "NAEL", "Sevalon", "Signalion", "Synerion", "Terron", "Yeon"] },
+      "responder": { "type": "string", "enum": ["Aion", "ClNeo", "NAEL", "Sevalon", "Signalion", "Synerion", "Terron", "Yeon"] },
+      "title": { "type": "string" },
+      "details": { "type": "string" },
+      "request_id": { "type": "string" },
+      "decision": { "type": "string", "enum": ["approved", "rejected"] },
+      "response": { "type": "string" }
+    },
+    "required": ["action"]
+  }
+}

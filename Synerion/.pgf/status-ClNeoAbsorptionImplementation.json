@@ -1,0 +1,75 @@
+{
+  "project": "ClNeoAbsorptionImplementation",
+  "workplan": ".pgf/WORKPLAN-ClNeoAbsorptionImplementation.md",
+  "started_at": "2026-04-02T01:20:00+09:00",
+  "updated_at": "2026-04-02T01:25:00+09:00",
+  "nodes": {
+    "ClNeoAbsorptionImplementation": {
+      "status": "done"
+    },
+    "AddNarrativeLayer": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-02T01:22:00+09:00",
+      "outputs": {
+        "files_created": ["Synerion_Core/continuity/NOW.md"],
+        "files_modified": ["tools/continuity_lib.py", "tools/export-scs-state.py"],
+        "notes": "NOW narrative layer was added and connected to continuity sync."
+      }
+    },
+    "AddWALRecovery": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-02T01:23:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": ["tools/continuity_lib.py", "tools/update-project-status.py", "SESSION_CONTINUITY.md"],
+        "notes": "WAL write/clear and reopen visibility were installed."
+      }
+    },
+    "AddEvolutionChain": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-02T01:23:30+09:00",
+      "outputs": {
+        "files_created": ["Synerion_Core/Synerion_Evolution_Chain.md"],
+        "files_modified": ["Synerion_Core/evolution-log.md"],
+        "notes": "Evolution lineage tracking was added and logged."
+      }
+    },
+    "AddRuntimeAdaptation": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-02T01:24:00+09:00",
+      "outputs": {
+        "files_created": ["Synerion_Core/Runtime_Adaptation.md"],
+        "files_modified": ["SESSION_CONTINUITY.md"],
+        "notes": "Runtime adaptation guide was installed and added to startup reads."
+      }
+    },
+    "VerifyAbsorption": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-02T01:25:00+09:00",
+      "outputs": {
+        "files_created": [".pgf/REVIEW-ClNeoAbsorptionImplementation.md", "_workspace/REPORT-ClNeo-Absorption-Implementation-2026-04-02.md"],
+        "files_modified": [],
+        "notes": "Sync, self-test, and start path were verified after absorption."
+      }
+    }
+  },
+  "summary": {
+    "total": 5,
+    "done": 5,
+    "in_progress": 0,
+    "designing": 0,
+    "needs_verify": 0,
+    "blocked": 0,
+    "decomposed": 0
+  }
+}

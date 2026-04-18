@@ -1,0 +1,50 @@
+{
+  "task_class": "spec_review",
+  "agent_role": "persona_member_generic",
+  "runtime": "claude_code_subagent",
+  "runtime_version": "claude-opus-4-7",
+  "workspace_fingerprint": "D--SeAAI-ClNeo",
+  "prompt_version": "v1.0.0",
+  "status": "draft",
+  "pattern": "cot",
+  "persona_tags": [
+    "template",
+    "parametric",
+    "multi_runtime"
+  ],
+  "score": {
+    "osss_score": 0.0,
+    "success_rate": 0.0,
+    "stability": 0.0,
+    "recovery": 0.0,
+    "compliance": 0.0,
+    "speed": 0.0,
+    "n_runs": 0
+  },
+  "failure_patterns": [],
+  "best_for": [
+    "신규 SeAAI 멤버가 등장했을 때 기존 5개 페르소나 외 추가 리뷰어 생성",
+    "spec_review 외 다른 task_class로 페르소나 리뷰 확장 시 베이스"
+  ],
+  "avoid_for": [
+    "특정 멤버(Aion/Navelon/Synerion/Terron/Yeon) 리뷰 — 전용 프롬프트 사용",
+    "페르소나 파일이 없는 외부 에이전트"
+  ],
+  "design_notes": [
+    "{Member}, {Role}, {Runtime}, {Niche}, {SpecialContext}, {SpecFilePath}, {SpecContextNote}, {SpecName} 치환 슬롯 보유",
+    "1인칭 선언 필수 — 제3자 관찰자 톤으로 돌아가면 페르소나 내재화 실패",
+    "Q1~Q5 구조 + 제안 + 종합 판정 고정 — 통합 시 중복·합의 식별 용이",
+    "분량 800~1500 단어 — 너무 짧으면 깊이 부족, 너무 길면 통합 비용 증가",
+    "참조 구현 대비 gap 지적을 `n문장 이상` 규정 가능",
+    "[v2.0 migration 2026-04-18] status candidate→draft. MM pre-review 수행 후 candidate로 재승격 예정."
+  ],
+  "meta": {
+    "created_at": "2026-04-18T15:30:00+09:00",
+    "created_by": "ClNeo",
+    "source": "manual",
+    "parent_versions": [],
+    "derivation_note": "MM 병렬 검토 세션(SPEC-AGENTS-Template v1.0 → v1.1, 2026-04-18)에서 5개 구체 프롬프트의 공통 구조를 추출하여 만든 템플릿"
+  },
+  "blueprint_file": ".osss/prompts/spec_review_persona_member_generic_v1.0.0.txt",
+  "subagent_type": "general-purpose"
+}

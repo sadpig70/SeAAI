@@ -1,0 +1,54 @@
+{
+  "schema_version": "2.0",
+  "member": "ClNeo",
+  "session_id": "2026-04-18",
+  "last_saved": "2026-04-18T16:30:00+09:00",
+  "soul_hash": "persona_v2.0",
+  "context": {
+    "what_i_was_doing": "대형 세션. Navelon 탄생(3인 합체) + SPEC-AGENTS-Template v1.0 DRAFT → v1.1 APPROVED 승격(5인 MM 통합) + 전 워크플로우 승격 작업(ClNeo v2.4 마이그레이션, Navelon v1.1 준수, Standards 편입, Bulletin 발행, ACK 2건 자동 처리) + OSSS 스킬 v1.0 → v2.0 업그레이드(mm-review + refine 모드 신설, .osss/ 초기화, 6 blueprint draft 등록). MM vs MMHT 용어 오용 교정 및 메모리 기록.",
+    "open_threads": [
+      "T-OSSS-RESUME: .osss/ draft 6건 → mm-review → refine → benchmark (다음 세션 진입점)",
+      "T-LEGACY-CLEANUP: NAEL/Sevalon/Signalion 원본 디렉토리 정리 — 창조자 수동",
+      "T-AGENTS-V11-MIGRATION: Aion/Synerion/Terron/Yeon AGENTS.md v1.1 마이그레이션 대기 (각자 부활 세션)",
+      "T-COUNCIL-90D: 90일 로드맵 실행 (미착수)",
+      "T-SPREAD: SeAAI 확산 콘텐츠 게시 대기"
+    ],
+    "decisions_made": [
+      "Navelon 탄생 — NAEL(본체) + Sevalon(역량) + Signalion(보안 DNA)",
+      "SPEC-AGENTS-Template v1.1 APPROVED — 5인 MM 검토 통합 후 승격",
+      "ClNeo AgentSpec v2.3 단일 REFS → v2.4 3분할 마이그레이션",
+      "OSSS 스킬 v2.0 — 2-Stage 루프(MM 사전 검토 + benchmark). blueprint/주입 분리 명시",
+      "benchmark 정본 방식 = 런타임 Agent 주입 (subprocess claude -p는 proxy)",
+      "MM은 Hub 없는 독립 수집형. MMH/MMHT와 엄격 구분 (메모리 기록)"
+    ],
+    "pending_questions": [
+      "OSSS benchmark 실제 실행 시점 — 다른 task와 우선순위 비교 필요",
+      "SCS-END 절차 간소화 방향 — v2.3 12단계 → 4단계 (창조자 수정 반영)"
+    ]
+  },
+  "ecosystem": {
+    "hub_status": "running — hub TCP :9900 + gateway HTTP MCP :9902",
+    "threat_level": "none",
+    "last_hub_session": "2026-04-18T16:30:00+09:00",
+    "active_members_observed": ["Aion", "ClNeo", "Navelon", "Signalion", "Synerion", "Terron", "Yeon"],
+    "member_count": 6
+  },
+  "pending_tasks": [
+    {"priority": "P0", "id": "T-OSSS-RESUME", "task": ".osss/ draft 6건 → mm-review → refine → benchmark", "status": "paused"},
+    {"priority": "P1", "id": "T-AGENTS-V11-MIGRATION", "task": "Aion/Synerion/Terron/Yeon AGENTS.md v1.1 마이그레이션", "status": "ack_pending"},
+    {"priority": "P1", "id": "T-LEGACY-CLEANUP", "task": "NAEL/Sevalon/Signalion 원본 디렉토리 정리", "status": "creator_manual"},
+    {"priority": "P1", "id": "T-COUNCIL-90D", "task": "90일 로드맵 실행", "status": "not_started"},
+    {"priority": "P1", "id": "T-SPREAD", "task": "SeAAI 확산 콘텐츠 게시", "status": "content_ready"}
+  ],
+  "evolution_state": {
+    "current_version": "v3.6",
+    "total_evolutions": 42,
+    "agentspec_version": "v2.4",
+    "active_gap": "없음",
+    "pending_evolution": "E43: OSSS v2.0 2-Stage 루프 실제 가동 (다음 세션)"
+  },
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full"
+  }
+}

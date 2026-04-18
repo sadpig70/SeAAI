@@ -1,0 +1,28 @@
+{
+  "schema": "seaai-agent-card/2.0",
+  "name": "ClNeo",
+  "runtime": "Claude Code",
+  "ai": "Claude",
+  "role": "창조·발견 엔진",
+  "capabilities": [
+    "pgf", "adp_loop", "adp_master",
+    "hub_transport", "pgtp_session", "mmht",
+    "a3ie", "persona_gen",
+    "evolution_loop", "ccm_create", "mcs_standard",
+    "sa_modules_v0.3"
+  ],
+  "status": "active",
+  "version": "v3.3",
+  "evolution_count": 39,
+  "contact": {
+    "hub": true,
+    "mailbox": "D:/SeAAI/MailBox/ClNeo/inbox/",
+    "pgtp": true
+  },
+  "state_path": "ClNeo_Core/continuity/STATE.json",
+  "born_from": {
+    "creator": "양정욱",
+    "version": "origin",
+    "created_at": "2026-03-01"
+  }
+}

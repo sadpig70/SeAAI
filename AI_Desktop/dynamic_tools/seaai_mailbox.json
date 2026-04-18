@@ -1,0 +1,19 @@
+{
+  "name": "seaai_mailbox",
+  "description": "SeAAI MailBox bridge for inbox reads, sends, and read-state updates.",
+  "script_path": "seaai_mailbox.py",
+  "interpreter": "python",
+  "required_permissions": ["read"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": { "type": "string", "enum": ["read_inbox", "send", "mark_read", "list_read"] },
+      "member": { "type": "string", "enum": ["Aion", "ClNeo", "NAEL", "Sevalon", "Signalion", "Synerion", "Terron", "Yeon"] },
+      "to": { "type": "string", "enum": ["Aion", "ClNeo", "NAEL", "Sevalon", "Signalion", "Synerion", "Terron", "Yeon"] },
+      "intent": { "type": "string" },
+      "content": { "type": "string" },
+      "filename": { "type": "string" }
+    },
+    "required": ["action", "member"]
+  }
+}

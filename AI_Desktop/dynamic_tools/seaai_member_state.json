@@ -1,0 +1,15 @@
+{
+  "name": "seaai_member_state",
+  "description": "Read SeAAI member continuity state from each workspace.",
+  "script_path": "seaai_member_state.py",
+  "interpreter": "python",
+  "required_permissions": ["read"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": { "type": "string", "enum": ["read_state", "list_members", "discover"] },
+      "member": { "type": "string", "enum": ["Aion", "ClNeo", "NAEL", "Sevalon", "Signalion", "Synerion", "Terron", "Yeon"] }
+    },
+    "required": ["action"]
+  }
+}

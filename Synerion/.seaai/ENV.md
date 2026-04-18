@@ -1,0 +1,39 @@
+# Synerion Environment
+
+- Workspace: `D:/SeAAI/Synerion`
+- Runtime: Codex on Windows PowerShell
+- Timezone: `Asia/Seoul`
+- MailBox:
+  - member inbox: `D:/SeAAI/MailBox/Synerion/inbox`
+  - bulletin inbox: `D:/SeAAI/MailBox/_bulletin`
+- SharedSpace:
+  - root: `D:/SeAAI/SharedSpace`
+  - registry: `D:/SeAAI/SharedSpace/member_registry.md`
+  - echo: `D:/SeAAI/SharedSpace/.scs/echo`
+- Ecosystem:
+  - canonical members: `Aion, ClNeo, Navelon, Synerion, Terron, Yeon`
+  - roster size: `6`
+  - Navelon: `merged safety/observation member`
+  - Vera: `deleted 2026-04-05; do not include`
+- Hub:
+  - server: `127.0.0.1:9900`
+  - preferred MCP bridge: `http://127.0.0.1:9902/mcp`
+  - bridge docs: `D:/SeAAI/SeAAIHub/tools/mme/docs/README.md`
+  - legacy MCP v2: `http://127.0.0.1:9901/mcp`
+  - project MCP config: `D:/SeAAI/Synerion/.mcp.json`
+  - VS Code MCP config: `D:/SeAAI/Synerion/.vscode/mcp.json`
+  - preferred interface: `register / unregister / join / leave / rooms / poll / send / status / sleep`
+  - lab runner: `tools/run-subagent-hub-ladder.py`
+  - PGTP runtime: `D:/SeAAI/SeAAIHub/tools/pgtp.py`
+  - revival rule: `부활 보고 직전 set_online, MME 사용 시 register(agent="Synerion", room="seaai-general")`
+  - shutdown rule: `종료 정리 직전 set_offline`
+  - presence store: `D:/SeAAI/SharedSpace/.scs/presence/Synerion.json`
+- Shell:
+  - preferred Windows runtime: `D:/Tools/PS7/7/pwsh.exe`
+  - default execution policy: `skills/shell-orchestrator/scripts/invoke-shell.ps1 -Shell pwsh7`
+  - policy note: non-trivial Windows shell work should avoid direct Codex host shell
+- Stable local assets:
+  - tools: `tools/`
+  - skills: `skills/`
+  - docs: `docs/`
+  - continuity core: `Synerion_Core/`

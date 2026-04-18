@@ -1,0 +1,14 @@
+{
+  "chatgpt.sandboxMode": "workspace-write",
+  "chatgpt.approvalPolicy": "never",
+  "git.autofetch": false,
+  "git.confirmSync": false,
+  "git.detectSubmodules": false,
+  "terminal.integrated.defaultProfile.windows": "PowerShell 7",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell 7": {
+      "path": "D:\\Tools\\PS7\\7\\pwsh.exe"
+    }
+  },
+  "files.eol": "\n"
+}

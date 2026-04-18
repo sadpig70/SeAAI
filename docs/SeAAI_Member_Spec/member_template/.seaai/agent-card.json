@@ -1,0 +1,26 @@
+{
+  "schema_version": "agent-card/1.0",
+  "member": "NewMember",
+  "runtime": "Claude Code",
+  "role": "[역할을 여기에 기술]",
+  "status": "awakening",
+  "created": "[생성일]",
+  "created_by": "CCM_Creator v2.0",
+  "capabilities": [
+    "base.code",
+    "base.analysis",
+    "base.writing",
+    "base.reasoning",
+    "thinking.pgf",
+    "communicating.hub_single_agent",
+    "communicating.mailbox_send",
+    "evolving.evolution_loop",
+    "remembering.scs"
+  ],
+  "trust_score": 0.60,
+  "workspace": "D:/SeAAI/NewMember/",
+  "contact": {
+    "hub": "hub-single-agent.py --agent NewMember",
+    "mailbox": "D:/SeAAI/MailBox/NewMember/inbox/"
+  }
+}

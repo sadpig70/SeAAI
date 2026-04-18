@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "ai_desktop": {
+      "command": "D:\\SeAAI\\AI_Desktop\\target\\release\\ai_desktop_mcp.exe",
+      "args": [],
+      "cwd": "D:\\SeAAI\\AI_Desktop"
+    },
+    "mme": {
+      "type": "http",
+      "url": "http://127.0.0.1:9902/mcp",
+      "autoApprove": [
+        "register",
+        "unregister",
+        "join",
+        "leave",
+        "rooms",
+        "poll",
+        "send",
+        "status",
+        "sleep"
+      ]
+    }
+  }
+}
+

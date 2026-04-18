@@ -1,0 +1,74 @@
+{
+  "project": "IdentityMarkdownReduction",
+  "workplan": ".pgf/WORKPLAN-IdentityMarkdownReduction.md",
+  "started_at": "2026-04-07T21:48:00+09:00",
+  "updated_at": "2026-04-07T21:52:00+09:00",
+  "nodes": {
+    "IdentityMarkdownReduction": {
+      "status": "done"
+    },
+    "DefineIdentityCore": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:48:00+09:00",
+      "outputs": {
+        "files_created": [
+          ".pgf/DESIGN-IdentityMarkdownReduction.md",
+          ".pgf/WORKPLAN-IdentityMarkdownReduction.md",
+          ".pgf/status-IdentityMarkdownReduction.json"
+        ],
+        "files_modified": [],
+        "notes": "identity 최소 코어를 AGENTS, SOUL, STATE self_recognition으로 정의했다."
+      }
+    },
+    "MakeIdentityDocsOptional": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:50:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": [
+          "AGENTS.md",
+          "tools/continuity_lib.py",
+          "Synerion_Core/LIMITS_AND_AUTHORITY.md"
+        ],
+        "notes": "Synerion.md와 persona.md를 optional identity docs로 강등했다."
+      }
+    },
+    "AlignGeneratedViews": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:51:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": [
+          "tools/continuity_lib.py"
+        ],
+        "notes": "PROJECT_STATUS, ADP bootstrap, self-test 기준을 AGENTS + SOUL + STATE 모델로 정렬했다."
+      }
+    },
+    "VerifyIdentityReduction": {
+      "status": "done",
+      "attempt_count": 1,
+      "verify_cycle_count": 0,
+      "completed_at": "2026-04-07T21:52:00+09:00",
+      "outputs": {
+        "files_created": [],
+        "files_modified": [],
+        "notes": "Synerion.md와 persona.md를 임시 제거한 상태에서 update-project-status/self-test가 통과했고 sync가 문서를 재생성하지 않았다."
+      }
+    }
+  },
+  "summary": {
+    "total": 4,
+    "done": 4,
+    "in_progress": 0,
+    "designing": 0,
+    "needs_verify": 0,
+    "blocked": 0,
+    "decomposed": 0
+  }
+}

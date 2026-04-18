@@ -1,0 +1,38 @@
+{
+  "project": "AI_Desktop v2",
+  "mode": "pgf-full-cycle",
+  "status": "active-with-host-blocker",
+  "updated_at": "2026-04-05T06:32:00+09:00",
+  "completed": [
+    "legacy review",
+    "v2 design freeze",
+    "replacement package generation",
+    "dynamic runner hardening",
+    "browser gateway diagnostics and fallback chain",
+    "offline cargo check and release build",
+    "mcp initialize/tools-list/tools-call smoke tests",
+    "root path normalization to D:/SeAAI/AI_Desktop",
+    "legacy document archive under _legacy",
+    "full MCP surface validation across all exposed tools",
+    "approval and echo state root normalization to AI_Desktop/state",
+    "legacy approval and echo state migration from SharedSpace",
+    "local data/file browser inspect fallback"
+  ],
+  "remaining": [
+    "machine-level recovery for headless Edge screenshot and external URL inspect",
+    "DNS resolution recovery for HTTP fallback",
+    "local msedgedriver.exe provisioning or equivalent browser driver recovery"
+  ],
+  "artifacts": [
+    "ai_desktop_mcp.exe",
+    "target/release/ai_desktop_mcp.exe",
+    ".pgf/WORKPLAN-AIDesktopV2.md",
+    ".pgf/VERIFY-AIDesktopV2.md",
+    ".pgf/HANDOFF-AIDesktopV2.md",
+    "README.md",
+    "docs/TSG.md",
+    "state/echo",
+    "state/approvals",
+    "state/browser"
+  ]
+}

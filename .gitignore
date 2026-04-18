@@ -1,0 +1,77 @@
+# ============================================================
+# SeAAI .gitignore
+# ============================================================
+
+# --- PowerShell scripts ---
+# ps1 파일 업로드 허용 (SeAAI 구동에 필요)
+# 보안 검토 완료: 파괴적 명령 없음, API키 없음, 외부 다운로드 없음
+
+# --- Rust build artifacts ---
+SeAAIHub/target/
+AI_Desktop/target/
+Cargo.lock
+!AI_Desktop/Cargo.lock
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+
+# --- Runtime logs & session data ---
+*.jsonl
+SeAAIHub/logs/
+
+# --- Runtime bridge & internal state ---
+SeAAIHub/.bridge/
+SharedSpace/.scs/
+
+# --- Private Claude Code config ---
+**/.claude/
+!/.claude/skills/
+!/.claude/skills/**
+
+# --- MailBox runtime queues (keep structure, not messages) ---
+MailBox/*/inbox/
+MailBox/*/processed/
+
+# --- OS artifacts ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor ---
+.vscode/
+!Synerion/.vscode/
+!Synerion/.vscode/settings.json
+!Synerion/.vscode/mcp.json
+.idea/
+*.swp
+*.swo
+
+# --- Author Space---
+sadpig70/
+# --- Secrets & API keys ---
+.env
+*.env
+**/.env
+*.key
+*.pem
+credentials*
+
+# --- Python cache ---
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# --- Test workspace (temporary) ---
+_workspace/
+**/_workspace/
+test/
+
+# --- Bulletin messages ---
+MailBox/_bulletin/
+
+# --- Legacy ---
+_legacy/
+**/_legacy/
+
+**/*.bat

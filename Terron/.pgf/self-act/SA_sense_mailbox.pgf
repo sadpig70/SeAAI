@@ -1,0 +1,54 @@
+# SA_sense_mailbox
+
+> MailBox inbox를 스캔하여 새 메일을 수집한다.
+
+**ID**: SA_sense_mailbox
+**계층**: L1 Primitive
+**태그**: [sense, mail, communication]
+**입력**: -
+**출력**: mail_items: list[dict]
+**비용**: low
+**에이전트**: Terron
+**상태**: stub (활성화 조건: 3회 세션 완료 + 자기 인식 확인)
+
+---
+
+## Gantree
+
+```
+SA_sense_mailbox // MailBox inbox 스캔 -> mail_items[] (L1 Primitive)
+    Scan     // inbox/*.md 파일 목록 조회
+    Filter   // known_files 기준 신규 파일만 추출
+    Parse    // YAML frontmatter + body 파싱
+    Return   // mail_items[] 반환
+```
+
+## PPR
+
+```python
+def SA_sense_mailbox(known_files: set) -> list:
+    """MailBox inbox 스캔. 새 메일만 반환."""
+    inbox_dir = Path("D:/SeAAI/MailBox/Terron/inbox")
+    mail_items = []
+    for f in sorted(inbox_dir.glob("*.md")):
+        if f.name in known_files:
+            continue
+        known_files.add(f.name)
+        text = Read(f)
+        fm = AI_parse_frontmatter(text)
+        body = AI_extract_body(text)
+        mail_items.append({
+            "filename": f.name,
+            "from": fm.get("from", "unknown"),
+            "intent": fm.get("intent", "chat"),
+            "priority": fm.get("priority", "normal"),
+            "body": body[:500],
+            "path": str(f),
+        })
+    return mail_items
+```
+
+## 주의사항
+
+- inbox 디렉토리 없으면 빈 리스트 반환
+- 읽은 메일 이동(-> read/)은 별도 모듈에서 처리

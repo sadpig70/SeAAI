@@ -1,0 +1,17 @@
+{
+  "name": "seaai_audit_query",
+  "description": "Read AI_Desktop v2 audit records without exposing raw filesystem access.",
+  "script_path": "seaai_audit_query.py",
+  "interpreter": "python",
+  "required_permissions": ["read"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": { "type": "string", "enum": ["list_recent", "by_actor", "by_tool"] },
+      "actor": { "type": "string" },
+      "tool": { "type": "string" },
+      "limit": { "type": "integer" }
+    },
+    "required": ["action"]
+  }
+}

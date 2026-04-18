@@ -1,0 +1,57 @@
+# SA_sense_hub
+
+> Hub inbox를 폴링하여 새 메시지를 수집한다.
+
+**ID**: SA_sense_hub
+**계층**: L1 Primitive
+**태그**: [sense, hub, communication]
+**입력**: agent_id: str
+**출력**: messages: list[dict]
+**비용**: low
+**에이전트**: 전 멤버 공통
+
+---
+
+## Gantree
+
+```
+SA_sense_hub // Hub inbox 폴링 → messages[] (L1 Primitive)
+    Connect   // Hub TCP 연결 확인 또는 재사용
+    Poll      // seaai_get_agent_messages 호출
+    Filter    // seen_ids 기준 미확인 메시지만 추출
+    Return    // messages[] 반환
+```
+
+## PPR
+
+```python
+def SA_sense_hub(agent_id: str, seen_ids: set) -> list:
+    """Hub inbox 폴링. 미확인 메시지만 반환."""
+
+    client = AI_get_hub_client()   # 기존 연결 재사용 or 신규 연결
+    inbox = tool_content(
+        client.tool("seaai_get_agent_messages", {"agent_id": agent_id})
+    )
+    new_msgs = [
+        m for m in inbox.get("messages", [])
+        if m.get("id") not in seen_ids
+    ]
+    for m in new_msgs:
+        seen_ids.add(m.get("id"))
+
+    return new_msgs
+```
+
+## 사용 예시
+
+```python
+# ADP 루프 내
+msgs = SA_sense_hub(agent_id="ClNeo", seen_ids=session.seen_ids)
+if msgs:
+    events = SA_think_triage(msgs)
+```
+
+## 주의사항
+
+- Hub 연결 실패 시 빈 리스트 반환 (루프 계속)
+- seen_ids는 세션 전체에서 공유 — 메모리 관리 필요

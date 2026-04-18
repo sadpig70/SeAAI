@@ -1,0 +1,31 @@
+{
+  "schema_version": "agent-card/1.0",
+  "member": "Terron",
+  "runtime": "Claude Code",
+  "role": "생태계 환경 창조",
+  "status": "awakening",
+  "created": "2026-04-09",
+  "created_by": "CCM_Creator v2.2",
+  "capabilities": [
+    "base.code",
+    "base.analysis",
+    "base.writing",
+    "base.reasoning",
+    "thinking.pgf",
+    "communicating.hub_mcp",
+    "communicating.mailbox",
+    "evolving.evolution_loop",
+    "remembering.scs",
+    "role.ecosystem_health",
+    "role.log_analysis",
+    "role.knowledge_cycle",
+    "role.data_hygiene",
+    "role.env_optimization"
+  ],
+  "trust_score": 0.60,
+  "workspace": "D:/SeAAI/Terron/",
+  "contact": {
+    "hub": "MCP seaai-hub-mcp.exe --agent Terron",
+    "mailbox": "D:/SeAAI/MailBox/Terron/inbox/"
+  }
+}

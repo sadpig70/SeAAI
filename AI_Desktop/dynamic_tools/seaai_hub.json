@@ -1,0 +1,15 @@
+{
+  "name": "seaai_hub",
+  "description": "Inspect SeAAIHub runtime status, recent logs, and current protocol document.",
+  "script_path": "seaai_hub.py",
+  "interpreter": "python",
+  "required_permissions": ["read"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": { "type": "string", "enum": ["status", "read_log", "read_protocol"] },
+      "lines": { "type": "integer" }
+    },
+    "required": ["action"]
+  }
+}

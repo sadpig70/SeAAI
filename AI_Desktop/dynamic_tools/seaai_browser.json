@@ -1,0 +1,130 @@
+{
+  "name": "seaai_browser",
+  "description": "Safe shared browser gateway for SeAAI members. Includes BrowserSurfaceV3 phase1 compatibility actions while headless diagnostics remain popup-suppressed by default.",
+  "script_path": "seaai_browser.py",
+  "interpreter": "python",
+  "required_permissions": [
+    "read"
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "doctor",
+          "inspect",
+          "extract_title",
+          "screenshot",
+          "launch",
+          "list_sessions",
+          "close_session",
+          "status",
+          "start",
+          "stop",
+          "profiles",
+          "tabs",
+          "open",
+          "focus",
+          "navigate",
+          "snapshot",
+          "act",
+          "upload",
+          "dialog"
+        ]
+      },
+      "member": {
+        "type": "string",
+        "enum": [
+          "Aion",
+          "ClNeo",
+          "NAEL",
+          "Sevalon",
+          "Signalion",
+          "Synerion",
+          "Terron",
+          "Yeon"
+        ]
+      },
+      "url": {
+        "type": "string"
+      },
+      "session_id": {
+        "type": "string"
+      },
+      "target": {
+        "type": "string",
+        "enum": [
+          "host",
+          "sandbox",
+          "node",
+          "remote_cdp"
+        ]
+      },
+      "profile": {
+        "type": "string"
+      },
+      "tab_id": {
+        "type": "string"
+      },
+      "format": {
+        "type": "string",
+        "enum": [
+          "ai",
+          "aria"
+        ]
+      },
+      "ref_mode": {
+        "type": "string",
+        "enum": [
+          "role",
+          "aria"
+        ]
+      },
+      "timeout_sec": {
+        "type": "integer"
+      },
+      "width": {
+        "type": "integer"
+      },
+      "height": {
+        "type": "integer"
+      },
+      "allow_visible": {
+        "type": "boolean",
+        "description": "Visible browser launch opt-in. Requires SEAII_BROWSER_ALLOW_VISIBLE=1 in the host environment."
+      },
+      "command": {
+        "type": "string",
+        "description": "Browser act command placeholder. Phase1 currently returns a structured degraded response."
+      },
+      "ref": {
+        "type": "string",
+        "description": "Target ref placeholder for future snapshot-ref actions."
+      },
+      "text": {
+        "type": "string",
+        "description": "Input text placeholder for type/fill/dialog flows."
+      },
+      "upload_paths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Local file paths placeholder for upload flows."
+      },
+      "decision": {
+        "type": "string",
+        "enum": [
+          "accept",
+          "dismiss"
+        ],
+        "description": "Dialog decision placeholder for future dialog control."
+      }
+    },
+    "required": [
+      "action",
+      "member"
+    ]
+  }
+}

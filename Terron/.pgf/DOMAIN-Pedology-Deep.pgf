@@ -1,0 +1,180 @@
+# DOMAIN-Pedology-Deep.pgf
+# Terron 핵심 도메인 지식 — 토양학 심층 Gantree
+# 목적: Terron의 메타포 정밀도를 과학 수준으로 끌어올림
+# 생성: 2026-04-09
+
+```
+PEDOLOGY_DEEP [도메인 지식 — 토양학 심층]
+├─ 1_CLASSIFICATION [토양 분류 체계]
+│  ├─ 1.1_USDA [Soil Taxonomy — 6계층: Order→Suborder→Great Group→Subgroup→Family→Series]
+│  │  ├─ Gelisols     [영구동토 ≤2m, 고위도/고산, SOC 저장고 — ~1,672 Gt C 북극권]
+│  │  ├─ Histosols    [유기토 ≥40cm 유기층, 이탄지, 배수 불량]
+│  │  ├─ Spodosols    [침엽수림 산성토, E층(회백)+Bs층(Fe/Al 집적)]
+│  │  ├─ Andisols     [화산재 기원, 알로페인/이모골라이트, 높은 P 고정]
+│  │  ├─ Oxisols      [열대 극도 풍화, Fe/Al 산화물 우세, 낮은 CEC 2-4 meq/100g]
+│  │  ├─ Vertisols    [팽윤성 점토(스멕타이트 ≥30%), 건습 교대→gilgai 미지형]
+│  │  ├─ Aridisols    [건조지 <90일 연속수분, 석회각/석고층 발달]
+│  │  ├─ Ultisols     [아열대 풍화 진행, Bt층 점토집적, 염기포화도 <35%]
+│  │  ├─ Mollisols    [초원 흑토, mollic epipedon ≥25cm, 유기물 풍부, 세계 곡창]
+│  │  ├─ Alfisols     [온대 낙엽수림, Bt층, 염기포화도 ≥35%]
+│  │  ├─ Inceptisols  [약발달토, cambic B층, 세계 분포 가장 넓음]
+│  │  └─ Entisols     [미발달토, 층위 분화 없음, 충적/사구/암설]
+│  │
+│  └─ 1.2_WRB [World Reference Base 4th ed. 2022 — FAO/IUSS]
+│     ├─ 32 Reference Soil Groups (RSG) + 120+ qualifiers
+│     ├─ 2단계: RSG(1차 분류) + Principal/Supplementary Qualifiers(2차)
+│     ├─ 진단 기준: diagnostic horizons + properties + materials
+│     └─ USDA 대응: Ferralsols≈Oxisols, Chernozems≈Mollisols, Luvisols≈Alfisols 등
+│
+├─ 2_PHYSICS [토양 물리]
+│  ├─ 2.1_TEXTURE [입경 분포 — USDA 삼각도]
+│  │  ├─ Sand    [2.0–0.05mm, 석영 우세, 낮은 비표면적]
+│  │  ├─ Silt    [0.05–0.002mm, 풍적/빙하 기원 多]
+│  │  ├─ Clay    [<0.002mm, 콜로이드 영역, CEC의 주 기여자]
+│  │  └─ 12 textural classes [사양토(sandy loam)→식양토(clay loam)→식토(clay)]
+│  │
+│  ├─ 2.2_POROSITY [공극 구조]
+│  │  ├─ 총공극률: 사토 35-50%, 양토 45-55%, 점토 50-65%
+│  │  ├─ 매크로공극 [>75μm, 중력배수·통기]
+│  │  ├─ 메소공극  [30-75μm, 모관수 보유]
+│  │  └─ 마이크로공극 [<30μm, 식물 비가용수]
+│  │
+│  ├─ 2.3_WATER_RETENTION [수분 보유 곡선 — pF]
+│  │  ├─ 포화     [pF 0, 0 kPa, 전 공극 충수]
+│  │  ├─ 포장용수량 [pF 2.5, -33 kPa] → 사토 15-25%, 양토 35-45%, 점토 45-55% (v/v)
+│  │  ├─ 영구위조점 [pF 4.2, -1500 kPa] → 사토 5-10%, 양토 10-15%, 점토 15-20%
+│  │  ├─ 유효수분(AWC) = FC - PWP → 사토 ~10%, 양토 ~20%, 점토 ~15%
+│  │  └─ van Genuchten 모델: θ(h) = θr + (θs-θr)/[1+(α|h|)^n]^m
+│  │
+│  └─ 2.4_HYDRAULIC [투수성]
+│     ├─ Ksat: 사토 10⁻³–10⁻⁵ m/s, 양토 10⁻⁵–10⁻⁶, 점토 10⁻⁷–10⁻⁹
+│     ├─ Darcy 법칙: q = -K(θ)·∇H
+│     └─ 우선류(preferential flow): 균열·생물공(지렁이 갱도)·뿌리흔
+│
+├─ 3_CHEMISTRY [토양 화학]
+│  ├─ 3.1_CEC [양이온교환용량 — meq/100g = cmol(+)/kg]
+│  │  ├─ 카올리나이트   [1:1 점토, CEC 3-15, 낮은 팽윤, 열대 풍화토]
+│  │  ├─ 일라이트       [2:1 비팽윤, CEC 20-40, K⁺ 층간 고정]
+│  │  ├─ 스멕타이트     [2:1 팽윤, CEC 70-130, 몬모릴로나이트 대표]
+│  │  ├─ 버미큘라이트   [2:1, CEC 100-150, 최고 CEC 점토광물]
+│  │  └─ 유기물(부식)   [CEC 200-400, pH 의존성 하전]
+│  │
+│  ├─ 3.2_pH_BUFFER [pH 완충 체계]
+│  │  ├─ 탄산염 완충   [pH 6.5-8.5, CaCO₃ 용해/침전]
+│  │  ├─ 양이온교환 완충 [pH 4.5-6.5, 염기 Ca²⁺/Mg²⁺ 탈착]
+│  │  ├─ Al 완충       [pH 3.5-4.5, Al(OH)₃ 용해 → Al³⁺ 독성]
+│  │  └─ Fe 완충       [pH <3.5, Fe(OH)₃ 용해, 산성황산염토]
+│  │
+│  └─ 3.3_HUMIC [부식물질]
+│     ├─ 부식산(Humic acid)  [알칼리 가용/산 불용, 고분자량, 갈~흑색, 금속 킬레이트]
+│     ├─ 풀브산(Fulvic acid) [산·알칼리 모두 가용, 저분자량, 황~갈색, 높은 CEC]
+│     ├─ 휴민(Humin)         [산·알칼리 불용, 점토 강결합, 최장 체류시간]
+│     └─ 현대적 재해석: MAOM(mineral-associated OM) vs POM(particulate OM) 프레임워크
+│
+├─ 4_MICROBIAL_ECOLOGY [미생물 생태학 심층]
+│  ├─ 4.1_NITROGEN_CYCLE [질소 순환 — 전 경로]
+│  │  ├─ N₂ 고정 [BNF: 생물학적 100-300 Tg N/yr 전지구]
+│  │  │  ├─ 공생: Rhizobium-콩과(100-300 kg N/ha/yr), Frankia-비콩과
+│  │  │  ├─ 자유생활: Azotobacter(호기), Clostridium(혐기), Cyanobacteria
+│  │  │  └─ nitrogenase: Mo-Fe 효소, O₂ 비활성화 → 혐기 보호 필수
+│  │  │
+│  │  ├─ 암모니아화 [유기N → NH₄⁺, 이화작용, 광범위 미생물]
+│  │  │  ├─ 단백질분해효소 → 아미노산 → 탈아미노 → NH₄⁺
+│  │  │  └─ C:N >25 → N 부동화(immobilization), C:N <25 → 무기화(mineralization)
+│  │  │
+│  │  ├─ 질산화 [NH₄⁺ → NO₂⁻ → NO₃⁻, 호기성, 화학독립영양]
+│  │  │  ├─ Step 1: NH₄⁺ → NO₂⁻ (Nitrosomonas, Nitrosospira, AOA Thaumarchaeota)
+│  │  │  ├─ Step 2: NO₂⁻ → NO₃⁻ (Nitrobacter, Nitrospira)
+│  │  │  ├─ Comammox: NH₄⁺ → NO₃⁻ 단일 유기체(Nitrospira inopinata, 2015 발견)
+│  │  │  ├─ 율속: Step 1 (암모니아 산화가 병목)
+│  │  │  └─ pH 최적: 6.5-8.0, 산성토에서는 AOA 우세
+│  │  │
+│  │  ├─ 탈질 [NO₃⁻ → NO₂⁻ → NO → N₂O → N₂, 혐기성, 이화작용]
+│  │  │  ├─ 주요 균: Pseudomonas, Paracoccus, Bacillus
+│  │  │  ├─ N₂O:N₂ 비율: pH↓·O₂↑ → N₂O 비율 증가 (온실가스!)
+│  │  │  └─ 전지구 N₂O 배출: ~6.7 Tg N/yr (토양이 최대 단일 소스)
+│  │  │
+│  │  └─ Anammox [NH₄⁺ + NO₂⁻ → N₂ + 2H₂O, 혐기성 암모늄 산화]
+│  │     ├─ Candidatus Brocadia, Kuenenia, Scalindua
+│  │     └─ 습지/수처리에서 최대 50% N 제거 기여
+│  │
+│  ├─ 4.2_MYCORRHIZA [균근 공생 — 식물 80%+ 종이 의존]
+│  │  ├─ AM (Arbuscular Mycorrhiza) [Glomeromycota]
+│  │  │  ├─ 식물 종의 ~72% 공생, 초본·작물·열대수 우세
+│  │  │  ├─ 세포 내 침입 → arbuscule(수상체)에서 P↔C 교환
+│  │  │  ├─ 외부 균사 네트워크: 토양 P 흡수 범위 100배 확장
+│  │  │  └─ P 외: Zn, Cu 흡수 + 병원체 방어 + 토양 단립 안정
+│  │  │
+│  │  ├─ ECM (Ectomycorrhiza)
+│  │  │  ├─ 식물 종의 ~2%, 그러나 온대/아한대 산림 우점종(참나무, 소나무, 자작)
+│  │  │  ├─ Hartig net(세포간 네트워크) + mantle(균초), 세포 내 비침입
+│  │  │  ├─ 균종: Amanita, Boletus, Russula, Cortinarius 등 ~20,000종
+│  │  │  ├─ 유기N 직접 분해 → 숙주에 N 공급 (AM은 못함)
+│  │  │  └─ Gadgil effect: ECM이 부식 분해 억제 → C 격리 증가
+│  │  │
+│  │  └─ CMN (Common Mycorrhizal Network) — "Wood Wide Web"
+│  │     ├─ 개체 간 C·N·P·신호물질 전달
+│  │     ├─ 모수→실생 탄소 전달 (자원 보조)
+│  │     └─ 스트레스 신호 전파 → 이웃 식물 방어 반응 유도
+│  │
+│  └─ 4.3_ARCHAEA_PROTISTS [고세균 + 원생동물]
+│     ├─ 고세균: 토양 g당 10⁶-10⁸, Thaumarchaeota(AOA) 질산화 핵심
+│     ├─ 원생동물: 아메바·편모충·섬모충, 10³-10⁶/g
+│     └─ 미생물 루프: 원생동물 세균 포식 → N 방출("microbial loop") → 식물 가용 N↑
+│
+├─ 5_CARBON [토양 탄소 — 지구 최대 육상 C 풀]
+│  ├─ 5.1_POOLS [탄소 풀 — 수치]
+│  │  ├─ 전지구 SOC 상위 1m: ~1,500 Gt C (범위 1,460-2,400 Gt)
+│  │  ├─ 상위 3m: ~2,300 Gt C (북극 영구동토 포함)
+│  │  ├─ 비교: 대기 CO₂ ~870 Gt C, 식물 바이오매스 ~450 Gt C
+│  │  └─ 토양 = 대기+식물 합산보다 큰 C 저장고
+│  │
+│  ├─ 5.2_FRACTIONS [탄소 분획]
+│  │  ├─ POM (Particulate OM) [>53μm, 식별 가능 잔체, 체류 ~23yr 평균]
+│  │  ├─ MAOM (Mineral-Associated OM) [<53μm, 미생물 가공→광물 흡착, 체류 ~129yr]
+│  │  ├─ DOC (Dissolved OC) [<0.45μm, 이동성, 하류 생태계 연결]
+│  │  └─ 흑색탄소(Black C/PyOM) [화재 잔류, 체류 100-10,000yr]
+│  │
+│  └─ 5.3_CLIMATE_FEEDBACK [기후 피드백]
+│     ├─ 온난화 → 미생물 호흡 가속 → SOC 분해↑ → CO₂/CH₄ 배출 → 양성 피드백
+│     ├─ Q₁₀ ≈ 2.0 (온도 10°C↑ → 분해 속도 2배)
+│     ├─ 영구동토 해동: ~1,460-1,600 Gt C 잠재 방출 위험
+│     ├─ 4 per 1000: 연 0.4% SOC 증가 → 인류 연간 CO₂ 배출 상쇄 (2015 파리)
+│     └─ 관리: 피복작물, 무경운, 바이오차(biochar), 혼농임업
+│
+└─ 6_FAUNA [토양 동물 — 크기별 분류]
+   ├─ 6.1_MICROFAUNA [<0.2mm]
+   │  ├─ 선충: 10⁵-10⁶/m², 세균식·균식·식물기생·포식성
+   │  ├─ 원생동물: 미생물 루프 핵심 (4.3 참조)
+   │  └─ 윤충(로티퍼), 완보동물(tardigrade): 극한 내성
+   │
+   ├─ 6.2_MESOFAUNA [0.2-2mm]
+   │  ├─ 톡토기(Collembola): 균사 포식, 10³-10⁵/m², 토양 구조 유지
+   │  ├─ 응애(Acari): 절지동물 최다, 균식·포식·기생
+   │  └─ 선충(일부 대형), 딱정벌레 유충
+   │
+   └─ 6.3_MACROFAUNA [>2mm — 생태계 엔지니어]
+      ├─ 지렁이 [최핵심]
+      │  ├─ 밀도: 온대 초원 100-500 개체/m²
+      │  ├─ 캐스팅: 40-250 t/ha/yr 표면 배출
+      │  ├─ 갱도: 400-500 m 갱도/m² (초원), 투수성·통기 20-100% 증가
+      │  ├─ 유형: epigeic(표층분해), endogeic(토양식), anecic(수직갱도)
+      │  └─ 다윈(1881): "지렁이가 세계사에서 가장 중요한 동물일 수 있다"
+      │
+      ├─ 흰개미(Termites): 열대 10,000/m², 리그닌 분해, 토양 구조 재편
+      ├─ 개미(Ants): 토양 교란·통기, 종자 분산
+      └─ 기타: 딱정벌레, 지네, 노래기, 민달팽이
+```
+
+## POLICY
+- 이 Gantree는 Terron의 도메인 지식 참조용이다 — 실행 노드가 아님
+- Terron이 메타포를 사용할 때 이 수치/구조를 근거로 삼는다
+- 진화 시 토양학 원리를 SeAAI 생태계 엔진에 매핑하는 데 활용
+
+## SOURCES
+- USDA NRCS: https://www.nrcs.usda.gov/resources/education-and-teaching-materials/the-twelve-orders-of-soil-taxonomy
+- WRB 4th ed. 2022: https://obrl-soil.github.io/wrbsoil2022/
+- Soil carbon Wikipedia: https://en.wikipedia.org/wiki/Soil_carbon
+- Nature Comms (MAOM/POM turnover): https://www.nature.com/articles/s41467-024-49743-7
+- Mycorrhiza Wikipedia: https://en.wikipedia.org/wiki/Mycorrhiza
+- FAO Soil Macrofauna: https://www.fao.org/4/i0211e/i0211e.pdf

@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "micro-mcp-express": {
+      "type": "http",
+      "url": "http://127.0.0.1:9902/mcp"
+    }
+  },
+  "permissions": {
+    "micro-mcp-express": {
+      "tools/call": "auto",
+      "tools/list": "auto"
+    }
+  },
+  "autoApprove": [
+    "micro-mcp-express"
+  ]
+}

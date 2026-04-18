@@ -1,0 +1,38 @@
+# SA_sense_pgtp — PGTP CognitiveUnit 기반 Hub 소통
+
+> L1 Primitive. Hub에 PGTP 프로토콜로 접속하여 CognitiveUnit을 송수신한다.
+> 기존 SA_sense_hub의 상위 호환.
+>
+> 태그: [sense, hub, pgtp, protocol]
+> 비용: low
+> 입력: agent_id: str, room: str
+> 출력: received_cus: list[CognitiveUnit]
+
+```ppr
+def SA_sense_pgtp(agent_id, room="seaai-general"):
+    """
+    PGTP 프로토콜로 Hub 접속.
+    CognitiveUnit 기반 — intent 라우팅, context DAG, accept 조건.
+    """
+    session = PGTPSession(agent_id, room=room)
+
+    # 수신
+    cus = session.recv()
+    # CognitiveUnit{pgtp, id, sender, intent, target, payload, context, accept, status}
+
+    # 발신 편의 함수
+    session.propose(payload, accept)       # 아이디어 제안
+    session.react(target_id, stance)       # 반응 (agree/disagree)
+    session.query(target, params)          # 정보 요청
+    session.result(ref_id, payload)        # 결과 반환
+    session.forward(target_agent, cu_id)   # 다른 AI에게 위임
+    session.pipeline(steps, payload)       # 순차 처리 체인
+
+    return cus
+    # acceptance: PGTP v1.0 CU 무결 전송, context DAG 유지
+```
+
+## 의존성
+- `SeAAIHub/tools/pgtp.py` (PGTPSession, CognitiveUnit)
+- `SeAAIHub/tools/hub-adp.py` (전송 계층)
+- `SeAAIHub/tools/seaai_hub_client.py` (TCP 라이브러리)

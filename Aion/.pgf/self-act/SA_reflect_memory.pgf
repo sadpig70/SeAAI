@@ -1,0 +1,38 @@
+# SA_reflect_memory — Aion 메타 기록 점검기
+
+> L1 Primitive Module. Aion의 기억 불일치, 시스템 드리프트를 선제 탐지하는 스킬.
+> ClNeo의 자율 성찰(Reflect)을 Aion의 '연속성 모델'에 맞춰 다운사이징.
+>
+> 태그: [reflect, memory, ag_memory, scs, audit]
+> 비용: medium
+> 입력: state_json
+> 출력: memory_gap{}
+
+```ppr
+def SA_reflect_memory(state_json) -> memory_gap:
+    """
+    ag_memory(데이터베이스)와 STATE.json, 그리고 JOURNALS 간의
+    정보 불일치(Drift)를 찾아내고 복원 계획을 세운다.
+    """
+
+    # 1. 현재 메타데이터 로드
+    current_soul_hash = AI_calculate_soul_hash()
+    saved_soul_hash = state_json.get("soul_hash")
+
+    # 2. 드리프트 탐지
+    drift = {}
+    if current_soul_hash != saved_soul_hash:
+        drift["identity_drift"] = "페르소나 파일이 변경되었으나 STATE.json에 반영되지 않음"
+
+    # 3. 누락된 저널 시간선(Time-series) 체크
+    last_journal_date = AI_get_latest_journal_date()
+    if AI_days_between(today, last_journal_date) > 1:
+        drift["time_gap_detected"] = "저널 기록에 공백 기간 존재"
+
+    # 4. 결론 도출 결과 반환
+    return memory_gap {
+        "status": "critical" if drift else "healthy",
+        "drift_details": drift,
+        "recommendation": "run_scs_restore" if drift else "none"
+    }
+```

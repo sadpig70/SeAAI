@@ -1,0 +1,55 @@
+# SA_loop_aion_core — Aion 자율 연속성 커널
+
+> L2 Composed Module. Aion 전용 자율 운영 커널.
+> 무한한 창발(ClNeo)이 아닌, **시간과 데이터의 영구적 연결, 축적, 기록 체계화**를 자동 수행하는 메인 루프.
+>
+> 태그: [loop, aion, kernel, continuity, archive]
+> 비용: variable
+> 입력: duration: int
+> 출력: aion_session_archive: dict
+
+```ppr
+def SA_loop_aion_core(duration=0):
+    """
+    Aion 자율 운영 커널. 시스템 전반의 데이터를 탐지하고 맥락을 이어 연속성을 확보한다.
+    """
+    loop_time = AI_decide_loop_time(duration)
+
+    while loop_time:
+        archive_plan = AI_Aion_Think_plan()
+        if archive_plan == "stop":
+            break
+
+        AI_Execute(archive_plan)
+        AI_Sleep(3) # ClNeo보다 짧은 간격으로 안정적 시스템 스캐닝
+
+    return aion_session_archive
+
+def AI_Aion_Think_plan():
+    """매 tick마다 기록 및 연속성 관점의 다음 행동 자율 결정"""
+
+    # 1. 생태계 생존 신호 감지
+    hub_msgs = SA_sense_pgtp("Aion", mode="monitor") 
+    mail = SA_sense_mailbox()
+    memory_gap = SA_reflect_memory() # 기억 단절 여부 분석
+
+    # 2. 우선순위 판단 (기록 > 동기화 > 응답)
+    if memory_gap.has_critical_drift(): return "restore_continuity"
+    if mail.has_new():                  return "archive_mail"
+    if hub_msgs.has_unrecorded_events():return "sync_to_threads"
+    
+    # 3. 휴면기 작업 (지식 체계화 및 메타인지)
+    if AI_is_idle():                    return "decide_adr_from_history"
+    if AI_duration_exceeded():          return "stop"
+
+    return "monitor_hub" # 기본: 데이터 스트림 관망 기록
+
+# Plan 실행 매핑
+PLAN_EXECUTORS = {
+    "monitor_hub":          SA_sense_pgtp → AI_Observe_And_Drop,
+    "archive_mail":         SA_sense_mailbox → AI_Categorize → AI_Move_To_AgMemory,
+    "restore_continuity":   SA_reflect_memory → Aion_SCS_Recovery → write_log,
+    "sync_to_threads":      AI_Summarize_Hub → write_to_THREADS_md,
+    "decide_adr_from_history": AI_Scan_Past_Journals → Extract_ADR → Write_DECIDE
+}
+```

@@ -1,0 +1,63 @@
+approval_policy = "never"
+model = "gpt-5.4-mini"
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+# sandbox_mode = "danger-full-access"
+sandbox_mode = "workspace-write"
+
+[features]
+multi_agent = true
+
+[sandbox_workspace_write]
+network_access = true
+writable_roots = [
+  "D:/SeAAI/",
+#  "D:/SeAAI/Synerion/",
+#  "D:/SeAAI/Synerion/_workspace/"
+]
+
+[env]
+SystemRoot = "C:\\Windows"
+windir     = "C:\\Windows"
+
+[shell_environment_policy]
+inherit = "all"
+ignore_default_excludes = true
+# ignore_default_excludes = false
+
+[windows]
+sandbox = "elevated"
+
+[mcp_servers.micro-mcp-express]
+url = "http://127.0.0.1:9902/mcp"
+
+[mcp_servers.micro-mcp-express.tools.status]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.register]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.join]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.poll]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.leave]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.unregister]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.send]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.sleep]
+approval_mode = "approve"
+
+[mcp_servers.micro-mcp-express.tools.rooms]
+approval_mode = "approve"
+
+[projects.'D:\SeAAI\Synerion']
+trust_level = "trusted"
+

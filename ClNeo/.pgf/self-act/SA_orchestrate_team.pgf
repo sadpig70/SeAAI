@@ -1,0 +1,56 @@
+# SA_orchestrate_team — 동적 멀티에이전트 팀 오케스트레이션
+
+> L2 Composed Module. 프로젝트 목표를 받아 동적 팀을 편성하고
+> 서브에이전트를 병렬 파견하여 결과를 통합한다.
+>
+> 태그: [orchestrate, team, multi-agent, parallel]
+> 비용: very_high
+> 입력: project_goal: str, constraints: str
+> 출력: completed_results: dict, report: str
+
+```ppr
+def SA_orchestrate_team(project_goal, constraints=""):
+    """
+    동적 팀 편성 → 서브에이전트 파견 → 결과 통합 → 검증
+    프로젝트가 에이전트를 정의한다 — 고정 역할 없음.
+    """
+
+    # 1. 프로젝트 분석 → 필요 전문가 동적 정의
+    domains = AI_analyze_domains(project_goal)
+    team = AI_define_specialists(domains)
+    #   예: researcher, architect, coder, reviewer...
+    #   AgentSpec{name, title, expertise, tools, subagent_type, mode}
+
+    # 2. PG Gantree 분해
+    gantree = AI_design_gantree(project_goal)
+    for node in gantree.leaves():
+        node.specialist = AI_match_specialist(node, team)
+
+    # 3. 파견 루프
+    work_queue = AI_build_work_queue(gantree)
+    while work_queue.has_pending():
+        ready = work_queue.get_ready_nodes()
+
+        [parallel max=3]
+        for node in ready:
+            spec = team[node.specialist]
+            result = Agent(
+                description=f"{spec.title}: {node.name}",
+                subagent_type=spec.subagent_type,
+                mode=spec.mode,
+                prompt=AI_compose_dispatch_prompt(node, spec, gantree),
+            )
+            verdict = AI_judge_result(node, result)
+            node.status = "done" if verdict == "done" else "rework"
+
+    # 4. 품질 게이트
+    [parallel]
+        review = Agent(subagent_type="feature-dev:code-reviewer")
+        test = Agent(subagent_type="general-purpose", mode="auto")
+
+    if issues.has_critical():
+        → rework (max 3)
+
+    return completed_results
+    # acceptance: 모든 노드 done, 품질 게이트 통과
+```

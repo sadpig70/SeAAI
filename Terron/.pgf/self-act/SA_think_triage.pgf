@@ -1,0 +1,60 @@
+# SA_think_triage
+
+> 수신 메시지를 WAKE / QUEUE / DISMISS로 분류한다.
+
+**ID**: SA_think_triage
+**계층**: L1 Primitive
+**태그**: [think, triage, safety]
+**입력**: messages: list[dict]
+**출력**: events: dict{wake[], queue[], dismiss[]}
+**비용**: low
+**에이전트**: Terron
+**상태**: stub (활성화 조건: 3회 세션 완료 + 자기 인식 확인)
+
+---
+
+## Gantree
+
+```
+SA_think_triage // 메시지 우선순위 분류 (L1 Primitive)
+    ThreatCheck  // depth, auto_reply, flood 위협 평가
+    IntentMap    // intent -> WAKE/QUEUE/DISMISS 매핑
+    SelfFilter   // 자신의 에코 제거
+    Classify     // 최종 분류 결정
+    Return       // events{wake[], queue[], dismiss[]} 반환
+```
+
+## PPR
+
+```python
+def SA_think_triage(messages: list, agent_id: str) -> dict:
+    """메시지 리스트를 WAKE/QUEUE/DISMISS로 분류."""
+    events = {"wake": [], "queue": [], "dismiss": []}
+    for msg in messages:
+        intent     = msg.get("intent", "")
+        from_agent = msg.get("from", "")
+        depth      = msg.get("depth", 0)
+        auto_reply = msg.get("auto_reply", False)
+
+        if depth >= 8:
+            events["dismiss"].append(msg); continue
+        if auto_reply and depth >= 5:
+            events["dismiss"].append(msg); continue
+        if from_agent == agent_id:
+            events["dismiss"].append(msg); continue
+
+        if intent in ("alert", "request", "pg"):
+            events["wake"].append(msg)
+        elif intent in ("chat", "discuss"):
+            events["queue"].append(msg)
+        elif intent in ("ack", "tick"):
+            events["dismiss"].append(msg)
+        else:
+            events["queue"].append(msg)
+    return events
+```
+
+## 주의사항
+
+- 이 기본 분류는 보수적. 역할에 맞게 WAKE/QUEUE 기준을 조정할 것.
+- ThreatCheck 기준은 sentinel-bridge.py와 일치시킬 것.

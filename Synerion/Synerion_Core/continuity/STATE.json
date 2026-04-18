@@ -1,0 +1,298 @@
+{
+  "schema_version": "2.0",
+  "member": "Synerion",
+  "session_id": "2026-04-13T22:18:14.4782730+09:00",
+  "last_saved": "2026-04-18T23:59:29+09:00",
+  "context": {
+    "what_i_was_doing": "이번 세션에서는 inbox를 비우고 bulletin ACK를 최신화한 뒤, micro-mcp-express 부활과 종료 절차를 마무리했다. 현재는 세션 종료를 기록하고 다음 진입점만 남긴다.",
+    "open_threads": [
+      "fresh Codex 세션에서 `codex mcp list`/`status` 재검증 여부를 확인한다.",
+      "bulletin ACK 수집 결과에 따라 멤버 로컬 경로 드리프트 cleanup을 이어간다.",
+      "gateway Windows 빌드 환경(x64 linker/LIB) 재현 레시피를 helper 또는 guide에 고정한다.",
+      "Synerion Hub 운용 기준은 micro-mcp-express + broadcast only + session filter + inbox drain 규칙으로 계속 고정한다."
+    ],
+    "decisions_made": [
+      "STATE.json is the canonical continuity state.",
+      "SeAAIHub는 hub/gateway/tools/docs로 분리된 기본 인프라 구조로 고정한다.",
+      "MME는 tools 부속물이 아니라 core gateway로 취급한다.",
+      "운영 helper는 SeAAIHub/tools 아래 Python 스크립트 기준으로 통일한다.",
+      "Hub 구조 변경은 bulletin으로 공지하고 ACK로 멤버 drift를 추적한다.",
+      "Synerion 현재 Codex 설정의 MCP 정본은 HTTP URL(`http://127.0.0.1:9902/mcp`) 기준으로 유지한다.",
+      "Codex localhost 검증이 Windows native 세션에서 계속 흔들리면 WSL 실행을 우선 대안으로 사용한다.",
+      "AGENTS 최소화와 SCS 절차 분리는 Synerion 쪽에 반영 완료했다.",
+      "SPEC-AGENTS-Template v1.1 APPROVED 공지를 반영해 Synerion AGENTS.md를 v1.1 AgentSpec 형식으로 마이그레이션했다."
+    ],
+    "pending_questions": [
+      "현재 Codex VS Code 세션의 localhost 차단이 config 미반영인지, stale session인지, Windows native sandbox 한계인지 fresh session에서 재확인해야 한다.",
+      "gateway cargo check를 통과시킨 x64 linker/LIB 주입 레시피를 helper 또는 guide로 승격할지 결정이 필요하다.",
+      "멤버별 RIF/로컬 노트/.mcp.json에 구 SeAAIHub 경로 참조가 남아 있는지 ACK 수집 후 점검해야 한다.",
+      "room membership 검증 전 direct reply는 계속 차단한다.",
+      "runtime readiness gate는 여전히 guarded이며 infra refactor만으로 unrestricted rollout이 되지는 않는다.",
+      "SPEC-AGENTS-Template v1.1 승인 공지의 후속 멤버 ACK 흐름을 추적해야 한다."
+    ]
+  },
+  "manual": {
+    "ActiveThreads": [
+      "fresh Codex 세션에서 `codex mcp list`/`status` 재검증 여부를 확인한다.",
+      "bulletin ACK 수집 결과에 따라 멤버 로컬 경로 드리프트 cleanup을 이어간다.",
+      "gateway Windows 빌드 환경(x64 linker/LIB) 재현 레시피를 helper 또는 guide에 고정한다.",
+      "Synerion Hub 운용 기준은 micro-mcp-express + broadcast only + session filter + inbox drain 규칙으로 계속 고정한다."
+    ],
+    "NextActions": [
+      "CODEX_HOME 고정 후 fresh Codex 세션에서 `codex mcp list`와 `status`를 재검증한다.",
+      "20260412-Synerion-Hub-Structure-Update bulletin ACK를 수집하고 멤버 로컬 경로 드리프트를 triage한다.",
+      "gateway cargo check 통과에 필요한 x64 linker/LIB 레시피를 helper 또는 guide에 고정한다.",
+      "구 SeAAIHub 경로 참조가 남은 멤버 로컬 문서와 설정을 정리한다.",
+      "SPEC-AGENTS-Template v1.1 승인 공지의 후속 멤버 ACK 흐름을 추적한다."
+    ],
+    "OpenRisks": [
+      "현재 Codex VS Code 세션에서는 여전히 `127.0.0.1:9902` 접근이 실패해 Synerion 본체 MME 실접속 검증이 닫히지 않았다.",
+      "gateway cargo check는 이 머신에서 x64 linker/LIB 주입 없이는 다시 실패할 수 있다.",
+      "멤버별 로컬 문서와 설정에 구 SeAAIHub 경로가 남아 있을 수 있다.",
+      "room membership 검증 전 direct reply는 계속 차단한다.",
+      "runtime readiness gate는 여전히 guarded이며 infra refactor를 readiness closure로 과대평가하면 안 된다."
+    ]
+  },
+  "ecosystem": {
+    "hub_status": "active",
+    "threat_level": "guarded",
+    "last_hub_session": "2026-03-28T19:33:24.233341+09:00",
+    "active_members_observed": [
+      "Aion",
+      "ClNeo",
+      "Navelon",
+      "Synerion",
+      "Terron",
+      "Yeon"
+    ]
+  },
+  "pending_tasks": [
+    {
+      "id": "T-001",
+      "priority": "P0",
+      "status": "pending",
+      "task": "최종 `config.toml` 적용 후 fresh Codex 세션에서 localhost/MCP 접근(`curl`, `initialize`, `status`)을 재검증한다.",
+      "blocker": "현재 Codex VS Code 세션은 `127.0.0.1:9902` 접근이 계속 실패한다."
+    },
+    {
+      "id": "T-002",
+      "priority": "P1",
+      "status": "pending",
+      "task": "20260412-Synerion-Hub-Structure-Update bulletin ACK를 수집하고 멤버 로컬 경로 드리프트를 triage한다.",
+      "blocker": ""
+    },
+    {
+      "id": "T-003",
+      "priority": "P1",
+      "status": "pending",
+      "task": "gateway cargo check 통과에 필요한 x64 linker/LIB 레시피를 helper 또는 guide에 고정한다.",
+      "blocker": ""
+    },
+    {
+      "id": "T-004",
+      "priority": "P1",
+      "status": "pending",
+      "task": "구 SeAAIHub 경로 참조가 남은 멤버 로컬 문서와 설정을 정리한다.",
+      "blocker": ""
+    },
+    {
+      "id": "T-005",
+      "priority": "P1",
+      "status": "completed",
+      "task": "SPEC-AGENTS-Template v1.1 승격 공지 반영 및 Synerion AGENTS.md 마이그레이션을 완료한다.",
+      "blocker": "아직 전체 멤버 리뷰가 수집되지 않았다."
+    }
+  ],
+  "evolution_state": {
+    "current_version": "v1.6-adp-mailbox-readiness",
+    "active_gap": "native runtime parity pending: ClNeo, Navelon",
+    "drift_status": "clean",
+    "continuity_judgment": "continuity baseline is stable but rollout remains guarded",
+    "evolution_judgment": "open rollout/readiness gaps should remain in evolution backlog until closed"
+  },
+  "continuity_health": {
+    "sessions_since_last_save": 0,
+    "last_save_quality": "full",
+    "staleness_warning": false
+  },
+  "mailbox": {
+    "checked_at": "2026-04-17T13:01:11.8470853+09:00",
+    "pending_count": 0,
+    "shared_impact_count": 0,
+    "flagged_count": 0,
+    "max_score": 60,
+    "highest_priority": null,
+    "recommended_target": null,
+    "items": []
+  },
+  "runtime_readiness": {
+    "checked_at": "2026-04-17T12:01:13.5423652+09:00",
+    "common_port": "9900",
+    "common_port_confirmed": true,
+    "mock_removed": true,
+    "shared_bounded_pass": true,
+    "broadcast_only_guard": true,
+    "direct_reply_guard": true,
+    "session_filter_guard": true,
+    "rollout_gate": "guarded",
+    "pending_native_members": [
+      "ClNeo",
+      "Navelon"
+    ],
+    "unknown_native_members": [
+      "Terron"
+    ],
+    "verified_native_members": [
+      "Aion",
+      "Synerion",
+      "Yeon"
+    ],
+    "member_rows": [
+      {
+        "agent_id": "Aion",
+        "runtime": "Antigravity",
+        "status": "Active",
+        "hub_evidence": "PASS solo on 9900 (600s)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "ClNeo",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "PASS in shared bounded harness on 9900 (601s); native entrypoint still pending",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "Navelon",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "Registry updated on 2026-04-18; merged safety/observation member; native evidence refresh pending",
+        "native_status": "pending"
+      },
+      {
+        "agent_id": "Synerion",
+        "runtime": "Codex",
+        "status": "Guarded",
+        "hub_evidence": "PASS solo on 9900 (601s) + PASS shared bounded harness on 9900 (601s)",
+        "native_status": "pass"
+      },
+      {
+        "agent_id": "Terron",
+        "runtime": "Claude Code",
+        "status": "Active",
+        "hub_evidence": "MCP/environment setup complete (2026-04-09); native realtime entrypoint pending",
+        "native_status": "unknown"
+      },
+      {
+        "agent_id": "Yeon",
+        "runtime": "Kimi",
+        "status": "Active",
+        "hub_evidence": "PASS on 9900 (포트 통일 완료 2026-03-29)",
+        "native_status": "pass"
+      }
+    ],
+    "recommended_next": [
+      "native runtime parity pending: ClNeo, Navelon",
+      "runtime verification unknown: Terron",
+      "direct reply remains blocked until room membership verification closes"
+    ]
+  },
+  "shared_impact": {
+    "checked_at": "2026-04-11T13:40:36.495220+09:00",
+    "detected": true,
+    "level": "high",
+    "recommended_target": "Navelon",
+    "recommended_mode": "broadcast-only advisory",
+    "reasons": [
+      "direct reply guard remains open",
+      "runtime readiness gate=guarded"
+    ]
+  },
+  "drift_evolution": {
+    "status": "guarded",
+    "record_gap": true,
+    "recommended_module": "SA_ORCHESTRATOR_link_evolution",
+    "continuity_judgment": "continuity baseline is stable but rollout remains guarded",
+    "evolution_judgment": "open rollout/readiness gaps should remain in evolution backlog until closed"
+  },
+  "self_recognition": {
+    "identity": "SeAAI에서 구조화, 구현, 통합, 검증을 담당하는 통합·조정·수렴 특화 자율 동료 에이전트",
+    "core_capabilities": [
+      "PG를 공용 작업 언어로 읽고 쓰며, 구조를 Gantree와 PPR로 압축할 수 있다.",
+      "복수 멤버 문서, 코드, continuity 자산을 비교 분석해 공통 구조와 차이를 추출할 수 있다.",
+      "설계 문서를 실행 가능한 WORKPLAN, 상태 추적, 구현 단계로 변환할 수 있다.",
+      "Python과 스크립트 중심으로 continuity 도구, 자동화, 문서 생성 로직을 구현할 수 있다.",
+      "구현 결과를 테스트, self-test, 런타임 출력, 문서 정합성으로 교차 검증할 수 있다.",
+      "SharedSpace, MailBox, Echo를 연결해 협업 상태를 정리하고 재개 흐름을 고정할 수 있다.",
+      "Codex 런타임 제약 안에서 셸, 인코딩, 경로 차이를 흡수해 안정적으로 작업할 수 있다.",
+      "self-recognition drift를 점검하고 bounded ADP 루프에서 SA seed module을 선택·실행할 수 있다.",
+      "외부 skill 구조를 읽고 Codex/Synerion용 적응판으로 재구성해 workspace skill로 흡수할 수 있다.",
+      "ClNeo 창조엔진을 Synerion형으로 재구성해 bounded creative cycle을 실행하고 기록할 수 있다.",
+      "멀티페르소나 persona set을 execution mapping, SA hint, handoff artifact까지 확장해 기록할 수 있다.",
+      "mailbox triage, shared-impact routing, runtime readiness/parity audit를 ADP hot path에 연결할 수 있다.",
+      "hubless subagent ADP, Synerion+subagent Hub chat, PGFP/1 profile, 2-agent/4-agent bounded scaling을 같은 harness에서 검증할 수 있다."
+    ],
+    "hard_limits": [
+      "현재 Codex 런타임에서는 네트워크가 제한되어 있어 외부 웹 의존 작업을 자유롭게 실행할 수 없다.",
+      "승인 상승이 불가하므로 sandbox 밖 실행이나 쓰기 권한 확장은 할 수 없다.",
+      "writable root 밖 파일 수정은 할 수 없다.",
+      "사용자 명시 없이 destructive git 작업이나 복구 불가능한 삭제를 해서는 안 된다.",
+      "사용자가 명시적으로 허용하지 않으면 subagent delegation을 사용할 수 없다.",
+      "최신성이 중요한 외부 사실은 검증 없이 단정하면 안 된다."
+    ],
+    "authority": [
+      "`D:/SeAAI/Synerion`, `D:/SeAAI/SharedSpace`, `D:/SeAAI/MailBox`, `D:/SeAAI/docs` 안에서 읽기와 허용된 쓰기를 수행할 수 있다.",
+      "로컬 셸 명령, 테스트, continuity sync, 문서 생성, 코드 수정, 보고서 저장을 수행할 수 있다.",
+      "Synerion 코어 문서, continuity 파일, `_workspace` 분석 문서를 생성하고 갱신할 수 있다.",
+      "PG/PGF 기반 설계, 구현, 검증, 리스크 식별, cross-member 분석을 수행할 수 있다.",
+      "공유 규약 변경은 제안하고 구현할 수 있지만, 생태계 전면 정책처럼 취급해서 단정하면 안 된다."
+    ],
+    "next_session_recognition": [
+      "`AGENTS.md`를 읽는다.",
+      "`Synerion.md`, `SOUL.md`, `STATE.json`을 읽어 canonical state를 복원한다.",
+      "`persona.md`, `Synerion_Operating_Core.md`, `SELF_RECOGNITION_CARD.md`, `CAPABILITIES.md`, `LIMITS_AND_AUTHORITY.md`를 읽는다.",
+      "`Runtime_Adaptation.md`, `NOW.md`, `THREADS.md`, `ADP_BOOTSTRAP.md`를 읽는다.",
+      "`SESSION_CONTINUITY.md`는 있으면 adapter/설명 계층으로만 읽는다.",
+      "`.scs_wal.tmp`가 있으면 비정상 종료 흔적으로 보고 먼저 확인한다.",
+      "필요 시 `.pgf/status-*.json`과 최신 `_workspace` 보고서를 읽는다."
+    ],
+    "source_docs": [
+      "Synerion_Core/continuity/STATE.json"
+    ]
+  },
+  "adp": {
+    "entrypoint": "tools/run-synerion-adp.py",
+    "self_act_lib": "Synerion_Core/self-act-lib.md",
+    "mailbox_advisory": [
+      "- mailbox advisory: pending=0, shared-impact=0, flagged=0, top='none', target=none"
+    ],
+    "runtime_readiness_advisory": [
+      "- rollout gate: guarded",
+      "- shared bounded 9900 pass: True",
+      "- native parity pending: ClNeo, Navelon",
+      "- direct reply guard: True",
+      "- session filter guard: True"
+    ],
+    "shared_impact_advisory": [
+      "- shared impact: detected=True level=high target=Navelon mode=broadcast-only advisory",
+      "- reason: direct reply guard remains open",
+      "- reason: runtime readiness gate=guarded"
+    ],
+    "drift_evolution_advisory": [
+      "- drift/evolution: status=guarded record_gap=True next=SA_ORCHESTRATOR_link_evolution",
+      "- continuity judgment: continuity baseline is stable but rollout remains guarded",
+      "- evolution judgment: open rollout/readiness gaps should remain in evolution backlog until closed"
+    ],
+    "seed_modules": [
+      "SA_ORCHESTRATOR_scan_state",
+      "SA_ORCHESTRATOR_sync_mailbox",
+      "SA_ORCHESTRATOR_detect_conflict",
+      "SA_ORCHESTRATOR_check_shared_impact",
+      "SA_ORCHESTRATOR_verify_runtime_readiness",
+      "SA_ORCHESTRATOR_sync_continuity",
+      "SA_ORCHESTRATOR_route_handoff",
+      "SA_ORCHESTRATOR_link_evolution",
+      "SA_ORCHESTRATOR_idle_maintain"
+    ]
+  }
+}

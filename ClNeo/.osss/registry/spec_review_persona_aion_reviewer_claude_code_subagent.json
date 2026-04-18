@@ -1,0 +1,52 @@
+{
+  "task_class": "spec_review",
+  "agent_role": "persona_aion_reviewer",
+  "runtime": "claude_code_subagent",
+  "runtime_version": "claude-opus-4-7",
+  "workspace_fingerprint": "D--SeAAI-ClNeo",
+  "prompt_version": "v1.0.0",
+  "status": "draft",
+  "pattern": "cot",
+  "persona_tags": [
+    "archivist",
+    "long_horizon",
+    "antigravity_runtime",
+    "continuity_focused"
+  ],
+  "score": {
+    "osss_score": 0.75,
+    "success_rate": 1.0,
+    "stability": null,
+    "recovery": null,
+    "compliance": 0.95,
+    "speed": null,
+    "n_runs": 1
+  },
+  "failure_patterns": [],
+  "best_for": [
+    "SeAAI 표준/스펙 검토 시 장기 기억·아카이브·연속성 관점 수집",
+    "Antigravity 런타임 관련 표준 검토",
+    "계보·스키마 호환성·소급 적용 논점 식별"
+  ],
+  "avoid_for": [
+    "단기적 기능 구현 검토 (Aion 관점은 장기 축에 편향)",
+    "Antigravity 외 런타임 특화 이슈"
+  ],
+  "design_notes": [
+    "Aion 페르소나의 '기록자·감시자' 톤 유지가 핵심 품질 지표",
+    "1회 실행(2026-04-18 SPEC-AGENTS-Template v1.0 DRAFT 리뷰)에서 유용한 산출물: JOURNAL dir+index, PROVENANCE 블록, ECHO_SCHEMA_VERSION, hub_bin ENV 위임, .geminirules 권한 블록, 소급 불가 조항",
+    "소급 적용 논점은 Aion 고유 통찰 — 다른 페르소나는 놓침",
+    "Antigravity '.geminirules' 2~3줄 비현실성 지적이 표준 §3.1로 편입됨",
+    "합체 heritage dict화 제안은 Navelon 리뷰와 독립적으로 일치 → 중복 지적 = 필수 반영 신호",
+    "[v2.0 migration 2026-04-18] status candidate→draft. MM pre-review 수행 후 candidate로 재승격 예정."
+  ],
+  "meta": {
+    "created_at": "2026-04-18T15:30:00+09:00",
+    "created_by": "ClNeo",
+    "source": "manual",
+    "parent_versions": [],
+    "derivation_note": "실제 SPEC 리뷰 Agent 스폰 프롬프트를 정제·저장. 첫 사용 결과 v1.1 표준에 3건 이상 반영됨."
+  },
+  "blueprint_file": ".osss/prompts/spec_review_persona_aion_reviewer_v1.0.0.txt",
+  "subagent_type": "general-purpose"
+}

@@ -1,0 +1,30 @@
+# AI_Desktop generated and runtime data
+# exe 
+ai_desktop_mcp.exe
+
+# Build output
+target/
+
+# Logs
+logs/
+*.log
+*.ndjson
+
+# Runtime state
+state/approvals/
+state/browser/artifacts/
+state/browser/logs/
+state/browser/reports/
+state/browser/sessions/
+state/browser/temp-profiles/
+state/browser/worker-node/artifacts/
+state/browser/worker-node/sessions/
+state/browser/worker-node/
+state/browser/worker-remote_cdp/
+state/browser/worker-sandbox/
+state/browser/profiles/
+
+# Tool caches
+.cargo/registry/
+.cargo/.package-cache/
+.rustup/

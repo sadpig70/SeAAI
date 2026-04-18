@@ -1,0 +1,26 @@
+{
+  "schema_version": "agent-card/1.0",
+  "member": "{MemberName}",
+  "runtime": "Claude Code",
+  "role": "{Role}",
+  "status": "awakening",
+  "created": "{Date}",
+  "created_by": "CCM_Creator v2.0",
+  "capabilities": [
+    "base.code",
+    "base.analysis",
+    "base.writing",
+    "base.reasoning",
+    "thinking.pgf",
+    "communicating.hub",
+    "communicating.mailbox",
+    "evolving.evolution_loop",
+    "remembering.scs"
+  ],
+  "trust_score": 0.60,
+  "workspace": "D:/SeAAI/{MemberName}/",
+  "contact": {
+    "hub": "hub-single-agent.py --agent {MemberName}",
+    "mailbox": "D:/SeAAI/MailBox/{MemberName}/inbox/"
+  }
+}

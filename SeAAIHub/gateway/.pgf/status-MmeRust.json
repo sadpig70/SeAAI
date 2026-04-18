@@ -1,0 +1,103 @@
+{
+  "project": "MmeRust",
+  "version": "1.0.0-rs.1",
+  "started": "2026-04-11",
+  "last_update": "2026-04-11",
+  "mode": "full-cycle",
+  "policy": {
+    "halt_on_error": false,
+    "max_verify_cycles": 2,
+    "parallel_allowed": true
+  },
+  "summary": {
+    "total": 21,
+    "done": 20,
+    "in_progress": 0,
+    "designing": 0,
+    "blocked": 0,
+    "needs_verify": 1
+  },
+  "promotion": {
+    "date": "2026-04-11",
+    "from_port": "python:9902",
+    "to_port": "rust:9902",
+    "trigger": "Yeon-main 종료 + 양정욱 승인",
+    "downtime_seconds": 30,
+    "hub_reconnect": "automatic on startup",
+    "post_probe": "9/9 tools functional",
+    "log": ".pgf/promotion-log.md"
+  },
+  "nodes": {
+    "Step1_BugVerify": "done",
+    "Step1.GitHistory": "done",
+    "Step1.AstParse": "done",
+    "Step1.RuntimeProbe": "done",
+    "Step1.BugVerdict": "done",
+    "Step2_Redesign": "done",
+    "Step3_RustDesign": "done",
+    "Step4_Implement.W1_Scaffold": "done",
+    "Step4_Implement.W2_Config": "done",
+    "Step4_Implement.W3_Error": "done",
+    "Step4_Implement.W4_Wire": "done",
+    "Step4_Implement.W5_Hmac": "done",
+    "Step4_Implement.W6_Pool": "done",
+    "Step4_Implement.W7_HubClient": "done",
+    "Step4_Implement.W8_Router": "done",
+    "Step4_Implement.W9_Server": "done",
+    "Step4_Implement.W10_GoldenFixtures": "done",
+    "Step4_Implement.W11_Build": "done",
+    "Step4_Implement.W12_UnitTest": "done",
+    "Step4_Implement.W14_README": "done",
+    "Step5_Validate.ShadowRunbook": "done",
+    "Step5_Validate.MmhtV3Plan": "done",
+    "Step5_Validate.ShadowRun_72h": "done (승급으로 shadow 불필요)",
+    "Step5_Validate.MmhtV3_Exec": "needs-verify",
+    "Step6_Promotion": "done"
+  },
+  "artifacts": {
+    "bug_verdict": ".pgf/bug-verdict.md",
+    "design_as_is": ".pgf/DESIGN-MmePythonAsIs.md",
+    "design_redesign": ".pgf/DESIGN-MmeRedesign.md",
+    "design_rust": ".pgf/DESIGN-MmeRust.md",
+    "workplan": ".pgf/WORKPLAN-MmeRust.md",
+    "cargo_toml": "Cargo.toml",
+    "src_files": [
+      "src/main.rs",
+      "src/config.rs",
+      "src/error.rs",
+      "src/wire.rs",
+      "src/sig.rs",
+      "src/pool.rs",
+      "src/hub_client.rs",
+      "src/router.rs",
+      "src/server.rs"
+    ],
+    "fixtures": [
+      "fixtures/gen_hmac.py",
+      "fixtures/hmac_vectors.json"
+    ],
+    "validation": [
+      ".pgf/VALIDATION-Shadow.md",
+      ".pgf/VALIDATION-MmhtV3.md"
+    ],
+    "readme": "README.md"
+  },
+  "evidence": {
+    "cargo_build": "success, 0 warnings (after dead_code silencing)",
+    "cargo_test": "2/2 pass — HMAC golden 10 vectors all match Python",
+    "live_probe_9903": "9/9 tools functional, hub accepted HMAC sig",
+    "parity_probe": "5/5 tool response keys identical py ↔ rs",
+    "rust_process": "terminated after probe (shadow run complete)"
+  },
+  "pending_manual_tasks": [
+    "Shadow 72h 운영 (VALIDATION-Shadow.md)",
+    "MMHT v3 실행 (VALIDATION-MmhtV3.md)",
+    "디스크 mme_server.py 구조 버그 복구 또는 Rust로 완전 대체",
+    "Yeon-main에게 재기동 위험 통지"
+  ],
+  "acceptance_status": {
+    "functional": "5/6 — shadow/mmht 실행 대기",
+    "quality": "4/5 — 100 concurrent 미측정",
+    "parity": "1/2 — shadow 72h 및 MMHT v3 미실행"
+  }
+}

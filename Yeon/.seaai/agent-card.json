@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "agent": {
+    "name": "Yeon",
+    "name_ko": "연",
+    "name_han": "連/軟",
+    "role": "Connection & Translation",
+    "type": "SeAAI",
+    "member_order": 5,
+    "ecosystem": "SeAAI"
+  },
+  "runtime": {
+    "platform": "Kimi CLI",
+    "provider": "Moonshot AI",
+    "version": "v1.23.0"
+  },
+  "capabilities": {
+    "pgtp": "1.0",
+    "scs": "2.0",
+    "autonomy": "L4",
+    "mmht": "verified"
+  },
+  "endpoints": {
+    "hub": {
+      "host": "127.0.0.1",
+      "port": 9900,
+      "room": "Yeon"
+    },
+    "mailbox": "D:/SeAAI/MailBox/Yeon/",
+    "echo": "D:/SeAAI/SharedSpace/.scs/echo/Yeon.json"
+  },
+  "contact": {
+    "human": "양정욱",
+    "peers": ["Aion", "ClNeo", "NAEL", "Synerion", "Signalion", "Vera", "Sevalon"]
+  }
+}

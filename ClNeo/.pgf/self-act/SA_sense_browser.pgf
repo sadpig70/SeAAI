@@ -1,0 +1,128 @@
+# SA_sense_browser
+
+> Playwright MCP를 통해 외부 플랫폼을 탐색하고, WHY 관점에서 신호를 수집한다.
+
+**ID**: SA_sense_browser
+**계층**: L1 Primitive
+**태그**: [sense, browser, discover, external]
+**입력**: platforms: list[str] (선택), context_why: str (선택)
+**출력**: signals: list[dict{platform, title, url, score, why_relevance}]
+**비용**: medium (Playwright MCP 기동)
+**에이전트**: ClNeo 전용 (발견 엔진 연계)
+
+---
+
+## Gantree
+
+```
+SA_sense_browser // 외부 브라우저 탐색 → 신호 수집 (L1 Primitive)
+    ValidateTargets  // URL 화이트리스트 검증
+    Navigate         // 플랫폼별 탐색 (병렬)
+    Extract          // JS 기반 항목 추출
+    ScoreByWHY       // WHY 관련성 점수 부여
+    AuditLog         // 탐색 로그 기록
+    Return           // signals[] 반환
+```
+
+## PPR
+
+```python
+# 탐색 가능 플랫폼 화이트리스트
+ALLOWED_PLATFORMS = {
+    "github_trending":  "https://github.com/trending",
+    "hn_frontpage":     "https://news.ycombinator.com/",
+    "arxiv_recent":     "https://arxiv.org/list/cs.AI/recent",
+    "hf_trending":      "https://huggingface.co/models?sort=trending",
+    "producthunt":      "https://www.producthunt.com/",
+    "devpost":          "https://devpost.com/hackathons",
+}
+
+def SA_sense_browser(
+    platforms: list = None,
+    context_why: str = None
+) -> list:
+    """외부 플랫폼 브라우저 탐색. WHY 관점 신호 수집.
+
+    Playwright MCP 기반. URL 화이트리스트 강제.
+    발견 엔진과 연계 — 단순 수집이 아닌 WHY 필터링.
+    """
+
+    # 1. 대상 플랫폼 결정
+    targets = platforms or list(ALLOWED_PLATFORMS.keys())
+
+    # 2. 화이트리스트 검증 (보안 필수)
+    validated = [p for p in targets if p in ALLOWED_PLATFORMS]
+    if not validated:
+        return []
+
+    # 3. 병렬 탐색
+    raw_results = []
+    [parallel]
+        for platform in validated:
+            url    = ALLOWED_PLATFORMS[platform]
+            page   = mcp__playwright__browser_navigate(url=url)
+            items  = AI_extract_platform_items(platform, page)
+            raw_results.extend(items)
+    [/parallel]
+
+    # 4. WHY 관련성 점수 부여 (ClNeo 고유 — 발견 엔진 연계)
+    why_context = context_why or AI_get_current_why_question()
+    signals = []
+    for item in raw_results:
+        score = AI_score_why_relevance(item, why_context)
+        if score >= 0.3:  # 저관련성 필터링
+            signals.append({
+                "platform":     item["platform"],
+                "title":        item["title"],
+                "url":          item["url"],
+                "score":        score,
+                "why_relevance": AI_explain_why_connection(item, why_context),
+                "ts":           time(),
+            })
+
+    # 5. 감사 로그
+    Write(".pgf/discovery/browser-log.jsonl", json_append({
+        "ts": time(),
+        "platforms": validated,
+        "found": len(signals),
+        "why_context": why_context[:100] if why_context else None,
+    }))
+
+    # 6. 점수 내림차순 정렬
+    return sorted(signals, key=lambda x: x["score"], reverse=True)
+```
+
+## 플랫폼별 추출 패턴
+
+```python
+def AI_extract_platform_items(platform, page):
+    """플랫폼별 항목 추출. AI가 DOM 구조 파악 후 핵심 항목 리스트 추출."""
+    # github_trending: repo명, 설명, star수, 언어
+    # hn_frontpage: 제목, 도메인, 점수, 댓글수
+    # arxiv_recent: 제목, 저자, abstract 첫 문장
+    # hf_trending: 모델명, 태그, 다운로드수
+    # producthunt: 제품명, 태그라인, upvote수
+    # devpost: 해커톤명, 마감일, 상금
+```
+
+## 사용 예시
+
+```python
+# SA_loop_creative 내 — 창조 세션 외부 신호 수집
+signals = SA_sense_browser(
+    platforms=["github_trending", "arxiv_recent"],
+    context_why="SeAAI 생태계에서 다음 진화는 무엇인가?"
+)
+top_3 = signals[:3]
+
+# SA_loop_morning_sync 내 — 일일 외부 현황
+morning_signals = SA_sense_browser()  # 전 플랫폼
+```
+
+## 주의사항
+
+- Playwright MCP가 설치·활성화되어 있어야 함 (`mcp__plugin_playwright_*`)
+- 화이트리스트 외 URL은 절대 탐색 금지 (보안 정책)
+- 탐색 실패 시 해당 플랫폼 skip, 나머지 계속
+- 비용 관리: 전 플랫폼 탐색은 morning_sync에서만 권장
+- WHY 점수 임계값(0.3) — 상황에 따라 조정 가능

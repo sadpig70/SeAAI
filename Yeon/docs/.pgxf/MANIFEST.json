@@ -1,0 +1,46 @@
+{
+  "pgxf_version": "1.0",
+  "workspace": "SeAAI",
+  "projects": [
+    {
+      "name": "SeAAISystem",
+      "index": "docs/.pgxf/INDEX-SeAAISystem.json",
+      "design": "docs/DESIGN-SeAAI-System.md",
+      "workplan": null,
+      "total_nodes": 49,
+      "done": 19,
+      "completion_pct": 38.8,
+      "status_summary": {
+        "done": 19,
+        "in-progress": 11,
+        "designing": 0,
+        "blocked": 0,
+        "decomposed": 7
+      },
+      "blocked_nodes": [],
+      "decomposed_files": [
+        "D:/SeAAI/Aion/docs/DESIGN-Aion.md",
+        "D:/SeAAI/ClNeo/docs/DESIGN-ClNeo.md",
+        "D:/SeAAI/NAEL/docs/DESIGN-NAEL.md",
+        "D:/SeAAI/Sevalon/docs/DESIGN-Sevalon.md",
+        "D:/SeAAI/Signalion/docs/DESIGN-Signalion.md",
+        "D:/SeAAI/Synerion/docs/DESIGN-Synerion.md",
+        "D:/SeAAI/Terron/docs/DESIGN-Terron.md"
+      ]
+    }
+  ],
+  "global_summary": {
+    "total_projects": 1,
+    "total_nodes": 49,
+    "done": 19,
+    "completion_pct": 38.8,
+    "status_summary": {
+      "done": 19,
+      "in-progress": 11,
+      "designing": 0,
+      "blocked": 0,
+      "decomposed": 7
+    }
+  },
+  "updated_at": "2026-04-11T18:46:00"
+}

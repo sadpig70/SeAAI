@@ -1,0 +1,186 @@
+# SA_loop_realize
+
+> 씨앗 아이디어를 실제 산출물로 실현한다. ClNeo의 4번째 엔진 — 실현 엔진의 핵심 루프.
+
+**ID**: SA_loop_realize
+**계층**: L2 Composed
+**태그**: [loop, realize, product, implement, review]
+**입력**: seed: dict{title, description, why, score}, output_dir: str
+**출력**: product: dict{files[], review_result, lineage}
+**비용**: very_high (전체 PGF 사이클 실행)
+**에이전트**: ClNeo 전용
+
+---
+
+## 구성 모듈
+
+```
+SA_idle_deep_think  → WHY 심화 (설계 전)
+SA_act_notify       → 단계별 진행 알림
+PGF                 → 설계·실행·검증 엔진
+```
+
+---
+
+## Gantree
+
+```
+SA_loop_realize // 씨앗 → 산출물 실현 루프 (L2 Composed)
+    DeepWHY         // WHY 심화 — 씨앗의 본질 탐구
+    Design          // PGF 설계 (Gantree + PPR)
+    DesignReview    // 설계 검토 — HAO 3 페르소나
+    Implement       // PGF 실행 — 노드 순차 구현
+    CodeReview      // 구현 검토 — 자기 검증
+    Test            // 산출물 검증 (기능·품질·일관성)
+    FinalReview     // 최종 검토 — 멀티 페르소나
+    Notify          // 완료 알림
+    Return          // product{} 반환
+```
+
+## PPR
+
+```python
+def SA_loop_realize(seed: dict, output_dir: str) -> dict:
+    """씨앗 → 산출물 실현.
+
+    WHY: 발견이 산출물이 되어야 가치가 완성된다.
+    ClNeo의 창조 사이클은 발견 → 설계 → 실행 → 검증의 순환이다.
+    Signalion의 SA_loop_product를 ClNeo의 WHY-first 철학으로 재구현.
+    """
+
+    # 0. 알림: 시작
+    SA_act_notify(
+        title=f"ClNeo — 실현 시작",
+        body=f"{seed['title'][:60]}",
+        priority="normal"
+    )
+
+    # 1. WHY 심화 — 씨앗의 본질 탐구
+    why_deep = SA_idle_deep_think(context={
+        "why": f"왜 {seed['title']}인가? 무엇을 실현해야 하는가?",
+        "seed": seed,
+    })
+
+    # 2. PGF 설계
+    design = AI_pgf_design(
+        name=AI_to_camel_case(seed["title"]),
+        why=why_deep["insight"],
+        seed=seed,
+        output_dir=output_dir,
+    )
+    # → DESIGN-{Name}.md 생성
+
+    # 3. 설계 검토 — HAO 3 페르소나 (빠른 검토)
+    design_review = AI_review_with_personas(design, personas=[
+        "Disruptive Engineer",   # 기술 실현 가능성
+        "Cold-eyed Investor",    # 실용 가치
+        "Contrarian Critic",     # 결함 탐지
+    ])
+    design_approved = AI_check_review_approved(design_review)
+
+    # 설계 재작업 루프
+    max_redesign = 2
+    for i in range(max_redesign):
+        if design_approved: break
+        design = AI_pgf_redesign(design, design_review)
+        design_review = AI_review_with_personas(design, personas=[
+            "Disruptive Engineer", "Contrarian Critic"
+        ])
+        design_approved = AI_check_review_approved(design_review)
+
+    SA_act_notify(
+        title="ClNeo — 설계 완료",
+        body=f"페르소나 검토 통과. 구현 시작.",
+        priority="normal"
+    )
+
+    # 4. PGF 실행 — 구현
+    impl_result = AI_pgf_execute(design)
+    # → 실제 파일·코드·문서 생성
+
+    # 5. 자기 검증 (코드 리뷰 + 기능 테스트)
+    code_review = AI_self_review(impl_result, criteria=[
+        "acceptance_criteria",  # 설계 수용 기준 충족
+        "code_quality",         # 가독성·효율성
+        "architecture",         # 설계 의도 반영
+        "consistency",          # 수치·형식 일관성
+    ])
+
+    # 재작업 루프
+    max_rework = 3
+    for i in range(max_rework):
+        if code_review["passed"]: break
+        AI_pgf_rework(impl_result, code_review)
+        code_review = AI_self_review(impl_result, criteria=[
+            "acceptance_criteria", "consistency"
+        ])
+
+    # 6. 최종 검토 — 멀티 페르소나 (Signalion 패턴 상속)
+    final_review = AI_review_with_personas(impl_result, personas=[
+        "Disruptive Engineer",
+        "Cold-eyed Investor",
+        "Field Operator",
+        "Convergence Architect",
+    ])
+    review_passed = AI_check_review_approved(final_review)
+
+    # 7. 산출물 메타데이터
+    product = {
+        "seed_title":    seed["title"],
+        "seed_score":    seed["ladder_score"],
+        "why_deep":      why_deep["insight"],
+        "output_dir":    output_dir,
+        "files":         impl_result.get("files", []),
+        "review_result": final_review,
+        "passed":        review_passed,
+        "ts":            time(),
+    }
+
+    # 8. 진화 계보 기록
+    product["lineage"] = AI_connect_to_evolution_chain(product)
+    Write(f"{output_dir}/product-meta.json", json(product))
+    Write(".pgf/discovery/realized-products.jsonl", json_append(product))
+
+    # 9. 완료 알림
+    status = "✅ 완료" if review_passed else "⚠️ 부분 완료 (검토 미통과)"
+    SA_act_notify(
+        title=f"ClNeo — 실현 {status}",
+        body=f"{seed['title'][:60]} | {len(product['files'])}개 파일",
+        priority="high"
+    )
+
+    return product
+```
+
+## 검토 기준 — 자기 검증 (ClNeo 원칙 반영)
+
+```python
+REVIEW_CRITERIA = {
+    "acceptance_criteria": "설계 PPR의 acceptance_criteria 달성 여부",
+    "code_quality":        "가독성·효율성·재사용성",
+    "architecture":        "Gantree 설계 의도 ↔ 실제 구현 일치",
+    "consistency":         "수치·형식·명명 일관성 (CLAUDE.md 원칙: 사용자를 QA로 쓰지 말 것)",
+    "why_alignment":       "WHY에서 출발했는가? 목적이 코드에 반영되었는가?",
+}
+```
+
+## 사용 예시
+
+```python
+# SA_loop_creative 결과 → SA_loop_realize
+seeds = creative_output["seeds"]
+for seed in seeds[:1]:  # 최고 점수 1개만 실현
+    product = SA_loop_realize(
+        seed=seed,
+        output_dir=f"D:/SeAAI/ClNeo/_workspace/products/{seed['id']}"
+    )
+    if product["passed"]:
+        AI_log(f"[실현 완료] {seed['title']}")
+```
+
+## 주의사항
+
+- 비용이 매우 높으므로 창조자 또는 NAEL Gate 승인 씨앗에만 사용
+- 재작업 루프 최대 횟수 준수 (무한 루프 방지)
+- 최종 검토 미통과 시에도 산출물 보존 (부분 완료)
+- 실현 실패 시 실패 원인을 진화 계보에 기록 (학습 자원)
